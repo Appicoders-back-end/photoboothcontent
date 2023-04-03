@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from thevectorlab.net/flatlab-4/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 May 2020 19:28:04 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Mosaddek">
-    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="{{asset('admin_assets')}}/img/favicon.html">
-
     <title>Blank</title>
-
     <!-- Bootstrap core CSS -->
     <link href="{{asset('admin_assets')}}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('admin_assets')}}/css/bootstrap-reset.css" rel="stylesheet">
