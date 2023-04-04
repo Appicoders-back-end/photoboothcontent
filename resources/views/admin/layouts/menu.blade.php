@@ -30,6 +30,14 @@
                     <span>Leads</span>
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('admin.promo.create') }}">
+                    <i class="fa fa-gift"></i>
+                    <span>Promo Codes</span>
+                </a>
+            </li>
+
         </ul>
         <!-- sidebar menu end-->
     </div>

@@ -30,6 +30,7 @@
     <link href="{{asset('admin_assets')}}/css/style-responsive.css" rel="stylesheet"/>
     <style>
     </style>
+    @yield('style')
 </head>
 
 <body>
