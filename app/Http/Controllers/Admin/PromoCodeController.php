@@ -22,7 +22,7 @@ class PromoCodeController extends Controller
      */
     public function create()
     {
-        return view('admin.promo_code.promo-codes');
+        return view('admin.promo_code.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class PromoCodeController extends Controller
             $promo_code->image = $imageName;
             $promo_code->save();
 
-            return back()->with('success', 'Promo code has been created successfully');
+            return redirect()->route('admin.promo.index')->with('success', 'Promo code has been created successfully');
 
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
@@ -80,6 +80,13 @@ class PromoCodeController extends Controller
     public function update(Request $request, string $id)
     {
         try {
+            $request->validate([
+                "name" => "required",
+                "amount" => "required",
+                "code" => "required|unique:promo_codes,$id",
+                "image" => "required",
+            ]);
+
             $promo_code = PromoCode::find($id);
             if ($request->image) {
                 deleteAttachment($promo_code->image);
@@ -108,6 +115,7 @@ class PromoCodeController extends Controller
     {
         try {
             $deletePromo = PromoCode::find($id);
+            deleteAttachment($deletePromo->image);
             $res = $deletePromo->delete();
             if ($res) {
                 return back()->with('success', 'Promo Code has been successfully deleted .');

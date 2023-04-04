@@ -40,17 +40,17 @@
                             @method('PUT')
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom01">Name</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="name"
-                                           placeholder="promo code name" value="{{ $promo_code->name }}" required>
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="promo code name" value="{{ old('name', $promo_code->name) }}" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom02">Code</label>
-                                    <input type="text" class="form-control" id="validationCustom02" name="code"
-                                           placeholder="promo code" value="{{ $promo_code->code }}" required>
+                                    <label for="code">Code</label>
+                                    <input type="text" class="form-control" id="code" name="code"
+                                           placeholder="promo code" value="{{ old('code', $promo_code->code) }}" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
@@ -80,9 +80,9 @@
                                 </div>
 
                                 <div class="col-md-12 mb-3">
-                                    <label for="validationCustom02">Amount</label>
-                                    <input type="text" class="form-control" id="validationCustom02" name="amount"
-                                           placeholder="amount" value="{{ $promo_code->amount }}" required>
+                                    <label for="amount">Amount</label>
+                                    <input type="text" class="form-control" id="amount" name="amount"
+                                           placeholder="amount" value="{{ old('amount', $promo_code->amount) }}" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
