@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PromoCodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\AdminController;
@@ -23,7 +24,11 @@ Route::post('do_login', [AuthController::class, 'doLogin'])->name('admin.do_logi
 Route::group(['middleware' => 'admin'], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('storeSettings', [AdminController::class, 'storeSettings'])->name('admin.storeSettings');
+
+    Route::get('create', [PromoCodeController::class, 'create'])->name('admin.promo.create');
+    Route::post('store', [PromoCodeController::class, 'store'])->name('admin.promo.store');
 });
