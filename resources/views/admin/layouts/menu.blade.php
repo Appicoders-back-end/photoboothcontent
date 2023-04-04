@@ -19,7 +19,7 @@
                 </ul>
             </li> --}}
             <li>
-                <a href="#">
+                <a href="{{route('admin.users.index')}}">
                     <i class="fa fa-user"></i>
                     <span>Users</span>
                 </a>
@@ -28,6 +28,12 @@
                 <a href="#">
                     <i class="fa fa-tags"></i>
                     <span>Leads</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.settings')}}">
+                    <i class="fa fa-gears"></i>
+                    <span>General Settings</span>
                 </a>
             </li>
         </ul>
