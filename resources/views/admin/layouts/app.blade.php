@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="img/favicon.html">
+    <link rel="shortcut icon" href="{{asset('admin_assets')}}/img/favicon.html">
     <title>Admin - Photo Booth Management</title>
     <!-- Bootstrap core CSS -->
     <link href="{{asset('admin_assets')}}/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +48,6 @@
             <ul class="nav top-menu">
                 <!-- notification dropdown start-->
                 {{-- @if(auth()->user()->role == \App\Models\User::User) --}}
-
                 {{-- @endif--}}
                 <!-- notification dropdown end -->
             </ul>
@@ -62,7 +61,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="img/avatar1_small.jpg">
-                        <span class="username">{{ auth()->user()->name??'N/A' }}</span>
+                        <span class="username">{{auth()->user()->name ?? 'N/A'}}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout dropdown-menu-right">

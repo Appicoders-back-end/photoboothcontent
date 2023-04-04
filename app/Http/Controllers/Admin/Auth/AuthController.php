@@ -11,6 +11,9 @@ class AuthController
 {
     public function login()
     {
+        if (auth()->guard('admin')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('admin.auth.login');
     }
 
@@ -29,7 +32,13 @@ class AuthController
             return redirect()->back()->withInput()->with('error', __('Invalid username or password'));
         }
 
-        Auth::loginUsingId(auth()->user()->id);
+        Auth::guard('admin')->loginUsingId(auth()->user()->id);
         return redirect()->route('admin.dashboard');
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 }

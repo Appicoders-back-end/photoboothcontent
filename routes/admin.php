@@ -19,4 +19,7 @@ Route::get('/', [AuthController::class, 'login']);
 Route::get('login', [AuthController::class, 'login'])->name('admin.login');
 Route::post('do_login', [AuthController::class, 'doLogin'])->name('admin.do_login');
 
-Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::group(['middleware' => 'admin'], function () {
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
