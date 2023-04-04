@@ -80,7 +80,8 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">Image</label>
-                                    <input type="file" class="dropify"  name="image"/>
+                                    <input type="file" name="image" class="dropify" data-max-file-size="3M"
+                                           data-allowed-file-extensions="jpg jpeg png">
                                 </div>
                             </div>
                             <button class="btn btn-primary" type="submit">Create Promo</button>
