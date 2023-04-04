@@ -31,29 +31,9 @@
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa fa-tags"></i>
-                    <span>Leads</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-gift"></i>
-                    <span>Promo Codes</span>
-                    <ul class="sidebar-menu" id="nav-accordion">
-                        <li>
-                            <a href="{{ route('admin.promo.index') }}">
-                                <i class="fa fa-gift"></i>
-                                <span>Promo Codes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.promo.create') }}">
-                                <i class="fa fa-gift"></i>
-                                <span>Create Promo</span>
-                            </a>
-                        </li>
-                    </ul>
+                <a href="{{route('admin.promo.index')}}">
+                    <i class="fa fa-gears"></i>
+                    <span>{{__('Promo Codes')}}</span>
                 </a>
             </li>
             <li>

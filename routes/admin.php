@@ -31,14 +31,14 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('storeSettings', [AdminController::class, 'storeSettings'])->name('admin.storeSettings');
 
     // promo codes start
-
-    Route::get('index', [PromoCodeController::class, 'index'])->name('admin.promo.index');
+    /*Route::get('index', [PromoCodeController::class, 'index'])->name('admin.promo.index');
     Route::get('create', [PromoCodeController::class, 'create'])->name('admin.promo.create');
     Route::post('store', [PromoCodeController::class, 'store'])->name('admin.promo.store');
     Route::get('destroy/{id}', [PromoCodeController::class, 'destroy'])->name('admin.promo.destroy');
     Route::get('edit/{id}', [PromoCodeController::class, 'edit'])->name('admin.promo.edit');
-    Route::post('update/{id}', [PromoCodeController::class, 'update'])->name('admin.promo.update');
+    Route::post('update/{id}', [PromoCodeController::class, 'update'])->name('admin.promo.update');*/
 
+    Route::resource('promo', PromoCodeController::class, ['as' => 'admin']);
     // promo code end
 
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
