@@ -8,17 +8,18 @@ use Illuminate\Support\Facades\File;
 
 if (!function_exists('saveFile')) {
 
-    function saveFile($file)
+    function saveFile($file, $path)
     {
         $file_name = time() . "_" . $file->getClientOriginalName();
         $filename = pathinfo($file_name, PATHINFO_FILENAME);
         $extension = pathinfo($file_name, PATHINFO_EXTENSION);
         $file_name = str_replace(" ", "_", $filename);
         $file_name = str_replace(".", "_", $file_name) . "." . $extension;
-        $path = public_path() . "/storage/uploads/";
-        $file->move($path, $file_name);
+        $path = "storage/uploads/" . $path;
 
-        return $file_name;
+        $file->move(public_path() . '/' . $path, $file_name);
+
+        return $path . '/' . $file_name;
     }
 }
 
@@ -29,7 +30,8 @@ if (!function_exists('deleteAttachment')) {
         if ($attachment == null) {
             return true;
         }
-        $attachment_path = public_path() . '/storage/uploads/' . $attachment;
+
+        $attachment_path = public_path() . '/' . $attachment;
         $attachment_path = str_replace('/', "\\", $attachment_path);
         if (File::exists($attachment_path)) {
             File::delete($attachment_path);
