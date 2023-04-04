@@ -8,6 +8,12 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.categories.index')}}">
+                    <i class="fa fa-gears"></i>
+                    <span>{{__('Categories')}}</span>
+                </a>
+            </li>
             {{--<li class="sub-menu">
                 <a href="javascript:;">
                     <i class="fa fa-comments-o"></i>
@@ -31,12 +37,6 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.settings')}}">
-                    <i class="fa fa-gears"></i>
-                    <span>General Settings</span>
-                </a>
-            </li>
-            <li>
                 <a href="#">
                     <i class="fa fa-gift"></i>
                     <span>Promo Codes</span>
@@ -54,6 +54,12 @@
                             </a>
                         </li>
                     </ul>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.settings')}}">
+                    <i class="fa fa-gears"></i>
+                    <span>{{__('General Settings')}}</span>
                 </a>
             </li>
         </ul>

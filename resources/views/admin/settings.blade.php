@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+@section('style')
+    <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">
+@endsection
 @section('content')
     <section class="wrapper">
         <!-- page start-->
@@ -38,13 +41,13 @@
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom01">Logo</label>
-                                    <input type="file" value="">
+                                    <label for="logo">Logo</label>
+                                    <input id="logo" type="file" class="dropify" name="logo"/>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                {{--<div class="col-md-6 mb-3">
                                     <label for="validationCustom02">Last name</label>
                                     <input type="text" class="form-control" name="last_name" id="validationCustom02" placeholder="Last name" value="Otto" required>
-                                </div>
+                                </div>--}}
                             </div>
                             <button class="btn btn-primary" type="submit">Submit</button>
                         </form>
@@ -54,4 +57,12 @@
         </div>
         <!-- page end-->
     </section>
+@endsection
+@section('script')
+    <script src="{{asset('admin_assets')}}/js/dropify.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.dropify').dropify();
+        });
+    </script>
 @endsection
