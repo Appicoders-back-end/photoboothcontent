@@ -20,7 +20,7 @@
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Interval Time</th>
-                                    <th>Coupon</th>
+                                    <th>Coupons</th>
                                     <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -31,8 +31,8 @@
                                     <tr class="gradeX">
                                         <td>{{ $subscription->name ?? 'N/A' }}</td>
                                         <td>{{ $subscription->price ?? 'N/A' }}</td>
-                                        <td>{{ $subscription->interval_time ?? 'N/A' }}</td>
-                                        <td>{{ $subscription->coupon ?? 'N/A' }}</td>
+                                        <td>Per {{ $subscription->interval_time ?? 'N/A' }}</td>
+                                        <td>{{ $subscription->coupons ?? 'N/A' }}</td>
                                         <td>
                                             @if($subscription->status == \App\Models\Subscription::Active)
                                                 <span class="text-success">{{ ucwords($subscription->status) }}</span>
