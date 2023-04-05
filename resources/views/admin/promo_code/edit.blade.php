@@ -10,30 +10,7 @@
                 <section class="card">
                     <div class="card-header">Edit Promo Code</div>
                     <div class="card-body">
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Success!</strong>
-                                <?= htmlentities(Session::get('success'))?>
-                            </div>
-                        @endif
-                        @if(Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Error!</strong>
-                                <?= htmlentities(Session::get('error'))?>
-                            </div>
-                        @endif
-                        @if($errors->any())
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <p><strong>Whoops!</strong> Please correct errors and try again!</p>
-                                @foreach ($errors->all() as $error)
-                                    <div>{{ $error }}</div>
-                                @endforeach
-                            </div>
-                        @endif
-
+                        @include('admin.layouts.messages')
                         <form class="needs-validation" action="{{route('admin.promo.update',$promo_code->id)}}"
                               method="POST" enctype="multipart/form-data">
                             @csrf
@@ -101,7 +78,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Update Promo</button>
+                            <button class="btn btn-sm btn-success" type="submit">Update Promo</button>
                         </form>
                     </div>
                 </section>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,5 @@ Route::group(['middleware' => 'admin'], function () {
     // promo code end
 
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
+    Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin']);
 });
