@@ -13,7 +13,8 @@ class Category extends Model
     protected $fillable = ['name', 'description', 'parent_id'];
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
-    public function subcategory()
+
+    public function subcategories()
     {
         return $this->hasMany(Category::class, 'parent_id');
     }

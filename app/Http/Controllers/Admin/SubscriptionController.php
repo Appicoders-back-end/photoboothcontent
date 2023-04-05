@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Subscription\CreateSubscriptionRequest;
+use App\Http\Requests\Admin\Subscription\UpdateSubscriptionRequest;
+use App\Models\Category;
 use App\Models\Subscription;
-use Illuminate\Http\Request;
 use App\Services\StripeService;
 
 class SubscriptionController extends Controller
@@ -24,7 +25,8 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        return view('admin.subscriptions.create');
+        $coupons = Category::get();
+        return view('admin.subscriptions.create', ['coupons' => $coupons]);
     }
 
     /**
@@ -42,44 +44,41 @@ class SubscriptionController extends Controller
             $subscription->price = $request->price;
             $subscription->interval_time = $request->interval_time;
             $subscription->description = $request->description;
-            $subscription->coupons = $request->coupons;
+            $subscription->coupon_id = $request->coupon_id;
+            $subscription->status = $request->status;
             $subscription->save();
 
             return redirect()->route('admin.subscriptions.index')->with('success', __('Subscription has been created successfully'));
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Subscription $subscription)
     {
-        //
+        return view('admin.subscriptions.edit', ['subscription' => $subscription]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSubscriptionRequest $request, Subscription $subscription)
     {
-        //
-    }
+        try {
+            $subscription->name = $request->name;
+            $subscription->price = $request->price;
+            $subscription->interval_time = $request->interval_time;
+            $subscription->description = $request->description;
+            $subscription->coupon_id = $request->coupon_id;
+            $subscription->status = $request->status;
+            $subscription->save();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            return redirect()->route('admin.subscriptions.index')->with('success', __('Subscription has been updated successfully'));
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 }

@@ -26,7 +26,7 @@ class CreateSubscriptionRequest extends FormRequest
             'price' => 'required|numeric|min:1',
             'interval_time' => 'required',
             'description' => 'required',
-            'coupons' => 'required|min:1'
+            'coupon_id' => 'required'
         ];
     }
 }
