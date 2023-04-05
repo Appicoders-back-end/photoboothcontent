@@ -1,0 +1,139 @@
+@extends('admin.layouts.app')
+@section('content')
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="card">
+                    <header class="card-header">
+                        Categories
+                        <span class="pull-right">
+                            <a href="{{route('admin.categories.create')}}" class=" btn btn-success btn-sm">Create New</a>
+                        </span>
+                    </header>
+                    <div class="card-body">
+
+                        @if(Session::has('success'))
+                            <div class="alert alert-success alert-dismissible" style="text-align:center;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                <strong>Success!</strong>
+                                <?= htmlentities(Session::get('success'))?>
+                            </div>
+                        @endif
+                        @if(Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                <strong>Error!</strong>
+                                <?= htmlentities(Session::get('error'))?>
+                            </div>
+                        @endif
+                        @if($errors->any())
+                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                <p><strong>Whoops!</strong> Please correct errors and try again!</p>
+                                @foreach ($errors->all() as $error)
+                                    <div>{{ $error }}</div>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        <div class="adv-table">
+                            <table class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>description</th>
+                                    <th>Parent Category</th>
+                                    <th> Image</th>
+                                    <th> Created At</th>
+                                    <th> Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($categories as $category)
+                                    <tr class="gradeX">
+                                        <td>{{ $category->name??'N/A' }}</td>
+                                        <td>{{ $category->slug??'N/A' }}</td>
+{{--                                        <td>{{ substr($category->description,0,25) }}</td>--}}
+                                        <td>
+                                            <p data-id="{{ $category->description }}" id="read" data-toggle="modal"
+                                               data-target="#exampleModal3">
+                                                {{ (strlen($category->description) > 20)?substr($category->description, 0, 20)." ... Read More
+                                                ":$category->description??'N/A' }}
+                                            </p>
+                                        </td>
+                                        <td>{{ $category->parent->name??'N/A' }}</td>
+                                        <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td>
+                                        <td>{{ date('F d, Y', strtotime($category->created_at))??'N/A'}} </td>
+                                        <td>
+{{--                                            <form action="{{ route('admin.categories.edit', ['category'=>$category->id]) }}" method="POST">--}}
+{{--                                                --}}
+{{--                                                @method('PATCH')--}}
+{{--                                                <button class="btn btn-success"> <i class="fa fa-pencil-square-o"></i></button>--}}
+{{--                                            </form>--}}
+                                            <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
+                                            <form action="{{ route('admin.categories.destroy', ['category'=>$category->id]) }}" method="POST">
+                                               @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger"> <i class="fa fa-trash-o"></i></button>
+                                            </form>
+{{--                                            <a href="{{ route('admin.categories.destroy',['category'=>$category->id]) }}" class="btn btn-danger"> <i class="fa fa-trash-o"></i></a>--}}
+                                        </td>
+                                    </tr>
+                                @empty
+                                @endforelse
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>description</th>
+                                    <th>Parent Category</th>
+                                    <th> Image</th>
+                                    <th> Created At</th>
+                                    <th> Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+        <div class="modal-dialog ">
+            {{-- modal-dialog-centered--}}
+            <div class="modal-content">
+                <div class="modal-header newfqheading">
+                    <h5 class="modal-title" id="exampleModalLabel">Category Description </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body newfqbody">
+                    <p id="read_more">
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).on("click",'#read',function () {
+            var str = $(this).data('id').length;
+            if (str >= 20){
+                $("#read").css({"cursor":"pointer"});
+            }
+            $("#read_more").text($(this).data('id'));
+        });
+    </script>
+@endsection

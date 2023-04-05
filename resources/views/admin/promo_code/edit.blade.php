@@ -11,8 +11,7 @@
                     <div class="card-header">Edit Promo Code</div>
                     <div class="card-body">
                         @include('admin.layouts.messages')
-                        <form class="needs-validation" action="{{route('admin.promo.update',$promo_code->id)}}"
-                              method="POST" enctype="multipart/form-data">
+                        <form class="needs-validation" action="{{route('admin.promo.update',$promo_code->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-row">
