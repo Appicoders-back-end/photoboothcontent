@@ -34,8 +34,7 @@
                             </div>
                         @endif
 
-                        <form class="needs-validation" action="{{route('admin.promo.update',$promo_code->id)}}"
-                              method="POST" enctype="multipart/form-data">
+                        <form class="needs-validation" action="{{route('admin.promo.update',$promo_code->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-row">

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -12,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -20,7 +24,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+//        dd($categories);
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -28,7 +34,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                "name" => "required",
+                "description" => "required",
+                "image" => "required",
+            ]);
+
+            $imageName = saveFile($request->image, "categories");
+//            $request->image->move(storage_path('\storage\admin_assets\img\promo-codes'), $imageName);
+
+            $category = new Category();
+            $category->name = $request->name??null;
+            $category->parent_id = $request->parent_id??null;
+            $category->slug = Str::slug($request->name);
+            $category->description = $request->description??null;
+            $category->status = $request->status;
+            $category->image = $imageName;
+            $category->save();
+
+            return redirect()->route('admin.categories.index')->with('success', 'Category has been created successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
@@ -36,7 +65,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -44,7 +73,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        $category = Category::find($id);
+        return view('admin.categories.edit', compact('categories','category'));
     }
 
     /**
@@ -52,7 +83,30 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $request->validate([
+                "name" => "required",
+                "description" => "required",
+            ]);
+
+            $category = Category::find($id);
+            if ($request->image) {
+                deleteAttachment($category->image);
+                $imageName = saveFile($request->image, "categories");
+                $category->image = $imageName;
+            }
+
+            $category->slug = Str::slug($request->name);
+            $category->description = $request->description??null;
+            $category->status = $request->status;
+            $category->parent_id = $request->parent_id??null;
+
+            $category->save();
+            return redirect()->route('admin.categories.index')->with('success', "Category Updated Successfully");
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
@@ -60,6 +114,15 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $deleteCategory = Category::find($id);
+            deleteAttachment($deleteCategory->image);
+            $res = $deleteCategory->delete();
+            if ($res) {
+                return back()->with('success', 'Category has been successfully deleted .');
+            }
+        } catch (\Exception $exception) {
+            return redirect()->route('admin.categories.index')->with('error', $exception->getMessage());
+        }
     }
 }
