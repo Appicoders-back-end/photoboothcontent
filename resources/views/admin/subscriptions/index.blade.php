@@ -6,9 +6,9 @@
             <div class="col-sm-12">
                 <section class="card">
                     <header class="card-header">
-                        Promo Codes
+                        Subscriptions
                         <span class="pull-right">
-                            <a href="{{route('admin.promo.create')}}" class=" btn btn-success btn-sm">Create New</a>
+                            <a href="{{route('admin.subscriptions.create')}}" class=" btn btn-success btn-sm">Create New</a>
                         </span>
                     </header>
                     <div class="card-body">
@@ -18,46 +18,37 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Code</th>
-                                    <th>Image</th>
-                                    <th>Type</th>
-                                    <th>Amount</th>
+                                    <th>Price</th>
+                                    <th>Interval Time</th>
+                                    <th>Coupon</th>
                                     <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($promo_codes as $promo_code)
+                                @forelse($subscriptions as $subscription)
                                     <tr class="gradeX">
-                                        <td>{{ $promo_code->name??'N/A' }}</td>
-                                        <td>{{ $promo_code->code??'N/A' }}</td>
+                                        <td>{{ $subscription->name ?? 'N/A' }}</td>
+                                        <td>{{ $subscription->price ?? 'N/A' }}</td>
+                                        <td>{{ $subscription->interval_time ?? 'N/A' }}</td>
+                                        <td>{{ $subscription->coupon ?? 'N/A' }}</td>
                                         <td>
-                                            <img class="img img-fluid"
-                                                 width="150"
-                                                 src="{{ $promo_code->getImage() }}"
-                                                 alt="{{$promo_code->name}}">
-                                        </td>
-                                        <td>{{ ucwords($promo_code->type)??'N/A' }}</td>
-                                        <td>{{ $promo_code->amount??'N/A' }}</td>
-                                        <td>
-                                            @if($promo_code->status == "active")
-                                                <span class="text-success">{{ ucwords($promo_code->status) }}</span>
+                                            @if($subscription->status == \App\Models\Subscription::Active)
+                                                <span class="text-success">{{ ucwords($subscription->status) }}</span>
                                             @else
-                                                <span class="text-danger">{{ ucwords($promo_code->status) }}</span>
+                                                <span class="text-danger">{{ ucwords($subscription->status) }}</span>
                                             @endif
                                         </td>
-                                        <td>{{ date('F d, Y', strtotime($promo_code->created_at))??'N/A'}} </td>
+                                        <td>{{ formattedDate($subscription->created_at) ?? 'N/A'}} </td>
                                         <td>
-                                            <a href="{{ route('admin.promo.edit',$promo_code->id) }}"
+                                            <a href="{{ route('admin.promo.edit',$subscription->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.promo.destroy',$promo_code->id) }}" id="deleteform" method="POST">
+                                            <form action="{{ route('admin.promo.destroy',$subscription->id) }}" id="deleteform" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger" role="button" id="delete_btn"><i class="fa fa-trash-o"></i></button>
                                             </form>
-                                            {{--<a href="{{ route('admin.promo.destroy',['id'=>$promo_code->id]) }}"
-                                               class="btn btn-danger"> <i class="fa fa-trash-o"></i></a> --}}
                                         </td>
                                     </tr>
                                 @empty
@@ -66,10 +57,9 @@
                                 <tfoot>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Code</th>
-                                    <th>Image</th>
-                                    <th>Type</th>
-                                    <th>Amount</th>
+                                    <th>Price</th>
+                                    <th>Interval Time</th>
+                                    <th>Coupon</th>
                                     <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>

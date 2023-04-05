@@ -32,8 +32,14 @@
             </li>
             <li>
                 <a href="{{route('admin.promo.index')}}">
-                    <i class="fa fa-gears"></i>
+                    <i class="fa fa-solid fa-bullhorn"></i>
                     <span>{{__('Promo Codes')}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.subscriptions.index')}}">
+                    <i class="fa fa-credit-card"></i>
+                    <span>Subscriptions</span>
                 </a>
             </li>
             <li>

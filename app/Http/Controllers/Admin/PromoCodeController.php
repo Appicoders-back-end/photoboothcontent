@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Promo\CreatePromoRequest;
+use App\Http\Requests\Admin\Promo\UpdatePromoRequest;
 use App\Models\PromoCode;
 use Illuminate\Http\Request;
 
@@ -28,16 +30,9 @@ class PromoCodeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreatePromoRequest $request)
     {
         try {
-            $request->validate([
-                "name" => "required",
-                "amount" => "required",
-                "code" => "required|unique:promo_codes",
-                "image" => "required",
-            ]);
-
             $imageName = saveFile($request->image, "promo-codes");
 //            $request->image->move(storage_path('\storage\admin_assets\img\promo-codes'), $imageName);
 
@@ -77,16 +72,9 @@ class PromoCodeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePromoRequest $request, $id)
     {
         try {
-            $request->validate([
-                "name" => "required",
-                "amount" => "required",
-                "code" => "required|unique:promo_codes,$id",
-                "image" => "required",
-            ]);
-
             $promo_code = PromoCode::find($id);
             if ($request->image) {
                 deleteAttachment($promo_code->image);
