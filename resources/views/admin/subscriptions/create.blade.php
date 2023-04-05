@@ -63,14 +63,13 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="price">No of Coupons</label>
-                                    <input type="number" class="form-control" id="coupons" name="coupons"
-                                           placeholder="Enter no of coupons" value="{{old('coupons')}}" required>
-                                    @if (isset($errors) && $errors->has('coupons'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('coupons') }}
-                                        </div>
-                                    @endif
+                                    <label for="coupon_id">Select Coupon</label>
+                                    <select name="coupon_id" class="form-control" id="coupon_id">
+                                        <option value="">{{__("Select Coupon")}}</option>
+                                        @foreach($coupons as $coupon)
+                                            <option value="{{$coupon->id}}">{{$coupon->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="col-md-12 mb-3">

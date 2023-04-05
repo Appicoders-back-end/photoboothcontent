@@ -36,5 +36,5 @@ Route::group(['middleware' => 'admin'], function () {
     // promo code end
 
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
-    Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin']);
+    Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
 });

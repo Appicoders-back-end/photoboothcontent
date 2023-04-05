@@ -8,7 +8,8 @@
                     <header class="card-header">
                         Subscriptions
                         <span class="pull-right">
-                            <a href="{{route('admin.subscriptions.create')}}" class=" btn btn-success btn-sm">Create New</a>
+                            <a href="{{route('admin.subscriptions.create')}}"
+                               class=" btn btn-success btn-sm">Create New</a>
                         </span>
                     </header>
                     <div class="card-body">
@@ -42,13 +43,8 @@
                                         </td>
                                         <td>{{ formattedDate($subscription->created_at) ?? 'N/A'}} </td>
                                         <td>
-                                            <a href="{{ route('admin.promo.edit',$subscription->id) }}"
+                                            <a href="{{ route('admin.subscriptions.edit',$subscription->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.promo.destroy',$subscription->id) }}" id="deleteform" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger" role="button" id="delete_btn"><i class="fa fa-trash-o"></i></button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @empty
@@ -76,7 +72,7 @@
 @endsection
 @section('script')
     <script>
-        $(document).on('click','#delete_btn',function (e) {
+        $(document).on('click', '#delete_btn', function (e) {
             e.preventDefault(false);
             Swal.fire({
                 title: 'Are you sure?',

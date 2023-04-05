@@ -12,42 +12,18 @@
                         </span>
                     </header>
                     <div class="card-body">
-
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Success!</strong>
-                                <?= htmlentities(Session::get('success'))?>
-                            </div>
-                        @endif
-                        @if(Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Error!</strong>
-                                <?= htmlentities(Session::get('error'))?>
-                            </div>
-                        @endif
-                        @if($errors->any())
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <p><strong>Whoops!</strong> Please correct errors and try again!</p>
-                                @foreach ($errors->all() as $error)
-                                    <div>{{ $error }}</div>
-                                @endforeach
-                            </div>
-                        @endif
-
+                        @include('admin.layouts.messages')
                         <div class="adv-table">
                             <table class="display table table-bordered table-striped" id="dynamic-table">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Slug</th>
-                                    <th>description</th>
+                                    <th>Description</th>
                                     <th>Parent Category</th>
-                                    <th> Image</th>
-                                    <th> Created At</th>
-                                    <th> Action</th>
+                                    <th>Image</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +31,6 @@
                                     <tr class="gradeX">
                                         <td>{{ $category->name??'N/A' }}</td>
                                         <td>{{ $category->slug??'N/A' }}</td>
-{{--                                        <td>{{ substr($category->description,0,25) }}</td>--}}
                                         <td>
                                             <p data-id="{{ $category->description }}" id="read" data-toggle="modal"
                                                data-target="#exampleModal3">
@@ -67,18 +42,12 @@
                                         <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td>
                                         <td>{{ date('F d, Y', strtotime($category->created_at))??'N/A'}} </td>
                                         <td>
-{{--                                            <form action="{{ route('admin.categories.edit', ['category'=>$category->id]) }}" method="POST">--}}
-{{--                                                --}}
-{{--                                                @method('PATCH')--}}
-{{--                                                <button class="btn btn-success"> <i class="fa fa-pencil-square-o"></i></button>--}}
-{{--                                            </form>--}}
                                             <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
                                             <form action="{{ route('admin.categories.destroy', ['category'=>$category->id]) }}" method="POST">
                                                @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger"> <i class="fa fa-trash-o"></i></button>
                                             </form>
-{{--                                            <a href="{{ route('admin.categories.destroy',['category'=>$category->id]) }}" class="btn btn-danger"> <i class="fa fa-trash-o"></i></a>--}}
                                         </td>
                                     </tr>
                                 @empty
@@ -90,9 +59,9 @@
                                     <th>Slug</th>
                                     <th>description</th>
                                     <th>Parent Category</th>
-                                    <th> Image</th>
-                                    <th> Created At</th>
-                                    <th> Action</th>
+                                    <th>Image</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                                 </tfoot>
                             </table>

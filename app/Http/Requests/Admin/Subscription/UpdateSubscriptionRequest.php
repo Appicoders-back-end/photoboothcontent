@@ -11,7 +11,7 @@ class UpdateSubscriptionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateSubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'interval_time' => 'required',
+            'description' => 'required',
+            'coupon_id' => 'required',
         ];
     }
 }
