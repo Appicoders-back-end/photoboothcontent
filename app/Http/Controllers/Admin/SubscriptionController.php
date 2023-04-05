@@ -42,6 +42,7 @@ class SubscriptionController extends Controller
             $subscription->price = $request->price;
             $subscription->interval_time = $request->interval_time;
             $subscription->description = $request->description;
+            $subscription->coupons = $request->coupons;
             $subscription->save();
 
             return redirect()->route('admin.subscriptions.index')->with('success', __('Subscription has been created successfully'));
