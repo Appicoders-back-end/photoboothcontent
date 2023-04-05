@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.categories.index')}}">
+                <a href="{{route('admin.categories.index')}}"  class="{{ route('admin.categories.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-gears"></i>
                     <span>{{__('Categories')}}</span>
                 </a>
@@ -25,25 +25,25 @@
                 </ul>
             </li> --}}
             <li>
-                <a href="{{route('admin.users.index')}}">
+                <a href="{{route('admin.users.index')}}"  class="{{ route('admin.users.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-user"></i>
                     <span>Users</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.promo.index')}}">
+                <a href="{{route('admin.promo.index')}}"  class="{{ route('admin.promo.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-solid fa-bullhorn"></i>
                     <span>{{__('Promo Codes')}}</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.subscriptions.index')}}">
+                <a href="{{route('admin.subscriptions.index')}}"  class="{{ route('admin.subscriptions.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-credit-card"></i>
                     <span>Subscriptions</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.settings')}}">
+                <a  href="{{route('admin.settings')}}" class="{{ route('admin.settings') == url()->current() ?'active':'' }}" >
                     <i class="fa fa-gears"></i>
                     <span>{{__('General Settings')}}</span>
                 </a>
