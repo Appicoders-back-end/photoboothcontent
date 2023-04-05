@@ -40,15 +40,15 @@
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom01">Name</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="promo code name" value="" required>
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="promo code name" value="{{old('name')}}" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom02">Code</label>
-                                    <input type="text" class="form-control" id="validationCustom02" name="code" placeholder="promo code" value="" required>
+                                    <label for="code">Code</label>
+                                    <input type="text" class="form-control" id="code" name="code" placeholder="promo code" value="{{old('code')}}" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
@@ -63,19 +63,19 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
+                                    <label for="amount">Amount</label>
+                                    <input type="number" class="form-control" id="amount" name="amount" placeholder="amount" value="{{old('amount')}}" required step="any">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">status</label>
                                     <select class="form-control mb-2" name="status">
                                         <option value="active" selected>Active</option>
                                         <option value="inactive">InActive</option>
                                     </select>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label for="validationCustom02">Amount</label>
-                                    <input type="text" class="form-control" id="validationCustom02" name="amount" placeholder="amount" value="" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
 
                                 <div class="col-md-12 mb-3">

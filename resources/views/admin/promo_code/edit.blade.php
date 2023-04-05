@@ -42,7 +42,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                           placeholder="promo code name" value="{{ old('name', $promo_code->name) }}" required>
+                                           placeholder="promo code name" value="{{ old('name', $promo_code->name) }}"
+                                           required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
@@ -50,7 +51,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="code">Code</label>
                                     <input type="text" class="form-control" id="code" name="code"
-                                           placeholder="promo code" value="{{ old('code', $promo_code->code) }}" required>
+                                           placeholder="promo code" value="{{ old('code', $promo_code->code) }}"
+                                           required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
@@ -68,6 +70,16 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
+                                    <label for="amount">Amount</label>
+                                    <input type="number" class="form-control" id="amount" name="amount"
+                                           placeholder="amount" value="{{ old('amount', $promo_code->amount) }}" step="any"
+                                           required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">status</label>
                                     <select class="form-control mb-2" name="status">
                                         <option value="active" @if($promo_code->status == "active") selected @endif>
@@ -77,15 +89,6 @@
                                             InActive
                                         </option>
                                     </select>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" id="amount" name="amount"
-                                           placeholder="amount" value="{{ old('amount', $promo_code->amount) }}" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
 
                                 <div class="col-md-12 mb-3">
