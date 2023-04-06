@@ -18,7 +18,6 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Slug</th>
                                     <th>Description</th>
                                     <th>Parent Category</th>
                                     <th>Image</th>
@@ -30,7 +29,6 @@
                                 @forelse($categories as $category)
                                     <tr class="gradeX">
                                         <td>{{ $category->name??'N/A' }}</td>
-                                        <td>{{ $category->slug??'N/A' }}</td>
                                         <td>
                                             <p data-id="{{ $category->description }}" id="read" data-toggle="modal"
                                                data-target="#exampleModal3">
@@ -56,7 +54,6 @@
                                 <tfoot>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Slug</th>
                                     <th>description</th>
                                     <th>Parent Category</th>
                                     <th>Image</th>
