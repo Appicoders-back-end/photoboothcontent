@@ -14,16 +14,17 @@
                     <span>{{__('Categories')}}</span>
                 </a>
             </li>
-            {{--<li class="sub-menu">
+            <li class="sub-menu">
                 <a href="javascript:;">
-                    <i class="fa fa-comments-o"></i>
-                    <span>Chat Room</span>
+                    <i class="fa fa-caret-square-o-up"></i>
+                    <span>Content Store</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="lobby.html">Lobby</a></li>
-                    <li><a  href="chat_room.html"> Chat Room</a></li>
+                    <li><a href="{{route('admin.content_images.index')}}">Images</a></li>
+                    <li><a href="#">Documents</a></li>
+                    <li><a href="#">Videos</a></li>
                 </ul>
-            </li> --}}
+            </li>
             <li>
                 <a href="{{route('admin.users.index')}}"  class="{{ route('admin.users.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-user"></i>

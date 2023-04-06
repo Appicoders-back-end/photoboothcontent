@@ -15,4 +15,9 @@ class Subscription extends Model
     public const DURATION_WEEK = 'week';
     public const DURATION_MONTH = 'month';
     public const DURATION_YEAR = 'year';
+
+    public function coupon()
+    {
+        return $this->belongsTo(Category::class); //todo will fixed
+    }
 }

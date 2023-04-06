@@ -4,14 +4,14 @@
     <!--  summernote -->
     <link href="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.css" rel="stylesheet">
     <style>
-        .editor-title{
+        .editor-title {
             padding: 0 0 10px 0 !important;
         }
-        .editor-desc{
+
+        .editor-desc {
             padding: 0 0 0 0 !important;
             margin-bottom: 0 !important;
         }
-
     </style>
 @endsection
 @section('content')

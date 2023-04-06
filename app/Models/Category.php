@@ -10,9 +10,15 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'parent_id'];
+    protected $fillable = ['name', 'type', 'description', 'parent_id', 'status'];
+
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
+
+    public const IMAGE = 'image';
+    public const VIDEO = 'video';
+    public const DOCUMENT = 'document';
+    public const AUDIO = 'audio';
 
     public function subcategories()
     {
