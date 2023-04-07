@@ -10,7 +10,7 @@
             </li>
             <li>
                 <a href="{{route('admin.categories.index')}}"  class="{{ route('admin.categories.index') == url()->current() ?'active':'' }}">
-                    <i class="fa fa-gears"></i>
+                    <i class="fa fa-list-alt"></i>
                     <span>{{__('Categories')}}</span>
                 </a>
             </li>
