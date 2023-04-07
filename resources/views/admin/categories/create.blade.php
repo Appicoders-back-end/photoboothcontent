@@ -59,7 +59,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="validationCustom02">Parent Category</label>
-                                    <select class="form-control mb-2" name="parent_id">
+                                    <select class="form-control mb-2 parent_category_option" name="parent_id">
                                         <option value="" selected disabled>Select Category</option>
                                         @forelse($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name??'N/A' }}</option>
@@ -68,17 +68,17 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3 child_category_option">
                                     <label for="validationCustom02">Select Type</label>
-                                    <select class="form-control mb-2" name="parent_id">
+                                    <select class="form-control mb-2" name="type">
                                         <option value="" selected disabled>Select Category</option>
-                                        <option value="">{{\App\Models\Category::VIDEO}}</option>
-                                        <option value="">{{\App\Models\Category::IMAGE}}</option>
-                                        <option value="">{{\App\Models\Category::DOCUMENT}}</option>
+                                        <option value="{{\App\Models\Category::VIDEO}}">{{\App\Models\Category::VIDEO}}</option>
+                                        <option value="{{\App\Models\Category::IMAGE}}">{{\App\Models\Category::IMAGE}}</option>
+                                        <option value="{{\App\Models\Category::DOCUMENT}}">{{\App\Models\Category::DOCUMENT}}</option>
                                     </select>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3 status_option">
                                     <label for="validationCustom02">status</label>
                                     <select class="form-control mb-2" name="status">
                                         <option value="active" selected>Active</option>
@@ -132,6 +132,17 @@
             });
         });
 
+        $(document).ready(function () {
+            // alert('working');
+            $('.parent_category_option').on('change', function (e) {
+               /* var optionSelected = $("option:selected", this);
+                var valueSelected = this.value;*/
+                $(".child_category_option").css("display","none");
+                var el = $('.status_option');
+                el.addClass('col-md-12 mb-3');
+                el.removeClass('col-md-6 mb-3');
+            });
+        });
     </script>
 @endsection
 
