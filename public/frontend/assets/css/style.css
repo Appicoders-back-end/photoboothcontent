@@ -1,0 +1,546 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+body,
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hide scrollbar for all elements */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for specific element */
+#element-id::-webkit-scrollbar {
+    display: none;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+}
+
+header nav {
+    font-family: 'Lexend', sans-serif;
+}
+
+header nav .nav-link {
+    color: #000;
+    margin-right: 10px;
+}
+
+header nav .active {
+    font-weight: bold;
+}
+
+.btn-main {
+    color: #000;
+    border: 3px solid #000;
+    box-shadow: 8px 5px 0px #000;
+    font-weight: 600;
+}
+
+
+.hero-section {
+    min-height: 100vh;
+    margin-top: -125px;
+    position: relative;
+}
+
+.hero-section .pink-circle {
+    position: absolute;
+    z-index: -1;
+}
+
+.hero-section .blue-circle {
+    position: absolute;
+    z-index: -1;
+    right: -50px;
+    top: 230px;
+}
+
+.row.hero-content {
+    padding-top: 340px;
+}
+
+.row.signup-hero{
+    padding-top: 240px;
+}
+
+.row.hero-content h2,
+.about-section h2 {
+    font-size: 45px;
+    font-weight: 700;
+    color: #000;
+    line-height: 55px;
+}
+
+.about-section h3,
+.content-section h3,
+.coupons-section h3 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #6583FE;
+}
+
+.content-section h3 {
+    color: #FC90AC;
+    text-align: center;
+}
+
+.coupons-section h3 {
+    color: #fff;
+    text-align: center;
+}
+
+.row.hero-content p,
+.about-section p {
+    color: #000;
+    margin: 30px 0;
+}
+
+.promo-section {
+    background-image: url(../img/promo-section-bg.png);
+    background-size: cover;
+    background-position: top;
+    min-height: 150vh;
+    margin-top: -40%;
+    z-index: -1;
+}
+
+.promo-section .container {
+    padding-top: 40%;
+}
+
+.about-section {
+    padding-bottom: 100px;
+}
+
+.content-section {
+    padding-bottom: 100px;
+}
+
+.content-category-row {
+    margin-top: 40px;
+}
+
+.content-category-card {
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+    box-shadow: 8px 8px 0px #000;
+    background-size: cover;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.content-category-card p{
+    font-size: 14px;
+}
+
+.content-card-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.content-category-row h3 {
+    color: #000;
+    margin-top: 30px;
+    font-size: 35px;
+}
+
+.content-category-card {
+    position: relative;
+}
+
+.category-content-container {
+    position: absolute;
+    padding: 20px;
+    color: #fff;
+    bottom: 0;
+    background: #00000059;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.coupons-section {
+    padding: 100px 0;
+    background-color: #C6ABFF;
+}
+
+.coupons-row {
+    padding-top: 50px;
+}
+
+.coupon-card {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.coupon-content {
+    position: absolute;
+    top: 0;
+    padding: 20px;
+    width: 93%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.coupon-content h4 {
+    font-weight: 700;
+}
+
+.coupon-body {
+    text-align: center;
+    margin-top: -60px;
+}
+
+.coupon-body h2,
+.coupon-body h5 {
+    font-weight: 600;
+}
+
+.coupon-body li {
+    margin-top: 20px;
+    text-align: left;
+    padding: 0 80px;
+    list-style-image: url(../img/list-icon.png);
+}
+
+.coupon-footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.coupon-footer a {
+    background-color: #0B63E5;
+    color: #fff;
+    font-size: 14px;
+}
+
+.services-section {
+    padding: 100px 0;
+}
+
+.service-row {
+    margin-top: 50px;
+}
+
+.service-card {
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.service-card h4 {
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #42526B;
+}
+
+.service-card.training {
+    background-color: #F0F5FF;
+}
+
+.service-card.content {
+    background-color: #F5F6F7;
+}
+
+.service-card.invesment {
+    background-color: #FEEDFA;
+}
+
+footer {
+    background-color: #EAB8BB;
+    padding: 10px 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-family: 'Lexend', sans-serif;
+}
+
+.nav-tabs {
+    margin-top: 40px;
+    justify-content: space-around;
+    border-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+    background-color: #fff;
+    color: #FC90AC;
+    border: 1px solid #FC90AC;
+    border-radius: 5px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #FC90AC;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.coupon-card.prime {
+    color: #fff;
+}
+
+.coupon-card.prime a {
+    background-color: #fff;
+    color: #0B63E5;
+}
+
+.row.hero-content.coupon {
+    padding-top: 250px;
+    padding-bottom: 100px;
+}
+
+.membership-li {
+    list-style-image: url(../img/membership-li.png);
+    color: #42526B;
+    font-size: 14px;
+}
+
+.membership-card-row {
+    margin: 40px 0;
+}
+
+.membership-card {
+    padding: 35px 20px;
+    border-radius: 10px;
+    box-shadow: 8px 6px 0px #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.membership-card h2 {
+    font-weight: 700;
+}
+
+.membership-card h4 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.membership-card .membership-price {
+    font-size: 40px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.membership-card a {
+    background-color: #fff;
+}
+
+.membership-card li {
+    list-style: none;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.membership-card p {
+    color: #000;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.membership-card.basic {
+    background-color: #FED5B0;
+}
+
+.membership-card.premium {
+    background-color: #B89BD9;
+}
+
+.membership-card.custom {
+    background-color: #FC90AC;
+}
+
+.membership-card.basic .membership-price {
+    color: #FF7196;
+}
+
+.membership-card.premium .membership-price {
+    color: #FED5B0;
+}
+
+.membership-card.custom .membership-price {
+    color: #fff;
+}
+
+.signup-container {
+    background-color: #B89BD9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form {
+    background-color: #fff;
+    width: 40%;
+    margin: 0 auto;
+    padding: 50px 60px;
+    border-radius: 10px;
+}
+
+.signup-form.checkout-form{
+    width: 60%;
+}
+
+.signup-form h2 {
+    color: #FC90AC;
+    text-align: center;
+    font-weight: 700;
+}
+
+footer img{
+    width: 50%;
+}
+
+.content-store-cont{
+    padding: 100px 0;
+}
+
+.product-row{
+    padding: 40px 0;
+}
+
+.product-card{
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.product-card .product-name{
+    color: #000;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.product-card .product-price{
+    color: #000;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.product-card .product-img{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 10px 10px 0 #000;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after{
+    color: #FC90AC;
+}
+
+.content-slider-pagination{
+    position: sticky;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    header nav .nav-link {
+        color: #000;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .promo-section {
+        min-height: 130vh;
+    }
+
+    .content-category-card {
+        width: 230px;
+        height: 230px;
+    }
+
+    .row.hero-content h2,
+    .about-section h2 {
+        font-size: 40px;
+    }
+
+    .coupon-header img {
+        width: 60%;
+    }
+
+    .coupon-body li {
+        padding: 0 50px;
+    }
+
+    .signup-form, .signup-form.checkout-form {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .promo-section {
+        min-height: auto;
+        padding: 50px 0;
+    }
+
+    .row.hero-content {
+        padding-top: 315px;
+    }
+
+    .about-section {
+        padding-bottom: 0px;
+    }
+
+    .content-category-card {
+        width: 270px;
+        height: 270px;
+    }
+
+    .service-card {
+        margin-bottom: 20px;
+    }
+
+    .navbar-collapse.show {
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .content-category-card {
+        margin-bottom: 20px;
+    }
+
+    footer img {
+        max-height: 100px;
+        display: block;
+        margin: 20px auto;
+    }
+
+    .signup-form, .signup-form.checkout-form{
+        width: 90%;
+    }
+}
