@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->enum('type', [Content::IMAGE, Content::VIDEO, Content::DOCUMENT, Content::AUDIO])->nullable();
             $table->string('thumbnail_image')->nullable();
-            $table->string('path')->nullable();
+            $table->string('image')->nullable();
             $table->string('extension', 10)->nullable();
             $table->timestamps();
             $table->softDeletes();
