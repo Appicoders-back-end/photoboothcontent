@@ -112,3 +112,11 @@ if (!function_exists('update_option')) {
         );
     }
 }
+
+if (!function_exists('get_logo')) {
+
+    function get_logo()
+    {
+        return get_option('logo') != null ? url('/') . '/' . get_option('logo') : asset('frontend').'/assets/img/logo.png';
+    }
+}

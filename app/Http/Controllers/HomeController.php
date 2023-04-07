@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
 
     /**
      * Show the application dashboard.
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home-bk');
+        $homePage = Page::firstOrCreate([
+            'slug' => 'home'
+        ], [
+            'slug' => 'home',
+            'name' => 'Home'
+        ]);
+
+        $data = [
+            'content' => json_decode($homePage->content)
+        ];
+
+        return view('home', $data);
     }
 }

@@ -10,6 +10,13 @@
                 </a>
             </li>
             <li>
+                <a class="{{ route('admin.home') == url()->current() ?'active':'' }}"
+                   href="{{route('admin.home')}}">
+                    <i class="fa fa-home"></i>
+                    <span>Home Page</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.categories.index')}}"
                    class="{{ route('admin.categories.index') == url()->current() ? 'active' : '' }}">
                     <i class="fa fa-list-alt"></i>

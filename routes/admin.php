@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\ContentImageController;
 use App\Http\Controllers\Admin\ContentDocumentController;
 use App\Http\Controllers\Admin\ContentVideoController;
+use App\Http\Controllers\Admin\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::post('do_login', [AuthController::class, 'doLogin'])->name('admin.do_logi
 Route::group(['middleware' => 'admin'], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('home', [PageController::class, 'home'])->name('admin.home');
+    Route::post('storeHomePage', [PageController::class, 'storeHomePage'])->name('admin.storeHomePage');
 
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('settings', [AdminController::class, 'settings'])->name('admin.settings');

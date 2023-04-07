@@ -14,13 +14,20 @@ class AdminController extends Controller
 
     public function settings()
     {
-        return view('admin.settings');
+        $logo = get_option('logo') != null ? url('/') . '/' . get_option('logo') : null;
+        $data = [
+            'logo' => $logo,
+        ];
+        return view('admin.settings', $data);
     }
 
     public function storeSettings(Request $request)
     {
         try {
-            update_option('ticket_commission', $request->ticket_commission);
+            if ($request->logo) {
+                $fileName = saveFile($request->logo, "logo");
+                update_option('logo', $fileName);
+            }
             return redirect()->back()->with('success', __('Settings has been updated successfully'));
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());

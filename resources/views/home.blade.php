@@ -5,10 +5,15 @@
         <div class="container">
             <div class="row hero-content">
                 <div class="col-lg-6">
-                    <h2>Want to make more money from your booth business?</h2>
-                    <p>This really shouldn’t be that difficult, knowledge is power; content is king and support is
-                        everything. We know what it takes to make your photo booth business a success.</p>
-                    <a class="btn btn-main" href="membership.php">Become a member <span><img
+                    @if(isset($content->header_section_heading))
+                        <h2>{{$content->header_section_heading}}</h2>
+                    @endif
+                    @if(isset($content->header_section_description))
+                        <p>{{$content->header_section_description}}</p>
+                    @endif
+                    <a class="btn btn-main"
+                       href="membership.php"> {{isset($content->header_section_button_text) ? $content->header_section_button_text : 'Become a member'}}
+                        <span><img
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
                 <div class="col-lg-6">
@@ -43,12 +48,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h3>About Us</h3>
-                    <h2>Do you have a marketing team in your boothbusiness?</h2>
-                    <p>Content is king and you need it to attract and engage customers.This isn't rocket science, show
-                        people having a good time using a photo booth and it makesother people want to book a photo
-                        booth.</p>
-                    <a class="btn btn-main" href="about.php">View More <span><img
+                    @if(isset($content->about_section_heading))
+                        <h3>{{$content->about_section_heading}}</h3>
+                    @endif
+                    @if(isset($content->about_section_sub_heading))
+                        <h2>{{$content->about_section_sub_heading}}</h2>
+                    @endif
+                    @if($content->about_section_description)
+                        <p>{{$content->about_section_description}}</p>
+                    @endif
+                    <a class="btn btn-main"
+                       href="about.php">{{isset($content->about_section_button_text) ? $content->about_section_button_text : "Read More"}}
+                        <span><img
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
                 <div class="col-lg-6">
@@ -60,7 +71,7 @@
     </div>
     <div class="content-section">
         <div class="container">
-            <h3>Content Store</h3>
+            <h3>{{$content->content_store_section_heading}}</h3>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
@@ -311,7 +322,7 @@
     </div>
     <div class="coupons-section">
         <div class="container">
-            <h3>Coupons</h3>
+            <h3>{{$content->coupons_section_heading}}</h3>
             <div class="row coupons-row">
                 <div class="col-lg-4 col-md-6 coupon-card">
                     <img src="{{asset('frontend')}}/assets/img/coupons-bg.png" class="img-fluid coupon-bg" alt="coupon">
@@ -385,17 +396,16 @@
                             <img src="{{asset('frontend')}}/assets/img/service-img.png" alt="service" class="img-fluid">
                         </div>
                         <div class="col-lg-6">
-                            <h2 class="fs-1">Let’s make mo’ money!</h2>
+                            @if(isset($content->services_section_heading))
+                                <h2 class="fs-1">{{$content->services_section_heading}}</h2>
+                            @endif
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <p>
-                        Donec dictum tristique porta. Etiam convallis lorem lobortis nulla molestie, nec tincidunt ex
-                        ullamcorper. Quisque ultrices lobortis elit sed euismod. Duis in ultrices dolor, ac rhoncus
-                        odio.
-                        Suspendisse tempor sollicitudin dui sed lacinia.`
-                    </p>
+                    @if(isset($content->services_section_description))
+                        <p>{{$content->services_section_description}}</p>
+                    @endif
                 </div>
             </div>
             <div class="row service-row">

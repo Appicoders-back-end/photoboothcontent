@@ -1,8 +1,9 @@
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.php"><img src="{{asset('frontend')}}/assets/img/logo.png"
-                                                          alt="Photobooth" class="img-fluid"></a>
+            <a class="navbar-brand" href="{{url('/')}}">
+                <img src="{{get_logo()}}"
+                     alt="Photobooth" class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
