@@ -38,12 +38,19 @@ class CategoryController extends Controller
                 "description" => "required",
                 "image" => "required",
             ]);
+            $category = new Category();
 
+            $type_select = null;
+            if($request->type){
+
+                $category->type = $request->type;
+                $type = Category::where("type",$request->type)->first();
+                $type_select = $type->id;
+            }
             $imageName = saveFile($request->image, "categories");
 
-            $category = new Category();
             $category->name = $request->name??null;
-            $category->parent_id = $request->parent_id??null;
+            $category->parent_id = $request->parent_id??$type_select;
             $category->slug = Str::slug($request->name);
             $category->description = $request->description??null;
             $category->status = $request->status;
