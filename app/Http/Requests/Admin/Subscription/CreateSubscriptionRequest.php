@@ -22,7 +22,7 @@ class CreateSubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'price' => 'required|numeric|min:1',
             'interval_time' => 'required',
             'description' => 'required',

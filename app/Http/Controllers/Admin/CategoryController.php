@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::get();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -24,8 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-//        dd($categories);
+        $categories = Category::whereNull('parent_id')->get();
         return view('admin.categories.create', compact('categories'));
     }
 
@@ -42,7 +40,6 @@ class CategoryController extends Controller
             ]);
 
             $imageName = saveFile($request->image, "categories");
-//            $request->image->move(storage_path('\storage\admin_assets\img\promo-codes'), $imageName);
 
             $category = new Category();
             $category->name = $request->name??null;
@@ -73,7 +70,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $categories = Category::all();
+        $categories = Category::whereNull('parent_id')->get();
         $category = Category::find($id);
         return view('admin.categories.edit', compact('categories','category'));
     }

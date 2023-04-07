@@ -22,9 +22,9 @@ class UpdatePromoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'amount' => 'required',
-            'code' => 'required|unique:promo_codes,code,' . $this->promo,
+            'code' => 'required|max:191|unique:promo_codes,code,' . $this->promo,
         ];
     }
 }

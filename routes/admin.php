@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\ContentImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('storeSettings', [AdminController::class, 'storeSettings'])->name('admin.storeSettings');
 
     // promo codes start
-    Route::resource('promo', PromoCodeController::class, ['as' => 'admin']);
+    Route::resource('promo', PromoCodeController::class, ['as' => 'admin'])->except('show');
     // promo code end
 
     Route::resource('coupons', CouponController::class, ['as' => 'admin']);
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
+    Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
 });

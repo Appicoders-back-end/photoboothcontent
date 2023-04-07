@@ -22,7 +22,7 @@ class UpdateSubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'interval_time' => 'required',
             'description' => 'required',
             'coupon_id' => 'required',
