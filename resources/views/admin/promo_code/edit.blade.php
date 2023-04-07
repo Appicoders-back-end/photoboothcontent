@@ -88,7 +88,7 @@
 @endsection
 @section('script')
     <script src="{{asset('admin_assets')}}/js/dropify.js"></script>
-
+    <script></script>
     <script>
         $(document).ready(function () {
             $('.dropify').dropify();
