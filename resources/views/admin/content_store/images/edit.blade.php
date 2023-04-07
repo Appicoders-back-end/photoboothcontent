@@ -1,6 +1,18 @@
 @extends('admin.layouts.app')
 @section('style')
     <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">
+    <!--  summernote -->
+    <link href="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.css" rel="stylesheet">
+    <style>
+        .editor-title {
+            padding: 0 0 10px 0 !important;
+        }
+
+        .editor-desc {
+            padding: 0 0 0 0 !important;
+            margin-bottom: 0 !important;
+        }
+    </style>
 @endsection
 @section('content')
     <section class="wrapper">
@@ -8,76 +20,85 @@
         <div class="row">
             <div class="col-lg-12">
                 <section class="card">
-                    <div class="card-header">Edit Promo Code</div>
+                    <div class="card-header">Edit Content Store Image</div>
                     <div class="card-body">
                         @include('admin.layouts.messages')
-                        <form class="needs-validation" action="{{route('admin.promo.update',$promo_code->id)}}" method="POST" enctype="multipart/form-data">
+                        <form class="needs-validation" action="{{route('admin.content_images.update',$content->id)}}"
+                              method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            <input type="hidden" name="id" value="{{$content->id}}">
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                           placeholder="promo code name" value="{{ old('name', $promo_code->name) }}"
-                                           required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="code">Code</label>
-                                    <input type="text" class="form-control" id="code" name="code"
-                                           placeholder="promo code" value="{{ old('code', $promo_code->code) }}"
-                                           required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
+                                           placeholder="Enter name" value="{{old('name',$content->name)}}" required>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom02">Type</label>
-                                    <select class="form-control mb-2" name="type">
-                                        <option value="fixed" @if($promo_code->type == "fixed") selected @endif>Fixed
-                                        </option>
-                                        <option value="percentage"
-                                                @if($promo_code->type == "percentage") selected @endif>Percentage
-                                        </option>
+                                    <label for="categories">Category</label>
+                                    <select class="form-control mb-2" id="categories" name="category_id" required>
+                                        <option selected disabled>Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option
+                                                value="{{$category->id}}" {{$category->id == $content->category_id ? 'selected' : null}}>{{$category->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label for="amount">Amount</label>
-                                    <input type="number" class="form-control" id="amount" name="amount"
-                                           placeholder="amount" value="{{ old('amount', $promo_code->amount) }}" step="any"
-                                           required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
+                                <!--Summernote start-->
+                                <div class="col-md-12">
+                                    <section class="card">
+                                        <header class="card-header head-border editor-title">
+                                            Description
+                                        </header>
+                                        <div class="card-body editor-desc">
+                                            <textarea class="summernote" name="description"
+                                                      id="summernote_1">{!! old('description', $content->description) !!}</textarea>
+                                        </div>
+                                    </section>
                                 </div>
+                                <!--Summernote end-->
 
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">status</label>
                                     <select class="form-control mb-2" name="status">
-                                        <option value="active" @if($promo_code->status == "active") selected @endif>
+                                        <option value="active" @if($content->status == "active") selected @endif>
                                             Active
                                         </option>
-                                        <option value="inactive" @if($promo_code->status == "inactive") selected @endif>
+                                        <option value="inactive" @if($content->status == "inactive") selected @endif>
                                             InActive
                                         </option>
                                     </select>
                                 </div>
 
-                                <div class="col-md-12 mb-3">
-                                    <label for="validationCustom02">Image</label>
-                                    @if($promo_code->image)
-                                        <input type="file" class="dropify" name="image"
-                                               data-default-file="{{ $promo_code->getImage() }}"/>
+                                <div class="col-md-6 mb-3">
+                                    <label>Thumbnail Image</label>
+                                    @if($content->thumbnail_image)
+                                        <input
+                                            type="file" class="dropify" name="thumbnail_image"
+                                            data-default-file="{{ $content->getThumbnailImage() }}"
+                                            data-max-file-size="10M"
+                                            data-allowed-file-extensions="jpg jpeg png"/>
                                     @else
-                                        <input type="file" class="dropify" name="image"/>
+                                        <input type="file" class="dropify" name="thumbnail_image" data-max-file-size="10M"
+                                               data-allowed-file-extensions="jpg jpeg png"/>
+                                    @endif
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label>Downloadable Image</label>
+                                    @if($content->image)
+                                        <input type="file" class="dropify" name="image"
+                                               data-default-file="{{ $content->getImage() }}" data-max-file-size="10M"
+                                               data-allowed-file-extensions="jpg jpeg png"/>
+                                    @else
+                                        <input type="file" class="dropify" name="image" data-max-file-size="10M"
+                                               data-allowed-file-extensions="jpg jpeg png"/>
                                     @endif
                                 </div>
                             </div>
-                            <button class="btn btn-sm btn-success" type="submit">Update Promo</button>
+                            <button class="btn btn-sm btn-success" type="submit">Update</button>
                         </form>
                     </div>
                 </section>
@@ -88,10 +109,20 @@
 @endsection
 @section('script')
     <script src="{{asset('admin_assets')}}/js/dropify.js"></script>
+    <script src="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.min.js"></script>
 
     <script>
         $(document).ready(function () {
             $('.dropify').dropify();
+        });
+
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 200,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                 // set focus to editable area after initializing summernote
+            });
         });
     </script>
 @endsection

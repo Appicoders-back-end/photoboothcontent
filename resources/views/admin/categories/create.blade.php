@@ -93,7 +93,6 @@
                                                 Description
                                             </header>
                                             <div class="card-body editor-desc">
-{{--                                                <div class="summernote"></div>--}}
                                                 <textarea class="summernote" name="description" id="summernote_1"></textarea>
                                             </div>
                                         </section>

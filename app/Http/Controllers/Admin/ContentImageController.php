@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ContentStore\Images\CreateContentStoreImageRequest;
+use App\Http\Requests\Admin\ContentStore\Images\UpdateContentStoreImageRequest;
 use App\Models\Category;
+use App\Services\ContentStoreService;
 use Illuminate\Http\Request;
 use App\Models\Content;
 
@@ -14,7 +17,7 @@ class ContentImageController extends Controller
      */
     public function index()
     {
-        $images = Content::where('type', Content::IMAGE)->get();
+        $images = Content::with('category')->where('type', Content::IMAGE)->get();
         $data = [
             'images' => $images
         ];
@@ -28,17 +31,20 @@ class ContentImageController extends Controller
     public function create()
     {
         $data = [
-            'categories' => Category::get(),
+            'categories' => Category::where('type', Category::IMAGE)->select('id', 'name')->get(),
         ];
+
         return view('admin.content_store.images.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateContentStoreImageRequest $request, ContentStoreService $contentStoreService)
     {
-        //
+        $contentStoreService->store($request->all());
+
+        return redirect()->route('admin.content_images.index')->with('success', 'Image has been created successfully');
     }
 
     /**
@@ -52,17 +58,24 @@ class ContentImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $data = [
+            'categories' => Category::where('type', Category::IMAGE)->select('id', 'name')->get(),
+            'content' => Content::find($id)
+        ];
+
+        return view('admin.content_store.images.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateContentStoreImageRequest $request, ContentStoreService $contentStoreService)
     {
-        //
+        $contentStoreService->update($request->all());
+
+        return redirect()->route('admin.content_images.index')->with('success', 'Image has been updated successfully');
     }
 
     /**
