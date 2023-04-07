@@ -37,6 +37,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.coupons.index')}}"  class="{{ route('admin.coupons.index') == url()->current() ?'active':'' }}">
+                    <i class="fa fa-solid fa-bullhorn"></i>
+                    <span>{{__('Coupons')}}</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.subscriptions.index')}}"  class="{{ route('admin.subscriptions.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-credit-card"></i>
                     <span>Subscriptions</span>
