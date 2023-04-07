@@ -6,9 +6,9 @@
             <div class="col-sm-12">
                 <section class="card">
                     <header class="card-header">
-                        Content Store Images
+                        Content Store Documents
                         <span class="pull-right">
-                            <a href="{{route('admin.content_images.create')}}" class=" btn btn-success btn-sm">Create New</a>
+                            <a href="{{route('admin.content_documents.create')}}" class=" btn btn-success btn-sm">Create New</a>
                         </span>
                     </header>
                     <div class="card-body">
@@ -27,33 +27,33 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($images as $image)
+                                @forelse($images as $document)
                                     <tr class="gradeX">
-                                        <td>{{ $image->name??'N/A' }}</td>
+                                        <td>{{ $document->name??'N/A' }}</td>
                                         <td>
                                             <img class="img img-fluid"
                                                  width="150"
-                                                 src="{{ $image->getThumbnailImage() }}"
-                                                 alt="{{$image->name}}">
+                                                 src="{{ $document->getThumbnailImage() }}"
+                                                 alt="{{$document->name}}">
                                         </td>
                                         <td><img class="img img-fluid"
                                                  width="150"
-                                                 src="{{ $image->getImage() }}"
-                                                 alt="{{$image->name}}">
+                                                 src="{{ $document->getImage() }}"
+                                                 alt="{{$document->name}}">
                                         </td>
-                                        <td>{{$image->category ? $image->category->name : null}}</td>
+                                        <td>{{$document->category ? $document->category->name : null}}</td>
                                         <td>
-                                            @if($image->status == "active")
-                                                <span class="text-success">{{ ucwords($image->status) }}</span>
+                                            @if($document->status == "active")
+                                                <span class="text-success">{{ ucwords($document->status) }}</span>
                                             @else
-                                                <span class="text-danger">{{ ucwords($image->status) }}</span>
+                                                <span class="text-danger">{{ ucwords($document->status) }}</span>
                                             @endif
                                         </td>
-                                        <td>{{ date('F d, Y', strtotime($image->created_at))??'N/A'}} </td>
+                                        <td>{{ date('F d, Y', strtotime($document->created_at))??'N/A'}} </td>
                                         <td>
-                                            <a href="{{ route('admin.content_images.edit',$image->id) }}"
+                                            <a href="{{ route('admin.content_documents.edit',$document->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.content_images.destroy',$image->id) }}"
+                                            <form action="{{ route('admin.content_documents.destroy',$document->id) }}"
                                                   id="deleteform"
                                                   method="POST">
                                                 @method('DELETE')

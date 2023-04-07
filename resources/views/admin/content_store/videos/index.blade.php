@@ -6,9 +6,9 @@
             <div class="col-sm-12">
                 <section class="card">
                     <header class="card-header">
-                        Content Store Images
+                        Content Store Videos
                         <span class="pull-right">
-                            <a href="{{route('admin.content_images.create')}}" class=" btn btn-success btn-sm">Create New</a>
+                            <a href="{{route('admin.content_videos.create')}}" class=" btn btn-success btn-sm">Create New</a>
                         </span>
                     </header>
                     <div class="card-body">
@@ -27,33 +27,33 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($images as $image)
+                                @forelse($videos as $video)
                                     <tr class="gradeX">
-                                        <td>{{ $image->name??'N/A' }}</td>
+                                        <td>{{ $video->name??'N/A' }}</td>
                                         <td>
                                             <img class="img img-fluid"
                                                  width="150"
-                                                 src="{{ $image->getThumbnailImage() }}"
-                                                 alt="{{$image->name}}">
+                                                 src="{{ $video->getThumbnailImage() }}"
+                                                 alt="{{$video->name}}">
                                         </td>
                                         <td><img class="img img-fluid"
                                                  width="150"
-                                                 src="{{ $image->getImage() }}"
-                                                 alt="{{$image->name}}">
+                                                 src="{{ $video->getImage() }}"
+                                                 alt="{{$video->name}}">
                                         </td>
-                                        <td>{{$image->category ? $image->category->name : null}}</td>
+                                        <td>{{$video->category ? $video->category->name : null}}</td>
                                         <td>
-                                            @if($image->status == "active")
-                                                <span class="text-success">{{ ucwords($image->status) }}</span>
+                                            @if($video->status == "active")
+                                                <span class="text-success">{{ ucwords($video->status) }}</span>
                                             @else
-                                                <span class="text-danger">{{ ucwords($image->status) }}</span>
+                                                <span class="text-danger">{{ ucwords($video->status) }}</span>
                                             @endif
                                         </td>
-                                        <td>{{ date('F d, Y', strtotime($image->created_at))??'N/A'}} </td>
+                                        <td>{{ date('F d, Y', strtotime($video->created_at))??'N/A'}} </td>
                                         <td>
-                                            <a href="{{ route('admin.content_images.edit',$image->id) }}"
+                                            <a href="{{ route('admin.content_videos.edit',$video->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.content_images.destroy',$image->id) }}"
+                                            <form action="{{ route('admin.content_videos.destroy',$video->id) }}"
                                                   id="deleteform"
                                                   method="POST">
                                                 @method('DELETE')
