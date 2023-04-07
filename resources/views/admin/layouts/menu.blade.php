@@ -39,7 +39,7 @@
             </li>
             <li>
                 <a href="{{route('admin.coupons.index')}}"  class="{{ route('admin.coupons.index') == url()->current() ?'active':'' }}">
-                    <i class="fa fa-solid fa-bullhorn"></i>
+                    <i class="fa fa-gift" aria-hidden="true"></i>
                     <span>{{__('Coupons')}}</span>
                 </a>
             </li>
