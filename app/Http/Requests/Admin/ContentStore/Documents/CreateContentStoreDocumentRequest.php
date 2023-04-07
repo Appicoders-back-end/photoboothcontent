@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\ContentStore\Images;
+namespace App\Http\Requests\Admin\ContentStore\Documents;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateContentStoreImageRequest extends FormRequest
+class CreateContentStoreDocumentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

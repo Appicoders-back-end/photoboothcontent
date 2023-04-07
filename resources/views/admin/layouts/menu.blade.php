@@ -3,13 +3,15 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
             <li>
-                <a class="{{ route('admin.dashboard') == url()->current() ?'active':'' }}" href="{{route('admin.dashboard')}}">
+                <a class="{{ route('admin.dashboard') == url()->current() ?'active':'' }}"
+                   href="{{route('admin.dashboard')}}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.categories.index')}}"  class="{{ route('admin.categories.index') == url()->current() ?'active':'' }}">
+                <a href="{{route('admin.categories.index')}}"
+                   class="{{ route('admin.categories.index') == url()->current() ? 'active' : '' }}">
                     <i class="fa fa-list-alt"></i>
                     <span>{{__('Categories')}}</span>
                 </a>
@@ -21,36 +23,41 @@
                 </a>
                 <ul class="sub">
                     <li><a href="{{route('admin.content_images.index')}}">Images</a></li>
-                    <li><a href="#">Documents</a></li>
-                    <li><a href="#">Videos</a></li>
+                    <li><a href="{{route('admin.content_documents.index')}}">Documents</a></li>
+                    <li><a href="{{route('admin.content_videos.index')}}">Videos</a></li>
                 </ul>
             </li>
             <li>
-                <a href="{{route('admin.users.index')}}"  class="{{ route('admin.users.index') == url()->current() ?'active':'' }}">
+                <a href="{{route('admin.users.index')}}"
+                   class="{{ route('admin.users.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-user"></i>
                     <span>Users</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.promo.index')}}"  class="{{ route('admin.promo.index') == url()->current() ?'active':'' }}">
+                <a href="{{route('admin.promo.index')}}"
+                   class="{{ route('admin.promo.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-solid fa-bullhorn"></i>
                     <span>{{__('Promo Codes')}}</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.coupons.index')}}"  class="{{ route('admin.coupons.index') == url()->current() ?'active':'' }}">
+                <a href="{{route('admin.coupons.index')}}"
+                   class="{{ route('admin.coupons.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-gift" aria-hidden="true"></i>
                     <span>{{__('Coupons')}}</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.subscriptions.index')}}"  class="{{ route('admin.subscriptions.index') == url()->current() ?'active':'' }}">
+                <a href="{{route('admin.subscriptions.index')}}"
+                   class="{{ route('admin.subscriptions.index') == url()->current() ?'active':'' }}">
                     <i class="fa fa-credit-card"></i>
                     <span>Subscriptions</span>
                 </a>
             </li>
             <li>
-                <a  href="{{route('admin.settings')}}" class="{{ route('admin.settings') == url()->current() ?'active':'' }}" >
+                <a href="{{route('admin.settings')}}"
+                   class="{{ route('admin.settings') == url()->current() ?'active':'' }}">
                     <i class="fa fa-gears"></i>
                     <span>{{__('General Settings')}}</span>
                 </a>

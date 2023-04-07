@@ -20,10 +20,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <section class="card">
-                    <div class="card-header">Edit Content Store Image</div>
+                    <div class="card-header">Edit Content Store Document</div>
                     <div class="card-body">
                         @include('admin.layouts.messages')
-                        <form class="needs-validation" action="{{route('admin.content_images.update',$content->id)}}"
+                        <form class="needs-validation" action="{{route('admin.content_documents.update',$content->id)}}"
                               method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -87,14 +87,14 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label>Downloadable Image</label>
+                                    <label>Upload Document</label>
                                     @if($content->image)
                                         <input type="file" class="dropify" name="attachment"
-                                               data-default-file="{{ $content->getImage() }}" data-max-file-size="10M"
-                                               data-allowed-file-extensions="jpg jpeg png"/>
+                                               data-default-file="{{ $content->getImage() }}" data-max-file-size="50M"
+                                               data-allowed-file-extensions="pdf csv doc docx xlx xlsx txt html zip"/>
                                     @else
-                                        <input type="file" class="dropify" name="attachment" data-max-file-size="10M"
-                                               data-allowed-file-extensions="jpg jpeg png"/>
+                                        <input type="file" class="dropify" name="attachment" data-max-file-size="50M"
+                                               data-allowed-file-extensions="pdf csv doc docx xlx xlsx txt html zip"/>
                                     @endif
                                 </div>
                             </div>

@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Content;
-
+use Illuminate\Support\Facades\Storage;
 
 class ContentStoreService
 {
@@ -16,11 +16,12 @@ class ContentStoreService
             $content->category_id = $request['category_id'];
             $content->status = $request['status'];
             $content->type = $request['type'];
-            $thumbnailImageName = saveFile($request['thumbnail_image'], "content_store/images/thumbnail_images");
-            $imageName = saveFile($request['image'], "content_store/images");
+            $thumbnailImageName = saveFile($request['thumbnail_image'], $this->getPath($request['type'])['thumbnail_path']);
+            $attachmentName = saveFile($request['attachment'], $this->getPath($request['type'])['path']);
             $content->thumbnail_image = $thumbnailImageName;
-            $content->image = $imageName;
-            $content->extension = pathinfo($imageName, PATHINFO_EXTENSION);
+            $content->image = $attachmentName;
+            $content->extension = pathinfo($attachmentName, PATHINFO_EXTENSION);
+            $content->size = $this->get_size($attachmentName);
             $content->save();
 
             return $content;
@@ -40,15 +41,16 @@ class ContentStoreService
 
             if (isset($request['thumbnail_image'])) {
                 deleteAttachment($content->thumbnail_image);
-                $thumbnailImageName = saveFile($request['thumbnail_image'], "content_store/images/thumbnail_images");
+                $thumbnailImageName = saveFile($request['thumbnail_image'], $this->getPath($content->type)['thumbnail_path']);
                 $content->thumbnail_image = $thumbnailImageName;
             }
 
-            if (isset($request['image'])) {
+            if (isset($request['attachment'])) {
                 deleteAttachment($content->image);
-                $imageName = saveFile($request['image'], "content_store/images");
-                $content->image = $imageName;
-                $content->extension = pathinfo($imageName, PATHINFO_EXTENSION);
+                $attachmentName = saveFile($request['attachment'], $this->getPath($content->type)['path']);
+                $content->image = $attachmentName;
+                $content->extension = pathinfo($attachmentName, PATHINFO_EXTENSION);
+                $content->size = $this->get_size($attachmentName);
             }
 
             $content->save();
@@ -57,5 +59,35 @@ class ContentStoreService
         } catch (\Exception $exception) {
             throw new \Exception($exception->getMessage());
         }
+    }
+
+    private function getPath($type)
+    {
+        $thumbnailPath = "content_store";
+        $path = "content_store";
+        switch ($type) {
+            case Content::DOCUMENT:
+                $thumbnailPath = "content_store/documents/thumbnail_images";
+                $path = "content_store/documents";
+                break;
+            case Content::VIDEO:
+                $thumbnailPath = "content_store/videos/thumbnail_images";
+                $path = "content_store/videos";
+                break;
+            default:
+                $thumbnailPath = "content_store/images/thumbnail_images";
+                $path = "content_store/images";
+        }
+
+        return [
+            'thumbnail_path' => $thumbnailPath,
+            'path' => $path
+        ];
+    }
+
+    public function get_size($file_path)
+    {
+        return 0; //todo will be fixed later
+//        return Storage::size($file_path);
     }
 }

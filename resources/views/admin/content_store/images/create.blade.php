@@ -67,13 +67,13 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label>Thumbnail Image</label>
-                                    <input type="file" name="thumbnail_image" class="dropify" data-max-file-size="3M"
+                                    <input type="file" name="thumbnail_image" class="dropify" data-max-file-size="10M"
                                            data-allowed-file-extensions="jpg jpeg png">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>Downloadable Image</label>
-                                    <input type="file" name="image" class="dropify" data-max-file-size="3M"
+                                    <input type="file" name="attachment" class="dropify" data-max-file-size="10M"
                                            data-allowed-file-extensions="jpg jpeg png">
                                 </div>
                             </div>

@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\ContentImageController;
+use App\Http\Controllers\Admin\ContentDocumentController;
+use App\Http\Controllers\Admin\ContentVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +43,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
     Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
+    Route::resource('content_documents', ContentDocumentController::class, ['as' => 'admin'])->except(['show']);
+    Route::resource('content_videos', ContentVideoController::class, ['as' => 'admin'])->except(['show']);
 });

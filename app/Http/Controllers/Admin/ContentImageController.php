@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\ContentStore\Images\CreateContentStoreImageRequest;
 use App\Http\Requests\Admin\ContentStore\Images\UpdateContentStoreImageRequest;
 use App\Models\Category;
 use App\Services\ContentStoreService;
-use Illuminate\Http\Request;
 use App\Models\Content;
 
 class ContentImageController extends Controller
@@ -45,14 +44,6 @@ class ContentImageController extends Controller
         $contentStoreService->store($request->all());
 
         return redirect()->route('admin.content_images.index')->with('success', 'Image has been created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
