@@ -33,11 +33,15 @@
                                         <td>
                                             <img class="img img-fluid"
                                                  width="150"
+                                                 src="{{ $image->getThumbnailImage() }}"
+                                                 alt="{{$image->name}}">
+                                        </td>
+                                        <td><img class="img img-fluid"
+                                                 width="150"
                                                  src="{{ $image->getImage() }}"
                                                  alt="{{$image->name}}">
                                         </td>
-                                        <td>{{ ucwords($image->type)??'N/A' }}</td>
-                                        <td>{{ $image->amount??'N/A' }}</td>
+                                        <td>{{$image->category ? $image->category->name : null}}</td>
                                         <td>
                                             @if($image->status == "active")
                                                 <span class="text-success">{{ ucwords($image->status) }}</span>
@@ -47,9 +51,10 @@
                                         </td>
                                         <td>{{ date('F d, Y', strtotime($image->created_at))??'N/A'}} </td>
                                         <td>
-                                            <a href="{{ route('admin.promo.edit',$image->id) }}"
+                                            <a href="{{ route('admin.content_images.edit',$image->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.promo.destroy',$image->id) }}" id="deleteform"
+                                            <form action="{{ route('admin.content_images.destroy',$image->id) }}"
+                                                  id="deleteform"
                                                   method="POST">
                                                 @method('DELETE')
                                                 @csrf

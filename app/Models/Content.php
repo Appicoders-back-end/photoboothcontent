@@ -16,4 +16,27 @@ class Content extends Model
 
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getImage()
+    {
+        if ($this['image'] == null) {
+            return asset('/') . "admin_assets/img/promo-dummy.jpg";
+        }
+
+        return url('/') . '/' . $this['image'];
+    }
+
+    public function getThumbnailImage()
+    {
+        if ($this['image'] == null) {
+            return asset('/') . "admin_assets/img/promo-dummy.jpg";
+        }
+
+        return url('/') . '/' . $this['thumbnail_image'];
+    }
 }
