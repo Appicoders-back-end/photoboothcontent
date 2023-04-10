@@ -18,6 +18,6 @@ class Subscription extends Model
 
     public function coupon()
     {
-        return $this->belongsTo(Category::class); //todo will fixed
+        return $this->belongsTo(Coupon::class);
     }
 }

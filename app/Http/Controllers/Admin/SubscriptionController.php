@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Subscription\CreateSubscriptionRequest;
 use App\Http\Requests\Admin\Subscription\UpdateSubscriptionRequest;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Subscription;
 use App\Services\StripeService;
 
@@ -25,7 +26,7 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $coupons = Category::get();
+        $coupons = Coupon::get();
         return view('admin.subscriptions.create', ['coupons' => $coupons]);
     }
 
