@@ -28,17 +28,16 @@ class AuthController
             return redirect()->back()->withErrors($validator->messages())->withInput();
         }
 
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => User::ROLE_ADMIN])) {
+        if (!Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password, 'role' => User::ROLE_ADMIN])) {
             return redirect()->back()->withInput()->with('error', __('Invalid username or password'));
         }
 
-        Auth::guard('admin')->loginUsingId(auth()->user()->id);
+        Auth::guard('admin')->loginUsingId(auth()->guard('admin')->user()->id);
         return redirect()->route('admin.dashboard');
     }
 
     public function logout()
     {
-        
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }

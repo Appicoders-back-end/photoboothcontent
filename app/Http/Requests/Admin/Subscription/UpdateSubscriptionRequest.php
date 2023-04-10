@@ -25,7 +25,6 @@ class UpdateSubscriptionRequest extends FormRequest
             'name' => 'required|max:191',
             'interval_time' => 'required',
             'description' => 'required',
-            'coupon_id' => 'required',
         ];
     }
 }

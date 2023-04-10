@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
 use App\Models\Page;
+use App\Models\PromoCode;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -32,9 +34,16 @@ class HomeController extends Controller
         ]);
 
         $data = [
-            'content' => json_decode($homePage->content)
+            'content' => json_decode($homePage->content),
+            'promoCodes' => PromoCode::active()->get(),
+            'coupons' => Coupon::active()->get(),
         ];
         // dd($data);
         return view('home', $data);
+    }
+
+    public function aboutUs()
+    {
+        return view('about-us');
     }
 }

@@ -26,26 +26,22 @@
         </div>
         <img src="{{asset('frontend')}}/assets/img/hero-section-circle-blue.png" alt="Blue circle" class="blue-circle">
     </div>
-    <div class="promo-section">
-        <div class="container">
-            <div class="swiper bannerswiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{asset('frontend')}}/assets/img/promo-banner-one.png"
-                             alt="Promo banner" class="img-fluid">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('frontend')}}/assets/img/promo-banner-one.png" alt="Promo banner"
-                             class="img-fluid">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('frontend')}}/assets/img/promo-banner-one.png" alt="Promo banner"
-                             class="img-fluid">
+    @if($promoCodes->count() > 0)
+        <div class="promo-section">
+            <div class="container">
+                <div class="swiper bannerswiper">
+                    <div class="swiper-wrapper">
+                        @foreach($promoCodes as $promoCode)
+                            <div class="swiper-slide">
+                                <img src="{{$promoCode->getImage()}}"
+                                     alt="Promo banner" class="img-fluid">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
     <div class="about-section">
         <div class="container">
             <div class="row">
@@ -326,66 +322,27 @@
         <div class="container">
             <h3>{{ ($content) ? $content->coupons_section_heading : '' }}</h3>
             <div class="row coupons-row">
-                <div class="col-lg-4 col-md-6 coupon-card">
-                    <img src="{{asset('frontend')}}/assets/img/coupons-bg.png" class="img-fluid coupon-bg" alt="coupon">
-                    <div class="coupon-content">
-                        <div class="coupon-header d-flex justify-content-between align-items-center">
-                            <div><img src="{{asset('frontend')}}/assets/img/coin.png" alt="coin"></div>
-                            <h4>25% OFF</h4>
-                        </div>
-                        <div class="coupon-body">
-                            <h5>Get Coupon in</h5>
-                            <h2>$50</h2>
-                            <li>4 Videos</li>
-                            <li>8 Photos</li>
-                            <li>2 Documents</li>
-                        </div>
-                        <div class="coupon-footer">
-                            <a href="#" class="btn">Buy Coupon <span><img
-                                        src="{{asset('frontend')}}/assets/img/ArrowRight.png" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 coupon-card">
-                    <img src="{{asset('frontend')}}/assets/img/coupons-bg.png" class="img-fluid coupon-bg" alt="coupon">
-                    <div class="coupon-content">
-                        <div class="coupon-header d-flex justify-content-between align-items-center">
-                            <div><img src="{{asset('frontend')}}/assets/img/coin.png" alt="coin"></div>
-                            <h4>25% OFF</h4>
-                        </div>
-                        <div class="coupon-body">
-                            <h5>Get Coupon in</h5>
-                            <h2>$50</h2>
-                            <li>4 Videos</li>
-                            <li>8 Photos</li>
-                            <li>2 Documents</li>
-                        </div>
-                        <div class="coupon-footer">
-                            <a href="#" class="btn">Buy Coupon <span><img
-                                        src="{{asset('frontend')}}/assets/img/ArrowRight.png" alt=""></span></a>
+                @foreach($coupons as $coupon)
+                    <div class="col-lg-4 col-md-6 coupon-card">
+                        <img src="{{asset('frontend')}}/assets/img/coupons-bg.png" class="img-fluid coupon-bg" alt="coupon">
+                        <div class="coupon-content">
+                            <div class="coupon-header d-flex justify-content-between align-items-center">
+                                <div><img src="{{asset('frontend')}}/assets/img/coin.png" alt="coin"></div>
+                            </div>
+                            <div class="coupon-body">
+                                <h5>Get Coupon in</h5>
+                                <h2>${{$coupon->price}}</h2>
+                                <li>{{$coupon->number_of_video}} Videos</li>
+                                <li>{{$coupon->number_of_images}} Photos</li>
+                                <li>{{$coupon->number_of_documents}} Documents</li>
+                            </div>
+                            <div class="coupon-footer">
+                                <a class="btn" data-bs-toggle="modal" data-bs-target="#signup">Buy Coupon <span><img
+                                            src="{{asset('frontend')}}/assets/img/ArrowRight.png" alt=""></span></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 coupon-card">
-                    <img src="{{asset('frontend')}}/assets/img/coupons-bg.png" class="img-fluid coupon-bg" alt="coupon">
-                    <div class="coupon-content">
-                        <div class="coupon-header d-flex justify-content-between align-items-center">
-                            <div><img src="{{asset('frontend')}}/assets/img/coin.png" alt="coin"></div>
-                            <h4>25% OFF</h4>
-                        </div>
-                        <div class="coupon-body">
-                            <h5>Get Coupon in</h5>
-                            <h2>$50</h2>
-                            <li>4 Videos</li>
-                            <li>8 Photos</li>
-                            <li>2 Documents</li>
-                        </div>
-                        <div class="coupon-footer">
-                            <a href="#" class="btn">Buy Coupon <span><img
-                                        src="{{asset('frontend')}}/assets/img/ArrowRight.png" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

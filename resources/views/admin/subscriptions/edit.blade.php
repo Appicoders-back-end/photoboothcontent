@@ -40,24 +40,12 @@
                                     <label for="interval_time">Select Duration</label>
                                     <select name="interval_time" class="form-control" id="interval_time">
                                         <option value="">{{__("Select Duration")}}</option>
-                                        <option value="{{\App\Models\Subscription::DURATION_WEEK}}" {{$subscription->interval_time == \App\Models\Subscription::DURATION_WEEK ? 'selected' : null}}>{{__("Weekly")}}</option>
                                         <option value="{{\App\Models\Subscription::DURATION_MONTH}}" {{$subscription->interval_time == \App\Models\Subscription::DURATION_MONTH ? 'selected' : null}}>{{__("Monthly")}}</option>
                                         <option value="{{\App\Models\Subscription::DURATION_YEAR}}" {{$subscription->interval_time == \App\Models\Subscription::DURATION_YEAR ? 'selected' : null}}>{{__("Yearly")}}</option>
                                     </select>
                                     @if (isset($errors) && $errors->has('interval_time'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('interval_time') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="price">No of Coupons</label>
-                                    <input type="number" class="form-control" id="coupons" name="coupons"
-                                           placeholder="Enter no of coupons" value="{{old('coupons', $subscription->coupons)}}" required>
-                                    @if (isset($errors) && $errors->has('coupons'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('coupons') }}
                                         </div>
                                     @endif
                                 </div>
