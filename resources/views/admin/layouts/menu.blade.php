@@ -23,6 +23,13 @@
                     <span>{{__('Categories')}}</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.product.index')}}"
+                   class="{{ route('admin.product.index') == url()->current() ? 'active' : '' }}">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>{{__('Products')}}</span>
+                </a>
+            </li>
             <li class="sub-menu">
                 <a href="javascript:;">
                     <i class="fa fa-caret-square-o-up"></i>

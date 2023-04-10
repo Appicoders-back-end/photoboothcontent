@@ -38,7 +38,7 @@ class HomeController extends Controller
             'promoCodes' => PromoCode::active()->get(),
             'coupons' => Coupon::active()->get(),
         ];
-
+        // dd($data);
         return view('home', $data);
     }
 
