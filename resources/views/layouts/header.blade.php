@@ -1,4 +1,4 @@
-<header>
+<header >
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{{url('/')}}">
@@ -27,7 +27,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
                             <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                             <li><a class="dropdown-item" href="payment.php">Payment method</a></li>
                             <li><a class="dropdown-item" href="my-coupon.php">My coupons</a></li>
