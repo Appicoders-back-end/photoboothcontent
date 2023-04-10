@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="amount">Price</label>
+                                    <label for="amount">Coupon Price</label>
                                     <input type="number" class="form-control" id="amount" name="price"
                                            placeholder="price" value="{{old('price')}}" required step="any">
                                     <div class="valid-feedback">
@@ -52,7 +52,7 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="amount">Video</label>
+                                    <label for="amount">Total Coupon Videos</label>
                                     <input type="number" class="form-control" id="video" name="number_of_video"
                                            placeholder="video" value="{{old('number_of_video')}}" required step="any">
                                     <div class="valid-feedback">
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="amount">Images</label>
+                                    <label for="amount">Total Coupon Images</label>
                                     <input type="number" class="form-control" id="amount" name="number_of_images"
                                            placeholder="images" value="{{old('number_of_images')}}" required step="any">
                                     <div class="valid-feedback">
@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="amount">Price</label>
+                                    <label for="amount">Total Coupon Documents</label>
                                     <input type="number" class="form-control" id="amount" name="number_of_documents"
                                            placeholder="documents" value="{{old('number_of_documents')}}" required step="any">
                                     <div class="valid-feedback">
@@ -79,7 +79,7 @@
                                 </div>
 
                                 <div class="col-md-12 mb-3">
-                                    <label for="validationCustom02">status</label>
+                                    <label for="validationCustom02">coupon status</label>
                                     <select class="form-control mb-2" name="status">
                                         <option value="active" selected>Active</option>
                                         <option value="inactive">InActive</option>
@@ -100,7 +100,7 @@
                                 </div>
                                 <!--Summernote end-->
                             </div>
-                            <button class="btn btn-primary" type="submit">Create Coupon</button>
+                            <button class="btn btn-sm btn-success" type="submit">Create Coupon</button>
                         </form>
                     </div>
                 </section>
