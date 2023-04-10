@@ -54,9 +54,7 @@
                     @if(isset($content->about_section_sub_heading))
                         <h2>{{$content->about_section_sub_heading}}</h2>
                     @endif
-                    @if($content->about_section_description)
-                        <p>{{$content->about_section_description}}</p>
-                    @endif
+                    <p> {{ ($content) ? $content->about_section_description : '' }} </p>
                     <a class="btn btn-main"
                        href="about.php">{{isset($content->about_section_button_text) ? $content->about_section_button_text : "Read More"}}
                         <span><img
@@ -71,7 +69,7 @@
     </div>
     <div class="content-section">
         <div class="container">
-            <h3>{{$content->content_store_section_heading}}</h3>
+            <h3>{{ ($content) ? $content->content_store_section_heading : '' }}</h3>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
@@ -322,7 +320,7 @@
     </div>
     <div class="coupons-section">
         <div class="container">
-            <h3>{{$content->coupons_section_heading}}</h3>
+            <h3>{{ ($content) ? $content->coupons_section_heading : '' }}</h3>
             <div class="row coupons-row">
                 <div class="col-lg-4 col-md-6 coupon-card">
                     <img src="{{asset('frontend')}}/assets/img/coupons-bg.png" class="img-fluid coupon-bg" alt="coupon">

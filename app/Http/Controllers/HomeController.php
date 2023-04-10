@@ -34,7 +34,7 @@ class HomeController extends Controller
         $data = [
             'content' => json_decode($homePage->content)
         ];
-
+        // dd($data);
         return view('home', $data);
     }
 }
