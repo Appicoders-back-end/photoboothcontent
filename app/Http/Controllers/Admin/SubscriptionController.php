@@ -60,7 +60,11 @@ class SubscriptionController extends Controller
      */
     public function edit(Subscription $subscription)
     {
-        return view('admin.subscriptions.edit', ['subscription' => $subscription]);
+        $data = [
+            'subscription' => $subscription
+        ];
+
+        return view('admin.subscriptions.edit', $data);
     }
 
     /**
@@ -70,10 +74,8 @@ class SubscriptionController extends Controller
     {
         try {
             $subscription->name = $request->name;
-            $subscription->price = $request->price;
             $subscription->interval_time = $request->interval_time;
             $subscription->description = $request->description;
-            $subscription->coupon_id = $request->coupon_id;
             $subscription->status = $request->status;
             $subscription->save();
 

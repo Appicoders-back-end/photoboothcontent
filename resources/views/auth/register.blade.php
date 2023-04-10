@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app-auth')
 
 @section('content')
-<div class="container">
+{{--<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,6 +69,31 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="hero-section">
+    <div class="container">
+        <div class="row hero-content signup-hero">
+            <div class="col-lg-12">
+                <div class="signup-form">
+                    <a href="index.php"><img src="{{asset('frontend/')}}/assets/img/logo.png" class="d-block mx-auto mb-3" alt=""></a>
+                    <h2>Sign up Now</h2>
+                    <form action="" class="mt-4">
+                        <input type="text" class="form-control rounded-0 my-3" placeholder="Name">
+                        <input type="email" class="form-control rounded-0 my-3" placeholder="Email">
+                        <input type="text" class="form-control rounded-0 my-3" placeholder="Phone Number">
+                        <input type="text" class="form-control rounded-0 my-3" placeholder="Company Name">
+                        <input type="password" class="form-control rounded-0 my-3" placeholder="Password">
+                        <input type="password" class="form-control rounded-0 my-3"
+                               placeholder="Confirm Password">
+
+                        <a href="signin.php" class="btn btn-main w-100" type="submit">Sign up</a>
+                    </form>
+                    <a href="{{route('login')}}" class="text-dark d-block mt-3 text-center text-decoration-none">Already have an account? <span class="text-decoration-underline">Sign in.</span></a>
                 </div>
             </div>
         </div>

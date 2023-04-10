@@ -29,7 +29,7 @@ Route::get('login', [AuthController::class, 'login'])->name('admin.login');
 Route::post('do_login', [AuthController::class, 'doLogin'])->name('admin.do_login');
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('home', [PageController::class, 'home'])->name('admin.home');
     Route::post('storeHomePage', [PageController::class, 'storeHomePage'])->name('admin.storeHomePage');
