@@ -17,7 +17,32 @@
                     <li class="nav-item"><a class="nav-link" href="coupons.php">Coupons</a></li>
                     <li class="nav-item"><a class="nav-link" href="shop.php">Shop</a></li>
                 </ul>
-                <a class="btn btn-main" href="{{route('login')}}">Sign In</a>
+                @guest
+                    <a class="btn btn-main" href="{{route('login')}}">Sign In</a>
+                @else
+                    <div class="dropdown">
+                        <a class="btn btn-main dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            John
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                            <li><a class="dropdown-item" href="payment.php">Payment method</a></li>
+                            <li><a class="dropdown-item" href="my-coupon.php">My coupons</a></li>
+                            <li><a class="dropdown-item" href="order-history.php">Order history</a></li>
+                            <li><a class="dropdown-item" href="downloads.php">Downloads</a></li>
+                            <li><a href="{{ route('logout') }}"
+                                   class="dropdown-item"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a></li>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </ul>
+                    </div>
+                @endguest
             </div>
         </div>
     </nav>
