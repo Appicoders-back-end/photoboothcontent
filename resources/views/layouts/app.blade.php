@@ -13,10 +13,9 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css">
     @yield('style')
 </head>
-
 <body>
 @include('layouts.header')
-@yield('content')
+    @yield('content')
 @include('layouts.footer')
 <!-- Modal -->
 <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">

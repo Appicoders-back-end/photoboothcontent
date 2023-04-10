@@ -17,8 +17,10 @@
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/hero-section-main-image.png" alt="Photo farme"
-                         class="img-fluid">
+                    @if(isset($content->headerSectionImg))
+                        <img src="{{ url('/') . '/' . $content->headerSectionImg }}" alt="Photo farme"
+                             class="img-fluid">
+                    @endif
                 </div>
             </div>
         </div>
@@ -29,7 +31,7 @@
             <div class="swiper bannerswiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{{asset('frontend')}}{{asset('frontend')}}/assets/img/promo-banner-one.png"
+                        <img src="{{asset('frontend')}}/assets/img/promo-banner-one.png"
                              alt="Promo banner" class="img-fluid">
                     </div>
                     <div class="swiper-slide">
@@ -61,8 +63,10 @@
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/about-section-image.png" alt="Video frame"
-                         class="img-fluid">
+                    @if(isset($content->aboutSectionImg))
+                        <img src="{{ url('/') . '/' . $content->aboutSectionImg }}" alt="Video frame"
+                             class="img-fluid">
+                    @endif
                 </div>
             </div>
         </div>
@@ -391,7 +395,9 @@
                 <div class="col-lg-6">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
-                            <img src="{{asset('frontend')}}/assets/img/service-img.png" alt="service" class="img-fluid">
+                            @if(isset($content->servicesSectionImg))
+                                <img src="{{ url('/') . '/' . $content->servicesSectionImg }}" alt="service" class="img-fluid">
+                            @endif
                         </div>
                         <div class="col-lg-6">
                             @if(isset($content->services_section_heading))

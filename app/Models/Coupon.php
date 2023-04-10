@@ -12,4 +12,9 @@ class Coupon extends Model
 
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', Self::ACTIVE);
+    }
 }
