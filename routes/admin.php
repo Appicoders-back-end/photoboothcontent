@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\ContentImageController;
 use App\Http\Controllers\Admin\ContentDocumentController;
 use App\Http\Controllers\Admin\ContentVideoController;
-use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PageController;   
 
 /*
 |--------------------------------------------------------------------------
