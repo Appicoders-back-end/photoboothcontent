@@ -7,11 +7,12 @@ use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\ContentImageController;
 use App\Http\Controllers\Admin\ContentDocumentController;
 use App\Http\Controllers\Admin\ContentVideoController;
-use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PageController;   
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('coupons', CouponController::class, ['as' => 'admin']);
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
+    Route::resource('product', ProductController::class, ['as' => 'admin']);
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
     Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
     Route::resource('content_documents', ContentDocumentController::class, ['as' => 'admin'])->except(['show']);
