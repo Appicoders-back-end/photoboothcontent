@@ -62,13 +62,13 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="img/avatar1_small.jpg">
-                        <span class="username">{{auth()->user()->name ?? 'N/A'}}</span>
+                        <span class="username">{{auth()->guard('admin')->user()->name ?? 'N/A'}}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout dropdown-menu-right">
                         <div class="log-arrow-up"></div>
                         <li>
-                            <form action="{{route('logout')}}" method="post">
+                            <form action="{{route('admin.logout')}}" method="post">
                                 @csrf
                                 <button type="submit"><i class="fa fa-key"></i>Log Out</button>
                             </form>

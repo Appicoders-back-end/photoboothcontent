@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css">
     @yield('style')
 </head>
-
 <body>
 @include('layouts.header')
 @yield('content')
@@ -31,6 +30,34 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-main">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal fade" id="signup" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-1">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="signup-form w-75" style="width: auto;">
+                                <a href="index.php"><img src="assets/img/logo.png" class="d-block mx-auto mb-3" alt=""></a>
+                                <h2>Sign in Now</h2>
+                                <form action="" class="mt-4">
+                                    <input type="email" class="form-control rounded-0 my-3" placeholder="Email">
+                                    <input type="password" class="form-control rounded-0 my-3" placeholder="Password">
+                                    <a href="#" class="d-block text-danger mb-3">Forgot password?</a>
+                                    <a href="dashboard.php" class="btn btn-main w-100" type="submit">Sign in</a>
+                                </form>
+                                <a href="signup.php" class="text-dark d-block mt-3 text-center text-decoration-none">Don't
+                                    have an account? <span class="text-decoration-underline">Sign up.</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

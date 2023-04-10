@@ -40,7 +40,6 @@
                                     <label for="interval_time">Select Duration</label>
                                     <select name="interval_time" class="form-control" id="interval_time">
                                         <option value="">{{__("Select Duration")}}</option>
-                                        <option value="{{\App\Models\Subscription::DURATION_WEEK}}">{{__("Weekly")}}</option>
                                         <option value="{{\App\Models\Subscription::DURATION_MONTH}}">{{__("Monthly")}}</option>
                                         <option value="{{\App\Models\Subscription::DURATION_YEAR}}">{{__("Yearly")}}</option>
                                     </select>

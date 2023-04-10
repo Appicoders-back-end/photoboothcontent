@@ -15,6 +15,11 @@ class PromoCode extends Model
     public const FIXED = 'fixed';
     public const PERCENTAGE = 'percentage';
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', Self::ACTIVE);
+    }
+
     public function getImage()
     {
         if ($this['image'] == null) {
