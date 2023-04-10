@@ -40,19 +40,17 @@ class CategoryController extends Controller
             ]);
             $category = new Category();
 
-            $type_select = null;
-            if($request->type){
-
-                $category->type = $request->type;
-                $type = Category::where("type",$request->type)->first();
-                $type_select = $type->id;
+            $parentCat = null;
+            if ($request->parent_id) {
+                $parentCat = Category::where("id", $request->parent_id)->first();
             }
             $imageName = saveFile($request->image, "categories");
 
-            $category->name = $request->name??null;
-            $category->parent_id = $request->parent_id??$type_select;
+            $category->name = $request->name ?? null;
+            $category->parent_id = $request->parent_id;
             $category->slug = Str::slug($request->name);
-            $category->description = $request->description??null;
+            $category->type = $parentCat?->type;
+            $category->description = $request->description ?? null;
             $category->status = $request->status;
             $category->image = $imageName;
             $category->save();
@@ -79,7 +77,7 @@ class CategoryController extends Controller
     {
         $categories = Category::whereNull('parent_id')->get();
         $category = Category::find($id);
-        return view('admin.categories.edit', compact('categories','category'));
+        return view('admin.categories.edit', compact('categories', 'category'));
     }
 
     /**
@@ -101,9 +99,9 @@ class CategoryController extends Controller
             }
 
             $category->slug = Str::slug($request->name);
-            $category->description = $request->description??null;
+            $category->description = $request->description ?? null;
             $category->status = $request->status;
-            $category->parent_id = $request->parent_id??null;
+            $category->parent_id = $request->parent_id ?? null;
 
             $category->save();
             return redirect()->route('admin.categories.index')->with('success', "Category Updated Successfully");

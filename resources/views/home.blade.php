@@ -17,8 +17,10 @@
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/hero-section-main-image.png" alt="Photo farme"
-                         class="img-fluid">
+                    @if(isset($content->headerSectionImg))
+                        <img src="{{ url('/') . '/' . $content->headerSectionImg }}" alt="Photo farme"
+                             class="img-fluid">
+                    @endif
                 </div>
             </div>
         </div>
@@ -29,7 +31,7 @@
             <div class="swiper bannerswiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{{asset('frontend')}}{{asset('frontend')}}/assets/img/promo-banner-one.png"
+                        <img src="{{asset('frontend')}}/assets/img/promo-banner-one.png"
                              alt="Promo banner" class="img-fluid">
                     </div>
                     <div class="swiper-slide">
@@ -54,7 +56,7 @@
                     @if(isset($content->about_section_sub_heading))
                         <h2>{{$content->about_section_sub_heading}}</h2>
                     @endif
-                    @if($content->about_section_description)
+                    @if(isset($content->about_section_description))
                         <p>{{$content->about_section_description}}</p>
                     @endif
                     <a class="btn btn-main"
@@ -63,15 +65,19 @@
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/about-section-image.png" alt="Video frame"
-                         class="img-fluid">
+                    @if(isset($content->aboutSectionImg))
+                        <img src="{{ url('/') . '/' . $content->aboutSectionImg }}" alt="Video frame"
+                             class="img-fluid">
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <div class="content-section">
         <div class="container">
-            <h3>{{$content->content_store_section_heading}}</h3>
+            @if(isset($content->content_store_section_heading))
+                <h3>{{$content->content_store_section_heading}}</h3>
+            @endif
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
@@ -322,7 +328,9 @@
     </div>
     <div class="coupons-section">
         <div class="container">
-            <h3>{{$content->coupons_section_heading}}</h3>
+            @if(isset($content->coupons_section_heading))
+                <h3>{{$content->coupons_section_heading}}</h3>
+            @endif
             <div class="row coupons-row">
                 <div class="col-lg-4 col-md-6 coupon-card">
                     <img src="{{asset('frontend')}}/assets/img/coupons-bg.png" class="img-fluid coupon-bg" alt="coupon">
@@ -393,7 +401,9 @@
                 <div class="col-lg-6">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
-                            <img src="{{asset('frontend')}}/assets/img/service-img.png" alt="service" class="img-fluid">
+                            @if(isset($content->servicesSectionImg))
+                                <img src="{{ url('/') . '/' . $content->servicesSectionImg }}" alt="service" class="img-fluid">
+                            @endif
                         </div>
                         <div class="col-lg-6">
                             @if(isset($content->services_section_heading))

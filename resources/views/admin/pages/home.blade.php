@@ -49,21 +49,26 @@
                                     <label for="headerSectionHeading">Heading</label>
                                     <input type="text" class="form-control" id="headerSectionHeading"
                                            name="header_section_heading"
-                                           placeholder="Enter Heading" value="{{old('header_section_heading', $content->header_section_heading)}}">
+                                           placeholder="Enter Heading" value="{{old('header_section_heading', $content->header_section_heading ?? null)}}">
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label for="headerSectionDescription">Description</label>
                                     <textarea class="form-control" name="header_section_description"
                                               id="headerSectionDescription" cols="30"
-                                              rows="10">{!! old('header_section_description', $content->header_section_description) !!}</textarea>
+                                              rows="10">{!! old('header_section_description', $content->header_section_description ?? null) !!}</textarea>
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label>Image</label>
                                     <input type="file" class="dropify" name="headerSectionImage"
                                            data-max-file-size="10M"
-                                           data-allowed-file-extensions="jpg jpeg png"/>
+                                           data-allowed-file-extensions="jpg jpeg png"
+                                           data-show-remove="false"
+                                           @if(isset($content->headerSectionImg))
+                                               data-default-file="{{ url('/') . '/' . $content->headerSectionImg }}"
+                                           @endif
+                                    />
                                 </div>
 
                                 <div class="col-md-12 mb-3">
@@ -71,7 +76,7 @@
                                     <input type="text" class="form-control" id="headerSectionButtonText"
                                            name="header_section_button_text"
                                            placeholder="Enter Button Text"
-                                           value="{{old('header_section_button_text', $content->header_section_button_text)}}">
+                                           value="{{old('header_section_button_text', $content->header_section_button_text ?? null)}}">
                                 </div>
                             </div>
                         </div>
@@ -123,7 +128,7 @@
                                     <label for="aboutSectionHeading">Heading</label>
                                     <input type="text" class="form-control" id="aboutSectionHeading"
                                            name="about_section_heading"
-                                           placeholder="Enter Heading" value="{{old('about_section_heading', $content->about_section_heading)}}"
+                                           placeholder="Enter Heading" value="{{old('about_section_heading', $content->about_section_heading ?? null)}}"
                                            required>
                                 </div>
 
@@ -131,7 +136,7 @@
                                     <label for="aboutSectionSubHeading">SubHeading</label>
                                     <input type="text" class="form-control" id="aboutSectionSubHeading"
                                            name="about_section_sub_heading"
-                                           placeholder="Enter Sub Heading" value="{{old('about_section_sub_heading', $content->about_section_sub_heading)}}"
+                                           placeholder="Enter Sub Heading" value="{{old('about_section_sub_heading', $content->about_section_sub_heading ?? null)}}"
                                            required>
                                 </div>
 
@@ -139,13 +144,21 @@
                                     <label for="aboutSectionDescription">Description</label>
                                     <textarea class="form-control" name="about_section_description"
                                               id="aboutSectionDescription" cols="30"
-                                              rows="10" required>{!! old('about_section_description',$content->about_section_description) !!}</textarea>
+                                              rows="10" required>{!! old('about_section_description',$content->about_section_description ?? null) !!}</textarea>
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label>Image</label>
-                                    <input type="file" class="dropify" name="aboutSectionImage" data-max-file-size="10M"
-                                           data-allowed-file-extensions="jpg jpeg png"/>
+                                    <input type="file"
+                                           class="dropify"
+                                           name="aboutSectionImage"
+                                           data-max-file-size="10M"
+                                           data-allowed-file-extensions="jpg jpeg png"
+                                           data-show-remove="false"
+                                           @if(isset($content->aboutSectionImg))
+                                               data-default-file="{{ url('/') . '/' . $content->aboutSectionImg }}"
+                                           @endif
+                                    />
                                 </div>
 
                                 <div class="col-md-12 mb-3">
@@ -153,7 +166,7 @@
                                     <input type="text" class="form-control" id="aboutSectionButtonText"
                                            name="about_section_button_text"
                                            placeholder="Enter Button Text"
-                                           value="{{old('about_section_button_text', $content->about_section_button_text)}}">
+                                           value="{{old('about_section_button_text', $content->about_section_button_text ?? null)}}">
                                 </div>
                             </div>
                         </div>
@@ -179,7 +192,7 @@
                                     <label for="contentStoreSectionHeading">Heading</label>
                                     <input type="text" class="form-control" id="contentStoreSectionHeading"
                                            name="content_store_section_heading"
-                                           placeholder="Enter Heading" value="{{old('content_store_section_heading', $content->content_store_section_heading)}}">
+                                           placeholder="Enter Heading" value="{{old('content_store_section_heading', $content->content_store_section_heading ?? null)}}">
                                 </div>
                             </div>
                         </div>
@@ -205,7 +218,7 @@
                                     <label for="couponsSectionHeading">Heading</label>
                                     <input type="text" class="form-control" id="couponsSectionHeading"
                                            name="coupons_section_heading"
-                                           placeholder="Enter Heading" value="{{old('coupons_section_heading', $content->coupons_section_heading)}}">
+                                           placeholder="Enter Heading" value="{{old('coupons_section_heading', $content->coupons_section_heading ?? null)}}">
                                 </div>
                             </div>
                         </div>
@@ -231,21 +244,26 @@
                                     <label for="servicesSectionHeading">Heading</label>
                                     <input type="text" class="form-control" id="servicesSectionHeading"
                                            name="services_section_heading"
-                                           placeholder="Enter Heading" value="{{old('services_section_heading', $content->services_section_heading)}}">
+                                           placeholder="Enter Heading" value="{{old('services_section_heading', $content->services_section_heading ?? null)}}">
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label for="servicesSectionDescription">Description</label>
                                     <textarea class="form-control" name="services_section_description"
                                               id="servicesSectionDescription" cols="30"
-                                              rows="10">{!! old('services_section_description', $content->services_section_description) !!}</textarea>
+                                              rows="10">{!! old('services_section_description', $content->services_section_description ?? null) !!}</textarea>
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label>Image</label>
                                     <input type="file" class="dropify" name="servicesSectionImage"
                                            data-max-file-size="10M"
-                                           data-allowed-file-extensions="jpg jpeg png"/>
+                                           data-allowed-file-extensions="jpg jpeg png"
+                                           data-show-remove="false"
+                                           @if(isset($content->servicesSectionImg))
+                                               data-default-file="{{ url('/') . '/' . $content->servicesSectionImg }}"
+                                           @endif
+                                    />
                                 </div>
                             </div>
                         </div>
