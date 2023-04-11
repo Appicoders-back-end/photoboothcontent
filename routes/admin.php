@@ -45,7 +45,9 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('coupons', CouponController::class, ['as' => 'admin']);
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
+    Route::get('product-image/{p_image_id}/delete', [ProductController::class, 'deletePImage'])->name('admin.product.image.destroy');
     Route::resource('product', ProductController::class, ['as' => 'admin']);
+
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
     Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
     Route::resource('content_documents', ContentDocumentController::class, ['as' => 'admin'])->except(['show']);
