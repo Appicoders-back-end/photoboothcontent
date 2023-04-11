@@ -20,6 +20,11 @@ class Category extends Model
     public const DOCUMENT = 'document';
     public const AUDIO = 'audio';
 
+    public function scopeActive($query)
+    {
+        return $query->whereStatus(Self::ACTIVE);
+    }
+
     public function subcategories()
     {
         return $this->hasMany(Category::class, 'parent_id');

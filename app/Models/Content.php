@@ -17,6 +17,11 @@ class Content extends Model
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
 
+    public function scopeActive($query)
+    {
+        return $query->whereStatus(Self::ACTIVE);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

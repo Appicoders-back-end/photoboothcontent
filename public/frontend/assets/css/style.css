@@ -76,7 +76,7 @@ header nav .active {
     padding-top: 340px;
 }
 
-.row.signup-hero{
+.row.signup-hero {
     padding-top: 240px;
 }
 
@@ -147,11 +147,11 @@ header nav .active {
     margin-bottom: 20px;
 }
 
-.content-category-card p{
+.content-category-card p {
     font-size: 14px;
 }
 
-.content-card-img{
+.content-card-img {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -413,7 +413,7 @@ footer a {
     border-radius: 10px;
 }
 
-.signup-form.checkout-form{
+.signup-form.checkout-form {
     width: 60%;
 }
 
@@ -423,36 +423,36 @@ footer a {
     font-weight: 700;
 }
 
-footer img{
+footer img {
     width: 50%;
 }
 
-.content-store-cont{
+.content-store-cont {
     padding: 100px 0;
 }
 
-.product-row{
+.product-row {
     padding: 40px 0;
 }
 
-.product-card{
+.product-card {
     margin-bottom: 30px;
     padding: 20px;
 }
 
-.product-card .product-name{
+.product-card .product-name {
     color: #000;
     font-weight: 700;
     margin: 20px 0;
 }
 
-.product-card .product-price{
+.product-card .product-price {
     color: #000;
     font-weight: 600;
     margin: 20px 0;
 }
 
-.product-card .product-img{
+.product-card .product-img {
     height: 200px;
     width: 100%;
     object-fit: cover;
@@ -460,16 +460,26 @@ footer img{
     box-shadow: 10px 10px 0 #000;
 }
 
-.swiper-button-prev:after, .swiper-button-next:after{
+.swiper-button-prev:after, .swiper-button-next:after {
     color: #FC90AC;
 }
 
-.content-slider-pagination{
+.content-slider-pagination {
     position: sticky;
 }
 
 .dashboard-container {
     margin-top: 200px;
+    margin-bottom: 200px;
+    min-height: 50vh;
+}
+
+.parent-category {
+    font-weight: bold;
+}
+
+.child-category {
+    margin-left: 20px;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -544,7 +554,7 @@ footer img{
         margin: 20px auto;
     }
 
-    .signup-form, .signup-form.checkout-form{
+    .signup-form, .signup-form.checkout-form {
         width: 90%;
     }
 }
