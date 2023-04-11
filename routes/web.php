@@ -25,4 +25,4 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('membership', [MembershipController::class, 'index'])->name('membership');
-
+Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
