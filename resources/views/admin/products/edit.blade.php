@@ -63,6 +63,22 @@
                                         </div>
                                     </section>
                                 </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom02">Image</label>
+                                    <input type="file" class="dropify"  name="image[]" multiple/>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    @if($product->images)
+                                    <div class="split" style="display: grid;grid-template-columns: repeat(5,1fr);grid-column-gap: 5px;grid-row-gap: 5px;">
+                                        @foreach($product->images as $image)
+                                        <div class="col-md-6">
+                                            <img src="{{ url('storage/'.$image->image) }}" style="width:80px;height:80px;" class="me-4 border mb-2">
+                                            <a href="{{ route('admin.product.image.destroy',$image->id) }}" class="d-block text-center">Delete</a>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
                                 <!--Summernote end-->
                             </div>
                             <button class="btn btn-primary" type="submit">Update Product</button>

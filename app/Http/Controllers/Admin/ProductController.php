@@ -84,6 +84,15 @@ class ProductController extends Controller
                 'price'=>$request->price,
                 'description'=>$request->description
             ]);
+            if ($request->hasFile('image')){
+                foreach ($request->image as $key => $product_image) {
+                   $product_image= $product_image->store('product_images', 'public');
+                   ProductImages::insert([
+                       "product_id"=>$id,
+                       'image' =>  $product_image
+                   ]);
+                }
+            }
             return redirect()->route('admin.product.index')->with('success', "Product Updated Successfully");
 
         } catch (\Exception $exception) {
@@ -91,9 +100,6 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         try {
@@ -110,6 +116,23 @@ class ProductController extends Controller
             if ($res) {
                 return back()->with('success', 'Product has been successfully deleted .');
             }
+        } catch (\Exception $exception) {
+            return redirect()->route('admin.product.index')->with('error', $exception->getMessage());
+        }
+    }
+
+    public function deletePImage($p_image_id){
+        
+        try {
+            $find_image=ProductImages::findOrFail($p_image_id);
+            $folderPath = storage_path('app/public/'.$find_image->image);
+            if(File::exists($folderPath)) {
+                File::delete($folderPath);
+            }
+            ProductImages::where('id',$p_image_id)->delete();
+
+            return back()->with('success', 'Product Image has been successfully deleted .');
+
         } catch (\Exception $exception) {
             return redirect()->route('admin.product.index')->with('error', $exception->getMessage());
         }
