@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,8 @@ Route::controller(ShopController::class)->group(function(){
 Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('payment-methods', App\Http\Controllers\PaymentMethodController::class);
+    Route::get('membership', [MembershipController::class, 'index'])->name('membership');
+    Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('edit-profile', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('edit-profile');
+    Route::post('update-profile', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('update-profile');
 });

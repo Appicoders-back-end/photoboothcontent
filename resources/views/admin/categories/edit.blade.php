@@ -84,7 +84,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Update Category</button>
+                            <button class="btn btn-sm btn-success" type="submit">Update Category</button>
                         </form>
                     </div>
                 </section>
