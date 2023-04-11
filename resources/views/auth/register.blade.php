@@ -81,17 +81,20 @@
             <div class="col-lg-12">
                 <div class="signup-form">
                     <a href="index.php"><img src="{{asset('frontend/')}}/assets/img/logo.png" class="d-block mx-auto mb-3" alt=""></a>
-                    <h2>Sign up Now</h2>
-                    <form action="" class="mt-4">
-                        <input type="text" class="form-control rounded-0 my-3" placeholder="Name">
-                        <input type="email" class="form-control rounded-0 my-3" placeholder="Email">
-                        <input type="text" class="form-control rounded-0 my-3" placeholder="Phone Number">
-                        <input type="text" class="form-control rounded-0 my-3" placeholder="Company Name">
-                        <input type="password" class="form-control rounded-0 my-3" placeholder="Password">
-                        <input type="password" class="form-control rounded-0 my-3"
-                               placeholder="Confirm Password">
-
-                        <a href="signin.php" class="btn btn-main w-100" type="submit">Sign up</a>
+                    <h2>{{__('Sign Up Now')}}</h2>
+                    @include('layouts.messages')
+                    <form method="POST" action="{{ route('register') }}" class="mt-4">
+                        @csrf
+                        <input name="first_name" type="text" class="form-control rounded-0 my-3" placeholder="First Name" required>
+                        <input name="last_name" type="text" class="form-control rounded-0 my-3" placeholder="Last Name" required>
+                        <input name="email" type="email" class="form-control rounded-0 my-3" placeholder="Email" required>
+                        <input name="contact_number" type="text" class="form-control rounded-0 my-3" placeholder="Phone Number" required>
+                        <input name="password" type="password" class="form-control rounded-0 my-3" placeholder="Password" required>
+                        <input name="password_confirmation" type="password" class="form-control rounded-0 my-3"
+                               placeholder="Confirm Password" required>
+                        <button type="submit" class="btn btn-main w-100">
+                            {{ __('Sign up') }}
+                        </button>
                     </form>
                     <a href="{{route('login')}}" class="text-dark d-block mt-3 text-center text-decoration-none">Already have an account? <span class="text-decoration-underline">Sign in.</span></a>
                 </div>
