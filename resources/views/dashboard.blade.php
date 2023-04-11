@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container dashboard-container">
         <div class="row mt-5">
             <div class="col-lg-6 mb-4">
                 <div class="card">
