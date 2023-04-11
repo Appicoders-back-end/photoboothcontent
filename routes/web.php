@@ -24,9 +24,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
-//Shop
 Route::controller(ShopController::class)->group(function(){
     Route::get('shop', 'index')->name('shop.home');
     Route::get('product-detail/{p_id}', 'detail')->name('shop.product.detail');
 });
-
+Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');

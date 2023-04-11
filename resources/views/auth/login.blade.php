@@ -79,6 +79,7 @@
                         <a href="index.php"><img src="{{asset('frontend/')}}/assets/img/logo.png"
                                                  class="d-block mx-auto mb-3" alt=""></a>
                         <h2>Sign in Now</h2>
+                        @include('layouts.messages')
                         <form method="POST" action="{{ route('login') }}" class="mt-4">
                             @csrf
                             <input type="email" name="email" class="form-control rounded-0 my-3" placeholder="Email"
