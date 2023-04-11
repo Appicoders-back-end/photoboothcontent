@@ -14,7 +14,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('about-us')}}">About us</a></li>
                     <li class="nav-item"><a class="nav-link" href="content-store.php">Content Store</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('membership') }}">Membership</a></li>
-                    <li class="nav-item"><a class="nav-link" href="coupons.php">Coupons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('coupons')}}">Coupons</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li>
                 </ul>
                 @guest
