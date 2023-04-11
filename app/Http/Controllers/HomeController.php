@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Coupon;
 use App\Models\Page;
 use App\Models\PromoCode;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -46,4 +47,5 @@ class HomeController extends Controller
     {
         return view('about-us');
     }
+
 }

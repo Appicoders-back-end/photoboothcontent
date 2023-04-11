@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PromoCodeController;
+use App\Http\Controllers\MembershipController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,5 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
+Route::get('membership', [MembershipController::class, 'index'])->name('membership');
 
