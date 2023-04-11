@@ -58,10 +58,6 @@ class HomeController extends Controller
         }
     }
 
-    public function payment(){
-        return view('payment');
-    }
-
     /**
      * Show the application dashboard.
      *
