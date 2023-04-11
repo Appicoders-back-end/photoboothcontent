@@ -23,7 +23,7 @@
                     <div class="dropdown">
                         <a class="btn btn-main dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            John
+                            {{auth()->user()->name}}
                         </a>
 
                         <ul class="dropdown-menu">
