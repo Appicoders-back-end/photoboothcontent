@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\ContentStoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
+
+Route::controller(ContentStoreController::class)->group(function () {
+    Route::get('content-store', 'index')->name('content-store');
+});
 
 Route::controller(CouponController::class)->group(function () {
     Route::get('coupons', 'index')->name('coupons');

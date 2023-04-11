@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="signup-form w-75" style="width: auto;">
-                                <a href="index.php"><img src="assets/img/logo.png" class="d-block mx-auto mb-3" alt=""></a>
+                                <a href="index.php"><img src="{{asset('frontend')}}/assets/img/logo.png" class="d-block mx-auto mb-3" alt=""></a>
                                 <h2>Sign in Now</h2>
                                 <form action="" class="mt-4">
                                     <input type="email" class="form-control rounded-0 my-3" placeholder="Email">

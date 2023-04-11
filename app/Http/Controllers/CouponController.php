@@ -9,7 +9,7 @@ class CouponController extends Controller
 {
     public function index()
     {
-        $coupons = Coupon::active()->get();
+        $coupons = Coupon::active()->orderByDesc('id')->get();
         $data = [
             'coupons' => $coupons
         ];
