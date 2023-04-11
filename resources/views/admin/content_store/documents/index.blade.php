@@ -19,7 +19,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Thumbnail</th>
-                                    <th>Image</th>
+                                    <th>Document</th>
                                     <th>Category</th>
                                     <th>Status</th>
                                     <th>Created At</th>
@@ -36,10 +36,7 @@
                                                  src="{{ $document->getThumbnailImage() }}"
                                                  alt="{{$document->name}}">
                                         </td>
-                                        <td><img class="img img-fluid"
-                                                 width="150"
-                                                 src="{{ $document->getImage() }}"
-                                                 alt="{{$document->name}}">
+                                        <td><a download="{{ $document->getImage() }}" href="{{$document->getImage() }}" title="{{ $document->name }}">Download</a>
                                         </td>
                                         <td>{{$document->category ? $document->category->name : null}}</td>
                                         <td>

@@ -70,7 +70,7 @@
         <!-- page end-->
     </section>
 
-    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal fade empty_data" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" >
         <div class="modal-dialog ">
             {{-- modal-dialog-centered--}}
             <div class="modal-content">
@@ -95,7 +95,13 @@
 @section('script')
     <script>
         $(document).on("click",'#read',function () {
+
             var str = $(this).data('id').length;
+
+            if(str == 0){
+                alert(typeof(str));
+                $(".empty_data").css("display","none");
+            }
             if (str >= 20){
                 $("#read").css({"cursor":"pointer"});
             }

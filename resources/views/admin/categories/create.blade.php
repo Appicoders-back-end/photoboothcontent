@@ -104,7 +104,7 @@
                                     <input type="file" class="dropify"  name="image"/>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Create Category</button>
+                            <button class="btn btn-sm btn-success" type="submit">Create Category</button>
                         </form>
                     </div>
                 </section>
