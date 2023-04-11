@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\PromoCodeController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentMethodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +24,13 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
+
 Route::controller(ShopController::class)->group(function(){
     Route::get('shop', 'index')->name('shop.home');
     Route::get('product-detail/{p_id}', 'detail')->name('shop.product.detail');
 });
-Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    Route::resource('payment-methods', App\Http\Controllers\PaymentMethodController::class);
+});
