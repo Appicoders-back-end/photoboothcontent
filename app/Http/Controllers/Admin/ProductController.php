@@ -77,6 +77,7 @@ class ProductController extends Controller
                 'price' => "numeric|between:0,99999.99",
                 "description" => "required",
             ]);
+            
             $product=Product::findOrFail($id);
 
             $product->update([
@@ -84,6 +85,7 @@ class ProductController extends Controller
                 'price'=>$request->price,
                 'description'=>$request->description
             ]);
+            
             if ($request->hasFile('image')){
                 foreach ($request->image as $key => $product_image) {
                    $product_image= $product_image->store('product_images', 'public');

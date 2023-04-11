@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">Image</label>
-                                    <input type="file" class="dropify"  name="image[]" multiple/>
+                                    <input type="file" class="dropify"  name="image[]" multiple required />
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     @if($product->images)
