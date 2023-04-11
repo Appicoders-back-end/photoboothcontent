@@ -468,6 +468,10 @@ footer img{
     position: sticky;
 }
 
+.dashboard-container {
+    margin-top: 200px;
+}
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     header nav .nav-link {
         color: #000;
