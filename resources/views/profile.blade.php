@@ -19,14 +19,14 @@
             </div>
         </div>
     </div>--}}
-    <div class="hero-section">
-        <img src="{{asset('frontend')}}/assets/img/hero-section-circle-pink.png" alt="Pink circle" class="pink-circle">
-        <div class="container">
-
-            <div class="row hero-content signup-hero">
-
-                <div class="col-lg-12">
-                    <div class="signup-form">
+    <div class="container dashboard-container">
+        <div class="row mt-5">
+            <div class="col-lg-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Profile</h5>
+                        <hr>
+                        <div class="signup-form">
                         <a href="index.php"><img src="{{asset('frontend')}}/assets/img/logo.png" class="d-block mx-auto mb-3" alt=""></a>
                         <h2>Update Profile </h2>
                         @include('layouts.messages')
@@ -43,9 +43,10 @@
                             <button type="submit" class="btn btn-main w-100" type="submit">Update Profile</button>
                         </form>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <img src="{{asset('frontend')}}/assets/img/hero-section-circle-blue.png" alt="Blue circle" class="blue-circle">
     </div>
+
 @endsection
