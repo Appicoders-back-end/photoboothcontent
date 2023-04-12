@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\StripeService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use mysql_xdevapi\Exception;
 
 class RegisterController extends Controller
 {
@@ -66,14 +69,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => sprintf("%s %s", $data['first_name'], $data['last_name']),
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'contact_no' => $data['contact_number'],
-            'role' => User::ROLE_CUSTOMER,
-            'password' => Hash::make($data['password']),
-        ]);
+        try {
+            $stripeService = new StripeService();
+
+            $user = User::create([
+                'name' => sprintf("%s %s", $data['first_name'], $data['last_name']),
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'contact_no' => $data['contact_number'],
+                'role' => User::ROLE_CUSTOMER,
+                'password' => Hash::make($data['password']),
+            ]);
+
+            $user->update([
+                'stripe_customer_id' => $stripeService->createCustomer($user)->id
+            ]);
+
+            return $user;
+        } catch (\Exception $exception) {
+            throw ValidationException::withMessages([
+                'error' => $exception->getMessage()
+            ]);
+        }
     }
 }

@@ -8,17 +8,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ContentStoreController;
+use App\Http\Controllers\HomeController;
 
 
 Auth::routes();
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 
 Route::controller(ContentStoreController::class)->group(function () {
     Route::get('content-store', 'index')->name('content-store');
@@ -34,10 +35,10 @@ Route::controller(ShopController::class)->group(function(){
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-    Route::resource('payment-methods', App\Http\Controllers\PaymentMethodController::class);
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::resource('payment-methods', PaymentMethodController::class);
     Route::get('membership', [MembershipController::class, 'index'])->name('membership');
-    Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-    Route::get('edit-profile', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('edit-profile');
-    Route::post('update-profile', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('update-profile');
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('edit-profile', [HomeController::class, 'editProfile'])->name('edit-profile');
+    Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
 });
