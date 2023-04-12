@@ -12,7 +12,8 @@
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/content-section-image.png" alt="Photo farme" class="img-fluid">
+                    <img src="{{asset('frontend')}}/assets/img/content-section-image.png" alt="Photo farme"
+                         class="img-fluid">
                 </div>
             </div>
         </div>
@@ -21,11 +22,11 @@
     <div class="container content-store-cont">
         <div class="row">
             <div class="col-lg-3 pt-5">
-                <form action="{{route('content-store')}}" id="filter-form">
+                <form action="{{route('content-store')}}" id="filter-form" method="GET">
 
                 </form>
                 <div class="mb-4">
-                    <input type="text" class="form-control" placeholder="Search" form="filter-form">
+                    <input name="keyword" type="text" class="form-control" placeholder="Search" form="filter-form">
                 </div>
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
@@ -40,13 +41,15 @@
                             <div class="accordion-body">
                                 @foreach($categories as $category)
                                     <label class="form-check parent-category">
-                                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}">
+                                        <input class="form-check-input" type="checkbox" name="categories[]"
+                                               value="{{$category->id}}" form="filter-form">
                                         <span class="form-check-label">{{$category->name}}</span>
                                     </label>
                                     @if($category->has('subcategories'))
                                         @foreach($category->subcategories as $subcategories)
                                             <label class="form-check child-category">
-                                                <input class="form-check-input" type="checkbox" name="categories[]" value="{{$subcategories->id}}">
+                                                <input class="form-check-input" type="checkbox" name="categories[]"
+                                                       value="{{$subcategories->id}}" form="filter-form">
                                                 <span class="form-check-label">{{$subcategories->name}}</span>
                                             </label>
                                         @endforeach
@@ -57,25 +60,22 @@
                     </div>
                 </div>
                 <div class="mb-4 mt-2 d-flex justify-content-center">
-                    <a href="#" class="btn btn-main">Filter</a>
+                    <button type="submit" class="btn btn-main" form="filter-form">Filter</button>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="row content-category-row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="content-category-card video">
-                            <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt="" class="content-card-img">
-                            <div class="category-content-container">
-                                <h4>Content item</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolores.</p>
-                                <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#" class="btn btn-main bg-white text-dark">Download now</a>
-                            </div>
-                        </div>
+                    @if($content_store->count() > 0)
+                        @foreach($content_store as $content)
+                            @include('partials.content', $content)
+                        @endforeach
+                    @endif
+                </div>
+                {{--@if($content_store->count() > 0)
+                    <div class="mt-5 d-flex justify-content-center">
+                        <a href="#" class="btn btn-main">Load More</a>
                     </div>
-                </div>
-                <div class="mt-5 d-flex justify-content-center">
-                    <a href="#" class="btn btn-main">Load More</a>
-                </div>
+                @endif --}}
             </div>
         </div>
     </div>

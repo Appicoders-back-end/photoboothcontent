@@ -33,16 +33,13 @@ class PaymentMethodController extends Controller
         try {
 
             $request->validate([
-                'card_number' => 'required',
+                'card_number' => 'required|numeric',
                 'card_holder_name' => 'required',
                 'exp_date' => 'required',
-                'cvc' => 'required',
+                'cvc' => 'required|numeric',
             ]);
 
-//            dd($request->all());
-
             $user = auth()->user();
-//            PaymentMethod::where('user_id', $user->id)->update(['is_default_card' => 0]);
             $stripeService = new StripeService();
             $token = $stripeService->createToken($request);
             $stripeCustomer = $stripeService->getCustomer($user);
