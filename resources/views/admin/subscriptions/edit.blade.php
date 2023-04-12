@@ -64,7 +64,7 @@
                                 </div>
 
                             </div>
-                            <button class="btn btn-sm btn-success" type="submit">Update Promo</button>
+                            <button class="btn btn-sm btn-success" type="submit">Update Subscription</button>
                         </form>
                     </div>
                 </section>

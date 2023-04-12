@@ -88,12 +88,12 @@ class StripeService
      */
     public function createToken($request)
     {
-        $date = explode("/", $request->exp_date);
+        $date = explode("-", $request->exp_date);
         $token = $this->getStripe()->tokens->create([
             'card' => [
                 'number' => $request->card_number,
-                'exp_month' => $date[0],
-                'exp_year' => $date[1],
+                'exp_month' => $date[1],
+                'exp_year' => $date[0],
                 'cvc' => $request->cvc,
             ],
         ]);

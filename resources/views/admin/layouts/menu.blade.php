@@ -3,14 +3,14 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
             <li>
-                <a class="{{ route('admin.dashboard') == url()->current() ?'active':'' }}"
+                <a class="{{ route('admin.dashboard') == url()->current() ? 'active' : '' }}"
                    href="{{route('admin.dashboard')}}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a class="{{ route('admin.home') == url()->current() ?'active':'' }}"
+                <a class="{{ route('admin.home') == url()->current() ? 'active' : '' }}"
                    href="{{route('admin.home')}}">
                     <i class="fa fa-home"></i>
                     <span>Home Page</span>

@@ -1,19 +1,20 @@
 @extends('layouts.app')
 @section('content')
     <div class="container dashboard-container">
+        @include('layouts.messages')
         <div class="row mt-5">
             <div class="col-lg-6 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">User Profile</h5>
                         <hr>
-                        <p class="card-text"><strong>Name:</strong> John Doe</p>
-                        <p class="card-text"><strong>Email:</strong> johndoe@gmail.com</p>
-                        <p class="card-text"><strong>Phone:</strong> +1 (123) 456-7890</p>
+                        <p class="card-text"><strong>Name:</strong>{{ $user->name??'' }}</p>
+                        <p class="card-text"><strong>Email:</strong>{{ $user->email??'' }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ $user->contact_no??'' }}</p>
                         <p class="card-text"><strong>Address:</strong> 123 Main St, Anytown, USA</p>
                         <p class="card-text"><strong>Membership:</strong> Premium</p>
                         <p class="card-text"><strong>Membership Due:</strong> 10/4/2023</p>
-                        <a href="#" class="btn btn-main">Edit Profile</a>
+                        <a href="{{ route('edit-profile') }}" class="btn btn-main">Edit Profile</a>
                     </div>
                 </div>
             </div>

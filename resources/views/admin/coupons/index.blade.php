@@ -6,7 +6,7 @@
             <div class="col-sm-12">
                 <section class="card">
                     <header class="card-header">
-                        Categories
+                        Coupons
                         <span class="pull-right">
                             <a href="{{route('admin.coupons.create')}}" class=" btn btn-success btn-sm">Create New</a>
                         </span>
