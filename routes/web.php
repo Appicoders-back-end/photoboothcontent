@@ -36,9 +36,11 @@ Route::controller(ShopController::class)->group(function(){
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-    Route::resource('payment-methods', PaymentMethodController::class);
-    Route::get('membership', [MembershipController::class, 'index'])->name('membership');
-    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('edit-profile', [HomeController::class, 'editProfile'])->name('edit-profile');
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
+    Route::resource('payment-methods', PaymentMethodController::class);
+
+    /*membership*/
+    Route::get('membership', [MembershipController::class, 'index'])->name('membership');
+    Route::post('buyMembership', [MembershipController::class, 'buyMembership'])->name('buyMembership');
 });

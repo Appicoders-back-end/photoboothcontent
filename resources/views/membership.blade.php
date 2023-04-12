@@ -28,7 +28,10 @@
                                 <li>{{ $subscription->coupon->number_of_images??'' }} Images</li>
                                 <li>{{ $subscription->coupon->number_of_documents??'' }} Document</li>
                             </div>
-                            <a href="{{ route('login') }}" class="btn btn-main">Become a member <span><img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></a>
+                            <a class="btn btn-main">Buy Membership <span><img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></a>
+                            <form id="buy-membership" action="{{ route('buyMembership') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 @empty

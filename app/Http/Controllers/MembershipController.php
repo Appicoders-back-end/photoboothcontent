@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subscription;
+use App\Services\StripeService;
 use Illuminate\Http\Request;
 
 class MembershipController extends Controller
@@ -12,57 +13,12 @@ class MembershipController extends Controller
      */
     public function index()
     {
-//        dd('work');
         $subscriptions = Subscription::where('status',Subscription::Active)->get();
-//        dd($subscriptions);
         return view('membership',compact('subscriptions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function buyMembership(Request $request, StripeService $stripeService)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

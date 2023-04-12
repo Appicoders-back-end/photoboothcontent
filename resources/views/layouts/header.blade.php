@@ -15,7 +15,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('content-store')}}">Content Store</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('membership') }}">Membership</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('coupons')}}">Coupons</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li>
+{{--                   <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li> --}}
                 </ul>
                 @guest
                     <a class="btn btn-main" href="{{route('login')}}">Sign In</a>
@@ -31,9 +31,9 @@
                             <li><a class="dropdown-item" href="{{route('payment-methods.index')}}">Payment method</a></li>
                             <li><a class="dropdown-item" href="{{ route('edit-profile') }}">Edit Profile</a></li>
                             <li><a class="dropdown-item" href="my-coupon.php">My coupons</a></li>
-                            <li><a class="dropdown-item" href="order-history.php">Order history</a></li>
+                            {{--<li><a class="dropdown-item" href="order-history.php">Order history</a></li>--}}
                             <li><a class="dropdown-item" href="downloads.php">Downloads</a></li>
-                            <li><a href="{{ route('logout') }}"
+                            <li><a href="javascript:;"
                                    class="dropdown-item"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a></li>
 
