@@ -80,6 +80,11 @@
                                                  class="d-block mx-auto mb-3" alt=""></a>
                         <h2>Sign in Now</h2>
                         @include('layouts.messages')
+                        @if (Session::has('message'))
+                          <div class="alert alert-success" role="alert">
+                              {{ Session::get('message') }}
+                          </div>
+                        @endif
                         <form method="POST" action="{{ route('login') }}" class="mt-4">
                             @csrf
                             <input type="email" name="email" class="form-control rounded-0 my-3" placeholder="Email"
@@ -97,7 +102,7 @@
                                     </span>
                             @enderror
 
-                            <a href="#" class="d-block text-danger mb-3">Forgot password?</a>
+                            <a href="{{ route('forget.password') }}" class="d-block text-danger mb-3">Forgot password?</a>
                             <button type="submit" class="btn btn-main w-100">
                                 {{ __('Sign In') }}
                             </button>
