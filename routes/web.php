@@ -20,6 +20,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
+Route::get('membership', [MembershipController::class, 'index'])->name('membership');
 
 Route::controller(ContentStoreController::class)->group(function () {
     Route::get('content-store', 'index')->name('content-store');
@@ -41,6 +42,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('payment-methods', PaymentMethodController::class);
 
     /*membership*/
-    Route::get('membership', [MembershipController::class, 'index'])->name('membership');
     Route::post('buyMembership', [MembershipController::class, 'buyMembership'])->name('buyMembership');
 });

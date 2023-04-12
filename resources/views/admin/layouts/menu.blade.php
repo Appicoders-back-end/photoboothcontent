@@ -9,6 +9,19 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-caret-square-o-up"></i>
+                    <span>Pages</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{route('admin.home')}}">Homepage</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Content Store</a></li>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Coupons</a></li>
+                </ul>
+            </li>
             <li>
                 <a class="{{ route('admin.home') == url()->current() ? 'active' : '' }}"
                    href="{{route('admin.home')}}">
