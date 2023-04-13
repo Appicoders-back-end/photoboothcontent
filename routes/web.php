@@ -42,5 +42,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('payment-methods', PaymentMethodController::class);
 
     /*membership*/
+    Route::get('buyMembership', [MembershipController::class, 'buyMembershipPage'])->name('buyMembershipPage');
     Route::post('buyMembership', [MembershipController::class, 'buyMembership'])->name('buyMembership');
 });
