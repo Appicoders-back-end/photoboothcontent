@@ -9,7 +9,6 @@
                         <h5 class="card-title">Add Payment Methods</h5>
                         <hr>
                         <div class="signup-form">
-                            @include('layouts.messages')
                         <div class="col-lg-12 mb-4">
                             <form action="{{ route('payment-methods.store') }}" method="POST">
                                 @csrf
