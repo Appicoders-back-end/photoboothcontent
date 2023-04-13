@@ -13,9 +13,9 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Card#</th>
-                                    <th>Expiry date</th>
-                                    <th>Action</th>
+                                    <th>Card Holder Name</th>
+                                    <th>Card end Number</th>
+                                    <th>Card Brand</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -29,12 +29,9 @@
                                 </tr>--}}
                                 @forelse($paymentMethods as $paymentMethod)
                                     <tr>
+                                        <td>{{ $paymentMethod->card_holder_name??'' }}</td>
                                         <td>{{ $paymentMethod->card_end_number??'' }}</td>
-                                        <td>2022-03-25</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
-                                        </td>
+                                        <td>{{ $paymentMethod->card_brand??'' }}</td>
                                     </tr>
                                 @empty
                                 @endforelse

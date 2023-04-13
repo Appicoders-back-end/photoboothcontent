@@ -16,4 +16,16 @@ class UserController extends Controller
         ];
         return view('admin.users.index', $data);
     }
+
+    public function changeStatus($id){
+        try {
+            $user = User::find($id);
+            $user->status = ($user->status == User::ACTIVE)?User::INACTIVE:User::ACTIVE;
+            $user->save();
+            return redirect()->route('admin.users.index')->with('success', 'User Status has been updated successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
 }
