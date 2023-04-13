@@ -60,17 +60,17 @@
                                 </div>
 
                                 <!--Summernote start-->
-                                <div class="col-md-12 mb-3">
+                               {{-- <div class="col-md-12 mb-3">
                                     <section class="card">
                                         <header class="card-header head-border editor-title">
                                             Description
                                         </header>
                                         <div class="card-body editor-desc">
-                                            {{--                                                <div class="summernote"></div>--}}
+                                            --}}{{--                                                <div class="summernote"></div>--}}{{--
                                             <textarea class="summernote" name="description" id="summernote_1">{{ $category->description??'' }}</textarea>
                                         </div>
                                     </section>
-                                </div>
+                                </div>--}}
                                 <!--Summernote end-->
 
                                 <div class="col-md-12 mb-3">

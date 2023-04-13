@@ -51,7 +51,7 @@
                                             Description
                                         </header>
                                         <div class="card-body editor-desc">
-                                            <textarea class="summernote" name="description" id="summernote_1"></textarea>
+                                            <textarea class="form-control" name="description" id="summernote_1" rows="8"></textarea>
                                         </div>
                                     </section>
                                 </div>

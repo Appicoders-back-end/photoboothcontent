@@ -53,8 +53,8 @@
                                             Description
                                         </header>
                                         <div class="card-body editor-desc">
-                                            <textarea class="summernote" name="description"
-                                                      id="summernote_1">{!! old('description', $content->description) !!}</textarea>
+                                            <textarea class="form-control" name="description"
+                                                      id="summernote_1" rows="8" >{!! old('description', $content->description) !!}</textarea>
                                         </div>
                                     </section>
                                 </div>
