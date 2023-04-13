@@ -32,6 +32,11 @@
               enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$membership->id}}">
+            @if($content)
+                @if(isset($content->membershipImg))
+                    <input type="hidden" name="old_image" value="{{ $content->membershipImg }}">
+                @endif    
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <section class="card">

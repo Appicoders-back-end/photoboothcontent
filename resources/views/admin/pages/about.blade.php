@@ -32,6 +32,16 @@
               enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$about->id}}">
+            @if($content)
+                @if(isset($content->aboutImg))
+                    <input type="hidden" name="old_image" value="{{ $content->aboutImg }}">
+                @endif    
+            @endif
+            @if($content)
+                @if(isset($content->aboutServImg))
+                    <input type="hidden" name="old_serv_image" value="{{ $content->aboutServImg }}">
+                @endif    
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <section class="card">
@@ -81,6 +91,45 @@
                                            name="about_button_text"
                                            placeholder="Enter Button Text"
                                            value="{{old('about_button_text', $content->about_button_text ?? null)}}">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-12">
+                    <section class="card">
+                        <header class="card-header">
+                            Services Section
+                            <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                          </span>
+                        </header>
+
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="service_heading">Heading</label>
+                                    <input type="text" class="form-control" id="service_heading"
+                                           name="service_heading"
+                                           placeholder="Enter Heading" value="{{old('service_heading', $content->service_heading ?? null)}}">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="service_description">Description</label>
+                                    <textarea class="form-control" name="service_description"
+                                              id="service_description" cols="30"
+                                              rows="10">{!! old('service_description', $content->service_description ?? null) !!}</textarea>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label>Image</label>
+                                    <input type="file" class="dropify" name="ser_about_image"
+                                           data-max-file-size="10M"
+                                           data-allowed-file-extensions="jpg jpeg png"
+                                           data-show-remove="false"
+                                           @if(isset($content->aboutServImg))
+                                               data-default-file="{{ url('/') . '/' . $content->aboutServImg }}"
+                                           @endif
+                                    />
                                 </div>
                             </div>
                         </div>

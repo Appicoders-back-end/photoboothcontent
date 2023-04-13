@@ -18,11 +18,22 @@ class ContentStoreController extends Controller
             'name' => 'Content Store'
         ]);
 
+        $baseContentQuery = Content::query()->active();
+
+        if (isset($request->keyword) && $request->keyword != null) {
+            $baseContentQuery = $baseContentQuery->where('name', 'like', '%' . $request->keyword . '%')->orWhere('description', 'like', '%' . $request->keyword . '%');
+        }
+
+        if (isset($request->categories) && $request->categories != null) {
+            $baseContentQuery = $baseContentQuery->whereIn('category_id', $request->categories);
+        }
+
         $data = [
             'content' => json_decode($contentPage->content),
             'categories' => Category::with('subcategories')->whereNull('parent_id')->active()->orderByDesc('id')->get(),
-            'content_store' => Content::active()->orderByDesc('id')->get()
+            'content_store' => $baseContentQuery->orderByDesc('id')->get()
         ];
+
         return view('content-store', $data);
     }
 }
