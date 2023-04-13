@@ -19,7 +19,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Description</th>
-                                    <th>Parent Category</th>
+                                    <th>SubCategories</th>
                                     <th>Image</th>
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -36,7 +36,7 @@
                                                 ":$category->description??'N/A' }}
                                             </p>
                                         </td>
-                                        <td>{{ $category->parent->name??'N/A' }}</td>
+                                        <td>{{ $category->subcategories->count() > 0 ? implode(', ', $category->subcategories->pluck('name')->toArray()) : 'N/A' }}</td>
                                         <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td>
                                         <td>{{ date('F d, Y', strtotime($category->created_at))??'N/A'}} </td>
                                         <td>
