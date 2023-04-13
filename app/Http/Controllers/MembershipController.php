@@ -25,12 +25,17 @@ class MembershipController extends Controller
             'content' => json_decode($membershipPage->content),
             'subscriptions' => Subscription::where('status',Subscription::Active)->get()
         ];
-        
+
         return view('membership',$data);
+    }
+
+    public function buyMembershipPage(Request $request)
+    {
+        return view('cart.blade.php');
     }
 
     public function buyMembership(Request $request, StripeService $stripeService)
     {
-
+        $request->all();
     }
 }

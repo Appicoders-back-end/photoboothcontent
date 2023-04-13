@@ -10,7 +10,8 @@
                     <p>{{ ($content) ? $content->description ? $content->description : '' : ''}}</p>
                     @if($content)
                         @if($content->membership_button_text)
-                            <a class="btn btn-main" href="membership.php">{{ ($content->membership_button_text) ? $content->membership_button_text : 'Become a member'}}
+                            <a class="btn btn-main"
+                               href="{{route('memberships')}}">{{ ($content->membership_button_text) ? $content->membership_button_text : 'Become a member'}}
                                 <span>
                                     <img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow">
                                 </span>
@@ -20,7 +21,7 @@
                 </div>
                 <div class="col-lg-6">
                     @if(isset($content->membershipImg))
-                    <img src="{{ url('/') . '/' . $content->membershipImg }}" alt="Video frame" class="img-fluid">
+                        <img src="{{ url('/') . '/' . $content->membershipImg }}" alt="Video frame" class="img-fluid">
                     @endif
                 </div>
             </div>
@@ -29,7 +30,7 @@
                 @forelse($subscriptions as $subscription)
                     <div class="col-lg-4 col-md-6">
 
-                        <div class="membership-card {{ ($subscription->interval_time == 'month')?'basic':'premium' }}" >
+                        <div class="membership-card {{ ($subscription->interval_time == 'month')?'basic':'premium' }}">
                             <h2>{{ $subscription->name??'' }}</h2>
                             <h4>Per {{ ucwords($subscription->interval_time)??"" }}</h4>
                             <p class="membership-price">${{ $subscription->price??'' }}</p>
@@ -39,8 +40,10 @@
                                 <li>{{ $subscription->coupon->number_of_images??'' }} Images</li>
                                 <li>{{ $subscription->coupon->number_of_documents??'' }} Document</li>
                             </div>
-                            <a class="btn btn-main">Buy Membership <span><img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></a>
-                            <form id="buy-membership" action="{{ route('buyMembership') }}" method="POST" class="d-none">
+                            <a class="btn btn-main">Buy Membership <span><img
+                                        src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></a>
+                            <form id="buy-membership" action="{{ route('buyMembership') }}" method="POST"
+                                  class="d-none">
                                 @csrf
                             </form>
                         </div>
