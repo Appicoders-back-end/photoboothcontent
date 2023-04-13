@@ -32,6 +32,7 @@
               enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$content_->id}}">
+            <input type="hidden" name="old_image" value="{{ ($content) ? $content->contentImg : '' }}">
             <div class="row">
                 <div class="col-lg-12">
                     <section class="card">
