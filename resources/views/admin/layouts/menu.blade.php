@@ -16,10 +16,10 @@
                 </a>
                 <ul class="sub">
                     <li><a href="{{route('admin.home')}}">Homepage</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Content Store</a></li>
-                    <li><a href="#">Membership</a></li>
-                    <li><a href="#">Coupons</a></li>
+                    <li><a href="{{route('admin.about')}}">About Us</a></li>
+                    <li><a href="{{route('admin.content')}}">Content Store</a></li>
+                    <li><a href="{{route('admin.membership')}}">Membership</a></li>
+                    <li><a href="{{route('admin.coupon')}}">Coupons</a></li>
                 </ul>
             </li>
             <li>
