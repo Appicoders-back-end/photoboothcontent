@@ -43,7 +43,7 @@
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+{{--                                    <th>Action</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -53,10 +53,14 @@
                                         <td>{{$user->last_name??'N/A'}}</td>
                                         <td>{{$user->email??'N/A'}}</td>
                                         <td>{{$user->phone??'N/A'}}</td>
-                                        <td><span
-                                                class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'N/A'}}</span>
-                                        </td>
                                         <td>
+                                            <a href="{{ route('admin.users.changeStatus',$user->id) }}">
+                                                <span
+                                                    class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'N/A'}}
+                                                </span>
+                                            </a>
+                                        </td>
+                                       {{-- <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a class="btn btn-primary mr-2"
                                                    href="#"><i
@@ -65,7 +69,7 @@
                                                    href="#"><i
                                                         class="fa fa-pencil-square-o"></i></a>
                                             </div>
-                                        </td>
+                                        </td>--}}
                                     </tr>
                                 @endforeach
                             </table>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Page;
 use App\Models\PromoCode;
-use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -76,8 +76,9 @@ class HomeController extends Controller
             'content' => json_decode($homePage->content),
             'promoCodes' => PromoCode::active()->get(),
             'coupons' => Coupon::active()->get(),
+            'categories' => Category::with('contents')->active()->whereNull('parent_id')->orderByDesc('id')->get(),
         ];
-        // dd($data);
+
         return view('home', $data);
     }
 

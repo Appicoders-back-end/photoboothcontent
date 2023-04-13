@@ -14,6 +14,7 @@ class PaymentMethodController extends Controller
     public function index()
     {
         $paymentMethods = PaymentMethod::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
+
         return view('payment_method.index',compact('paymentMethods'));
     }
 
