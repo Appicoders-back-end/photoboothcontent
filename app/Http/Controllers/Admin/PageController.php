@@ -45,7 +45,7 @@ class PageController extends Controller
             'slug' => 'content'
         ], [
             'slug' => 'content',
-            'name' => 'About'
+            'name' => 'Content Store'
         ]);
 
         $data = [
