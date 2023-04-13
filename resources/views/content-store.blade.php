@@ -52,16 +52,24 @@
                                     <label class="form-check parent-category">
                                         <input class="form-check-input" type="checkbox" name="categories[]"
                                                value="{{$category->id}}"
-                                               form="filter-form" {{in_array($category->id, request()->get('categories')) ? 'checked' : null}}>
+                                               form="filter-form"
+                                        @if(request()->get('categories') != null)
+                                            {{ in_array($category->id, request()->get('categories')) ? 'checked' : null }}
+                                            @endif
+                                        >
                                         <span class="form-check-label">{{$category->name}}</span>
                                     </label>
                                     @if($category->has('subcategories'))
-                                        @foreach($category->subcategories as $subcategories)
+                                        @foreach($category->subcategories as $subcategory)
                                             <label class="form-check child-category">
                                                 <input class="form-check-input" type="checkbox" name="categories[]"
-                                                       value="{{$subcategories->id}}"
-                                                       form="filter-form" {{in_array($subcategories->id, request()->get('categories')) ? 'checked' : null}}>
-                                                <span class="form-check-label">{{$subcategories->name}}</span>
+                                                       value="{{$subcategory->id}}"
+                                                       form="filter-form"
+                                                @if(request()->get('categories') != null)
+                                                    {{ in_array($subcategory->id, request()->get('categories')) ? 'checked' : null }}
+                                                    @endif
+                                                >
+                                                <span class="form-check-label">{{$subcategory->name}}</span>
                                             </label>
                                         @endforeach
                                     @endif
