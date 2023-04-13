@@ -5,15 +5,23 @@
         <div class="container">
             <div class="row hero-content">
                 <div class="col-lg-6">
-                    <h2>Want to make more money from your booth business?</h2>
-                    <p>This really shouldn’t be that difficult, knowledge is power; content is king and support is
-                        everything. We know what it takes to make your photo booth business a success.</p>
-                    <a class="btn btn-main" href="membership.php">Become a member <span><img
-                                src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
+                    <h3>{{ ($content) ? $content->sub_heading : 'Content Store'}}</h3>
+                    <h2>{{ ($content) ? $content->heading : ''}}</h2>
+                    <p>{{ ($content) ? $content->description : ''}}</p>
+                    @if($content)
+                        @if($content->content_button_text)
+                            <a class="btn btn-main" href="membership.php">{{ ($content->content_button_text) ? $content->content_button_text : 'Become a member'}}
+                                <span>
+                                    <img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow">
+                                </span>
+                            </a>
+                        @endif
+                    @endif 
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/content-section-image.png" alt="Photo farme"
-                         class="img-fluid">
+                    @if(isset($content->contentImg))
+                        <img src="{{ url('/') . '/' . $content->contentImg }}" alt="Video frame" class="img-fluid">
+                    @endif
                 </div>
             </div>
         </div>

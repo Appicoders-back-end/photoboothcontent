@@ -5,12 +5,23 @@
         <div class="container">
             <div class="row hero-content">
                 <div class="col-lg-6">
-                    <h3>Membership</h3>
-                    <h2>Benefits of Photobooth Content Membership</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis a asperiores ea eligendi ex possimus vitae nobis quae ratione! Animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. In, maiores?</p>
+                    <h3>{{ ($content) ? $content->sub_heading : 'Membership'}}</h3>
+                    <h2>{{ ($content) ? $content->heading : ''}}</h2>
+                    <p>{{ ($content) ? $content->description : ''}}</p>
+                    @if($content)
+                        @if($content->membership_button_text)
+                            <a class="btn btn-main" href="membership.php">{{ ($content->membership_button_text) ? $content->membership_button_text : 'Become a member'}}
+                                <span>
+                                    <img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow">
+                                </span>
+                            </a>
+                        @endif
+                    @endif
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/membership-section-image.png" alt="Video frame" class="img-fluid">
+                    @if(isset($content->membershipImg))
+                    <img src="{{ url('/') . '/' . $content->membershipImg }}" alt="Video frame" class="img-fluid">
+                    @endif
                 </div>
             </div>
 
