@@ -32,8 +32,16 @@
               enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$about->id}}">
-            <input type="hidden" name="old_image" value="{{ ($content) ? ($content->aboutImg) ? $content->aboutImg : '' : '' }}">
-            <input type="hidden" name="old_serv_image" value="{{ ($content) ? ($content->aboutServImg) ? $content->aboutServImg : '' : '' }}">
+            @if($content)
+                @if(isset($content->aboutImg))
+                    <input type="hidden" name="old_image" value="{{ $content->aboutImg }}">
+                @endif    
+            @endif
+            @if($content)
+                @if(isset($content->aboutServImg))
+                    <input type="hidden" name="old_serv_image" value="{{ $content->aboutServImg }}">
+                @endif    
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <section class="card">
