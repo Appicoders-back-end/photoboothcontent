@@ -67,7 +67,9 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-
+        $sub_categories = Category::where('parent_id',$id)->get();
+        $categories = Category::find($id);
+        return view('admin.categories.sub_categories', compact('sub_categories','categories'));
     }
 
     /**

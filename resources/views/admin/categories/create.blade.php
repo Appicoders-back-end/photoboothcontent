@@ -87,7 +87,7 @@
                                 </div>
 
                                 <!--Summernote start-->
-                                    <div class="col-md-12 mb-3">
+                                   {{-- <div class="col-md-12 mb-3">
                                         <section class="card">
                                             <header class="card-header head-border editor-title">
                                                 Description
@@ -96,7 +96,7 @@
                                                 <textarea class="summernote" name="description" id="summernote_1"></textarea>
                                             </div>
                                         </section>
-                                    </div>
+                                    </div>--}}
                                 <!--Summernote end-->
 
                                 <div class="col-md-12 mb-3">

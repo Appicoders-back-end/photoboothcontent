@@ -6,9 +6,9 @@
             <div class="col-sm-12">
                 <section class="card">
                     <header class="card-header">
-                        Categories
+                        Sub Category {{ $categories->name }}
                         <span class="pull-right">
-                            <a href="{{route('admin.categories.create')}}" class=" btn btn-success btn-sm">Create New</a>
+{{--                            <a href="{{route('admin.categories.create')}}" class=" btn btn-success btn-sm">Create New</a>--}}
                         </span>
                     </header>
                     <div class="card-body">
@@ -18,21 +18,20 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>SubCategories</th>
+                                    <th>Parent Category</th>
                                     <th>Image</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($categories as $category)
+                                @forelse($sub_categories as $category)
                                     <tr class="gradeX">
                                         <td>{{ $category->name??'N/A' }}</td>
-                                        <td><span class="text-success font-weight-bold">{{ $category->subcategories->count() > 0 ? implode(', ', $category->subcategories->pluck('name')->toArray()) : 'N/A' }}</span></td>
+                                        <td>{{ $category->parent->name??'N/A' }}</td>
                                         <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td>
                                         <td>{{ date('F d, Y', strtotime($category->created_at))??'N/A'}} </td>
                                         <td>
-                                            <a href="{{ route('admin.categories.show',$category->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                             <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
                                             <form action="{{ route('admin.categories.destroy', ['category'=>$category->id]) }}" method="POST">
                                                @csrf
