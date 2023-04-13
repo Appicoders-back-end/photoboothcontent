@@ -5,14 +5,23 @@
         <div class="container">
             <div class="row hero-content">
                 <div class="col-lg-6">
-                    <h3>Coupons</h3>
-                    <h2>Do you have a marketing team in your boothbusiness?</h2>
-                    <p>Content is king and you need it to attract and engage customers.This isn't rocket science, show
-                        people having a good time using a photo booth and it makesother people want to book a photo
-                        booth.</p>
+                    <h3>{{ ($content) ? $content->sub_heading ? $content->sub_heading : '' : ''}}</h3>
+                    <h2>{{ ($content) ? $content->heading ? $content->heading : '' : ''}}</h2>
+                    <p>{{ ($content) ? $content->description ? $content->description : '' : ''}}</p>
+                    @if($content)
+                        @if($content->coupon_button_text)
+                            <a class="btn btn-main" href="membership.php">{{ ($content->coupon_button_text) ? $content->coupon_button_text : 'Become a member'}}
+                                <span>
+                                    <img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow">
+                                </span>
+                            </a>
+                        @endif
+                    @endif
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend')}}/assets/img/coupon-section-image.png" alt="Video frame" class="img-fluid">
+                    @if(isset($content->couponImg))
+                        <img src="{{ url('/') . '/' . $content->couponImg }}" alt="Video frame" class="img-fluid">
+                    @endif
                 </div>
                 <div class="row coupons-row">
                     @if($coupons->count() > 0)

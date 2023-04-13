@@ -33,7 +33,16 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('home', [PageController::class, 'home'])->name('admin.home');
+    Route::get('about', [PageController::class, 'about'])->name('admin.about');
+    Route::get('content', [PageController::class, 'content'])->name('admin.content');
+    Route::get('membership', [PageController::class, 'membership'])->name('admin.membership');
+    Route::get('coupon', [PageController::class, 'coupon'])->name('admin.coupon');
+
     Route::post('storeHomePage', [PageController::class, 'storeHomePage'])->name('admin.storeHomePage');
+    Route::post('storeAboutPage', [PageController::class, 'storeAboutPage'])->name('admin.storeAboutPage');
+    Route::post('storeContentPage', [PageController::class, 'storeContentPage'])->name('admin.storeContentPage');
+    Route::post('storeMembershipPage', [PageController::class, 'storeMembershipPage'])->name('admin.storeMembershipPage');
+    Route::post('storeCouponPage', [PageController::class, 'storeCouponPage'])->name('admin.storeCouponPage');
 
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('change-user-status/{id}', [UserController::class, 'changeStatus'])->name('admin.users.changeStatus');

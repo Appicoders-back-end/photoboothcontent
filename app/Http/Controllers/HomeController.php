@@ -84,7 +84,18 @@ class HomeController extends Controller
 
     public function aboutUs()
     {
-        return view('about-us');
+        $aboutPage = Page::firstOrCreate([
+            'slug' => 'about'
+        ], [
+            'slug' => 'about',
+            'name' => 'About'
+        ]);
+
+        $data = [
+            'content' => json_decode($aboutPage->content)
+        ];
+
+        return view('about-us',$data);
     }
 
 }
