@@ -32,7 +32,7 @@
               enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$coupon->id}}">
-            <input type="hidden" name="old_image" value="{{ ($content) ? $content->couponImg : '' }}">
+            <input type="hidden" name="old_image" value="{{ ($content) ? ($content->couponImg) ? $content->couponImg : '' : '' }}">
             <div class="row">
                 <div class="col-lg-12">
                     <section class="card">
