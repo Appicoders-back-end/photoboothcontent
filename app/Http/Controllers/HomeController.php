@@ -106,4 +106,9 @@ class HomeController extends Controller
         return view('about-us',$data);
     }
 
+    public function thankyou()
+    {
+        return view('thankyou');
+    }
+
 }
