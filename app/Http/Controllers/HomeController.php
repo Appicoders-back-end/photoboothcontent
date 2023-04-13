@@ -79,7 +79,6 @@ class HomeController extends Controller
             'categories' => Category::with('contents')->active()->whereNull('parent_id')->orderByDesc('id')->get(),
         ];
 
-        dd($data);
         return view('home', $data);
     }
 
