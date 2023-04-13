@@ -402,6 +402,326 @@
                     </div>
                 </div>
             </div>
+
+            {{--<ul class="nav nav-tabs" id="myTab" role="tablist">
+                @foreach($categories as $category)
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                                type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Videos
+                        </button>
+                    </li>
+                @endforeach
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                     tabindex="0">
+                    <div class="row content-category-row">
+                        <div class="swiper mySwiper-content">
+                            <div class="swiper-wrapper">
+
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item 1</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item 2</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item 3</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item 4</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item 5</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination content-slider-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                     tabindex="0">
+                    <div class="row content-category-row">
+                        <div class="swiper mySwiper">
+                            <div class="swiper mySwiper-content">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="content-category-card video">
+                                            <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                                 class="content-card-img">
+                                            <div class="category-content-container">
+                                                <h4>Content item</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                    dolores.</p>
+                                                <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                                   class="btn btn-main bg-white text-dark">Download now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="content-category-card video">
+                                            <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                                 class="content-card-img">
+                                            <div class="category-content-container">
+                                                <h4>Content item</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                    dolores.</p>
+                                                <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                                   class="btn btn-main bg-white text-dark">Download now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="content-category-card video">
+                                            <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                                 class="content-card-img">
+                                            <div class="category-content-container">
+                                                <h4>Content item</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                    dolores.</p>
+                                                <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                                   class="btn btn-main bg-white text-dark">Download now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="content-category-card video">
+                                            <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                                 class="content-card-img">
+                                            <div class="category-content-container">
+                                                <h4>Content item</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                    dolores.</p>
+                                                <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                                   class="btn btn-main bg-white text-dark">Download now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="content-category-card video">
+                                            <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                                 class="content-card-img">
+                                            <div class="category-content-container">
+                                                <h4>Content item</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                    dolores.</p>
+                                                <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                                   class="btn btn-main bg-white text-dark">Download now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination content-slider-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                     tabindex="0">
+                    <div class="row content-category-row">
+                        <div class="swiper mySwiper-content">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination content-slider-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="learning-tab-pane" role="tabpanel" aria-labelledby="learning-tab"
+                     tabindex="0">
+                    <div class="row content-category-row">
+                        <div class="swiper mySwiper-content">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="content-category-card video">
+                                        <img src="{{asset('frontend')}}/assets/img/category-photo-bg.png" alt=""
+                                             class="content-card-img">
+                                        <div class="category-content-container">
+                                            <h4>Content item</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+                                                dolores.</p>
+                                            <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                               class="btn btn-main bg-white text-dark">Download now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination content-slider-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
         </div>
     </div>
     <div class="coupons-section">
@@ -421,7 +741,8 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             @if(isset($content->servicesSectionImg))
-                                <img src="{{ url('/') . '/' . $content->servicesSectionImg }}" alt="service" class="img-fluid">
+                                <img src="{{ url('/') . '/' . $content->servicesSectionImg }}" alt="service"
+                                     class="img-fluid">
                             @endif
                         </div>
                         <div class="col-lg-6">
