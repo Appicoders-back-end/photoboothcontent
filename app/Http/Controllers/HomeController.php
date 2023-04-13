@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
 use App\Models\Coupon;
 use App\Models\Page;
 use App\Models\PromoCode;
@@ -25,15 +26,17 @@ class HomeController extends Controller
     public function dashboard()
     {
         $user = User::find(auth()->user()->id);
-        return view('dashboard',compact('user'));
+        return view('dashboard', compact('user'));
     }
 
-    public function editProfile(){
+    public function editProfile()
+    {
         $user = User::find(auth()->user()->id);
-        return view('profile',compact('user'));
+        return view('profile', compact('user'));
     }
 
-    public function updateProfile(Request $request){
+    public function updateProfile(Request $request)
+    {
         try {
             $request->validate([
                 'first_name' => 'required',
@@ -46,7 +49,7 @@ class HomeController extends Controller
             $user = User::find(auth()->user()->id);
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
-            $user->name = $request->first_name.' '.$request->last_name;
+            $user->name = $request->first_name . ' ' . $request->last_name;
             $user->contact_no = $request->contact_no;
             $user->password = Hash::make($request->password);
             $user->save();
@@ -72,11 +75,16 @@ class HomeController extends Controller
             'name' => 'Home'
         ]);
 
+        $categories = Category::with('subcategories')->active()->whereNull('parent_id')->select('id', 'name', 'type')->orderByDesc('id')->get()->each(function ($category) {
+            $contents = Content::where('category_id', $category->id)->orWhereIn('category_id', $category->subcategories->count() > 0 ? $category->subcategories->pluck('id')->toArray() : [])->get();
+            $category->contents = $contents;
+        });
+
         $data = [
             'content' => json_decode($homePage->content),
             'promoCodes' => PromoCode::active()->get(),
             'coupons' => Coupon::active()->get(),
-            'categories' => Category::with('contents')->active()->whereNull('parent_id')->orderByDesc('id')->get(),
+            'categories' => $categories
         ];
 
         return view('home', $data);

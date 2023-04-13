@@ -70,7 +70,7 @@
     <div class="content-section">
         <div class="container">
             <h3>{{ ($content) ? $content->content_store_section_heading : '' }}</h3>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            {{--<ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
                             type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Videos
@@ -401,6 +401,49 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                @foreach($categories as $category)
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {{$loop->index == 0 ? 'active' : null}}" id="{{$category->name}}-tab"
+                                data-bs-toggle="tab" data-bs-target="#{{$category->name}}-tab-pane"
+                                type="button" role="tab" aria-controls="{{$category->name}}-tab-pane"
+                                aria-selected="true">{{$category->name}}
+                        </button>
+                    </li>
+                @endforeach
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                @foreach($categories as $category)
+                    <div class="tab-pane fade show {{$loop->index == 0 ? 'show active' : null}}"
+                         id="{{$category->name}}-tab-pane" role="tabpanel" aria-labelledby="{{$category->name}}-tab"
+                         tabindex="0">
+                        @if($category->contents->count() > 0)
+                            <div class="row content-category-row">
+                                <div class="swiper mySwiper-content">
+                                    <div class="swiper-wrapper">
+                                        @foreach($category->contents as $content)
+                                            <div class="swiper-slide">
+                                            <div class="content-category-card video">
+                                                <img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
+                                                     class="content-card-img">
+                                                <div class="category-content-container">
+                                                    <h4>{{$content->name}}</h4>
+                                                    <p>{{ \Illuminate\Support\Str::limit($content->description, 60) }}</p>
+                                                    <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"
+                                                       class="btn btn-main bg-white text-dark">{{__('Download Now')}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-pagination content-slider-pagination"></div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -421,7 +464,8 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             @if(isset($content->servicesSectionImg))
-                                <img src="{{ url('/') . '/' . $content->servicesSectionImg }}" alt="service" class="img-fluid">
+                                <img src="{{ url('/') . '/' . $content->servicesSectionImg }}" alt="service"
+                                     class="img-fluid">
                             @endif
                         </div>
                         <div class="col-lg-6">
