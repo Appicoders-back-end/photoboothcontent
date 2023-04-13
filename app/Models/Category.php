@@ -44,4 +44,8 @@ class Category extends Model
         return url('/') . '/' . $this['image'];
     }
 
+    public function contents()
+    {
+        return $this->hasMany(Content::class, 'category_id', 'id');
+    }
 }

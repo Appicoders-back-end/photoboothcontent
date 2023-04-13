@@ -18,7 +18,7 @@ class CreateAdminSeeder extends Seeder
             User::create([
                 'name' => 'Admin',
                 'first_name' => 'admin',
-                'email' => 'admin@admin.com',
+                'email' => 'admin@photoboothcontent.com',
                 'role' => User::ROLE_ADMIN,
                 'password' => Hash::make("123456789"),
                 'email_verified_at' => Carbon::now(),
