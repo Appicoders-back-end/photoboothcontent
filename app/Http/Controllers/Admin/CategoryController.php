@@ -35,7 +35,6 @@ class CategoryController extends Controller
         try {
             $request->validate([
                 "name" => "required",
-                "description" => "required",
                 "image" => "required",
             ]);
             $category = new Category();
@@ -90,7 +89,6 @@ class CategoryController extends Controller
         try {
             $request->validate([
                 "name" => "required",
-                "description" => "required",
             ]);
 
             $category = Category::find($id);

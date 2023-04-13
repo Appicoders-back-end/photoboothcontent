@@ -29,25 +29,29 @@
     </div>
     <div class="services-section">
         <div class="container">
+            @if($content)
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <img src="{{asset('frontend')}}/assets/img/service-img.png" alt="service" class="img-fluid">
-                        </div>
-                        <div class="col-lg-6">
-                            <h2 class="fs-1">Let’s make mo’ money!</h2>
-                        </div>
+                        @if(isset($content->aboutServImg))
+                            <div class="col-lg-6">
+                                <img src="{{ url('/') . '/' . $content->aboutServImg }}" alt="service" class="img-fluid">
+                            </div>
+                        @endif
+                        @if($content->service_heading)
+                            <div class="col-lg-6">
+                                <h2 class="fs-1">{{ $content->service_heading }}</h2>
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <p>
-                        Donec dictum tristique porta. Etiam convallis lorem lobortis nulla molestie, nec tincidunt ex
-                        ullamcorper. Quisque ultrices lobortis elit sed euismod. Duis in ultrices dolor, ac rhoncus
-                        odio. Suspendisse tempor sollicitudin dui sed lacinia.`
-                    </p>
-                </div>
+                @if($content->service_description)
+                    <div class="col-lg-6">
+                        <p>{{ $content->service_description }}</p>
+                    </div>
+                @endif
             </div>
+            @endif
             <div class="row service-row">
                 <div class="col-lg-4">
                     <div class="service-card training">

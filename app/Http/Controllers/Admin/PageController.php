@@ -117,8 +117,20 @@ class PageController extends Controller
             if ($request->about_image) {
                 $about_image = saveFile($request->about_image, "aboutpage");
                 $request->merge(['aboutImg' => $about_image]);
+            }else{
+                if($page){
+                  $request->merge(['aboutImg' => $request->old_image]);  
+                }
             }
-            $page->content = json_encode($request->except('id', '_token', 'about_image'));
+            if ($request->ser_about_image) {
+                $ser_about_image = saveFile($request->ser_about_image, "aboutpage");
+                $request->merge(['aboutServImg' => $ser_about_image]);
+            }else{
+                if($page){
+                  $request->merge(['aboutServImg' => $request->old_serv_image]);  
+                }
+            }
+            $page->content = json_encode($request->except('id', '_token', 'about_image','ser_about_image'));
             $page->save();
 
             return redirect()->route('admin.about')->with('success', 'About page has been updated successfully');
@@ -132,6 +144,10 @@ class PageController extends Controller
             if ($request->content_image) {
                 $content_image = saveFile($request->content_image, "contentpage");
                 $request->merge(['contentImg' => $content_image]);
+            }else{
+                if($page){
+                  $request->merge(['contentImg' => $request->old_image]);  
+                }
             }
             $page->content = json_encode($request->except('id', '_token', 'content_image'));
             $page->save();
@@ -147,11 +163,15 @@ class PageController extends Controller
             if ($request->membership_image) {
                 $membership_image = saveFile($request->membership_image, "membershippage");
                 $request->merge(['membershipImg' => $membership_image]);
+            }else{
+                if($page){
+                  $request->merge(['membershipImg' => $request->old_image]);  
+                }
             }
             $page->content = json_encode($request->except('id', '_token', 'membership_image'));
             $page->save();
 
-            return redirect()->route('admin.content')->with('success', 'Membership page has been updated successfully');
+            return redirect()->route('admin.membership')->with('success', 'Membership page has been updated successfully');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage())->withInput();
         }
@@ -162,11 +182,15 @@ class PageController extends Controller
             if ($request->coupon_image) {
                 $coupon_image = saveFile($request->coupon_image, "couponpage");
                 $request->merge(['couponImg' => $coupon_image]);
+            }else{
+                if($page){
+                  $request->merge(['couponImg' => $request->old_image]);  
+                }
             }
             $page->content = json_encode($request->except('id', '_token', 'coupon_image'));
             $page->save();
 
-            return redirect()->route('admin.content')->with('success', 'Coupon page has been updated successfully');
+            return redirect()->route('admin.coupon')->with('success', 'Coupon page has been updated successfully');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage())->withInput();
         }
