@@ -8,6 +8,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Add Payment Methods</h5>
                         <hr>
+                        <div class="signup-form">
                         <div class="col-lg-12 mb-4">
                             <form action="{{ route('payment-methods.store') }}" method="POST">
                                 @csrf
@@ -36,6 +37,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-main">Add payment method</button>
                             </form>
+                        </div>
                         </div>
                     </div>
                 </div>

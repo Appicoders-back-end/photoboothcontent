@@ -27,7 +27,6 @@
                         <h5 class="card-title">Edit Profile</h5>
                         <hr>
                         <div class="signup-form">
-                        <a href="index.php"><img src="{{asset('frontend')}}/assets/img/logo.png" class="d-block mx-auto mb-3" alt=""></a>
                         <h2>Update Profile </h2>
                         @include('layouts.messages')
                         <form action="{{ route('update-profile') }}" method="POST" class="mt-4">
