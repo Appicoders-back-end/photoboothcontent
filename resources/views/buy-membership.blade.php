@@ -21,7 +21,7 @@
                         <div class="col-12">
                             <select name="payment_method" id="payment-method-drp" class="form-select mb-3"
                                     aria-label=".form-select-lg example" form="checkout-form">
-                                <option selected>Select payment method</option>
+                                <option value="" selected>Select payment method</option>
                                 @foreach($payment_methods as $payment_method)
                                     <option value="{{$payment_method->id}}">{{$payment_method->card_holder_name}}
                                         - {{$payment_method->card_end_number}}</option>

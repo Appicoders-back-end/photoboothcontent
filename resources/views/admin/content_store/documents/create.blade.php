@@ -77,7 +77,7 @@
                                            data-allowed-file-extensions="pdf csv doc docx xlx xlsx txt html zip">
                                 </div>
                             </div>
-                            <button class="btn btn-sm btn-success" type="submit">Save Image</button>
+                            <button class="btn btn-sm btn-success" type="submit">Save</button>
                         </form>
                     </div>
                 </section>
