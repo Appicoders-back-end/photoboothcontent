@@ -278,10 +278,11 @@ header nav .active {
 
 footer {
     background-color: #EAB8BB;
-    padding: 10px 0;
+    padding-top: 40px;
+    padding-bottom: 8px;
 }
 
-footer a {
+footer a, footer p {
     text-decoration: none;
     color: #000;
     font-size: 14px;
@@ -424,7 +425,7 @@ footer a {
 }
 
 footer img {
-    width: 50%;
+    width: 150px;
 }
 
 .content-store-cont {
