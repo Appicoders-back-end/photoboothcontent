@@ -11,14 +11,52 @@
                         <p class="card-text"><strong>Name:</strong>{{ $user->name??'' }}</p>
                         <p class="card-text"><strong>Email:</strong>{{ $user->email??'' }}</p>
                         <p class="card-text"><strong>Phone:</strong> {{ $user->contact_no??'' }}</p>
-                        <p class="card-text"><strong>Address:</strong> 123 Main St, Anytown, USA</p>
-                        <p class="card-text"><strong>Membership:</strong> Premium</p>
-                        <p class="card-text"><strong>Membership Due:</strong> 10/4/2023</p>
+                        <p class="card-text"><strong>Address:</strong>{{ $user->address??' N/A' }} </p>
+                        <p class="card-text"><strong>Membership:</strong> {{ $user->userSubcription }} </p>
+                        <p class="card-text"><strong>Membership Due:</strong> {{ $user->userSubcription->created_at??'N/A'}} </p>
                         <a href="{{ route('edit-profile') }}" class="btn btn-main">Edit Profile</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mb-4">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Payment Methods</h5>
+                            <hr>
+                            @include('layouts.messages')
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Card Holder Name</th>
+                                        <th>Card end Number</th>
+                                        <th>Card Brand</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{-- <tr>
+                                         <td>#12345</td>
+                                         <td>2022-03-25</td>
+                                         <td>
+                                             <a href="#" class="btn btn-primary">Edit</a>
+                                             <a href="#" class="btn btn-danger">Delete</a>
+                                         </td>
+                                     </tr>--}}
+                                    @forelse($paymentMethods as $paymentMethod)
+                                        <tr>
+                                            <td>{{ $paymentMethod->card_holder_name??'' }}</td>
+                                            <td>{{ $paymentMethod->card_end_number??'' }}</td>
+                                            <td>{{ $paymentMethod->card_brand??'' }}</td>
+                                        </tr>
+                                    @empty
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{--<div class="col-lg-6 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Payment Methods</h5>
@@ -46,8 +84,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-12 mb-4">
+            </div>--}}
+           {{-- <div class="col-lg-12 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Order History</h5>
@@ -97,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
     </div>
 @endsection

@@ -23,7 +23,6 @@ class CreateCouponRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'code' => 'required|unique:coupons',
             'price' => 'required',
             'number_of_video' => 'required',
             'number_of_images' => 'required',

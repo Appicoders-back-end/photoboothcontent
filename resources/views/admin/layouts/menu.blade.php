@@ -82,6 +82,13 @@
                     <span>{{__('General Settings')}}</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.change_password')}}"
+                   class="{{ route('admin.change_password') == url()->current() ?'active':'' }}">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    <span>{{__('Change Password')}}</span>
+                </a>
+            </li>
         </ul>
         <!-- sidebar menu end-->
     </div>

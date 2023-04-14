@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Content;
 use App\Models\Coupon;
 use App\Models\Page;
+use App\Models\PaymentMethod;
 use App\Models\PromoCode;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,8 +27,9 @@ class HomeController extends Controller
 
     public function dashboard()
     {
+        $paymentMethods = PaymentMethod::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
         $user = User::find(auth()->user()->id);
-        return view('dashboard', compact('user'));
+        return view('dashboard', compact('user','paymentMethods'));
     }
 
     public function editProfile()
