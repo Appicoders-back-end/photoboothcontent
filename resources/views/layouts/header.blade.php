@@ -30,9 +30,9 @@
                             <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
                             <li><a class="dropdown-item" href="{{route('payment-methods.index')}}">Payment method</a></li>
                             <li><a class="dropdown-item" href="{{ route('edit-profile') }}">Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="my-coupon.php">My coupons</a></li>
+                            <li><a class="dropdown-item" href="#">My Coupons</a></li>
                             {{--<li><a class="dropdown-item" href="order-history.php">Order history</a></li>--}}
-                            <li><a class="dropdown-item" href="downloads.php">Downloads</a></li>
+                            <li><a class="dropdown-item" href="#">Downloads</a></li>
                             <li><a href="javascript:;"
                                    class="dropdown-item"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a></li>
