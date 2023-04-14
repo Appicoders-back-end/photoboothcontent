@@ -483,6 +483,11 @@ footer img {
     margin-left: 20px;
 }
 
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     header nav .nav-link {
         color: #000;
