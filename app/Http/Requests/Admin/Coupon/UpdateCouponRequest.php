@@ -23,7 +23,6 @@ class UpdateCouponRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'code' => 'required|unique:coupons,code,' . $this->coupon,
             'price' => 'required',
             'number_of_video' => 'required',
             'number_of_images' => 'required',
