@@ -91,16 +91,28 @@ class PageController extends Controller
             if ($request->headerSectionImage) {
                 $headerSectionImage = saveFile($request->headerSectionImage, "homepage");
                 $request->merge(['headerSectionImg' => $headerSectionImage]);
+            }else{
+                if($page){
+                  $request->merge(['headerSectionImg' => $request->old_image]);  
+                }
             }
 
             if ($request->aboutSectionImage) {
                 $aboutSectionImage = saveFile($request->aboutSectionImage, "homepage");
                 $request->merge(['aboutSectionImg' => $aboutSectionImage]);
+            }else{
+                if($page){
+                  $request->merge(['aboutSectionImg' => $request->old_image_about]);  
+                }
             }
 
             if ($request->servicesSectionImage) {
                 $servicesSectionImage = saveFile($request->servicesSectionImage, "homepage");
                 $request->merge(['servicesSectionImg' => $servicesSectionImage]);
+            }else{
+                if($page){
+                  $request->merge(['servicesSectionImg' => $request->old_image_service]);  
+                }
             }
 
             $page->content = json_encode($request->except('id', '_token', 'headerSectionImage', 'aboutSectionImage', 'servicesSectionImage'));

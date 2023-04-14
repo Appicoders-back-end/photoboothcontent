@@ -27,7 +27,7 @@
                 </div>
             </div>
         @endif
-
+        <h6>Update About Page</h6>
         <form class="needs-validation" action="{{route('admin.storeAboutPage')}}" method="POST"
               enctype="multipart/form-data">
             @csrf
