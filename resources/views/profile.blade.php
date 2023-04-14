@@ -26,26 +26,38 @@
                     <div class="card-body">
                         <h5 class="card-title">Edit Profile</h5>
                         <hr>
-                        <div class="signup-form">
-                            @include('layouts.messages')
-                            <form action="{{ route('update-profile') }}" method="POST" class="mt-4">
-                                @csrf
+                        @include('layouts.messages')
+                        <form action="{{ route('update-profile') }}" method="POST" class="mt-4">
+                            @csrf
 
-                                <input type="text" class="form-control rounded-0 my-3" placeholder="First Name"
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">First Name</label>
+                                <input id="first_name" type="text" class="form-control" placeholder="First Name"
                                        name="first_name" value="{{ $user->first_name??'' }}">
-                                <input type="text" class="form-control rounded-0 my-3" placeholder="Last Name"
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Last Name</label>
+                                <input id="last_name" type="text" class="form-control"
+                                       placeholder="Last Name"
                                        name="last_name" value="{{ $user->last_name??'' }}">
-                                <input type="email" class="form-control rounded-0 my-3" placeholder="Email" name="email"
-                                       value="{{ $user->email??'' }}" disabled>
-                                <input type="number" class="form-control rounded-0 my-3" placeholder="Phone Number"
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact_no" class="form-label">Contact Number</label>
+                                <input id="contact_no" type="number" class="form-control" placeholder="Phone Number"
                                        name="contact_no" value="{{ $user->contact_no??'' }}">
-                                <input type="password" class="form-control rounded-0 my-3" name="password"
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input id="password" type="password" class="form-control" name="password"
                                        placeholder="Password">
-                                <input type="password" class="form-control rounded-0 my-3" name="confirm_password"
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirm Password</label>
+                                <input id="confirm_password" type="password" class="form-control" name="confirm_password"
                                        placeholder="Confirm Password">
-                                <button type="submit" class="btn btn-main w-100" type="submit">Update Profile</button>
-                            </form>
-                        </div>
+                            </div>
+                            <button type="submit" class="btn btn-main" type="submit">Update Profile</button>
+                        </form>
                     </div>
                 </div>
             </div>

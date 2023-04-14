@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $paymentMethods = PaymentMethod::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
         $user = User::find(auth()->user()->id);
-        return view('dashboard', compact('user','paymentMethods'));
+        return view('dashboard', compact('user', 'paymentMethods'));
     }
 
     public function editProfile()
@@ -45,8 +45,8 @@ class HomeController extends Controller
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'contact_no' => 'required',
-                'password' => 'required',
-                'confirm_password' => 'required|same:password'
+//                'password' => 'required',
+//                'confirm_password' => 'required|same:password'
             ]);
 
             $user = User::find(auth()->user()->id);
@@ -54,7 +54,10 @@ class HomeController extends Controller
             $user->last_name = $request->last_name;
             $user->name = $request->first_name . ' ' . $request->last_name;
             $user->contact_no = $request->contact_no;
-            $user->password = Hash::make($request->password);
+            if (isset($request->password) && isset($request->confirm_password)) {
+                $user->password = Hash::make($request->password);
+            }
+
             $user->save();
 
             return redirect()->route('dashboard')->with('success', "Profile Updated Successfully");
@@ -79,7 +82,7 @@ class HomeController extends Controller
         ]);
 
         $categories = Category::with('subcategories')->active()->whereNull('parent_id')->select('id', 'name', 'type')->orderByDesc('id')->get()->each(function ($category) {
-            $contents = Content::where('category_id', $category->id)->orWhereIn('category_id', $category->subcategories->count() > 0 ? $category->subcategories->pluck('id')->toArray() : [])->get();
+            $contents = Content::where('category_id', $category->id)->orWhereIn('category_id', $category->subcategories->count() > 0 ? $category->subcategories->pluck('id')->toArray() : [])->orderByDesc('id')->get();
             $category->contents = $contents;
         });
 
@@ -106,7 +109,7 @@ class HomeController extends Controller
             'content' => json_decode($aboutPage->content)
         ];
 
-        return view('about-us',$data);
+        return view('about-us', $data);
     }
 
     public function thankyou()

@@ -35,7 +35,7 @@ class AuthController
         }
 
         Auth::guard('admin')->loginUsingId(auth()->guard('admin')->user()->id);
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.users.index');
     }
 
     public function changePassword()

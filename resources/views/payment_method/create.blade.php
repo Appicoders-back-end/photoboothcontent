@@ -8,7 +8,6 @@
                     <div class="card-body">
                         <h5 class="card-title">Add Payment Methods</h5>
                         <hr>
-                        <div class="signup-form">
                         <div class="col-lg-12 mb-4">
                             <form action="{{ route('payment-methods.store') }}" method="POST">
                                 @csrf
@@ -32,12 +31,12 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="cvv" class="form-label">CVV</label>
                                         <input type="text" class="form-control" id="cvv" name="cvc"
-                                               value="{{ old('cvc') }}" placeholder="123" minlength="3" maxlength="3">
+                                               value="{{ old('cvc') }}" placeholder="123" minlength="3"
+                                               maxlength="3">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-main">Add payment method</button>
                             </form>
-                        </div>
                         </div>
                     </div>
                 </div>
