@@ -12,7 +12,7 @@
                         <p>{{$content->header_section_description}}</p>
                     @endif
                     <a class="btn btn-main"
-                       href="membership.php"> {{isset($content->header_section_button_text) ? $content->header_section_button_text : 'Become a member'}}
+                       href="{{route('memberships')}}"> {{isset($content->header_section_button_text) ? $content->header_section_button_text : 'Become a member'}}
                         <span><img
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
