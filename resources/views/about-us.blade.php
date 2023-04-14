@@ -10,13 +10,13 @@
                     <p>{{ ($content) ? $content->description ? $content->description : '' : ''}}</p>
                     @if($content)
                         @if($content->about_button_text)
-                            <a class="btn btn-main" href="membership.php">{{ ($content->about_button_text) ? $content->about_button_text : 'Become a member'}}
+                            <a class="btn btn-main" href="{{route('memberships')}}">{{ ($content->about_button_text) ? $content->about_button_text : 'Become a member'}}
                                 <span>
                                     <img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow">
                                 </span>
                             </a>
                         @endif
-                    @endif                                
+                    @endif
                 </div>
                 <div class="col-lg-6">
                     @if(isset($content->aboutImg))

@@ -11,7 +11,7 @@
                     @if($content)
                         @if($content->content_button_text)
                             <a class="btn btn-main"
-                               href="membership.php">{{ ($content->content_button_text) ? $content->content_button_text : 'Become a member'}}
+                               href="{{route('memberships')}}">{{ ($content->content_button_text) ? $content->content_button_text : 'Become a member'}}
                                 <span>
                                     <img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow">
                                 </span>
