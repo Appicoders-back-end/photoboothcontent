@@ -18,7 +18,7 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Code</th>
+{{--                                    <th>Code</th>--}}
                                     <th>Description</th>
                                     <th>Price</th>
                                     <th>Video</th>
@@ -33,7 +33,7 @@
                                 @forelse($coupons as $coupon)
                                     <tr class="gradeX">
                                         <td>{{ $coupon->name??'N/A' }}</td>
-                                        <td>{{ $coupon->code??'N/A' }}</td>
+{{--                                        <td>{{ $coupon->code??'N/A' }}</td>--}}
                                         <td>
                                             <p data-id="{{ $coupon->description }}" id="read" data-toggle="modal"
                                                data-target="#exampleModal3">
@@ -68,7 +68,7 @@
                                 <tfoot>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Code</th>
+{{--                                    <th>Code</th>--}}
                                     <th>Description</th>
                                     <th>Price</th>
                                     <th>Video</th>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use App\Http\Requests\Admin\UpdatePassword\UpdatePasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController
@@ -34,6 +36,24 @@ class AuthController
 
         Auth::guard('admin')->loginUsingId(auth()->guard('admin')->user()->id);
         return redirect()->route('admin.dashboard');
+    }
+
+    public function changePassword()
+    {
+        return view('admin.ChangePassword.change-password');
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
+        try {
+
+            $user = User::find(auth()->user()->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return redirect()->route('admin.change_password')->with('success', __('Password has been updated successfully!'));
+        } catch (\Exception $exception) {
+            return redirect()->route('admin.change_password')->with('error', $exception->getMessage());
+        }
     }
 
     public function logout()

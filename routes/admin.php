@@ -62,4 +62,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
     Route::resource('content_documents', ContentDocumentController::class, ['as' => 'admin'])->except(['show']);
     Route::resource('content_videos', ContentVideoController::class, ['as' => 'admin'])->except(['show']);
+
+    //Change Password
+    Route::get('change_password', [AuthController::class, 'changePassword'])->name('admin.change_password');
+    Route::post('update_password', [AuthController::class, 'updatePassword'])->name('admin.update_password');
 });
