@@ -32,7 +32,7 @@ class CouponController extends Controller
      */
     public function myCoupons()
     {
-        $coupons = UserCoupon::where('user_id', auth()->user()->id)->orderBydesc('id')->get();
+        $coupons = UserCoupon::with('subscription')->where('user_id', auth()->user()->id)->orderBydesc('id')->get();
         return view('myCoupons', compact('coupons'));
     }
 }

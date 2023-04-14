@@ -11,28 +11,29 @@
                             <table class="table table-hover text-center">
                                 <thead>
                                 <tr>
-                                    <th>Coupon#</th>
-                                    <th>Download Available</th>
+                                    <th>Coupon Code</th>
+                                    <th>Total Limits</th>
                                     <th>Download Consumed</th>
-                                    <th>Coupon price</th>
+                                    <th>Coupon Price</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>#12345</td>
+                                @foreach($coupons as $coupon)
+                                    <tr>
+                                    <td>{{$coupon->code}}</td>
                                     <td>
                                         <div class="row text-center">
                                             <div class="col-4">
                                                 <p>Photo</p>
-                                                <p>5</p>
+                                                <p>{{$coupon->total_images}}</p>
                                             </div>
                                             <div class="col-4">
                                                 <p>Video</p>
-                                                <p>3</p>
+                                                <p>{{$coupon->total_images}}</p>
                                             </div>
                                             <div class="col-4">
                                                 <p>Document</p>
-                                                <p>1</p>
+                                                <p>{{$coupon->total_documents}}</p>
                                             </div>
                                         </div>
                                     </td>
@@ -40,92 +41,21 @@
                                         <div class="row text-center bg-secondary-subtle">
                                             <div class="col-4">
                                                 <p>Photo</p>
-                                                <p>5</p>
+                                                <p>{{$coupon->downloaded_images}}</p>
                                             </div>
                                             <div class="col-4">
                                                 <p>Video</p>
-                                                <p>3</p>
+                                                <p>{{$coupon->downloaded_videos}}</p>
                                             </div>
                                             <div class="col-4">
                                                 <p>Document</p>
-                                                <p>1</p>
+                                                <p>{{$coupon->downloaded_documents}}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>$125.00</td>
+                                    <td class="text-success fw-bold">{{$coupon->price ? '$'.$coupon->price : "Purchased via subscription"}}</td>
                                 </tr>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="col-4">
-                                                <p>Photo</p>
-                                                <p>5</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Video</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Document</p>
-                                                <p>1</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="row text-center bg-secondary-subtle">
-                                            <div class="col-4">
-                                                <p>Photo</p>
-                                                <p>5</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Video</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Document</p>
-                                                <p>1</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$125.00</td>
-                                </tr>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="col-4">
-                                                <p>Photo</p>
-                                                <p>5</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Video</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Document</p>
-                                                <p>1</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="row text-center bg-secondary-subtle">
-                                            <div class="col-4">
-                                                <p>Photo</p>
-                                                <p>5</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Video</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Document</p>
-                                                <p>1</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$125.00</td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
