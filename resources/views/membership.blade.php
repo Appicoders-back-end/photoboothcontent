@@ -39,8 +39,8 @@
                                 <li>{{ $subscription->coupon->number_of_images??'' }} Images</li>
                                 <li>{{ $subscription->coupon->number_of_documents??'' }} Document</li>
                             </div>
-                            <button href="{{ route('membershipCheckout', ['subscription' => $subscription->id]) }}" @if($subscription->isSubcribed($subscription->id)) disabled="" @endif class="btn btn-main">Buy Membership <span><img
-                                        src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></button>
+                            <a href="{{ route('membershipCheckout', ['subscription' => $subscription->id]) }}" class="btn btn-main {{$subscription->isSubcribed() ? "disabled" : null}}">Buy Membership <span><img
+                                        src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></a>
                         </div>
                     </div>
                 @empty
