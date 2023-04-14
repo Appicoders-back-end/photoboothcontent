@@ -27,21 +27,25 @@
                         <h5 class="card-title">Edit Profile</h5>
                         <hr>
                         <div class="signup-form">
-                        <h2>Update Profile </h2>
-                        @include('layouts.messages')
-                        <form action="{{ route('update-profile') }}" method="POST" class="mt-4">
-                            @csrf
+                            @include('layouts.messages')
+                            <form action="{{ route('update-profile') }}" method="POST" class="mt-4">
+                                @csrf
 
-                            <input type="text" class="form-control rounded-0 my-3" placeholder="First Name" name="first_name" value="{{ $user->first_name??'' }}">
-                            <input type="text" class="form-control rounded-0 my-3" placeholder="Last Name" name="last_name" value="{{ $user->last_name??'' }}">
-                            <input type="email" class="form-control rounded-0 my-3" placeholder="Email" name="email" value="{{ $user->email??'' }}" disabled>
-                            <input type="number" class="form-control rounded-0 my-3" placeholder="Phone Number" name="contact_no" value="{{ $user->contact_no??'' }}">
-                            <input type="password" class="form-control rounded-0 my-3" name="password" placeholder="Password">
-                            <input type="password" class="form-control rounded-0 my-3" name="confirm_password"
-                                   placeholder="Confirm Password">
-                            <button type="submit" class="btn btn-main w-100" type="submit">Update Profile</button>
-                        </form>
-                    </div>
+                                <input type="text" class="form-control rounded-0 my-3" placeholder="First Name"
+                                       name="first_name" value="{{ $user->first_name??'' }}">
+                                <input type="text" class="form-control rounded-0 my-3" placeholder="Last Name"
+                                       name="last_name" value="{{ $user->last_name??'' }}">
+                                <input type="email" class="form-control rounded-0 my-3" placeholder="Email" name="email"
+                                       value="{{ $user->email??'' }}" disabled>
+                                <input type="number" class="form-control rounded-0 my-3" placeholder="Phone Number"
+                                       name="contact_no" value="{{ $user->contact_no??'' }}">
+                                <input type="password" class="form-control rounded-0 my-3" name="password"
+                                       placeholder="Password">
+                                <input type="password" class="form-control rounded-0 my-3" name="confirm_password"
+                                       placeholder="Confirm Password">
+                                <button type="submit" class="btn btn-main w-100" type="submit">Update Profile</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
