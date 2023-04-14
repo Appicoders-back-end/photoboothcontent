@@ -11,7 +11,7 @@ use App\Http\Controllers\ContentStoreController;
 use App\Http\Controllers\HomeController;
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
@@ -36,7 +36,7 @@ Route::controller(ShopController::class)->group(function(){
     Route::get('product-detail/{p_id}', 'detail')->name('shop.product.detail');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('edit-profile', [HomeController::class, 'editProfile'])->name('edit-profile');
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
