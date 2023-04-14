@@ -20,4 +20,14 @@ class Subscription extends Model
     {
         return $this->belongsTo(Coupon::class);
     }
+
+    public function isSubcribed($user_subcription_id){
+        $membership = UserSubscription::where('user_id',auth()->user()->id)->latest()->first();
+
+        if ($membership->subscription_id == $user_subcription_id){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

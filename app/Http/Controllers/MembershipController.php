@@ -27,7 +27,7 @@ class MembershipController extends Controller
 
         $data = [
             'content' => json_decode($membershipPage->content),
-            'subscriptions' => Subscription::where('status', Subscription::Active)->get()
+            'subscriptions' => Subscription::where('status', Subscription::Active)->get(),
         ];
 
         return view('membership', $data);

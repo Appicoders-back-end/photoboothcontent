@@ -34,13 +34,13 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                               {{-- <div class="col-md-6 mb-3">
                                     <label for="validationCustom01">Code</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="code" placeholder=" code" value="{{ old('code') }}" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="col-md-6 mb-3">
                                     <label for="amount">Coupon Price</label>
@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="amount">Total Coupon Documents</label>
                                     <input type="number" class="form-control" id="amount" name="number_of_documents"
                                            placeholder="documents" value="{{old('number_of_documents')}}" required step="any">
