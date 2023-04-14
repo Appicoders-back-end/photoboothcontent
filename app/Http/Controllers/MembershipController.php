@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PaymentMethod;
 use App\Models\Subscription;
+use App\Models\UserCoupon;
 use App\Models\UserSubscription;
 use App\Services\StripeService;
 use Carbon\Carbon;
@@ -59,10 +60,11 @@ class MembershipController extends Controller
             $customerId = $user->stripe_customer_id;
             $subscription = Subscription::find($request->subscription_id);
             $paymentMethod = PaymentMethod::find($request->payment_method);
+            $coupon = $subscription->coupon;
 
             $buySubscription = $stripeService->buySubscription($customerId, $subscription, $paymentMethod);
 
-            $userSubscription = UserSubscription::create([
+            UserSubscription::create([
                 'user_id' => $user->id,
                 'subscription_id' => $subscription->id,
                 'price' => $subscription->price,
@@ -70,6 +72,16 @@ class MembershipController extends Controller
                 'stripe_charge_id' => $buySubscription->id,
                 'end_date' => $this->getPlanExpiryDate($subscription),
             ]);
+
+            UserCoupon::create([
+                'user_id' => $user->id,
+                'subscription_id' => $subscription->id,
+                'code' => generateRandomString(6),
+                'total_videos' => $coupon->number_of_video,
+                'total_images' => $coupon->number_of_images,
+                'total_documents' => $coupon->number_of_documents,
+            ]);
+
             return redirect()->route('thankyou')->with('success', 'Membership has been purchased successfully');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
