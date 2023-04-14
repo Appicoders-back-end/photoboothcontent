@@ -54,7 +54,7 @@
                     @endif
                     <p> {{ ($content) ? $content->about_section_description : '' }} </p>
                     <a class="btn btn-main"
-                       href="about.php">{{isset($content->about_section_button_text) ? $content->about_section_button_text : "Read More"}}
+                       href="{{route('about-us')}}">{{isset($content->about_section_button_text) ? $content->about_section_button_text : "Read More"}}
                         <span><img
                                 src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                 </div>
