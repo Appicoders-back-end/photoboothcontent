@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('edit-profile', [HomeController::class, 'editProfile'])->name('edit-profile');
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
     Route::resource('payment-methods', PaymentMethodController::class);
+    Route::get('my-coupons', [CouponController::class, 'myCoupons'])->name('myCoupons');
 
     /*membership*/
     Route::get('buyMembership/{subscription}', [MembershipController::class, 'membershipCheckout'])->name('membershipCheckout');
