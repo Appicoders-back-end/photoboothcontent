@@ -8,7 +8,7 @@
                 <a href="{{url('/')}}">Home</a>
                 <a href="{{route('about-us')}}">About us</a>
                 <a href="{{route('content-store')}}">Content Store</a>
-                <a href="{{ route('membership') }}">Membership</a>
+                <a href="{{ route('memberships') }}">Membership</a>
                 <a href="{{route('coupons')}}">Coupons</a>
 {{--                <a href="{{ route('shop.home') }}">Shop</a>--}}
             </div>

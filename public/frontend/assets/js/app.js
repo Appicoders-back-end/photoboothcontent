@@ -56,9 +56,9 @@ if (
   document.querySelector("body").style.overflowX = "unset";
 }
 
-if (page_url.includes("thankyou")) {
+/*if (page_url.includes("thankyou")) {
   document.querySelector("footer").style.display = "none";
   document.querySelector("header").style.display = "none";
   document.querySelector("body").style.overflowX = "unset";
   document.querySelector(".row.hero-content").style.paddingTop = "50vh";
-}
+}*/

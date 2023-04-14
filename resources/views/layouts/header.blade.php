@@ -13,7 +13,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('about-us')}}">About us</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('content-store')}}">Content Store</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('membership') }}">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('memberships') }}">Membership</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('coupons')}}">Coupons</a></li>
 {{--                   <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li> --}}
                 </ul>

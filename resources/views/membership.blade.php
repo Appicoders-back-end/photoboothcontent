@@ -29,7 +29,6 @@
             <div class="membership-card-row row">
                 @forelse($subscriptions as $subscription)
                     <div class="col-lg-4 col-md-6">
-
                         <div class="membership-card {{ ($subscription->interval_time == 'month')?'basic':'premium' }}">
                             <h2>{{ $subscription->name??'' }}</h2>
                             <h4>Per {{ ucwords($subscription->interval_time)??"" }}</h4>
@@ -40,12 +39,8 @@
                                 <li>{{ $subscription->coupon->number_of_images??'' }} Images</li>
                                 <li>{{ $subscription->coupon->number_of_documents??'' }} Document</li>
                             </div>
-                            <a class="btn btn-main">Buy Membership <span><img
+                            <a href="{{ route('membershipCheckout', ['subscription' => $subscription->id]) }}" class="btn btn-main">Buy Membership <span><img
                                         src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></a>
-                            <form id="buy-membership" action="{{ route('buyMembership') }}" method="POST"
-                                  class="d-none">
-                                @csrf
-                            </form>
                         </div>
                     </div>
                 @empty
