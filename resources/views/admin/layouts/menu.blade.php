@@ -2,11 +2,18 @@
     <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <li>
+            {{--<li>
                 <a class="{{ route('admin.dashboard') == url()->current() ? 'active' : '' }}"
                    href="{{route('admin.dashboard')}}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
+                </a>
+            </li>--}}
+            <li>
+                <a href="{{route('admin.users.index')}}"
+                   class="{{ route('admin.users.index') == url()->current() ?'active':'' }}">
+                    <i class="fa fa-user"></i>
+                    <span>Users</span>
                 </a>
             </li>
             <li class="sub-menu">
@@ -46,13 +53,6 @@
                     <li><a href="{{route('admin.content_documents.index')}}">Documents</a></li>
                     <li><a href="{{route('admin.content_videos.index')}}">Videos</a></li>
                 </ul>
-            </li>
-            <li>
-                <a href="{{route('admin.users.index')}}"
-                   class="{{ route('admin.users.index') == url()->current() ?'active':'' }}">
-                    <i class="fa fa-user"></i>
-                    <span>Users</span>
-                </a>
             </li>
             <li>
                 <a href="{{route('admin.promo.index')}}"
