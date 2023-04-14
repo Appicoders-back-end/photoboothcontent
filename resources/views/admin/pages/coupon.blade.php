@@ -27,7 +27,7 @@
                 </div>
             </div>
         @endif
-
+        <h6>Update Coupon Page</h6>
         <form class="needs-validation" action="{{route('admin.storeCouponPage')}}" method="POST"
               enctype="multipart/form-data">
             @csrf

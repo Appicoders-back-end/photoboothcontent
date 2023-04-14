@@ -27,12 +27,22 @@
                 </div>
             </div>
         @endif
-
+        <h6>Update Home Page</h6>
         <form class="needs-validation" action="{{route('admin.storeHomePage')}}" method="POST"
               enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$home->id}}">
-            <!-- Header start-->
+            @if($content)
+                @if(isset($content->headerSectionImg))
+                    <input type="hidden" name="old_image" value="{{ $content->headerSectionImg }}">
+                @endif
+                @if(isset($content->aboutSectionImg))
+                    <input type="hidden" name="old_image_about" value="{{ $content->aboutSectionImg }}">
+                @endif
+                @if(isset($content->servicesSectionImg))
+                    <input type="hidden" name="old_image_service" value="{{ $content->servicesSectionImg }}">
+                @endif    
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <section class="card">
