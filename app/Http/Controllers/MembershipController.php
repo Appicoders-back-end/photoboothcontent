@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendCouponCode;
 use App\Models\PaymentMethod;
 use App\Models\Subscription;
 use App\Models\UserCoupon;
@@ -10,6 +11,7 @@ use App\Services\StripeService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class MembershipController extends Controller
@@ -73,14 +75,17 @@ class MembershipController extends Controller
                 'end_date' => $this->getPlanExpiryDate($subscription),
             ]);
 
+            $generatedCode = generateRandomString(6);
             UserCoupon::create([
                 'user_id' => $user->id,
                 'subscription_id' => $subscription->id,
-                'code' => generateRandomString(6),
+                'code' => $generatedCode,
                 'total_videos' => $coupon->number_of_video,
                 'total_images' => $coupon->number_of_images,
                 'total_documents' => $coupon->number_of_documents,
             ]);
+
+            Mail::to($user->email)->send(new SendCouponCode($user, $generatedCode));
 
             return redirect()->route('thankyou')->with('success', 'Membership has been purchased successfully');
         } catch (\Exception $exception) {

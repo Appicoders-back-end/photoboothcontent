@@ -29,4 +29,19 @@ class UserCoupon extends Model
     {
         return $this->belongsTo(Subscription::class);
     }
+
+    public function checkVideosDownloadLimit()
+    {
+        return $this->total_videos - $this->downloaded_videos;
+    }
+
+    public function checkImagesDownloadLimit()
+    {
+        return $this->total_images - $this->downloaded_images;
+    }
+
+    public function checkDocumentDownloadLimit()
+    {
+        return $this->total_documents - $this->downloaded_documents;
+    }
 }

@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+Route::controller(\App\Http\Controllers\ContentStoreController::class)->group(function () {
+    Route::post('download-content', 'download')->name('download-content');
 });

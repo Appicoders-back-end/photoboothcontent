@@ -25,6 +25,7 @@ Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 
 Route::controller(ContentStoreController::class)->group(function () {
     Route::get('content-store', 'index')->name('content-store');
+//    Route::post('download-content', 'download')->name('download-content');
 });
 
 Route::controller(CouponController::class)->group(function () {
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
     Route::resource('payment-methods', PaymentMethodController::class);
     Route::get('my-coupons', [CouponController::class, 'myCoupons'])->name('myCoupons');
+    Route::get('my-downloads', [ContentStoreController::class, 'myDownloads'])->name('myDownloads');
 
     /*membership*/
     Route::get('buyMembership/{subscription}', [MembershipController::class, 'membershipCheckout'])->name('membershipCheckout');
