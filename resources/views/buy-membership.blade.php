@@ -10,7 +10,7 @@
                     <div class="cartItem row align-items-start">
                         <div class="col-5 mb-2">
                             <h6 class="">{{$subscription->name}}</h6>
-                            <p class="pl-1 mb-0">{{ $subscription->coupon->number_of_video??'' }} Vidoes</p>
+                            <p class="pl-1 mb-0">{{ $subscription->coupon->number_of_video??'' }} Videos</p>
                             <p class="pl-1 mb-0">{{ $subscription->coupon->number_of_images??'' }} Images</p>
                             <p>{{ $subscription->coupon->number_of_documents??'' }} Document</p>
                         </div>

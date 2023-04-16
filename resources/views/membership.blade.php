@@ -27,6 +27,9 @@
             </div>
 
             <div class="membership-card-row row">
+                <div class="col-lg-12">
+                    @include('layouts.messages')
+                </div>
                 @forelse($subscriptions as $subscription)
                     <div class="col-lg-4 col-md-6">
                         <div class="membership-card {{ ($subscription->interval_time == 'month')?'basic':'premium' }}">
@@ -39,7 +42,9 @@
                                 <li>{{ $subscription->coupon->number_of_images??'' }} Images</li>
                                 <li>{{ $subscription->coupon->number_of_documents??'' }} Document</li>
                             </div>
-                            <a href="{{ route('membershipCheckout', ['subscription' => $subscription->id]) }}" class="btn btn-main {{$subscription->isSubcribed() ? "disabled" : null}}">Buy Membership <span><img
+                            <a href="{{ route('membershipCheckout', ['subscription' => $subscription->id]) }}"
+                               class="btn btn-main {{$subscription->isSubcribed() ? "disabled" : null}}">Buy Membership
+                                <span><img
                                         src="{{asset('frontend')}}/assets/img/arrow-black.png" alt=""></span></a>
                         </div>
                     </div>

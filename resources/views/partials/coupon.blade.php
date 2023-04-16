@@ -12,7 +12,7 @@
                 <li>{{$coupon->number_of_documents}} Documents</li>
             </div>
             <div class="coupon-footer">
-                <a class="btn" data-bs-toggle="modal" data-bs-target="#signup">Buy Coupon <span><img
+                <a href="{{route('couponCheckout', ['coupon' => $coupon->id])}}" class="btn">Buy Coupon <span><img
                             src="{{asset('frontend')}}/assets/img/ArrowRight.png" alt=""></span></a>
             </div>
         </div>

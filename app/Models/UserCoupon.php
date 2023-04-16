@@ -15,6 +15,8 @@ class UserCoupon extends Model
         'stripe_charge_id',
         'code',
         'price',
+        'actual_price',
+        'discount',
         'total_videos',
         'downloaded_videos',
         'total_images',
@@ -28,5 +30,20 @@ class UserCoupon extends Model
     public function subscription()
     {
         return $this->belongsTo(Subscription::class);
+    }
+
+    public function checkVideosDownloadLimit()
+    {
+        return $this->total_videos - $this->downloaded_videos;
+    }
+
+    public function checkImagesDownloadLimit()
+    {
+        return $this->total_images - $this->downloaded_images;
+    }
+
+    public function checkDocumentDownloadLimit()
+    {
+        return $this->total_documents - $this->downloaded_documents;
     }
 }
