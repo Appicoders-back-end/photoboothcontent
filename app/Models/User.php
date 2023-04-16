@@ -52,7 +52,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function userSubcription(){
-        return $this->belongsTo(UserSubscription::class,'user_id','id');
+    public function userSubcription()
+    {
+        return $this->belongsTo(UserSubscription::class, 'user_id', 'id');
+    }
+
+    public function hasMembership()
+    {
+        if (!auth()->user()) {
+            return false;
+        }
+
+        $membership = UserSubscription::where('user_id', auth()->user()->id)->exists();
+
+        if ($membership) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

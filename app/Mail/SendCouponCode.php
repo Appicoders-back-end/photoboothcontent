@@ -17,7 +17,7 @@ class SendCouponCode extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public User $user, public string $code)
+    public function __construct(public User $user, public string $code, public string $purchasedType)
     {
         //
     }
@@ -28,7 +28,7 @@ class SendCouponCode extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Coupon Code',
+            subject: $this->purchasedType,
         );
     }
 
@@ -39,7 +39,11 @@ class SendCouponCode extends Mailable
     {
         return new Content(
             markdown: 'email.sendCouponCode',
-            with: ['name' => $this->user, 'code' => $this->code]
+            with: [
+                'name' => $this->user,
+                'code' => $this->code,
+                'purchasedType' => $this->purchasedType
+            ]
         );
     }
 

@@ -32,12 +32,12 @@ Route::controller(CouponController::class)->group(function () {
     Route::get('coupons', 'index')->name('coupons');
 });
 
-Route::controller(ShopController::class)->group(function(){
+Route::controller(ShopController::class)->group(function () {
     Route::get('shop', 'index')->name('shop.home');
     Route::get('product-detail/{p_id}', 'detail')->name('shop.product.detail');
 });
 
-Route::group(['middleware' => ['auth','verified']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('edit-profile', [HomeController::class, 'editProfile'])->name('edit-profile');
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
@@ -45,7 +45,11 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('my-coupons', [CouponController::class, 'myCoupons'])->name('myCoupons');
     Route::get('my-downloads', [ContentStoreController::class, 'myDownloads'])->name('myDownloads');
 
-    /*membership*/
+    /*buy membership*/
     Route::get('buyMembership/{subscription}', [MembershipController::class, 'membershipCheckout'])->name('membershipCheckout');
     Route::post('buyMembership', [MembershipController::class, 'buyMembership'])->name('buyMembership');
+
+    /*buy coupon*/
+    Route::get('buyCoupon/{coupon}', [CouponController::class, 'couponCheckout'])->name('couponCheckout');
+    Route::post('buyCoupon', [CouponController::class, 'buyCoupon'])->name('buyCoupon');
 });

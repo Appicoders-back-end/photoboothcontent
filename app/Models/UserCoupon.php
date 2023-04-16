@@ -15,6 +15,8 @@ class UserCoupon extends Model
         'stripe_charge_id',
         'code',
         'price',
+        'actual_price',
+        'discount',
         'total_videos',
         'downloaded_videos',
         'total_images',

@@ -85,7 +85,7 @@ class MembershipController extends Controller
                 'total_documents' => $coupon->number_of_documents,
             ]);
 
-            Mail::to($user->email)->send(new SendCouponCode($user, $generatedCode));
+            Mail::to($user->email)->send(new SendCouponCode($user, $generatedCode, 'Membership Purchased'));
 
             return redirect()->route('thankyou')->with('success', 'Membership has been purchased successfully');
         } catch (\Exception $exception) {
