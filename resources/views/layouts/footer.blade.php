@@ -3,7 +3,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <img src="{{asset('frontend')}}/assets/img/logo.png" alt="Photobooth content">
-                <p class="mt-3">{{ get_option('footer_description') }}</p>
+                <p class="mt-3 w-75">{{ get_option('footer_description') }}</p>
             </div>
             <div class="col-lg-3">
                 <h5 class="mb-3 fw-bold">Useful links</h5>
