@@ -114,8 +114,32 @@ class PageController extends Controller
                   $request->merge(['servicesSectionImg' => $request->old_image_service]);  
                 }
             }
+            if ($request->bulletOneServicesSectionImage) {
+                $bulletOneServicesSectionImage = saveFile($request->bulletOneServicesSectionImage, "homepage");
+                $request->merge(['bulletOneImg' => $bulletOneServicesSectionImage]);
+            }else{
+                if($page){
+                  $request->merge(['bulletOneImg' => $request->old_b_one_image_service]);  
+                }
+            }
+            if ($request->bulletTwoServicesSectionImage) {
+                $bulletTwoServicesSectionImage = saveFile($request->bulletTwoServicesSectionImage, "homepage");
+                $request->merge(['bulletTwoImg' => $bulletTwoServicesSectionImage]);
+            }else{
+                if($page){
+                  $request->merge(['bulletTwoImg' => $request->old_b_two_image_service]);  
+                }
+            }
+            if ($request->bulletThreeServicesSectionImage) {
+                $bulletThreeServicesSectionImage = saveFile($request->bulletThreeServicesSectionImage, "homepage");
+                $request->merge(['bulletThreeImg' => $bulletThreeServicesSectionImage]);
+            }else{
+                if($page){
+                  $request->merge(['bulletThreeImg' => $request->old_b_three_image_service]);  
+                }
+            }
 
-            $page->content = json_encode($request->except('id', '_token', 'headerSectionImage', 'aboutSectionImage', 'servicesSectionImage'));
+            $page->content = json_encode($request->except('id', '_token', 'headerSectionImage', 'aboutSectionImage', 'servicesSectionImage','bulletOneServicesSectionImage','bulletTwoServicesSectionImage','bulletThreeServicesSectionImage'));
             $page->save();
 
             return redirect()->route('admin.home')->with('success', 'Homepage has been updated successfully');

@@ -153,26 +153,41 @@
             <div class="row service-row">
                 <div class="col-lg-4">
                     <div class="service-card training">
-                        <img src="{{asset('frontend')}}/assets/img/Free-training.png" alt="training" class="img-fluid">
-                        <h4>Free Training</h4>
-                        <p>Etiam sed vulputate nisl, eu elementum arcu. Vivamus dignissim tortor in tellus dictum
-                            pellentesque. </p>
+                        @if(isset($content->bulletOneImg))
+                            <img src="{{ url('/') . '/' . $content->bulletOneImg }}" alt="service" class="img-fluid">
+                        @endif
+                        @if(isset($content->bullet_one_section_heading))
+                            <h4 class="fs-1">{{$content->bullet_one_section_heading}}</h4>
+                        @endif
+                        @if(isset($content->bullet_one_description))
+                            <p>{{$content->bullet_one_description}}</p>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card content">
-                        <img src="{{asset('frontend')}}/assets/img/Provide.png" alt="training" class="img-fluid">
-                        <h4>Content Provider</h4>
-                        <p>Etiam sed vulputate nisl, eu elementum arcu. Vivamus dignissim tortor in tellus dictum
-                            pellentesque. </p>
+                        @if(isset($content->bulletTwoImg))
+                            <img src="{{ url('/') . '/' . $content->bulletTwoImg }}" alt="service" class="img-fluid">
+                        @endif
+                        @if(isset($content->bullet_two_section_heading))
+                            <h4 class="fs-1">{{$content->bullet_two_section_heading}}</h4>
+                        @endif
+                        @if(isset($content->bullet_two_description))
+                            <p>{{$content->bullet_two_description}}</p>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card invesment">
-                        <img src="{{asset('frontend')}}/assets/img/Invesment.png" alt="training" class="img-fluid">
-                        <h4>Invesment</h4>
-                        <p>Etiam sed vulputate nisl, eu elementum arcu. Vivamus dignissim tortor in tellus dictum
-                            pellentesque. </p>
+                        @if(isset($content->bulletThreeImg))
+                            <img src="{{ url('/') . '/' . $content->bulletThreeImg }}" alt="service" class="img-fluid">
+                        @endif
+                        @if(isset($content->bullet_three_section_heading))
+                            <h4 class="fs-1">{{$content->bullet_three_section_heading}}</h4>
+                        @endif
+                        @if(isset($content->bullet_three_description))
+                            <p>{{$content->bullet_three_description}}</p>
+                        @endif
                     </div>
                 </div>
             </div>
