@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\UpdatePassword\UpdatePasswordRequest;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Coupon;
@@ -54,9 +55,9 @@ class HomeController extends Controller
             $user->last_name = $request->last_name;
             $user->name = $request->first_name . ' ' . $request->last_name;
             $user->contact_no = $request->contact_no;
-            if (isset($request->password) && isset($request->confirm_password)) {
+            /*if (isset($request->password) && isset($request->confirm_password)) {
                 $user->password = Hash::make($request->password);
-            }
+            }*/
 
             $user->save();
 
@@ -64,6 +65,21 @@ class HomeController extends Controller
 
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    public function changePassword(){
+        return view('ChangePassword');
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request){
+        try {
+            $user = User::find(auth()->user()->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return redirect()->route('changePassword')->with('success', __('Password has been updated successfully!'));
+        } catch (\Exception $exception) {
+            return redirect()->route('changePassword')->with('error', $exception->getMessage());
         }
     }
 
