@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@section('style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-@endsection
 @section('content')
 
     <div class="hero-section">
@@ -96,7 +93,7 @@
                                     <div class="swiper-wrapper">
                                         @foreach($category->contents as $content)
                                             <div class="swiper-slide">
-                                            <div class="content-category-card video" @if($content->type == 'video') id="video_content" data-id="{{ $content->getImage() }}" data-toggle="modal" data-target="#myModal" style="cursor: pointer" @endif>
+                                            <div class="content-category-card video" @if($content->type == 'video') id="video_content" data-id="{{ $content->getImage() }}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer" @endif>
                                                 {{--<img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
                                                      class="content-card-img">--}}
                                                 @if($content->type == 'video')
@@ -205,16 +202,16 @@
         </div>
     </div>
 
-    <div id="myModal" class="modal fade">
+    <div id="exampleModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background: #00A8B3;color: #fff;">
                     <h5 class="modal-title">Video</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 12px;"></button>
                 </div>
                 <div class="modal-body">
                     <div id="contentVideo" class=" embed-responsive embed-responsive-16by9">
-                        <video id="video-10" controls>
+                        <video id="video-10" controls style="width: 100%;">
                             <source src="" />
                         </video>
                     </div>
@@ -225,9 +222,6 @@
 
 @endsection
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function () {
