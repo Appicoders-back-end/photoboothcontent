@@ -22,6 +22,7 @@ class PageController extends Controller
             'home' => $homePage,
             'content' => json_decode($homePage->content)
         ];
+
         return view('admin.pages.home', $data);
     }
     public function about()
@@ -93,7 +94,7 @@ class PageController extends Controller
                 $request->merge(['headerSectionImg' => $headerSectionImage]);
             }else{
                 if($page){
-                  $request->merge(['headerSectionImg' => $request->old_image]);  
+                  $request->merge(['headerSectionImg' => $request->old_image]);
                 }
             }
 
@@ -102,7 +103,7 @@ class PageController extends Controller
                 $request->merge(['aboutSectionImg' => $aboutSectionImage]);
             }else{
                 if($page){
-                  $request->merge(['aboutSectionImg' => $request->old_image_about]);  
+                  $request->merge(['aboutSectionImg' => $request->old_image_about]);
                 }
             }
 
@@ -111,7 +112,7 @@ class PageController extends Controller
                 $request->merge(['servicesSectionImg' => $servicesSectionImage]);
             }else{
                 if($page){
-                  $request->merge(['servicesSectionImg' => $request->old_image_service]);  
+                  $request->merge(['servicesSectionImg' => $request->old_image_service]);
                 }
             }
             if ($request->bulletOneServicesSectionImage) {
@@ -119,7 +120,7 @@ class PageController extends Controller
                 $request->merge(['bulletOneImg' => $bulletOneServicesSectionImage]);
             }else{
                 if($page){
-                  $request->merge(['bulletOneImg' => $request->old_b_one_image_service]);  
+                  $request->merge(['bulletOneImg' => $request->old_b_one_image_service]);
                 }
             }
             if ($request->bulletTwoServicesSectionImage) {
@@ -127,7 +128,7 @@ class PageController extends Controller
                 $request->merge(['bulletTwoImg' => $bulletTwoServicesSectionImage]);
             }else{
                 if($page){
-                  $request->merge(['bulletTwoImg' => $request->old_b_two_image_service]);  
+                  $request->merge(['bulletTwoImg' => $request->old_b_two_image_service]);
                 }
             }
             if ($request->bulletThreeServicesSectionImage) {
@@ -135,7 +136,7 @@ class PageController extends Controller
                 $request->merge(['bulletThreeImg' => $bulletThreeServicesSectionImage]);
             }else{
                 if($page){
-                  $request->merge(['bulletThreeImg' => $request->old_b_three_image_service]);  
+                  $request->merge(['bulletThreeImg' => $request->old_b_three_image_service]);
                 }
             }
 
@@ -155,7 +156,7 @@ class PageController extends Controller
                 $request->merge(['aboutImg' => $about_image]);
             }else{
                 if($page){
-                  $request->merge(['aboutImg' => $request->old_image]);  
+                  $request->merge(['aboutImg' => $request->old_image]);
                 }
             }
             if ($request->ser_about_image) {
@@ -163,7 +164,7 @@ class PageController extends Controller
                 $request->merge(['aboutServImg' => $ser_about_image]);
             }else{
                 if($page){
-                  $request->merge(['aboutServImg' => $request->old_serv_image]);  
+                  $request->merge(['aboutServImg' => $request->old_serv_image]);
                 }
             }
             $page->content = json_encode($request->except('id', '_token', 'about_image','ser_about_image'));
@@ -182,7 +183,7 @@ class PageController extends Controller
                 $request->merge(['contentImg' => $content_image]);
             }else{
                 if($page){
-                  $request->merge(['contentImg' => $request->old_image]);  
+                  $request->merge(['contentImg' => $request->old_image]);
                 }
             }
             $page->content = json_encode($request->except('id', '_token', 'content_image'));
@@ -201,7 +202,7 @@ class PageController extends Controller
                 $request->merge(['membershipImg' => $membership_image]);
             }else{
                 if($page){
-                  $request->merge(['membershipImg' => $request->old_image]);  
+                  $request->merge(['membershipImg' => $request->old_image]);
                 }
             }
             $page->content = json_encode($request->except('id', '_token', 'membership_image'));
@@ -220,7 +221,7 @@ class PageController extends Controller
                 $request->merge(['couponImg' => $coupon_image]);
             }else{
                 if($page){
-                  $request->merge(['couponImg' => $request->old_image]);  
+                  $request->merge(['couponImg' => $request->old_image]);
                 }
             }
             $page->content = json_encode($request->except('id', '_token', 'coupon_image'));
