@@ -40,6 +40,8 @@ Route::controller(ShopController::class)->group(function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('edit-profile', [HomeController::class, 'editProfile'])->name('edit-profile');
+    Route::get('change-password', [HomeController::class, 'changePassword'])->name('changePassword');
+    Route::post('update-password', [HomeController::class, 'updatePassword'])->name('updatePassword');
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update-profile');
     Route::resource('payment-methods', PaymentMethodController::class);
     Route::get('my-coupons', [CouponController::class, 'myCoupons'])->name('myCoupons');
