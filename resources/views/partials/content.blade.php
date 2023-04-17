@@ -1,7 +1,14 @@
     <div class="col-lg-4 col-md-6">
-        <div class="content-category-card video">
-            <img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
-                 class="content-card-img">
+        <div class="content-category-card video" @if($content->type == 'video') id="video_content" data-id="{{ $content->getImage() }}" data-toggle="modal" data-target="#myModal" style="cursor: pointer" @endif>
+            @if($content->type == 'video')
+                    <img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
+                         class="content-card-img">
+            @else
+                <img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
+                     class="content-card-img">
+            @endif
+
+
             <div class="category-content-container">
                 <h4>{{$content->name}}</h4>
                 <p>{{ \Illuminate\Support\Str::limit($content->description, 60) }}</p>

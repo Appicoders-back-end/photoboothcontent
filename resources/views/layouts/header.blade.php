@@ -10,11 +10,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('about-us')}}">About us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('content-store')}}">Content Store</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('memberships') }}">Membership</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('coupons')}}">Coupons</a></li>
+                    <li class="nav-item"><a class="nav-link {{ url('/') == url()->current() ?'active':'' }}" href="{{url('/')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('about-us') == url()->current() ?'active':'' }}" href="{{route('about-us')}}">About us</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('content-store') == url()->current() ?'active':'' }}" href="{{route('content-store')}}">Content Store</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('memberships') == url()->current() ?'active':'' }}" href="{{ route('memberships') }}">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('coupons') == url()->current() ?'active':'' }}" href="{{route('coupons')}}">Coupons</a></li>
 {{--                   <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li> --}}
                 </ul>
                 @guest
