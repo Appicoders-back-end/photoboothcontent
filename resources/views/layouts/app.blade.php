@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css">
+
+    <!-- Bootstrap core CSS -->
+
     @yield('style')
 </head>
 <body>
@@ -71,6 +74,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="{{asset('frontend')}}/assets/js/jquery-3.6.4.min.js"></script>
 <script src="{{asset('frontend')}}/assets/js/popper.min.js"></script>
