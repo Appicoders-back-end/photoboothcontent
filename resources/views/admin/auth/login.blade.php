@@ -18,7 +18,7 @@
 <div class="container">
     <form class="form-signin" method="post" action="{{route('admin.do_login')}}">
         {{csrf_field()}}
-        <h2 class="form-signin-heading">Sign in</h2>
+        <h2 class="form-signin-heading">Photo Booth Content Admin</h2>
         <div class="login-wrap">
             <label for="email">Email</label>
             <input id="email" type="email" name="email" class="form-control" placeholder="Email">
