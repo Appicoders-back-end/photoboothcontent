@@ -38,9 +38,15 @@ class MembershipController extends Controller
 
     public function membershipCheckout(Request $request, Subscription $subscription)
     {
+        $paymentMethods = PaymentMethod::where('user_id', auth()->user()->id)->select('id', 'card_holder_name', 'card_brand', 'card_end_number')->get();
+
+        if ($paymentMethods->count() == 0) {
+            return redirect()->route('payment-methods.create')->with('success', "You have to add payment method first.");
+        }
+
         $data = [
             'subscription' => $subscription,
-            'payment_methods' => PaymentMethod::where('user_id', auth()->user()->id)->select('id', 'card_holder_name', 'card_brand', 'card_end_number')->get()
+            'payment_methods' => $paymentMethods
         ];
 
         return view('buy-membership', $data);
