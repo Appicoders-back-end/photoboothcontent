@@ -47,7 +47,8 @@ class Content extends Model
 
     public function isAlreadyDownloaded()
     {
-        if (!auth()->user()->check()) {
+
+        if (!auth()->check()) {
             return false;
         }
 
