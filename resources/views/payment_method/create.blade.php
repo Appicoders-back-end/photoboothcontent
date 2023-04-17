@@ -31,8 +31,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="cvv" class="form-label">CVV</label>
                                         <input type="number" class="form-control" id="cvv" name="cvc"
-                                               value="{{ old('cvc') }}" placeholder="123" minlength="3"
-                                               maxlength="3">
+                                               value="{{ old('cvc') }}" placeholder="123">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-main">Add payment method</button>
