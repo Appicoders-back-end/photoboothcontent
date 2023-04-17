@@ -44,4 +44,18 @@ class Content extends Model
 
         return url('/') . '/' . $this['thumbnail_image'];
     }
+
+    public function isAlreadyDownloaded()
+    {
+        if (!auth()->user()->check()) {
+            return false;
+        }
+
+        $isAlreadyExist = UserDownload::where('content_id', $this->id)->exists();
+        if ($isAlreadyExist) {
+            return true;
+        }
+
+        return false;
+    }
 }
