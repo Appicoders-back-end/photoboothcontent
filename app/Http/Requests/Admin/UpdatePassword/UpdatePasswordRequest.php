@@ -25,7 +25,7 @@ class UpdatePasswordRequest extends FormRequest
         return [
             'old_password' => [
                 'required', function ($attribute, $value, $fail) {
-                    if (!Hash::check($value, auth()->user()->password)) {
+                    if (!Hash::check($value, auth()->guard('admin')->user()->password)) {
                         $fail('Old Password didn\'t match');
                     }
                 },
