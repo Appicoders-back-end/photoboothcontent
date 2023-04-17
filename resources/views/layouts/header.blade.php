@@ -31,6 +31,7 @@
                             <li><a class="dropdown-item" href="{{route('payment-methods.index')}}">Payment method</a></li>
                             <li><a class="dropdown-item" href="{{ route('edit-profile') }}">Edit Profile</a></li>
                             <li><a class="dropdown-item" href="{{route('myCoupons')}}">My Coupons</a></li>
+                            <li><a class="dropdown-item" href="{{route('changePassword')}}">Change Password</a></li>
                             {{--<li><a class="dropdown-item" href="order-history.php">Order history</a></li>--}}
                             <li><a class="dropdown-item" href="{{route('myDownloads')}}">Downloads</a></li>
                             <li><a href="javascript:;"
