@@ -1,5 +1,5 @@
     <div class="col-lg-4 col-md-6">
-        <div class="content-category-card video" @if($content->type == 'video') id="video_content" data-id="{{ $content->getImage() }}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer" @endif>
+        <div class="content-category-card video" @if($content->type == 'video') id="video_content" data-download="{{ $content->isAlreadyDownloaded() }}" data-id="{{ $content->getImage() }}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer" @endif>
             @if($content->type == 'video')
                     <img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
                          class="content-card-img">

@@ -11,7 +11,7 @@
                         <p class="card-text"><strong>Name:</strong>{{ $user->name??'' }}</p>
                         <p class="card-text"><strong>Email:</strong>{{ $user->email??'' }}</p>
                         <p class="card-text"><strong>Phone:</strong> {{ $user->contact_no??'' }}</p>
-                        <p class="card-text"><strong>Address:</strong>{{ $user->address??' N/A' }} </p>
+{{--                        <p class="card-text"><strong>Address:</strong>{{ $user->address??' N/A' }} </p>--}}
                         <p class="card-text"><strong>Membership:</strong> {{ $user->userSubcription }} </p>
                         <p class="card-text"><strong>Membership Due:</strong> {{ $user->userSubcription->created_at??'N/A'}} </p>
                         <a href="{{ route('edit-profile') }}" class="btn btn-main">Edit Profile</a>

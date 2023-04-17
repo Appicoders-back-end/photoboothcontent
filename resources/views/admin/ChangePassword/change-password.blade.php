@@ -28,11 +28,11 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleInputUsername1" class="form-label">Old Password</label>
-                                <input type="text" class="form-control" name="old_password" id="exampleInputUsername1" autocomplete="off" placeholder="Old Password">
+                                <input type="password" class="form-control" name="old_password" id="exampleInputUsername1" autocomplete="off" placeholder="Old Password" value="{{ old('old_password') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">New Password</label>
-                                <input type="password" class="form-control" name="password" id="password" autocomplete="off" placeholder="New Password">
+                                <input type="password" class="form-control" name="password" id="password" autocomplete="off" placeholder="New Password" value="{{ old('password') }}">
                                 <span toggle="#password-field" class="fa fa-fw fa-eye-slash field_icon toggle-password"></span>
                             </div>
                             <div class="mb-3">
