@@ -62,7 +62,7 @@
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">Image (Should be 1200px x 700px)</label>
                                     <input type="file" name="image" class="dropify" data-max-file-size="3M"
-                                           data-allowed-file-extensions="jpg jpeg png">
+                                           data-allowed-file-extensions="jpg jpeg png" data-show-remove="false">
                                 </div>
                             </div>
                             <button class="btn btn-sm btn-success" type="submit">Create Promo</button>

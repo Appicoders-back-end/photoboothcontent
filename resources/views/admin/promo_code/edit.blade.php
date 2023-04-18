@@ -71,9 +71,9 @@
                                     <label for="validationCustom02">Image (Should be 1200px x 700px)</label>
                                     @if($promo_code->image)
                                         <input type="file" class="dropify" name="image"
-                                               data-default-file="{{ $promo_code->getImage() }}" data-allowed-file-extensions="jpg jpeg png"/>
+                                               data-default-file="{{ $promo_code->getImage() }}" data-allowed-file-extensions="jpg jpeg png" data-show-remove="false"/>
                                     @else
-                                        <input type="file" class="dropify" name="image" data-allowed-file-extensions="jpg jpeg png"/>
+                                        <input type="file" class="dropify" name="image" data-allowed-file-extensions="jpg jpeg png" data-show-remove="false"/>
                                     @endif
                                 </div>
                             </div>

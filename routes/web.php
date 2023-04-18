@@ -25,7 +25,6 @@ Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 
 Route::controller(ContentStoreController::class)->group(function () {
     Route::get('content-store', 'index')->name('content-store');
-//    Route::post('download-content', 'download')->name('download-content');
 });
 
 Route::controller(CouponController::class)->group(function () {

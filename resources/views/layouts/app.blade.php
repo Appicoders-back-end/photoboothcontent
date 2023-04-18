@@ -102,7 +102,8 @@
         var url = "{{ url('api/download-content') }}";
         var code = $('#coupon_code').val();
         var content_id = $('#content_id').val();
-        $.post(url, {code: code, content_id: content_id}, function (e) {
+        let user_id = "{{ auth()->user() ? auth()->user()->id : null }}";
+        $.post(url, {code: code, content_id: content_id, user_id : user_id}, function (e) {
             console.log(e)
             if (e.success) {
                 $('#couponFailedMessage').addClass('d-none');
