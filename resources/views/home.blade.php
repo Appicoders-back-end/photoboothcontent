@@ -171,7 +171,7 @@
                             <img src="{{ url('/') . '/' . $content->bulletOneImg }}" alt="service" class="img-fluid">
                         @endif
                         @if(isset($content->bullet_one_section_heading))
-                            <h4 class="fs-1">{{$content->bullet_one_section_heading}}</h4>
+                            <h4>{{$content->bullet_one_section_heading}}</h4>
                         @endif
                         @if(isset($content->bullet_one_description))
                             <p>{{$content->bullet_one_description}}</p>
@@ -184,7 +184,7 @@
                             <img src="{{ url('/') . '/' . $content->bulletTwoImg }}" alt="service" class="img-fluid">
                         @endif
                         @if(isset($content->bullet_two_section_heading))
-                            <h4 class="fs-1">{{$content->bullet_two_section_heading}}</h4>
+                            <h4>{{$content->bullet_two_section_heading}}</h4>
                         @endif
                         @if(isset($content->bullet_two_description))
                             <p>{{$content->bullet_two_description}}</p>
@@ -197,7 +197,7 @@
                             <img src="{{ url('/') . '/' . $content->bulletThreeImg }}" alt="service" class="img-fluid">
                         @endif
                         @if(isset($content->bullet_three_section_heading))
-                            <h4 class="fs-1">{{$content->bullet_three_section_heading}}</h4>
+                            <h4>{{$content->bullet_three_section_heading}}</h4>
                         @endif
                         @if(isset($content->bullet_three_description))
                             <p>{{$content->bullet_three_description}}</p>

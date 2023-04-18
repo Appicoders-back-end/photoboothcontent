@@ -501,6 +501,7 @@ a.disabled {
 
     .promo-section {
         min-height: 130vh;
+        margin-bottom: 100px;
     }
 
     .content-category-card {
