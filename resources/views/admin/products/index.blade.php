@@ -30,7 +30,7 @@
                                         <td>{{ $product->title }}</td>
                                         <td>$ {{ $product->price }}</td>
                                         <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ url('storage/'.$product->images[0]->image) }}" alt=""></td>
-                                        <td>{{ date('F d, Y', strtotime($product->created_at)) ?? 'N/A' }} </td>
+                                        <td>{{ date('F d, Y', strtotime($product->created_at)) ?? '-' }} </td>
                                         <td>
                                             <a href="{{ route('admin.product.edit',$product->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
                                             <form action="{{ route('admin.product.destroy', ['product'=>$product->id]) }}" method="POST">

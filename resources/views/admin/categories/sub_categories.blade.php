@@ -27,6 +27,12 @@
                                 <tbody>
                                 @forelse($sub_categories as $category)
                                     <tr class="gradeX">
+
+                                        <td>{{ $category->name??'-' }}</td>
+                                        <td>{{ $category->parent->name??'-' }}</td>
+                                        <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td>
+                                        <td>{{ date('F d, Y', strtotime($category->created_at))??'-'}} </td>
+
                                         <td>{{ $category->name??'N/A' }}</td>
                                         <td>{{ $category->parent->name??'N/A' }}</td>
                                         {{-- <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td> --}}
