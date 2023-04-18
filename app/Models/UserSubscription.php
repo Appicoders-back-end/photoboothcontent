@@ -19,4 +19,8 @@ class UserSubscription extends Model
         'is_expired',
         'stripe_charge_id',
     ];
+
+    public function subcription(){
+        return $this->belongsTo(Subscription::class,'subscription_id','id');
+    }
 }
