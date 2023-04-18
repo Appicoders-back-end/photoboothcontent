@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Admin\UpdatePassword\UpdatePasswordRequest;
+use App\Http\Requests\Front\UpdatePassword;
+use App\Http\Requests\FrontEnd\UpdatePasswordRequest;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Coupon;
