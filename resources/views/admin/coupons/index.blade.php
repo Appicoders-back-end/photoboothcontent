@@ -33,26 +33,10 @@
                                     <tr class="gradeX">
 
                                         <td>{{ $coupon->name??'-' }}</td>
-{{--                                        <td>{{ $coupon->code??'-' }}</td>--}}
-                                        <td>
-                                            <p data-id="{{ $coupon->description }}" id="read" data-toggle="modal"
-                                               data-target="#exampleModal3">
-                                                {{ (strlen($coupon->description) > 20)?substr($coupon->description, 0, 20)." ... Read More
-                                                ":$coupon->description??'-' }}
-                                            </p>
-                                        </td>
                                         <td>{{ $coupon->price??'-' }}</td>
-                                        <td>{{ $coupon->number_of_video??'-' }}</td>
-                                        <td>{{ $coupon->number_of_images??'-' }}</td>
-                                        <td>{{ $coupon->number_of_documents??'-' }}</td>
-
-                                        <td>{{ $coupon->name??'N/A' }}</td>
-{{--                                        <td>{{ $coupon->code??'N/A' }}</td>--}}
-                                        <td>{{ $coupon->price??'N/A' }}</td>
                                         <td>{{ $coupon->number_of_video??'N/A' }}</td>
                                         <td>{{ $coupon->number_of_images??'N/A' }}</td>
                                         <td>{{ $coupon->number_of_documents??'N/A' }}</td>
-
                                         <td>
                                             @if($coupon->status == "active")
                                                 <span class="text-success">{{ ucwords($coupon->status) }}</span>
@@ -60,6 +44,7 @@
                                                 <span class="text-danger">{{ ucwords($coupon->status) }}</span>
                                             @endif
                                         </td>
+{{--                                        <td>{{ $coupon->code??'-' }}</td>--}}
                                         <td>{{ date('F d, Y', strtotime($coupon->created_at))??'-'}} </td>
                                         <td>
                                             <a href="{{ route('admin.coupons.edit',$coupon->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
