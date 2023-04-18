@@ -58,7 +58,7 @@ class HomeController extends Controller
     }
 
     public function changePassword(){
-        return view('ChangePassword');
+        return view('changePassword');
     }
 
     public function updatePassword(UpdatePasswordRequest $request){
