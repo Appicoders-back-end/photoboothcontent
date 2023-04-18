@@ -12,20 +12,10 @@ use App\Models\PromoCode;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
-     */
-
-    /*public function __construct()
-    {
-        $this->middleware(['auth']);
-    }*/
-
     public function dashboard()
     {
         $paymentMethods = PaymentMethod::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
@@ -42,23 +32,21 @@ class HomeController extends Controller
     public function updateProfile(Request $request)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'contact_no' => 'required',
-//                'password' => 'required',
-//                'confirm_password' => 'required|same:password'
             ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->messages())->withInput();
+            }
 
             $user = User::find(auth()->user()->id);
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->name = $request->first_name . ' ' . $request->last_name;
             $user->contact_no = $request->contact_no;
-            /*if (isset($request->password) && isset($request->confirm_password)) {
-                $user->password = Hash::make($request->password);
-            }*/
-
             $user->save();
 
             return redirect()->route('dashboard')->with('success', "Profile Updated Successfully");

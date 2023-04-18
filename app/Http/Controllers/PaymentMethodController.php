@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PaymentMethod;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentMethodController extends Controller
 {
@@ -32,13 +33,16 @@ class PaymentMethodController extends Controller
     public function store(Request $request)
     {
         try {
-
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'card_number' => 'required|numeric',
                 'card_holder_name' => 'required',
                 'exp_date' => 'required',
-                'cvc' => 'required|numeric',
+                'cvc' => 'required|numeric|digits:3',
             ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->messages())->withInput();
+            }
 
             $user = auth()->user();
             $stripeService = new StripeService();

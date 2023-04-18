@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="hero-section">
         <img src="{{asset('frontend')}}/assets/img/hero-section-circle-pink.png" alt="Pink circle" class="pink-circle">
         <div class="container">
@@ -91,28 +90,35 @@
                             <div class="row content-category-row">
                                 <div class="swiper mySwiper-content">
                                     <div class="swiper-wrapper">
-                                        @foreach($category->contents as $content)
+                                        @foreach($category->contents as $categoryContent)
                                             <div class="swiper-slide">
-                                            <div class="content-category-card video" @if($content->type == 'video') id="video_content" data-download="{{ $content->isAlreadyDownloaded() }}" data-id="{{ $content->getImage() }}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer" @endif>
-                                                {{--<img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
-                                                     class="content-card-img">--}}
-                                                @if($content->type == 'video')
-                                                    <img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
-                                                         class="content-card-img">
-                                                @else
-                                                    <img src="{{$content->getThumbnailImage()}}" alt="{{$content->name}}"
-                                                         class="content-card-img">
-                                                @endif
-                                                <div class="category-content-container">
-                                                    <h4>{{$content->name}}</h4>
-                                                    <p>{{ \Illuminate\Support\Str::limit($content->description, 60) }}</p>
-{{--                                                    <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"--}}
-{{--                                                       class="btn btn-main bg-white text-dark">{{__('Download Now')}}</a>--}}
-                                                    <a data-bs-toggle="modal" data-bs-target="#couponModal" data-content-id="{{$content->id}}" href="#"
-                                                       class="btn btn-main bg-white text-dark">{{__('Download Now')}}</a>
+                                                <div class="content-category-card video"
+                                                     @if($categoryContent->type == 'video') id="video_content"
+                                                     data-download="{{ $categoryContent->isAlreadyDownloaded() }}"
+                                                     data-id="{{ $categoryContent->getImage() }}" data-bs-toggle="modal"
+                                                     data-bs-target="#exampleModal" style="cursor: pointer" @endif>
+                                                    {{--<img src="{{$categoryContent->getThumbnailImage()}}" alt="{{$categoryContent->name}}"
+                                                         class="content-card-img">--}}
+                                                    @if($categoryContent->type == 'video')
+                                                        <img src="{{$categoryContent->getThumbnailImage()}}"
+                                                             alt="{{$categoryContent->name}}"
+                                                             class="content-card-img">
+                                                    @else
+                                                        <img src="{{$categoryContent->getThumbnailImage()}}"
+                                                             alt="{{$categoryContent->name}}"
+                                                             class="content-card-img">
+                                                    @endif
+                                                    <div class="category-content-container">
+                                                        <h4>{{$categoryContent->name}}</h4>
+                                                        <p>{{ \Illuminate\Support\Str::limit($categoryContent->description, 60) }}</p>
+                                                        {{--                                                    <a data-bs-toggle="modal" data-bs-target="#couponModal" href="#"--}}
+                                                        {{--                                                       class="btn btn-main bg-white text-dark">{{__('Download Now')}}</a>--}}
+                                                        <a data-bs-toggle="modal" data-bs-target="#couponModal"
+                                                           data-content-id="{{$categoryContent->id}}" href="#"
+                                                           class="btn btn-main bg-white text-dark">{{__('Download Now')}}</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                     <div class="swiper-pagination content-slider-pagination"></div>
@@ -126,7 +132,7 @@
     </div>
     <div class="coupons-section">
         <div class="container">
-            <h3>{{ ($content) ? $content->coupons_section_heading : '' }}</h3>
+            <h3>{{ $content->coupons_section_heading ?? null}}</h3>
             <div class="row coupons-row">
                 @foreach($coupons as $coupon)
                     @include('partials.coupon', $coupon)
@@ -207,12 +213,13 @@
             <div class="modal-content">
                 <div class="modal-header" style="background: #00A8B3;color: #fff;">
                     <h5 class="modal-title">Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 12px;"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="font-size: 12px;"></button>
                 </div>
                 <div class="modal-body">
                     <div id="contentVideo" class=" embed-responsive embed-responsive-16by9">
-                        <video id="video-10" controls style="width: 100%;" >
-                            <source src="" />
+                        <video id="video-10" controls style="width: 100%;">
+                            <source src=""/>
                         </video>
                     </div>
                 </div>
@@ -225,13 +232,13 @@
 
     <script>
         $(document).ready(function () {
-            $(document).on("click",'#video_content',function () {
+            $(document).on("click", '#video_content', function () {
                 const videoSource = $(this).data('id');
                 const isAlreadyDownloaded = $(this).data('download');
-                if(isAlreadyDownloaded){
+                if (isAlreadyDownloaded) {
                     // controlsList="nodownload"
                     $("#video-10").removeAttr("controlsList");
-                }else{
+                } else {
                     $('#video-10').attr('controlsList', 'nodownload');
                 }
                 $('video source').attr('src', videoSource)
