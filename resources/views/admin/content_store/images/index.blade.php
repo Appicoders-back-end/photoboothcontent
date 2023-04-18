@@ -66,17 +66,6 @@
                                 @empty
                                 @endforelse
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Thumbnail</th>
-                                    <th>Image</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

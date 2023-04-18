@@ -119,6 +119,7 @@ header nav .active {
     min-height: 150vh;
     margin-top: -40%;
     z-index: -1;
+    margin-bottom: 100px;
 }
 
 .promo-section .container {
@@ -501,7 +502,6 @@ a.disabled {
 
     .promo-section {
         min-height: 130vh;
-        margin-bottom: 100px;
     }
 
     .content-category-card {

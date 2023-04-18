@@ -60,7 +60,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="validationCustom02">Parent Category</label>
                                     <select class="form-control mb-2 parent_category_option" name="parent_id">
-                                        <option value="" selected disabled>Select Category</option>
+                                        <option value="" selected>Select Category</option>
                                         @forelse($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name??'N/A' }}</option>
                                         @empty
@@ -99,10 +99,10 @@
                                     </div>--}}
                                 <!--Summernote end-->
 
-                                <div class="col-md-12 mb-3">
+                                {{-- <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">Image</label>
                                     <input type="file" class="dropify"  name="image"/>
-                                </div>
+                                </div> --}}
                             </div>
                             <button class="btn btn-sm btn-success" type="submit">Create Category</button>
                         </form>

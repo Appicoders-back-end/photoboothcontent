@@ -35,7 +35,7 @@
             @if($content)
                 @if(isset($content->membershipImg))
                     <input type="hidden" name="old_image" value="{{ $content->membershipImg }}">
-                @endif    
+                @endif
             @endif
             <div class="row">
                 <div class="col-lg-12">
@@ -80,13 +80,13 @@
                                     />
                                 </div>
 
-                                <div class="col-md-12 mb-3">
+                                {{--<div class="col-md-12 mb-3">
                                     <label for="membership_button_text">Button Text</label>
                                     <input type="text" class="form-control" id="membership_button_text"
                                            name="membership_button_text"
                                            placeholder="Enter Button Text"
                                            value="{{old('membership_button_text', $content->membership_button_text ?? null)}}">
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </section>

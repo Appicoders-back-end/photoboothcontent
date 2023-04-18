@@ -1,18 +1,4 @@
 @extends('admin.layouts.app')
-@section('style')
-    <!--  summernote -->
-    <link href="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.css" rel="stylesheet">
-    <style>
-        .editor-title{
-            padding: 0 0 10px 0 !important;
-        }
-        .editor-desc{
-            padding: 0 0 0 0 !important;
-            margin-bottom: 0 !important;
-        }
-
-    </style>
-@endsection
 @section('content')
     <section class="wrapper">
         <!-- page start-->
@@ -90,20 +76,6 @@
                                         </option>
                                     </select>
                                 </div>
-
-                                <!--Summernote start-->
-                                <div class="col-md-12 mb-3">
-                                    <section class="card">
-                                        <header class="card-header head-border editor-title">
-                                            Description
-                                        </header>
-                                        <div class="card-body editor-desc">
-                                            {{--                                                <div class="summernote"></div>--}}
-                                            <textarea class="summernote" name="description" id="summernote_1">{{ $coupon->description }}</textarea>
-                                        </div>
-                                    </section>
-                                </div>
-                                <!--Summernote end-->
                             </div>
                             <button class="btn btn-sm btn-success" type="submit">Update Coupon</button>
                         </form>
@@ -114,22 +86,4 @@
         <!-- page end-->
     </section>
 @endsection
-@section('script')
-    <!--summernote-->
-    <script src="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.min.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-            $('.summernote').summernote({
-                height: 200,                 // set editor height
-                minHeight: null,             // set minimum height of editor
-                maxHeight: null,             // set maximum height of editor
-                focus: true                 // set focus to editable area after initializing summernote
-            });
-        });
-
-    </script>
-@endsection
-
 

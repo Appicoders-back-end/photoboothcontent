@@ -36,7 +36,6 @@ class CouponController extends Controller
 
             $coupon = new Coupon();
             $coupon->name = $request->name;
-            $coupon->description = $request->description;
             $coupon->code = $request->code;
             $coupon->price = $request->price;
             $coupon->number_of_video = $request->number_of_video;
@@ -78,7 +77,6 @@ class CouponController extends Controller
 
             $coupon = Coupon::find($id);
             $coupon->name = $request->name;
-            $coupon->description = $request->description;
             $coupon->code = $request->code;
             $coupon->price = $request->price;
             $coupon->number_of_video = $request->number_of_video;

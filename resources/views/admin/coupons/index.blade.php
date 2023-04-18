@@ -19,7 +19,6 @@
                                 <tr>
                                     <th>Name</th>
 {{--                                    <th>Code</th>--}}
-                                    <th>Description</th>
                                     <th>Price</th>
                                     <th>Video</th>
                                     <th>Images</th>
@@ -34,13 +33,6 @@
                                     <tr class="gradeX">
                                         <td>{{ $coupon->name??'N/A' }}</td>
 {{--                                        <td>{{ $coupon->code??'N/A' }}</td>--}}
-                                        <td>
-                                            <p data-id="{{ $coupon->description }}" id="read" data-toggle="modal"
-                                               data-target="#exampleModal3">
-                                                {{ (strlen($coupon->description) > 20)?substr($coupon->description, 0, 20)." ... Read More
-                                                ":$coupon->description??'N/A' }}
-                                            </p>
-                                        </td>
                                         <td>{{ $coupon->price??'N/A' }}</td>
                                         <td>{{ $coupon->number_of_video??'N/A' }}</td>
                                         <td>{{ $coupon->number_of_images??'N/A' }}</td>
@@ -55,30 +47,16 @@
                                         <td>{{ date('F d, Y', strtotime($coupon->created_at))??'N/A'}} </td>
                                         <td>
                                             <a href="{{ route('admin.coupons.edit',$coupon->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.coupons.destroy', ['coupon'=>$coupon->id]) }}" method="POST">
+                                            {{--<form action="{{ route('admin.coupons.destroy', ['coupon'=>$coupon->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger"> <i class="fa fa-trash-o"></i></button>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                 @empty
                                 @endforelse
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-{{--                                    <th>Code</th>--}}
-                                    <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Video</th>
-                                    <th>Images</th>
-                                    <th>Documents</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

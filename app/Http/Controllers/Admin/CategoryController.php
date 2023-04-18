@@ -35,7 +35,8 @@ class CategoryController extends Controller
         try {
             $request->validate([
                 "name" => "required",
-                "image" => "required",
+                "type" => "required",
+//                "image" => "required",
             ]);
             $category = new Category();
 
@@ -43,7 +44,7 @@ class CategoryController extends Controller
             if ($request->parent_id) {
                 $parentCat = Category::where("id", $request->parent_id)->first();
             }
-            $imageName = saveFile($request->image, "categories");
+//            $imageName = saveFile($request->image, "categories");
 
             $category->name = $request->name ?? null;
             $category->parent_id = $request->parent_id;
@@ -51,7 +52,7 @@ class CategoryController extends Controller
             $category->type = $parentCat?->type;
             $category->description = $request->description ?? null;
             $category->status = $request->status;
-            $category->image = $imageName;
+//            $category->image = $imageName;
             $category->save();
 
             return redirect()->route('admin.categories.index')->with('success', 'Category has been created successfully');
@@ -92,12 +93,13 @@ class CategoryController extends Controller
             ]);
 
             $category = Category::find($id);
-            if ($request->image) {
+            /*if ($request->image) {
                 deleteAttachment($category->image);
                 $imageName = saveFile($request->image, "categories");
                 $category->image = $imageName;
-            }
+            }*/
 
+            $category->name = $request->name;
             $category->slug = Str::slug($request->name);
             $category->description = $request->description ?? null;
             $category->status = $request->status;

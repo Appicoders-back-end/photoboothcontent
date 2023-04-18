@@ -19,7 +19,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Parent Category</th>
-                                    <th>Image</th>
+                                    {{--<th>Image</th>--}}
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -29,7 +29,7 @@
                                     <tr class="gradeX">
                                         <td>{{ $category->name??'N/A' }}</td>
                                         <td>{{ $category->parent->name??'N/A' }}</td>
-                                        <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td>
+                                        {{-- <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td> --}}
                                         <td>{{ date('F d, Y', strtotime($category->created_at))??'N/A'}} </td>
                                         <td>
                                             <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
@@ -43,15 +43,6 @@
                                 @empty
                                 @endforelse
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Parent Category</th>
-                                    <th>Image</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
