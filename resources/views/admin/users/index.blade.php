@@ -42,6 +42,8 @@
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Contact</th>
+                                    <th>Subscription</th>
+                                    <th>Coupon</th>
                                     <th>Status</th>
 {{--                                    <th>Action</th>--}}
                                 </tr>
@@ -53,6 +55,8 @@
                                         <td>{{$user->last_name??'N/A'}}</td>
                                         <td>{{$user->email??'N/A'}}</td>
                                         <td>{{$user->phone??'N/A'}}</td>
+                                        <td>{{$user->userSubcription->subcription->name??"N/A"}}</td>
+                                        <td>{{$user->coupon->code??'N/A'}}</td>
                                         <td>
                                             <a href="{{ route('admin.users.changeStatus',$user->id) }}">
                                                 <span

@@ -57,6 +57,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(UserSubscription::class, 'user_id', 'id');
     }
 
+    public function coupon()
+    {
+        return $this->belongsTo(UserCoupon::class);
+    }
+
     public function hasMembership()
     {
         if (!auth()->user()) {
