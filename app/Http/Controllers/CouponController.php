@@ -86,6 +86,7 @@ class CouponController extends Controller
             $generatedCode = generateRandomString(6);
             UserCoupon::create([
                 'user_id' => $user->id,
+                'coupon_id' => $coupon->id,
                 'price' => $price,
                 'actual_price' => $coupon->price,
                 'discount' => $discount,

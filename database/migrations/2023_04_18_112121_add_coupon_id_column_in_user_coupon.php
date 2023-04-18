@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('user_coupons', function (Blueprint $table) {
-            $table->unsignedBigInteger('content_id')->nullable()->after('user_id');
+            $table->unsignedBigInteger('coupon_id')->nullable()->after('user_id');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('user_coupons', function (Blueprint $table) {
-            $table->dropColumn('content_id');
+            $table->dropColumn('coupon_id');
         });
     }
 };
