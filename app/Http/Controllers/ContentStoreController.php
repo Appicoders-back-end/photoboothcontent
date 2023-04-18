@@ -58,6 +58,13 @@ class ContentStoreController extends Controller
                 ]);
             }
 
+            if (isset($request->user_id) && $userCoupon->user_id != $request->user_id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Invalid Token"
+                ]);
+            }
+
             $content = Content::find($request->content_id);
             $contentType = $content->type;
 

@@ -50,17 +50,6 @@
                                 @empty
                                 @endforelse
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Interval Time</th>
-                                    <th>Coupon</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

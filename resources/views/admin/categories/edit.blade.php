@@ -73,16 +73,15 @@
                                 </div>--}}
                                 <!--Summernote end-->
 
-                                <div class="col-md-12 mb-3">
+                                {{--<div class="col-md-12 mb-3">
                                     <label for="validationCustom02">Image</label>
-{{--                                    <input type="file" class="dropify"  name="image"  data-default-file="{{ asset('/'.$category->image) }}"/>--}}
                                     @if($category->image)
                                         <input type="file" class="dropify" name="image"
                                                data-default-file="{{ $category->getImage() }}"/>
                                     @else
                                         <input type="file" class="dropify" name="image"/>
                                     @endif
-                                </div>
+                                </div> --}}
                             </div>
                             <button class="btn btn-sm btn-success" type="submit">Update Category</button>
                         </form>

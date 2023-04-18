@@ -41,11 +41,15 @@
                                         <td>{{ ucwords($promo_code->type)??'-' }}</td>
                                         <td>{{ $promo_code->amount??'-' }}</td>
                                         <td>
-                                            @if($promo_code->status == "active")
+                                            <select name="" id="" class="form-control">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </select>
+                                            {{-- @if($promo_code->status == "active")
                                                 <span class="text-success">{{ ucwords($promo_code->status) }}</span>
                                             @else
                                                 <span class="text-danger">{{ ucwords($promo_code->status) }}</span>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         <td>{{ date('F d, Y', strtotime($promo_code->created_at))??'-'}} </td>
                                         <td>
@@ -63,18 +67,6 @@
                                 @empty
                                 @endforelse
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Code</th>
-                                    <th>Image</th>
-                                    <th>Type</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

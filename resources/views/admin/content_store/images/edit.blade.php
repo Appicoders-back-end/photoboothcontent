@@ -79,10 +79,10 @@
                                             type="file" class="dropify" name="thumbnail_image"
                                             data-default-file="{{ $content->getThumbnailImage() }}"
                                             data-max-file-size="10M"
-                                            data-allowed-file-extensions="jpg jpeg png"/>
+                                            data-allowed-file-extensions="jpg jpeg png" data-show-remove="false"/>
                                     @else
                                         <input type="file" class="dropify" name="thumbnail_image" data-max-file-size="10M"
-                                               data-allowed-file-extensions="jpg jpeg png"/>
+                                               data-allowed-file-extensions="jpg jpeg png" data-show-remove="false"/>
                                     @endif
                                 </div>
 
@@ -91,10 +91,10 @@
                                     @if($content->image)
                                         <input type="file" class="dropify" name="attachment"
                                                data-default-file="{{ $content->getImage() }}" data-max-file-size="10M"
-                                               data-allowed-file-extensions="jpg jpeg png"/>
+                                               data-allowed-file-extensions="jpg jpeg png" data-show-remove="false"/>
                                     @else
                                         <input type="file" class="dropify" name="attachment" data-max-file-size="10M"
-                                               data-allowed-file-extensions="jpg jpeg png"/>
+                                               data-allowed-file-extensions="jpg jpeg png" data-show-remove="false"/>
                                     @endif
                                 </div>
                             </div>

@@ -8,15 +8,13 @@
                     <h3>{{ ($content) ? $content->sub_heading ? $content->sub_heading : '' : ''}}</h3>
                     <h2>{{ ($content) ? $content->heading ? $content->heading : '' : ''}}</h2>
                     <p>{{ ($content) ? $content->description ? $content->description : '' : ''}}</p>
-                    @if($content)
-                        @if($content->membership_button_text)
-                            <a class="btn btn-main"
-                               href="{{route('memberships')}}">{{ ($content->membership_button_text) ? $content->membership_button_text : 'Become a member'}}
-                                <span>
+                    @if(isset($content->membership_button_text))
+                        <a class="btn btn-main"
+                           href="{{route('memberships')}}">{{ ($content->membership_button_text) ? $content->membership_button_text : 'Become a member'}}
+                            <span>
                                     <img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow">
                                 </span>
-                            </a>
-                        @endif
+                        </a>
                     @endif
                 </div>
                 <div class="col-lg-6">

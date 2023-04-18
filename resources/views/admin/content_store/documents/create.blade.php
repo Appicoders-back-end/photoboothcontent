@@ -68,13 +68,13 @@
                                 <div class="col-md-6 mb-3">
                                     <label>Thumbnail Image</label>
                                     <input type="file" name="thumbnail_image" class="dropify" data-max-file-size="10M"
-                                           data-allowed-file-extensions="jpg jpeg png">
+                                           data-allowed-file-extensions="jpg jpeg png" data-show-remove="false">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>Upload Document</label>
                                     <input type="file" name="attachment" class="dropify" data-max-file-size="50M"
-                                           data-allowed-file-extensions="pdf csv doc docx xlx xlsx txt html zip">
+                                           data-allowed-file-extensions="pdf csv doc docx xlx xlsx txt html zip" data-show-remove="false">
                                 </div>
                             </div>
                             <button class="btn btn-sm btn-success" type="submit">Save</button>

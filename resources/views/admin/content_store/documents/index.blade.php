@@ -36,7 +36,8 @@
                                                  src="{{ $document->getThumbnailImage() }}"
                                                  alt="{{$document->name}}">
                                         </td>
-                                        <td><a download="{{ $document->getImage() }}" href="{{$document->getImage() }}" title="{{ $document->name }}">Download</a>
+                                        <td><a download="{{ $document->getImage() }}" href="{{$document->getImage() }}"
+                                               title="{{ $document->name }}">Download</a>
                                         </td>
                                         <td>{{$document->category ? $document->category->name : null}}</td>
                                         <td>
@@ -63,17 +64,6 @@
                                 @empty
                                 @endforelse
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Thumbnail</th>
-                                    <th>Image</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
