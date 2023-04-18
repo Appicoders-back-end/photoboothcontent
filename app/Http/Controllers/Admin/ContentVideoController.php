@@ -74,6 +74,18 @@ class ContentVideoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $deleteContent = Content::find($id);
+            if ($deleteContent->downloads->count() == 0) {
+                deleteAttachment($deleteContent->thumbnail_image);
+                deleteAttachment($deleteContent->image);
+            }
+            $res = $deleteContent->delete();
+            if ($res) {
+                return back()->with('success', 'Video has been deleted successfully.');
+            }
+        } catch (\Exception $exception) {
+            return redirect()->route('admin.content_videos.index')->with('error', $exception->getMessage());
+        }
     }
 }
