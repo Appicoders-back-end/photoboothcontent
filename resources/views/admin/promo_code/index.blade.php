@@ -30,16 +30,16 @@
                                 <tbody>
                                 @forelse($promo_codes as $promo_code)
                                     <tr class="gradeX">
-                                        <td>{{ $promo_code->name??'N/A' }}</td>
-                                        <td>{{ $promo_code->code??'N/A' }}</td>
+                                        <td>{{ $promo_code->name??'-' }}</td>
+                                        <td>{{ $promo_code->code??'-' }}</td>
                                         <td>
                                             <img class="img img-fluid"
                                                  width="150"
                                                  src="{{ $promo_code->getImage() }}"
                                                  alt="{{$promo_code->name}}">
                                         </td>
-                                        <td>{{ ucwords($promo_code->type)??'N/A' }}</td>
-                                        <td>{{ $promo_code->amount??'N/A' }}</td>
+                                        <td>{{ ucwords($promo_code->type)??'-' }}</td>
+                                        <td>{{ $promo_code->amount??'-' }}</td>
                                         <td>
                                             @if($promo_code->status == "active")
                                                 <span class="text-success">{{ ucwords($promo_code->status) }}</span>
@@ -47,7 +47,7 @@
                                                 <span class="text-danger">{{ ucwords($promo_code->status) }}</span>
                                             @endif
                                         </td>
-                                        <td>{{ date('F d, Y', strtotime($promo_code->created_at))??'N/A'}} </td>
+                                        <td>{{ date('F d, Y', strtotime($promo_code->created_at))??'-'}} </td>
                                         <td>
                                             <a href="{{ route('admin.promo.edit',$promo_code->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>

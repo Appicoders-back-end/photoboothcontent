@@ -29,7 +29,7 @@
                                 <tbody>
                                 @forelse($images as $document)
                                     <tr class="gradeX">
-                                        <td>{{ $document->name??'N/A' }}</td>
+                                        <td>{{ $document->name??'-' }}</td>
                                         <td>
                                             <img class="img img-fluid"
                                                  width="150"
@@ -46,7 +46,7 @@
                                                 <span class="text-danger">{{ ucwords($document->status) }}</span>
                                             @endif
                                         </td>
-                                        <td>{{ date('F d, Y', strtotime($document->created_at))??'N/A'}} </td>
+                                        <td>{{ date('F d, Y', strtotime($document->created_at))??'-'}} </td>
                                         <td>
                                             <a href="{{ route('admin.content_documents.edit',$document->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>

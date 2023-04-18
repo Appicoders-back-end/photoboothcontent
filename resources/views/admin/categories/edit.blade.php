@@ -41,7 +41,7 @@
                                     <select class="form-control mb-2" name="parent_id">
                                         <option value="" selected disabled>Select Category</option>
                                         @forelse($categories as $cat)
-                                            <option value="{{ $cat->id }}" @if($cat->id == $category->parent_id) selected @endif>{{ $cat->name??'N/A' }}</option>
+                                            <option value="{{ $cat->id }}" @if($cat->id == $category->parent_id) selected @endif>{{ $cat->name??'-' }}</option>
                                         @empty
                                         @endforelse
                                     </select>
