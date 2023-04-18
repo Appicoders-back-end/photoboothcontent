@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -32,12 +33,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            "name" => "required",
+            "type" => "required_if:parent_id,==,null",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->messages())->withInput();
+        }
+
         try {
-            $request->validate([
-                "name" => "required",
-                "type" => "required",
-//                "image" => "required",
-            ]);
             $category = new Category();
 
             $parentCat = null;
@@ -58,7 +63,7 @@ class CategoryController extends Controller
             return redirect()->route('admin.categories.index')->with('success', 'Category has been created successfully');
 
         } catch (\Exception $exception) {
-            return redirect()->back()->with('error', $exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage())->withInput();
         }
     }
 
@@ -67,9 +72,9 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $sub_categories = Category::where('parent_id',$id)->get();
+        $sub_categories = Category::where('parent_id', $id)->get();
         $categories = Category::find($id);
-        return view('admin.categories.sub_categories', compact('sub_categories','categories'));
+        return view('admin.categories.sub_categories', compact('sub_categories', 'categories'));
     }
 
     /**

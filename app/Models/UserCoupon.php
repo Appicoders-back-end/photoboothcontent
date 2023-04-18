@@ -11,6 +11,7 @@ class UserCoupon extends Model
 
     protected $fillable = [
         'user_id',
+        'coupon_id',
         'subscription_id',
         'stripe_charge_id',
         'code',

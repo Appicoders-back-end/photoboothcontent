@@ -51,7 +51,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="validationCustom01">Name</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="category name" value="" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="category name" value="{{old('name')}}" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
