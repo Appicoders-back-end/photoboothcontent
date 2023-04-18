@@ -54,12 +54,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userSubcription()
     {
-        return $this->belongsTo(UserSubscription::class, 'user_id', 'id');
+        return $this->hasMany(UserSubscription::class, 'user_id');
     }
 
     public function coupon()
     {
-        return $this->belongsTo(UserCoupon::class);
+        return $this->hasMany(UserCoupon::class,'user_id');
     }
 
     public function hasMembership()

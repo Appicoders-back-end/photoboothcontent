@@ -51,16 +51,23 @@
                                 <tbody>
                                 @foreach($users as $user)
                                     <tr class="text-center">
-                                        <td>{{$user->first_name??'N/A'}}</td>
-                                        <td>{{$user->last_name??'N/A'}}</td>
-                                        <td>{{$user->email??'N/A'}}</td>
-                                        <td>{{$user->phone??'N/A'}}</td>
-                                        <td>{{$user->userSubcription->subcription->name??"N/A"}}</td>
-                                        <td>{{$user->coupon->code??'N/A'}}</td>
+                                        <td>{{$user->first_name??'-'}}</td>
+                                        <td>{{$user->last_name??'-'}}</td>
+                                        <td>{{$user->email??'-'}}</td>
+                                        <td>{{$user->phone??'-'}}</td>
+                                        <td>
+                                            @forelse($user->userSubcription as $sub)
+                                                <span>{{ $sub->subcription->name." "??'-' }}</span>
+                                            @empty
+                                                -
+                                            @endforelse
+                                        </td>
+{{--                                        <td>{{$user->coupon??'-'}}</td>--}}
+                                        <td>{{ $user->coupon->count() > 0 ? implode(', ', $user->coupon->pluck('code')->toArray()) : 'N/A' }}</td>
                                         <td>
                                             <a href="{{ route('admin.users.changeStatus',$user->id) }}">
                                                 <span
-                                                    class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'N/A'}}
+                                                    class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'-'}}
                                                 </span>
                                             </a>
                                         </td>
