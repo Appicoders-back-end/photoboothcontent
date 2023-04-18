@@ -135,12 +135,24 @@
         $(document).ready(function () {
             // alert('working');
             $('.parent_category_option').on('change', function (e) {
-               /* var optionSelected = $("option:selected", this);
-                var valueSelected = this.value;*/
+
+                // var optionSelected = $("option:selected", this);
+                var valueSelected = this.value;
+                // alert(valueSelected)
+
                 $(".child_category_option").css("display","none");
                 var el = $('.status_option');
                 el.addClass('col-md-12 mb-3');
                 el.removeClass('col-md-6 mb-3');
+
+                if (valueSelected === ''){
+                    // alert('empty selected')
+                    $(".child_category_option").css("display","block");
+                    var el = $('.status_option');
+                    el.removeClass('col-md-12 mb-3');
+                    el.addClass('col-md-6 mb-3');
+                }
+
             });
         });
     </script>
