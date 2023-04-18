@@ -51,23 +51,23 @@
                                 @foreach($categories as $category)
                                     <label class="form-check parent-category">
                                         <input class="form-check-input" type="checkbox" name="categories[]"
-                                               value="{{$category->id}}"
+                                               value="{{$category->id}}" id="parent_{{ $category->id }}"
                                                form="filter-form"
                                         @if(request()->get('categories') != null)
                                             {{ in_array($category->id, request()->get('categories')) ? 'checked' : null }}
                                             @endif
-                                        >
+                                               onchange="parentChanged({{ $category->id }})">
                                         <span class="form-check-label">{{$category->name}}</span>
                                     </label>
                                     @if($category->has('subcategories'))
                                         @foreach($category->subcategories as $subcategory)
                                             <label class="form-check child-category">
-                                                <input class="form-check-input" type="checkbox" name="categories[]"
+                                                <input class="form-check-input child_{{ $category->id }}" type="checkbox" name="categories[]"
                                                        value="{{$subcategory->id}}"
                                                        form="filter-form"
                                                 @if(request()->get('categories') != null)
                                                     {{ in_array($subcategory->id, request()->get('categories')) ? 'checked' : null }}
-                                                    @endif
+                                                    @endif  onchange="childChanged({{ $category->id }})"
                                                 >
                                                 <span class="form-check-label">{{$subcategory->name}}</span>
                                             </label>
@@ -139,6 +139,26 @@
             });
         })
 
+        function parentChanged(parent_id) {
+            // alert('work parent'+parent_id)
+            if ($('#parent_'+parent_id).prop("checked")) {
+                $('.child_'+parent_id).prop("checked", true);
+            }
+            else {
+                $('.child_'+parent_id).prop("checked", false);
+            }
+        }
+        function childChanged(parent_id) {
+            // alert('child work '+parent_id)
+            if ($(".child_" + parent_id +":checked").length > 0)
+            {
+                $('#parent_'+parent_id).prop("checked", true);
+            }
+            else
+            {
+                $('#parent_'+parent_id).prop("checked", false);
+            }
+        }
+
     </script>
-    {{--    here--}}
 @endsection
