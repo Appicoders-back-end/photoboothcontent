@@ -30,10 +30,10 @@
                                 <tbody>
                                 @forelse($subscriptions as $subscription)
                                     <tr class="gradeX">
-                                        <td>{{ $subscription->name ?? 'N/A' }}</td>
-                                        <td>{{ $subscription->price ?? 'N/A' }}</td>
-                                        <td>Per {{ $subscription->interval_time ?? 'N/A' }}</td>
-                                        <td>{{ $subscription->coupon ? $subscription->coupon->name : 'N/A' }}</td>
+                                        <td>{{ $subscription->name ?? '-' }}</td>
+                                        <td>{{ $subscription->price ?? '-' }}</td>
+                                        <td>Per {{ $subscription->interval_time ?? '-' }}</td>
+                                        <td>{{ $subscription->coupon ? $subscription->coupon->name : '-' }}</td>
                                         <td>
                                             @if($subscription->status == \App\Models\Subscription::Active)
                                                 <span class="text-success">{{ ucwords($subscription->status) }}</span>
@@ -41,7 +41,7 @@
                                                 <span class="text-danger">{{ ucwords($subscription->status) }}</span>
                                             @endif
                                         </td>
-                                        <td>{{ formattedDate($subscription->created_at) ?? 'N/A'}} </td>
+                                        <td>{{ formattedDate($subscription->created_at) ?? '-'}} </td>
                                         <td>
                                             <a href="{{ route('admin.subscriptions.edit',$subscription->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>

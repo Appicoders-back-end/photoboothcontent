@@ -27,10 +27,17 @@
                                 <tbody>
                                 @forelse($categories as $category)
                                     <tr class="gradeX">
+<<<<<<< HEAD
+                                        <td>{{ $category->name??'-' }}</td>
+                                        <td><span class="text-success font-weight-bold">{{ $category->subcategories->count() > 0 ? implode(', ', $category->subcategories->pluck('name')->toArray()) : '-' }}</span></td>
+                                        <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td>
+                                        <td>{{ date('F d, Y', strtotime($category->created_at))??'-'}} </td>
+=======
                                         <td>{{ $category->name??'N/A' }}</td>
                                         <td><span class="text-success font-weight-bold">{{ $category->subcategories->count() > 0 ? implode(', ', $category->subcategories->pluck('name')->toArray()) : 'N/A' }}</span></td>
                                         {{-- <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td> --}}
                                         <td>{{ date('F d, Y', strtotime($category->created_at))??'N/A'}} </td>
+>>>>>>> ae9cfe555d15959f5bd84a9a23bf1ce155195ad5
                                         <td>
                                             <a href="{{ route('admin.categories.show',$category->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                             <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>

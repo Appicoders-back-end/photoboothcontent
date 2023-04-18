@@ -63,7 +63,7 @@
                                             @endforelse
                                         </td>
 {{--                                        <td>{{$user->coupon??'-'}}</td>--}}
-                                        <td>{{ $user->coupon->count() > 0 ? implode(', ', $user->coupon->pluck('code')->toArray()) : 'N/A' }}</td>
+                                        <td>{{ $user->coupon->count() > 0 ? implode(', ', $user->coupon->pluck('code')->toArray()) : '-' }}</td>
                                         <td>
                                             <a href="{{ route('admin.users.changeStatus',$user->id) }}">
                                                 <span
