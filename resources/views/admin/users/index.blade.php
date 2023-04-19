@@ -8,30 +8,7 @@
                     <header class="card-header">
                         Users
                         <br>
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Success!</strong>
-                                <?= htmlentities(Session::get('success'))?>
-                            </div>
-                        @endif
-                        @if(Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Error!</strong>
-                                <?= htmlentities(Session::get('error'))?>
-                            </div>
-                        @endif
-
-                        @if($errors->any())
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <p><strong>Whoops!</strong> Please correct errors and try again!</p>
-                                @foreach ($errors->all() as $error)
-                                    <div>{{ $error }}</div>
-                                @endforeach
-                            </div>
-                        @endif
+                        @include('layouts.messages')
                     </header>
                     <div class="card-body">
                         <div class="adv-table">
@@ -45,7 +22,7 @@
                                     <th>Subscription</th>
                                     <th>Coupon</th>
                                     <th>Status</th>
-{{--                                    <th>Action</th>--}}
+                                    {{--                                    <th>Action</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,48 +34,55 @@
                                         <td>{{$user->phone??'-'}}</td>
                                         <td>
                                             @forelse($user->userSubcription as $sub)
-                                                <span>{{ $sub->subcription->name." "??'-' }}</span>
+                                                <span>{{ $sub->subscription->name." "??'-' }}</span>
                                             @empty
                                                 -
                                             @endforelse
                                         </td>
-{{--                                        <td>{{$user->coupon??'-'}}</td>--}}
+                                        {{--                                        <td>{{$user->coupon??'-'}}</td>--}}
                                         <td>
                                             @forelse($user->userCoupon as $coupons)
-                                                <span style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupons->coupon->name??'' }}</span>
-                                                <span >,</span>
+                                                <span
+                                                    style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupons->coupon->name??'' }}</span>
+                                                <span>,</span>
                                             @empty
                                                 -
                                             @endforelse
-{{--                                            {{ $user->userCoupon->count() > 0 ? implode(', ', $user->userCoupon->coupon->pluck('name')->toArray()) : '-' }}--}}
+                                            {{--                                            {{ $user->userCoupon->count() > 0 ? implode(', ', $user->userCoupon->coupon->pluck('name')->toArray()) : '-' }}--}}
                                         </td>
                                         <td>
-                                           {{-- <a href="{{ route('admin.users.changeStatus',$user->id) }}">
-                                                <span
-                                                    class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'-'}}
-                                                </span>
-                                            </a>--}}
+                                            {{-- <a href="{{ route('admin.users.changeStatus',$user->id) }}">
+                                                 <span
+                                                     class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'-'}}
+                                                 </span>
+                                             </a>--}}
                                             <div class="col-md-3 mb-3">
-{{--                                                <label for="validationCustom02">status</label>--}}
-                                                <form action="{{ route('admin.users.changeStatus',$user->id) }}" method="GET">
+                                                {{--                                                <label for="validationCustom02">status</label>--}}
+                                                <form action="{{ route('admin.users.changeStatus',$user->id) }}"
+                                                      method="GET">
                                                     <select class="form-control mb-2" id="status" name="status">
                                                         <option value="" disabled selected>Select Status</option>
-                                                        <option value="inactive" @if($user->status == "inactive") selected @endif>InActive</option>
-                                                        <option value="active" @if($user->status == "active") selected @endif>Active</option>
+                                                        <option value="inactive"
+                                                                @if($user->status == "inactive") selected @endif>
+                                                            InActive
+                                                        </option>
+                                                        <option value="active"
+                                                                @if($user->status == "active") selected @endif>Active
+                                                        </option>
                                                     </select>
                                                 </form>
                                             </div>
                                         </td>
-                                       {{-- <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a class="btn btn-primary mr-2"
-                                                   href="#"><i
-                                                        class="fa fa-eye"></i></a>
-                                                <a class="btn btn-success mr-2"
-                                                   href="#"><i
-                                                        class="fa fa-pencil-square-o"></i></a>
-                                            </div>
-                                        </td>--}}
+                                        {{-- <td>
+                                             <div class="btn-group" role="group" aria-label="Basic example">
+                                                 <a class="btn btn-primary mr-2"
+                                                    href="#"><i
+                                                         class="fa fa-eye"></i></a>
+                                                 <a class="btn btn-success mr-2"
+                                                    href="#"><i
+                                                         class="fa fa-pencil-square-o"></i></a>
+                                             </div>
+                                         </td>--}}
                                     </tr>
                                 @endforeach
                             </table>
@@ -112,8 +96,8 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {
-            $(document).on('change','#status',function() {
+        $(document).ready(function () {
+            $(document).on('change', '#status', function () {
                 this.form.submit();
             });
         });
