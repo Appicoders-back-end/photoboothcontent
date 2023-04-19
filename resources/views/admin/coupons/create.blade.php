@@ -70,8 +70,8 @@
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">Status</label>
                                     <select class="form-control mb-2" name="status">
-                                        <option value="active" selected>Active</option>
-                                        <option value="inactive">InActive</option>
+                                        <option value="active" {{old('status') == "active" ? "selected" : null}}>Active</option>
+                                        <option value="inactive" {{old('status') == "inactive" ? "selected" : null}}>InActive</option>
                                     </select>
                                 </div>
                             </div>
