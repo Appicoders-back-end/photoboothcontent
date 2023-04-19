@@ -111,7 +111,7 @@
 
                 setTimeout(function () {
                     $("#couponModal").modal('hide')
-                }, 4000);
+                }, 5000);
             } else {
                 $('#couponSuccessMessage').addClass('d-none');
                 $('#couponFailedMessage').removeClass('d-none').text(e.message);
