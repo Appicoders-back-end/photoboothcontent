@@ -17,4 +17,6 @@ class Coupon extends Model
     {
         return $query->where('status', Self::ACTIVE);
     }
+
+
 }

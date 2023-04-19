@@ -63,13 +63,31 @@
                                             @endforelse
                                         </td>
 {{--                                        <td>{{$user->coupon??'-'}}</td>--}}
-                                        <td>{{ $user->coupon->count() > 0 ? implode(', ', $user->coupon->pluck('code')->toArray()) : '-' }}</td>
                                         <td>
-                                            <a href="{{ route('admin.users.changeStatus',$user->id) }}">
+                                            @forelse($user->userCoupon as $coupons)
+                                                <span style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupons->coupon->name??'' }}</span>
+                                                <span >,</span>
+                                            @empty
+                                                -
+                                            @endforelse
+{{--                                            {{ $user->userCoupon->count() > 0 ? implode(', ', $user->userCoupon->coupon->pluck('name')->toArray()) : '-' }}--}}
+                                        </td>
+                                        <td>
+                                           {{-- <a href="{{ route('admin.users.changeStatus',$user->id) }}">
                                                 <span
                                                     class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'-'}}
                                                 </span>
-                                            </a>
+                                            </a>--}}
+                                            <div class="col-md-3 mb-3">
+{{--                                                <label for="validationCustom02">status</label>--}}
+                                                <form action="{{ route('admin.users.changeStatus',$user->id) }}" method="GET">
+                                                    <select class="form-control mb-2" id="status" name="status">
+                                                        <option value="" disabled selected>Select Status</option>
+                                                        <option value="inactive" @if($user->status == "inactive") selected @endif>InActive</option>
+                                                        <option value="active" @if($user->status == "active") selected @endif>Active</option>
+                                                    </select>
+                                                </form>
+                                            </div>
                                         </td>
                                        {{-- <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -91,4 +109,13 @@
         </div>
         <!-- page end-->
     </section>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $(document).on('change','#status',function() {
+                this.form.submit();
+            });
+        });
+    </script>
 @endsection
