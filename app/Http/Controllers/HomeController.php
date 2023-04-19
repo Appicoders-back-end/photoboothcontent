@@ -11,6 +11,7 @@ use App\Models\Page;
 use App\Models\PaymentMethod;
 use App\Models\PromoCode;
 use App\Models\User;
+use App\Models\UserSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -20,8 +21,9 @@ class HomeController extends Controller
     public function dashboard()
     {
         $paymentMethods = PaymentMethod::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
+        $userSubcription = UserSubscription::where('user_id', auth()->user()->id)->where('is_expired',0)->orderBy('id', 'DESC')->first();
         $user = User::find(auth()->user()->id);
-        return view('dashboard', compact('user', 'paymentMethods'));
+        return view('dashboard', compact('user', 'paymentMethods','userSubcription'));
     }
 
     public function editProfile()
