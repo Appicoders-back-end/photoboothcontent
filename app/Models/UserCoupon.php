@@ -33,6 +33,11 @@ class UserCoupon extends Model
         return $this->belongsTo(Subscription::class);
     }
 
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
+    }
+
     public function checkVideosDownloadLimit()
     {
         return $this->total_videos - $this->downloaded_videos;
