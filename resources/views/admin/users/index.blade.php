@@ -40,7 +40,7 @@
                                         </td>
                                         <td>
                                             @forelse($user->userCoupon as $coupons)
-                                                @if($coupons->coupon->name)
+                                                @if($coupons->coupon != null ? $coupons->coupon->name)
                                                     <span style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupons->coupon->name??'' }}</span>
                                                     <span >,</span>
                                                 @endif
