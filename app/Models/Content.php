@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Content extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public const IMAGE = 'image';
     public const VIDEO = 'video';
@@ -43,6 +44,11 @@ class Content extends Model
         }
 
         return url('/') . '/' . $this['thumbnail_image'];
+    }
+
+    public function downloads()
+    {
+        return $this->hasMany(UserDownload::class);
     }
 
     public function isAlreadyDownloaded()
