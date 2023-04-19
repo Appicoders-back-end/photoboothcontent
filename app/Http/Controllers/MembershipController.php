@@ -78,7 +78,7 @@ class MembershipController extends Controller
                 'price' => $subscription->price,
                 'payment_method_id' => $paymentMethod->id,
                 'stripe_charge_id' => $buySubscription->id,
-                'end_date' => $this->getPlanExpiryDate($subscription),
+                'end_date' => getPlanExpiryDate($subscription),
             ]);
 
             $generatedCode = generateRandomString(6);
@@ -97,25 +97,5 @@ class MembershipController extends Controller
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
-    }
-
-    public function getPlanExpiryDate($plan)
-    {
-        $intervalTime = $plan->interval_time;
-        $expiryDate = null;
-
-        if ($intervalTime == Subscription::DURATION_WEEK) {
-            $expiryDate = Carbon::now()->addWeek()->subDays(1)->toDateString();
-        }
-
-        if ($intervalTime == Subscription::DURATION_MONTH) {
-            $expiryDate = Carbon::now()->addMonth()->subDays(1)->toDateString();
-        }
-
-        if ($intervalTime == Subscription::DURATION_YEAR) {
-            $expiryDate = Carbon::now()->addYear()->subDays(1)->toDateString();
-        }
-
-        return $expiryDate;
     }
 }
