@@ -56,7 +56,7 @@
                                         <td>{{$user->phone??'-'}}</td>
                                         <td>
                                             @forelse($user->userSubcription as $sub)
-                                                <span>{{ $sub->subcription->name." "??'-' }}</span>
+                                                <span>{{ $sub->subcription->name??'-' }}</span>
                                             @empty
                                                 -
                                             @endforelse
