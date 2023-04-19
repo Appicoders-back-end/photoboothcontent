@@ -49,34 +49,6 @@ class VerificationController extends Controller
 
     public function verified()
     {
-        try {
-            $user = auth()->user();
-            $customerId = $user->stripe_customer_id;
-            $subscription = Subscription::find(1);
-            $coupon = $subscription->coupon;
-
-            UserSubscription::create([
-                'user_id' => $user->id,
-                'subscription_id' => $subscription->id,
-                'price' => $subscription->price,
-                'end_date' => getPlanExpiryDate($subscription),
-            ]);
-
-            $generatedCode = generateRandomString(6);
-            UserCoupon::create([
-                'user_id' => $user->id,
-                'subscription_id' => $subscription->id,
-                'code' => $generatedCode,
-                'total_videos' => $coupon->number_of_video,
-                'total_images' => $coupon->number_of_images,
-                'total_documents' => $coupon->number_of_documents,
-            ]);
-
-            Mail::to($user->email)->send(new SendCouponCode($user, $generatedCode, 'Welcome To '. config('app.name', 'Photobooth Content')));
-
-            return redirect()->route('thankyou')->with('success', 'Your account has been verified successfully');
-        } catch (\Exception $exception) {
-            throw new \ErrorException($exception->getMessage());
-        }
+        return redirect()->route('thankyou')->with('success', 'Your account has been verified successfully');
     }
 }
