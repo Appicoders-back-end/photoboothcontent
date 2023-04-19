@@ -8,11 +8,10 @@
                     <div class="card-body">
                         <h5 class="card-title">User Profile</h5>
                         <hr>
-                        <p class="card-text"><strong>Name:</strong>{{ $user->name??'' }}</p>
-                        <p class="card-text"><strong>Email:</strong>{{ $user->email??'' }}</p>
-                        <p class="card-text"><strong>Phone:</strong> {{ $user->contact_no??'' }}</p>
-                        {{--                        <p class="card-text"><strong>Address:</strong>{{ $user->address??' N/A' }} </p>--}}
-                        <p class="card-text"><strong>Membership:</strong> {{ '-' }} </p>
+                        <p class="card-text"><strong>Name:</strong>{{ $user->name??'-' }}</p>
+                        <p class="card-text"><strong>Email:</strong>{{ $user->email??'-' }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ $user->contact_no??'-' }}</p>
+                        <p class="card-text"><strong>Membership:</strong> {{ $userSubcription->subscription->name??'-' }} </p>
                         <p class="card-text"><strong>Membership
                                 Due:</strong> {{ $user->userSubcription->count() > 0 ? $user->userSubcription()->first()->end_date : '-'}}
                         </p>
