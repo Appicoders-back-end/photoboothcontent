@@ -45,7 +45,6 @@
                                     <th>Subscription</th>
                                     <th>Coupon</th>
                                     <th>Status</th>
-{{--                                    <th>Action</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,7 +61,6 @@
                                                 -
                                             @endforelse
                                         </td>
-{{--                                        <td>{{$user->coupon??'-'}}</td>--}}
                                         <td>
                                             @forelse($user->userCoupon as $coupons)
                                                 <span style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupons->coupon->name??'' }}</span>
@@ -70,16 +68,10 @@
                                             @empty
                                                 -
                                             @endforelse
-{{--                                            {{ $user->userCoupon->count() > 0 ? implode(', ', $user->userCoupon->coupon->pluck('name')->toArray()) : '-' }}--}}
                                         </td>
                                         <td>
-                                           {{-- <a href="{{ route('admin.users.changeStatus',$user->id) }}">
-                                                <span
-                                                    class="text-{{ ($user->status == 'active' ?'success':'danger') }}">{{ucwords($user->status)??'-'}}
-                                                </span>
-                                            </a>--}}
+
                                             <div class="col-md-3 mb-3">
-{{--                                                <label for="validationCustom02">status</label>--}}
                                                 <form action="{{ route('admin.users.changeStatus',$user->id) }}" method="GET">
                                                     <select class="form-control mb-2" id="status" name="status">
                                                         <option value="" disabled selected>Select Status</option>
@@ -89,16 +81,7 @@
                                                 </form>
                                             </div>
                                         </td>
-                                       {{-- <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a class="btn btn-primary mr-2"
-                                                   href="#"><i
-                                                        class="fa fa-eye"></i></a>
-                                                <a class="btn btn-success mr-2"
-                                                   href="#"><i
-                                                        class="fa fa-pencil-square-o"></i></a>
-                                            </div>
-                                        </td>--}}
+
                                     </tr>
                                 @endforeach
                             </table>
