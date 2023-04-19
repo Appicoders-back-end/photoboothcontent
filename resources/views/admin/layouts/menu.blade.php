@@ -49,11 +49,14 @@
                     <span>Content Store</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="{{route('admin.content_images.index')}}">Images</a></li>
-                    <li><a href="{{route('admin.content_documents.index')}}">Documents</a></li>
-                    <li><a href="{{route('admin.content_videos.index')}}">Videos</a></li>
+                    <li class="{{ route('admin.content_images.index') == url()->current() ? 'active' : '' }}"><a href="{{route('admin.content_images.index')}}"     >Images</a></li>
+                    <li class="{{ route('admin.content_documents.index') == url()->current() ? 'active' : '' }}"><a href="{{route('admin.content_documents.index')}}"  >Documents</a></li>
+                    <li class="{{ route('admin.content_videos.index') == url()->current() ? 'active' : '' }}"><a href="{{route('admin.content_videos.index')}}"     >Videos</a></li>
                 </ul>
             </li>
+
+            </li>
+
             <li>
                 <a href="{{route('admin.promo.index')}}"
                    class="{{ route('admin.promo.index') == url()->current() ?'active':'' }}">
