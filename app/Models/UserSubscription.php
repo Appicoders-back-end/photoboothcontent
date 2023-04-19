@@ -20,7 +20,8 @@ class UserSubscription extends Model
         'stripe_charge_id',
     ];
 
-    public function subcription(){
-        return $this->belongsTo(Subscription::class,'subscription_id','id');
+    public function subscription()
+    {
+        return $this->belongsTo(Subscription::class, 'subscription_id', 'id');
     }
 }

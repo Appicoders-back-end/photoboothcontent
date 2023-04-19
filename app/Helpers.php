@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Subscription;
+use Carbon\Carbon;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
@@ -134,6 +136,29 @@ if (!function_exists('get_logo')) {
 
     function get_logo()
     {
-        return get_option('logo') != null ? url('/') . '/' . get_option('logo') : asset('frontend').'/assets/img/logo.png';
+        return get_option('logo') != null ? url('/') . '/' . get_option('logo') : asset('frontend') . '/assets/img/logo.png';
     }
 }
+
+if (!function_exists('getPlanExpiryDate')) {
+    function getPlanExpiryDate($plan)
+    {
+        $intervalTime = $plan->interval_time;
+        $expiryDate = null;
+
+        if ($intervalTime == Subscription::DURATION_WEEK) {
+            $expiryDate = Carbon::now()->addWeek()->subDays(1)->toDateString();
+        }
+
+        if ($intervalTime == Subscription::DURATION_MONTH) {
+            $expiryDate = Carbon::now()->addMonth()->subDays(1)->toDateString();
+        }
+
+        if ($intervalTime == Subscription::DURATION_YEAR) {
+            $expiryDate = Carbon::now()->addYear()->subDays(1)->toDateString();
+        }
+
+        return $expiryDate;
+    }
+}
+

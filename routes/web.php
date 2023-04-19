@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ContentStoreController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\VerificationController;
 
 
 Auth::routes(['verify' => true]);
@@ -53,4 +54,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     /*buy coupon*/
     Route::get('buyCoupon/{coupon}', [CouponController::class, 'couponCheckout'])->name('couponCheckout');
     Route::post('buyCoupon', [CouponController::class, 'buyCoupon'])->name('buyCoupon');
+
+    /* account verified*/
+    Route::get('verified', [VerificationController::class, 'verified'])->name('verified');
 });
