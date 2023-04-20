@@ -112,4 +112,17 @@ class PromoCodeController extends Controller
             return redirect()->route('admin.promo.index')->with('error', $exception->getMessage());
         }
     }
+
+    public function changeStatus(Request $request , $id){
+        try {
+            $promo_code = PromoCode::find($id);
+
+            $promo_code->status = ($request->status == 'inactive')?PromoCode::INACTIVE:PromoCode::ACTIVE;
+            $promo_code->save();
+            return redirect()->route('admin.promo.index')->with('success', 'Status has been updated successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
 }
