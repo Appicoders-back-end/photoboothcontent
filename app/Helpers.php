@@ -140,6 +140,14 @@ if (!function_exists('get_logo')) {
     }
 }
 
+if (!function_exists('get_setting_contact')) {
+
+    function get_setting_contact()
+    {
+        return get_option('contact') != null ? "+1 (" . substr(get_option('contact'), 0, 3) . ") " . substr(get_option('contact'), 3, 3) . "-" . substr(get_option('contact'), 6) : '-';
+    }
+}
+
 if (!function_exists('getPlanExpiryDate')) {
     function getPlanExpiryDate($plan)
     {

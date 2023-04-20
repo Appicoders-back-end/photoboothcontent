@@ -9,7 +9,7 @@
                         <h2>{{$content->header_section_heading}}</h2>
                     @endif
                     @if(isset($content->header_section_description))
-                        <p>{{$content->header_section_description}}</p>
+                        <p>{!! $content->header_section_description !!}</p>
                     @endif
                     <a class="btn btn-main"
                        href="{{route('memberships')}}"> {{isset($content->header_section_button_text) ? $content->header_section_button_text : 'Become a member'}}
@@ -52,7 +52,7 @@
                     @if(isset($content->about_section_sub_heading))
                         <h2>{{$content->about_section_sub_heading}}</h2>
                     @endif
-                    <p> {{ ($content) ? $content->about_section_description : '' }} </p>
+                    <p> {!! ($content) ? $content->about_section_description : '' !!}</p>
                     <a class="btn btn-main"
                        href="{{route('about-us')}}">{{isset($content->about_section_button_text) ? $content->about_section_button_text : "Read More"}}
                         <span><img
@@ -160,7 +160,7 @@
                 </div>
                 <div class="col-lg-6">
                     @if(isset($content->services_section_description))
-                        <p>{{$content->services_section_description}}</p>
+                        <p>{!! $content->services_section_description !!}</p>
                     @endif
                 </div>
             </div>
@@ -174,7 +174,7 @@
                             <h4>{{$content->bullet_one_section_heading}}</h4>
                         @endif
                         @if(isset($content->bullet_one_description))
-                            <p>{{$content->bullet_one_description}}</p>
+                            <p>{!! $content->bullet_one_description !!}</p>
                         @endif
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                             <h4>{{$content->bullet_two_section_heading}}</h4>
                         @endif
                         @if(isset($content->bullet_two_description))
-                            <p>{{$content->bullet_two_description}}</p>
+                            <p>{!! $content->bullet_two_description !!}</p>
                         @endif
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                             <h4>{{$content->bullet_three_section_heading}}</h4>
                         @endif
                         @if(isset($content->bullet_three_description))
-                            <p>{{$content->bullet_three_description}}</p>
+                            <p>{!! $content->bullet_three_description !!}</p>
                         @endif
                     </div>
                 </div>

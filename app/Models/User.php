@@ -82,6 +82,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if (!$this->contact_no) {
             return null;
         }
+
         return "+1 (" . substr($this->contact_no, 0, 3) . ") " . substr($this->contact_no, 3, 3) . "-" . substr($this->contact_no, 6);
     }
 }
