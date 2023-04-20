@@ -7,10 +7,10 @@
                 <div class="col-lg-6">
                     <h3>{{ ($content) ? $content->sub_heading ? $content->sub_heading : '' : ''}}</h3>
                     <h2>{{ ($content) ? $content->heading ? $content->heading : '' : ''}}</h2>
-                    <p>{{ ($content) ? $content->description ? $content->description : '' : ''}}</p>
+                    <p>{!! ($content) ? $content->description ? $content->description : '' : '' !!}</p>
                     @if(isset($content->coupon_button_text))
                         <a class="btn btn-main"
-                           href="membership.php">{{ ($content->coupon_button_text) ? $content->coupon_button_text : 'Become a member'}}
+                           href="{{route('memberships')}}">{{ ($content->coupon_button_text) ? $content->coupon_button_text : 'Become a member'}}
                             <span><img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span>
                         </a>
                     @endif
