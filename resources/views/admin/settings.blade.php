@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('style')
     <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">
+    <link href="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.css" rel="stylesheet">
 @endsection
 @section('content')
     <section class="wrapper">
@@ -35,7 +36,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="description">Footer Description</label>
-                                    <textarea id="description" class="form-control" name="footer_description" rows="6">{{ $footer_description??'' }}</textarea>
+                                    <textarea id="description" class="form-control summernote" name="footer_description" rows="6">{{ $footer_description??'' }}</textarea>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="logo">Logo</label>
@@ -59,10 +60,21 @@
     </section>
 @endsection
 @section('script')
+    <script src="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.min.js"></script>
     <script src="{{asset('admin_assets')}}/js/dropify.js"></script>
     <script>
         $(document).ready(function () {
             $('.dropify').dropify();
         });
+
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 200,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                 // set focus to editable area after initializing summernote
+            });
+        });
+
     </script>
 @endsection
