@@ -80,6 +80,7 @@ class RegisterController extends Controller
                 'contact_no' => $data['contact_number'],
                 'role' => User::ROLE_CUSTOMER,
                 'password' => Hash::make($data['password']),
+                'status' => User::ACTIVE,
             ]);
 
             $user->update([
