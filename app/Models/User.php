@@ -59,7 +59,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userCoupon()
     {
-        return $this->hasMany(UserCoupon::class,'user_id');
+        return $this->hasMany(UserCoupon::class, 'user_id');
     }
 
     public function hasMembership()
@@ -75,5 +75,13 @@ class User extends Authenticatable implements MustVerifyEmail
         } else {
             return false;
         }
+    }
+
+    public function contactNo()
+    {
+        if (!$this->contact_no) {
+            return null;
+        }
+        return "+1 (" . substr($this->contact_no, 0, 3) . ") " . substr($this->contact_no, 3, 3) . "-" . substr($this->contact_no, 6);
     }
 }

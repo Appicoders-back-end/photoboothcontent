@@ -58,6 +58,7 @@ header nav .active {
     min-height: 100vh;
     margin-top: -125px;
     position: relative;
+    margin-bottom: 100px;
 }
 
 .hero-section .pink-circle {

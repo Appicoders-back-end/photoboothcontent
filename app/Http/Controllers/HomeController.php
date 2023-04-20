@@ -38,7 +38,7 @@ class HomeController extends Controller
             $validator = Validator::make($request->all(), [
                 'first_name' => 'required',
                 'last_name' => 'required',
-                'contact_no' => 'required',
+                'contact_no' => 'required|numeric|digits:10',
             ]);
 
             if ($validator->fails()) {

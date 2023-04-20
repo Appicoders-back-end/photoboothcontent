@@ -1,24 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{--<div class="container">
-        <div class="row mt-5">
-            <div class="col-lg-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">User Profile</h5>
-                        <hr>
-                        <p class="card-text"><strong>Name:</strong> John Doe</p>
-                        <p class="card-text"><strong>Email:</strong> johndoe@gmail.com</p>
-                        <p class="card-text"><strong>Phone:</strong> +1 (123) 456-7890</p>
-                        <p class="card-text"><strong>Address:</strong> 123 Main St, Anytown, USA</p>
-                        <p class="card-text"><strong>Membership:</strong> Premium</p>
-                        <p class="card-text"><strong>Membership Due:</strong> 10/4/2023</p>
-                        <a href="#" class="btn btn-main">Edit Profile</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--}}
     <div class="container dashboard-container">
         <div class="row mt-5">
             <div class="col-lg-12 mb-4">
@@ -43,8 +24,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="contact_no" class="form-label">Contact Number</label>
-                                <input id="contact_no" type="number" class="form-control" placeholder="Phone Number"
-                                       name="contact_no" value="{{ old('contact_no', $user->contact_no) }}">
+                                <input id="contact_no" type="text" class="form-control" placeholder="Phone Number"
+                                       name="contact_no" value="{{ old('contact_no', $user->contact_no) }}" minlength="10" maxlength="10">
                             </div>
                             <button type="submit" class="btn btn-main" type="submit">Update Profile</button>
                         </form>
