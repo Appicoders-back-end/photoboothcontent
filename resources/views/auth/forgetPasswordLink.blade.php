@@ -9,22 +9,17 @@
                         <a href="index.php"><img src="{{asset('frontend/')}}/assets/img/logo.png"
                                                  class="d-block mx-auto mb-3" alt=""></a>
                         <h2>Reset Password</h2>
-                        @if (Session::has('message'))
-                          <div class="alert alert-success" role="alert">
-                              {{ Session::get('message') }}
-                          </div>
-                        @endif
                         @include('layouts.messages')
                         <form method="POST" action="{{ route('reset.password.post') }}" class="mt-4">
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
-                            <input type="email" name="email" class="form-control rounded-0 my-3" placeholder="Email"
+                            {{--<input type="email" name="email" class="form-control rounded-0 my-3" placeholder="Email"
                                    value="{{ old('email') }}" required>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                            @enderror
+                            @enderror --}}
                             <input type="password" name="password" class="form-control rounded-0 my-3"
                                    placeholder="Password">
                             @error('password')
@@ -33,7 +28,7 @@
                                     </span>
                             @enderror
                             <input type="password" name="password_confirmation" class="form-control rounded-0 my-3"
-                                   placeholder="Password">
+                                   placeholder="Confirm Password">
                             @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
