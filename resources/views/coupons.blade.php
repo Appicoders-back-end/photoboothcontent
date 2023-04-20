@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row hero-content">
                 <div class="col-lg-6">
-                    <h3>{{ ($content) ? $content->sub_heading ? $content->sub_heading : '' : ''}}</h3>
-                    <h2>{{ ($content) ? $content->heading ? $content->heading : '' : ''}}</h2>
+                    <h3>{{ ($content) ? $content->heading ? $content->heading : '' : ''}}</h3>
+                    <h2>{{ ($content) ? $content->sub_heading ? $content->sub_heading : '' : ''}}</h2>
                     <p>{!! ($content) ? $content->description ? $content->description : '' : '' !!}</p>
                     @if(isset($content->coupon_button_text))
                         <a class="btn btn-main"

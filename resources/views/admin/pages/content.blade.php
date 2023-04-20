@@ -50,16 +50,16 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="sub_heading">Sub Heading</label>
-                                    <input type="text" class="form-control" id="sub_heading"
-                                           name="sub_heading"
-                                           placeholder="Enter Sub Heading" value="{{old('sub_heading', $content->sub_heading ?? null)}}">
-                                </div>
-                                <div class="col-md-12 mb-3">
                                     <label for="heading">Heading</label>
                                     <input type="text" class="form-control" id="heading"
                                            name="heading"
                                            placeholder="Enter Heading" value="{{old('heading', $content->heading ?? null)}}">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="sub_heading">Sub Heading</label>
+                                    <input type="text" class="form-control" id="sub_heading"
+                                           name="sub_heading"
+                                           placeholder="Enter Sub Heading" value="{{old('sub_heading', $content->sub_heading ?? null)}}">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="description">Description</label>

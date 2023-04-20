@@ -55,16 +55,18 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="sub_heading">Sub Heading</label>
-                                    <input type="text" class="form-control" id="sub_heading"
-                                           name="sub_heading"
-                                           placeholder="Enter Sub Heading" value="{{old('sub_heading', $content->sub_heading ?? null)}}">
-                                </div>
-                                <div class="col-md-12 mb-3">
                                     <label for="heading">Heading</label>
                                     <input type="text" class="form-control" id="heading"
                                            name="heading"
-                                           placeholder="Enter Heading" value="{{old('heading', $content->heading ?? null)}}">
+                                           placeholder="Enter Heading"
+                                           value="{{old('heading', $content->heading ?? null)}}">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="sub_heading">Sub Heading</label>
+                                    <input type="text" class="form-control" id="sub_heading"
+                                           name="sub_heading"
+                                           placeholder="Enter Sub Heading"
+                                           value="{{old('sub_heading', $content->sub_heading ?? null)}}">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="description">Description</label>
@@ -81,7 +83,7 @@
                                            data-show-remove="false"
                                            @if(isset($content->aboutImg))
                                                data-default-file="{{ url('/') . '/' . $content->aboutImg }}"
-                                           @endif
+                                        @endif
                                     />
                                 </div>
 
@@ -111,7 +113,8 @@
                                     <label for="service_heading">Heading</label>
                                     <input type="text" class="form-control" id="service_heading"
                                            name="service_heading"
-                                           placeholder="Enter Heading" value="{{old('service_heading', $content->service_heading ?? null)}}">
+                                           placeholder="Enter Heading"
+                                           value="{{old('service_heading', $content->service_heading ?? null)}}">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="service_description">Description</label>
@@ -128,13 +131,136 @@
                                            data-show-remove="false"
                                            @if(isset($content->aboutServImg))
                                                data-default-file="{{ url('/') . '/' . $content->aboutServImg }}"
-                                           @endif
+                                        @endif
                                     />
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
+
+                <!-- Services section start-->
+                <div class="col-lg-12">
+                    <section class="card">
+                        <header class="card-header">
+                            Service Bullet 1
+                            <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                      </span>
+                        </header>
+
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label>Image</label>
+                                    <input type="file" class="dropify" name="bulletOneServicesSectionImage"
+                                           data-max-file-size="10M"
+                                           data-allowed-file-extensions="jpg jpeg png"
+                                           data-show-remove="false"
+                                           @if(isset($content->bulletOneImg))
+                                               data-default-file="{{ url('/') . '/' . $content->bulletOneImg }}"
+                                        @endif
+                                    />
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="servicesSectionHeading">Heading</label>
+                                    <input type="text" class="form-control" id="servicesSectionHeading"
+                                           name="bullet_one_section_heading"
+                                           placeholder="Enter Heading"
+                                           value="{{old('bullet_one_section_heading', $content->bullet_one_section_heading ?? null)}}">
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label for="bullet_one_description">Description</label>
+                                    <textarea class="form-control summernote" name="bullet_one_description"
+                                              id="bullet_one_description" cols="30" rows="10">{!! old('bullet_one_description', $content->bullet_one_description ?? null) !!}
+                              </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-12">
+                    <section class="card">
+                        <header class="card-header">
+                            Service Bullet 2
+                            <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                      </span>
+                        </header>
+
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label>Image</label>
+                                    <input type="file" class="dropify" name="bulletTwoServicesSectionImage"
+                                           data-max-file-size="10M"
+                                           data-allowed-file-extensions="jpg jpeg png"
+                                           data-show-remove="false"
+                                           @if(isset($content->bulletTwoImg))
+                                               data-default-file="{{ url('/') . '/' . $content->bulletTwoImg }}"
+                                        @endif
+                                    />
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="servicesSectionHeading">Heading</label>
+                                    <input type="text" class="form-control" id="servicesSectionHeading"
+                                           name="bullet_two_section_heading"
+                                           placeholder="Enter Heading"
+                                           value="{{old('bullet_two_section_heading', $content->bullet_two_section_heading ?? null)}}">
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label for="bullet_two_description">Description</label>
+                                    <textarea class="form-control summernote" name="bullet_two_description"
+                                              id="bullet_two_description" cols="30" rows="10">{!! old('bullet_two_description', $content->bullet_two_description ?? null) !!}
+                              </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-12">
+                    <section class="card">
+                        <header class="card-header">
+                            Service Bullet 3
+                            <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                      </span>
+                        </header>
+
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label>Image</label>
+                                    <input type="file" class="dropify" name="bulletThreeServicesSectionImage"
+                                           data-max-file-size="10M"
+                                           data-allowed-file-extensions="jpg jpeg png"
+                                           data-show-remove="false"
+                                           @if(isset($content->bulletThreeImg))
+                                               data-default-file="{{ url('/') . '/' . $content->bulletThreeImg }}"
+                                        @endif
+                                    />
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="servicesSectionHeading">Heading</label>
+                                    <input type="text" class="form-control" id="servicesSectionHeading"
+                                           name="bullet_three_section_heading"
+                                           placeholder="Enter Heading"
+                                           value="{{old('bullet_three_section_heading', $content->bullet_three_section_heading ?? null)}}">
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label for="bullet_three_description">Description</label>
+                                    <textarea class="form-control summernote" name="bullet_three_description"
+                                              id="bullet_three_description" cols="30" rows="10">{!! old('bullet_three_description', $content->bullet_three_description ?? null) !!}
+                              </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- Services section end-->
             </div>
             <div class="row">
                 <div class="col-lg-12">
