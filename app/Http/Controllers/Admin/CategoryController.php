@@ -134,4 +134,17 @@ class CategoryController extends Controller
             return redirect()->route('admin.categories.index')->with('error', $exception->getMessage());
         }
     }
+
+    public function changeStatus(Request $request , $id){
+        try {
+            $category = Category::find($id);
+
+            $category->status = ($request->status == 'inactive')?Category::INACTIVE:Category::ACTIVE;
+            $category->save();
+            return redirect()->route('admin.categories.index')->with('success', 'Status has been updated successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
 }
