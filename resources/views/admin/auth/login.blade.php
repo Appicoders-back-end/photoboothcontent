@@ -18,7 +18,8 @@
 <div class="container">
     <form class="form-signin" method="post" action="{{route('admin.do_login')}}">
         {{csrf_field()}}
-        <h2 class="form-signin-heading">Photo Booth Content Admin</h2>
+        <img src="{{get_logo()}}" class="d-block mx-auto">
+        <h4 class="my-2 text-center text-dark">Admin Login</h4>
         <div class="login-wrap">
             <label for="email">Email</label>
             <input id="email" type="email" name="email" class="form-control" placeholder="Email">
@@ -46,7 +47,8 @@
                     <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
                 </span>
             </label>--}}
-            <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
+            <button class="btn btn-main w-100" type="submit">Sign in</button>
+{{--            <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>--}}
         </div>
     </form>
 
