@@ -278,11 +278,11 @@ header nav .active {
     background-color: #FEEDFA;
 }
 
-.service-card img {
+/*.service-card img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-}
+}*/
 
 footer {
     background-color: #EAB8BB;
