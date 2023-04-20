@@ -30,7 +30,7 @@
                                         <td>{{$user->first_name??'-'}}</td>
                                         <td>{{$user->last_name??'-'}}</td>
                                         <td>{{$user->email??'-'}}</td>
-                                        <td>{{$user->contact_no??'-'}}</td>
+                                        <td>{{$user->contactNo() ?? '-'}}</td>
                                         <td>
                                             @forelse($user->userSubcription as $sub)
                                                 <span>{{ $sub->subscription->name." "??'-' }}</span>
