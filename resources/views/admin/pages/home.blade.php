@@ -41,7 +41,7 @@
                 @endif
                 @if(isset($content->servicesSectionImg))
                     <input type="hidden" name="old_image_service" value="{{ $content->servicesSectionImg }}">
-                @endif 
+                @endif
                 @if(isset($content->bulletOneImg))
                     <input type="hidden" name="old_b_one_image_service" value="{{ $content->bulletOneImg }}">
                 @endif
@@ -50,7 +50,7 @@
                 @endif
                 @if(isset($content->bulletThreeImg))
                     <input type="hidden" name="old_b_three_image_service" value="{{ $content->bulletThreeImg }}">
-                @endif    
+                @endif
             @endif
             <div class="row">
                 <div class="col-lg-12">
@@ -73,7 +73,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="headerSectionDescription">Description</label>
-                                    <textarea class="form-control" name="header_section_description"
+                                    <textarea class="form-control summernote" name="header_section_description"
                                               id="headerSectionDescription" cols="30"
                                               rows="10">{!! old('header_section_description', $content->header_section_description ?? null) !!}</textarea>
                                 </div>
@@ -161,7 +161,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="aboutSectionDescription">Description</label>
-                                    <textarea class="form-control" name="about_section_description"
+                                    <textarea class="form-control summernote" name="about_section_description"
                                               id="aboutSectionDescription" cols="30"
                                               rows="10" required>{!! old('about_section_description',$content->about_section_description ?? null) !!}</textarea>
                                 </div>
@@ -268,7 +268,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="servicesSectionDescription">Description</label>
-                                    <textarea class="form-control" name="services_section_description"
+                                    <textarea class="form-control summernote" name="services_section_description"
                                               id="servicesSectionDescription" cols="30"
                                               rows="10">{!! old('services_section_description', $content->services_section_description ?? null) !!}</textarea>
                                 </div>
@@ -321,7 +321,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="bullet_one_description">Description</label>
-                                    <textarea class="form-control" name="bullet_one_description" id="bullet_one_description" cols="30" rows="10">{!! old('bullet_one_description', $content->bullet_one_description ?? null) !!}
+                                    <textarea class="form-control summernote" name="bullet_one_description" id="bullet_one_description" cols="30" rows="10">{!! old('bullet_one_description', $content->bullet_one_description ?? null) !!}
                                   </textarea>
                                 </div>
                             </div>
@@ -361,7 +361,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="bullet_two_description">Description</label>
-                                    <textarea class="form-control" name="bullet_two_description" id="bullet_two_description" cols="30" rows="10">{!! old('bullet_two_description', $content->bullet_two_description ?? null) !!}
+                                    <textarea class="form-control summernote" name="bullet_two_description" id="bullet_two_description" cols="30" rows="10">{!! old('bullet_two_description', $content->bullet_two_description ?? null) !!}
                                   </textarea>
                                 </div>
                             </div>
@@ -401,7 +401,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="bullet_three_description">Description</label>
-                                    <textarea class="form-control" name="bullet_three_description" id="bullet_three_description" cols="30" rows="10">{!! old('bullet_three_description', $content->bullet_three_description ?? null) !!}
+                                    <textarea class="form-control summernote" name="bullet_three_description" id="bullet_three_description" cols="30" rows="10">{!! old('bullet_three_description', $content->bullet_three_description ?? null) !!}
                                   </textarea>
                                 </div>
                             </div>
