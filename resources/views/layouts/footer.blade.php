@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-5">
-                <img src="{{asset('frontend')}}/assets/img/logo.png" alt="Photobooth content">
+                <img src="{{get_logo()}}" alt="Photobooth content">
                 <p class="mt-3 w-75">{{ get_option('footer_description') }}</p>
             </div>
             <div class="col-lg-3">
