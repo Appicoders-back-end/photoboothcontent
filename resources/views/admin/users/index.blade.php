@@ -53,9 +53,9 @@
                                                 <form action="{{ route('admin.users.changeStatus',$user->id) }}" method="GET">
                                                     <select class="form-control mb-2" id="status" name="status">
                                                         <option value="" disabled selected>Select Status</option>
-                                                        <option value="inactive"
+                                                        <option style="background-color:transparent;" value="inactive"
                                                                 @if($user->status == "inactive") selected @endif>
-                                                            InActive
+                                                           InActive
                                                         </option>
                                                         <option value="active"
                                                                 @if($user->status == "active") selected @endif>Active
