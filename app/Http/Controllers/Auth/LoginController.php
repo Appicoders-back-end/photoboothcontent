@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            ['email' => $request->email, 'password' => $request->password, 'role' => User::ROLE_CUSTOMER]
+            ['email' => $request->email, 'password' => $request->password, 'role' => User::ROLE_CUSTOMER, 'status' => User::ACTIVE]
         );
     }
 }
