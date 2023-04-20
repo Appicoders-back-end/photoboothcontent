@@ -93,8 +93,13 @@ class PaymentMethodController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PaymentMethod $paymentMethod)
+    public function destroy($id)
     {
-        //
+        $payment = PaymentMethod::find($id);
+        if ($payment) {
+            $payment->delete();
+            return back()->with('success', "Card has been deleted successfully");
+        }
+        return back()->with('error', 'Card has been not deleted ');
     }
 }

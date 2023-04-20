@@ -28,9 +28,18 @@ class MembershipController extends Controller
             'name' => 'Membership'
         ]);
 
+        $memberships = false;
+        if (isset(auth()->user()->id)){
+            $memberships = UserSubscription::where('user_id',auth()->user()->id)->where('is_expired',0)->count();
+            if ($memberships > 0){
+                $memberships = true;
+            }
+        }
+
         $data = [
             'content' => json_decode($membershipPage->content),
             'subscriptions' => Subscription::where('status', Subscription::Active)->get(),
+            'memberships' => $memberships,
         ];
 
         return view('membership', $data);

@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Payment Methods</h5>
                         <hr>
-                        @include('layouts.messages')
+{{--                        @include('layouts.messages')--}}
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -32,6 +32,7 @@
                                     <th>Card Holder Name</th>
                                     <th>Card end Number</th>
                                     <th>Card Brand</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +49,13 @@
                                         <td>{{ $paymentMethod->card_holder_name??'' }}</td>
                                         <td>{{ $paymentMethod->card_end_number??'' }}</td>
                                         <td>{{ $paymentMethod->card_brand??'' }}</td>
+                                        <td>
+                                            <form action="{{ route('payment-methods.destroy',$paymentMethod->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger"> Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @empty
                                 @endforelse
