@@ -8,30 +8,7 @@
                     <header class="card-header">
                         Users
                         <br>
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Success!</strong>
-                                <?= htmlentities(Session::get('success'))?>
-                            </div>
-                        @endif
-                        @if(Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <strong>Error!</strong>
-                                <?= htmlentities(Session::get('error'))?>
-                            </div>
-                        @endif
-
-                        @if($errors->any())
-                            <div class="alert alert-danger alert-dismissible" style="text-align:center;">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                <p><strong>Whoops!</strong> Please correct errors and try again!</p>
-                                @foreach ($errors->all() as $error)
-                                    <div>{{ $error }}</div>
-                                @endforeach
-                            </div>
-                        @endif
+                        @include('layouts.messages')
                     </header>
                     <div class="card-body">
                         <div class="adv-table">
@@ -56,14 +33,14 @@
                                         <td>{{$user->contact_no??'-'}}</td>
                                         <td>
                                             @forelse($user->userSubcription as $sub)
-                                                <span>{{ $sub->subcription->name??'-' }}</span>
+                                                <span>{{ $sub->subscription->name." "??'-' }}</span>
                                             @empty
                                                 -
                                             @endforelse
                                         </td>
                                         <td>
                                             @forelse($user->userCoupon as $coupons)
-                                                @if($coupons->coupon->name)
+                                                @if($coupons->coupon != null ? $coupons->coupon->name : '-')
                                                     <span style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupons->coupon->name??'' }}</span>
                                                     <span >,</span>
                                                 @endif
@@ -72,18 +49,21 @@
                                             @endforelse
                                         </td>
                                         <td>
-
                                             <div class="col-md-3 mb-3">
                                                 <form action="{{ route('admin.users.changeStatus',$user->id) }}" method="GET">
                                                     <select class="form-control mb-2" id="status" name="status">
                                                         <option value="" disabled selected>Select Status</option>
-                                                        <option value="inactive" @if($user->status == "inactive") selected @endif>InActive</option>
-                                                        <option value="active" @if($user->status == "active") selected @endif>Active</option>
+                                                        <option value="inactive"
+                                                                @if($user->status == "inactive") selected @endif>
+                                                            InActive
+                                                        </option>
+                                                        <option value="active"
+                                                                @if($user->status == "active") selected @endif>Active
+                                                        </option>
                                                     </select>
                                                 </form>
                                             </div>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </table>
@@ -97,8 +77,8 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {
-            $(document).on('change','#status',function() {
+        $(document).ready(function () {
+            $(document).on('change', '#status', function () {
                 this.form.submit();
             });
         });
