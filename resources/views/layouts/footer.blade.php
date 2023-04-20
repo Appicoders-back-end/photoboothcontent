@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-4">
                 <h5 class="mb-3 fw-bold">Contact information</h5>
-                <p class="mb-2"><b>Contact:</b> {{ get_option('contact') }}</p>
+                <p class="mb-2"><b>Contact:</b> {{ get_setting_contact() }}</p>
                 <p class="mb-2"><b>Email:</b> {{ get_option('email') }}</p>
                 <p class="mb-2"><b>Address:</b> {{ get_option('address') }}</p>
             </div>

@@ -21,7 +21,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="contact_no">Contact</label>
                                     <input type="text" class="form-control" name="contact" id="contact_no"
-                                           placeholder="Enter contact" value="{{ $contact??'' }}" required>
+                                           placeholder="Enter contact" value="{{ $contact ?? '' }}" minlength="10" maxlength="10" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="email">Email</label>

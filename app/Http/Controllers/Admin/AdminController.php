@@ -20,9 +20,10 @@ class AdminController extends Controller
             'logo' => $logo,
             'contact' => get_option('contact'),
             'email' => get_option('email'),
-            'address' =>  get_option('address'),
+            'address' => get_option('address'),
             'footer_description' => get_option('footer_description'),
         ];
+
         return view('admin.settings', $data);
     }
 
