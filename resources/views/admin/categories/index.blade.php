@@ -20,6 +20,7 @@
                                     <th>Name</th>
                                     <th>SubCategories</th>
                                     {{--<th>Image</th>--}}
+                                    <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -30,6 +31,22 @@
 
                                         <td>{{ $category->name??'-' }}</td>
                                         <td><span class="text-success font-weight-bold">{{ $category->subcategories->count() > 0 ? implode(', ', $category->subcategories->pluck('name')->toArray()) : '-' }}</span></td>
+                                        <td>
+                                            <div class="col-md-3 mb-3">
+                                                <form action="{{ route('admin.categories.changeStatus',$category->id) }}" method="GET">
+                                                    <select class="form-control mb-2" id="status" name="status">
+                                                        <option value="" disabled selected>Select Status</option>
+                                                        <option value="inactive"
+                                                                @if($category->status == "inactive") selected @endif>
+                                                            InActive
+                                                        </option>
+                                                        <option value="active"
+                                                                @if($category->status == "active") selected @endif>Active
+                                                        </option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                        </td>
                                         <td>{{ date('F d, Y', strtotime($category->created_at))??'-'}} </td>
                                         {{-- <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ asset('/'.$category->image) }}" alt=""></td> --}}
                                         <td>
@@ -91,5 +108,13 @@
             }
             $("#read_more").text($(this).data('id'));
         });
+
+        $(document).ready(function () {
+            $(document).on('change', '#status', function () {
+                this.form.submit();
+            });
+        });
+
     </script>
+
 @endsection

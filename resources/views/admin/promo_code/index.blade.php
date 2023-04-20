@@ -41,15 +41,20 @@
                                         <td>{{ ucwords($promo_code->type)??'-' }}</td>
                                         <td>{{ $promo_code->amount??'-' }}</td>
                                         <td>
-                                            <select name="" id="" class="form-control">
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
-                                            </select>
-                                            {{-- @if($promo_code->status == "active")
-                                                <span class="text-success">{{ ucwords($promo_code->status) }}</span>
-                                            @else
-                                                <span class="text-danger">{{ ucwords($promo_code->status) }}</span>
-                                            @endif --}}
+                                            <div class="col-md-3 mb-3">
+                                                <form action="{{ route('admin.promo.changeStatus',$promo_code->id) }}" method="GET">
+                                                    <select class="form-control mb-2" id="status" name="status">
+                                                        <option value="" disabled selected>Select Status</option>
+                                                        <option value="inactive"
+                                                                @if($promo_code->status == "inactive") selected @endif>
+                                                            InActive
+                                                        </option>
+                                                        <option value="active"
+                                                                @if($promo_code->status == "active") selected @endif>Active
+                                                        </option>
+                                                    </select>
+                                                </form>
+                                            </div>
                                         </td>
                                         <td>{{ date('F d, Y', strtotime($promo_code->created_at))??'-'}} </td>
                                         <td>
@@ -99,6 +104,13 @@
                 }
             });
         })
+
+        $(document).ready(function () {
+            $(document).on('change', '#status', function () {
+                this.form.submit();
+            });
+        });
+
     </script>
     {{--    here--}}
 @endsection

@@ -51,10 +51,12 @@ Route::group(['middleware' => 'admin'], function () {
 
     // promo codes start
     Route::resource('promo', PromoCodeController::class, ['as' => 'admin'])->except('show');
+    Route::get('change-promo-status/{id}', [PromoCodeController::class, 'changeStatus'])->name('admin.promo.changeStatus');
     // promo code end
 
     Route::resource('coupons', CouponController::class, ['as' => 'admin']);
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
+    Route::get('change-categories-status/{id}', [CategoryController::class, 'changeStatus'])->name('admin.categories.changeStatus');
     Route::get('product-image/{p_image_id}/delete', [ProductController::class, 'deletePImage'])->name('admin.product.image.destroy');
     Route::resource('product', ProductController::class, ['as' => 'admin']);
 
