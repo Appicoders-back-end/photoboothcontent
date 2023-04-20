@@ -47,7 +47,7 @@ class AuthController
     {
         try {
 
-            $user = User::find(auth()->user()->id);
+            $user = User::find(auth()->guard('admin')->user()->id);
             $user->password = Hash::make($request->password);
             $user->save();
             return redirect()->route('admin.change_password')->with('success', __('Password has been updated successfully!'));
