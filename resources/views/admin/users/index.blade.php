@@ -39,25 +39,29 @@
                                             @endforelse
                                         </td>
                                         <td>
-                                            @forelse($user->userCoupon as $coupons)
-                                                @if(isset($coupons->coupon->name))
-                                                    <span style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupons->coupon->name??'' }}</span>
-                                                    <span >,</span>
-                                                @else
-                                                    -
-                                                @endif
-                                            @empty
-                                                -
-                                            @endforelse
+                                            @if($user->userCoupon->count() > 0)
+                                                @foreach($user->userCoupon as $coupon)
+                                                    @if(isset($coupon->coupon))
+                                                        <span
+                                                            style="color: #ffffff;font-weight: bold; background-color: #0e2e42; padding:2px 8px;">{{ $coupon->coupon->name ?? '' }}</span>
+                                                        <span>,</span>
+                                                    @else
+                                                        -
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                {{'-'}}
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="col-md-3 mb-3">
-                                                <form action="{{ route('admin.users.changeStatus',$user->id) }}" method="GET">
+                                                <form action="{{ route('admin.users.changeStatus',$user->id) }}"
+                                                      method="GET">
                                                     <select class="form-control mb-2" id="status" name="status">
                                                         <option value="" disabled selected>Select Status</option>
                                                         <option style="background-color:transparent;" value="inactive"
                                                                 @if($user->status == "inactive") selected @endif>
-                                                           InActive
+                                                            InActive
                                                         </option>
                                                         <option value="active"
                                                                 @if($user->status == "active") selected @endif>Active
