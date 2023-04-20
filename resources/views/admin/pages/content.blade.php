@@ -35,7 +35,7 @@
             @if($content)
                 @if(isset($content->contentImg))
                     <input type="hidden" name="old_image" value="{{ $content->contentImg }}">
-                @endif    
+                @endif
             @endif
             <div class="row">
                 <div class="col-lg-12">
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" name="description"
+                                    <textarea class="form-control summernote" name="description"
                                               id="description" cols="30"
                                               rows="10">{!! old('description', $content->description ?? null) !!}</textarea>
                                 </div>
