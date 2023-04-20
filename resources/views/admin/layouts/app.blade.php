@@ -70,7 +70,7 @@
                         <li>
                             <form action="{{route('admin.logout')}}" method="post">
                                 @csrf
-                                <button type="submit"><i class="fa fa-key"></i>Log Out</button>
+                                <button class="btn-main bg-light w-50" type="submit">Logout</button>
                             </form>
                         </li>
                     </ul>

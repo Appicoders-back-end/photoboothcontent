@@ -44,10 +44,19 @@ a, a:hover, a:focus {
     position: relative;
 }
 
+.btn-main {
+    color: #000;
+    border: 3px solid #000;
+    box-shadow: 8px 5px 0px #000;
+    font-weight: 600;
+}
+
+
+
 /*login page*/
 
 .login-body {
-    background-color: #f1f2f7;
+    background-color: #fff;
 }
 
 .form-signin {
@@ -607,8 +616,9 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     float: left;
     text-align: center;
     width: 100%;
-    background: #a9d96c;
+    /*background: #a9d96c;*/
     border-radius: 0 0 3px 3px;
+    padding: 15px;
 }
 
 .dropdown-menu.extended.logout > li:last-child > a, .dropdown-menu.extended.logout > li:last-child > a:hover {
