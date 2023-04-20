@@ -6,7 +6,7 @@
             <div class="row hero-content signup-hero">
                 <div class="col-lg-12">
                     <div class="signup-form">
-                        <a href="index.php"><img src="{{asset('frontend/')}}/assets/img/logo.png"
+                        <a href="{{url('/')}}"><img src="{{asset('frontend/')}}/assets/img/logo.png"
                                                  class="d-block mx-auto mb-3" alt=""></a>
                         <h2>Reset Password</h2>
                         @include('layouts.messages')
