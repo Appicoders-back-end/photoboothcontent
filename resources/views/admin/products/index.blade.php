@@ -18,6 +18,7 @@
                                 <thead>
                                 <tr>
                                     <th>Title</th>
+                                    <th>Stock</th>
                                     <th>Price</th>
                                     <th>Image</th>
                                     <th>Created At</th>
@@ -28,7 +29,8 @@
                                 @forelse($products as $product)
                                     <tr class="gradeX">
                                         <td>{{ $product->title }}</td>
-                                        <td>$ {{ $product->price }}</td>
+                                        <td>{{ $product->stock??'' }}</td>
+                                        <td>$ {{ number_format($product->price,2) }}</td>
                                         <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ url('storage/'.$product->images[0]->image) }}" alt=""></td>
                                         <td>{{ date('F d, Y', strtotime($product->created_at)) ?? '-' }} </td>
                                         <td>

@@ -35,6 +35,11 @@ Route::controller(CouponController::class)->group(function () {
 Route::controller(ShopController::class)->group(function () {
     Route::get('shop', 'index')->name('shop.home');
     Route::get('product-detail/{p_id}', 'detail')->name('shop.product.detail');
+    Route::get('cart', 'cart')->name('shop.cart');
+    Route::get('add-to-cart/{id}', 'addToCart')->name('shop.add.to.cart');
+    Route::get('remove-cart-item/{id}','deleteCartItem')->name('shop.remove.item.cart');
+    Route::get('update-cart-item/{id}','updateCartItem')->name('shop.update.item.cart');
+    Route::get('checkout','checkout')->name('shop.checkout');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

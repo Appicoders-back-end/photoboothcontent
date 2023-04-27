@@ -4,6 +4,7 @@
         <img src="{{asset('frontend/assets/img/hero-section-circle-pink.png')}}" alt="Pink circle" class="pink-circle">
         <div class="container">
             <div class="row hero-content product-page-hero">
+                @include('layouts.messages')
                 <div class="col-lg-6">
                     <div class="swiper productswiper">
                         <div class="swiper-wrapper">
@@ -21,9 +22,9 @@
                 </div>
                 <div class="col-lg-6">
                     <h2>{{ $product->title }}</h2>
-                    <h2>${{ $product->price }}</h2>
+                    <h2>${{ number_format($product->price,2) }}</h2>
                     <p>{!! $product->description !!}</p>
-                    <a class="btn btn-main" href="cart.php">Add to cart <span><img src="{{asset('frontend/assets/img/arrow-black.png')}}" alt="arrow"></span></a>
+                    <a class="btn btn-main" href="{{ route('shop.add.to.cart',$product->id) }}">Add to cart <span><img src="{{asset('frontend/assets/img/arrow-black.png')}}" alt="arrow"></span></a>
                 </div>
             </div>
             @if(count($related_products) > 0)
@@ -36,7 +37,7 @@
                                 <h4 class="product-name">{{ $related_product->title }}</h4>
                                 <p class="product-price">${{ $related_product->price }}</p>
                                 <p class="product-desc">{!! $related_product->description !!}</p>
-                                <a href="{{ route('shop.product.detail',$related_product->id) }}" class="btn btn-main">See Details 
+                                <a href="{{ route('shop.product.detail',$related_product->id) }}" class="btn btn-main">See Details
                                     <span><img src="{{asset('frontend/assets/img/arrow-black.png')}}" alt=""></span>
                                 </a>
                             </div>

@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\ProductImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use File; 
+use File;
 
 class ProductController extends Controller
 {
@@ -29,10 +29,11 @@ class ProductController extends Controller
                 "description" => "required",
                 "image" => "required|array",
             ]);
-            
+
             $product=Product::create([
                 'title'=>$request->title,
                 'price'=>$request->price,
+                'stock'=>$request->stock,
                 'description'=>$request->description
             ]);
             foreach ($request->image as $key => $product_image) {
@@ -76,16 +77,18 @@ class ProductController extends Controller
                 "title" => "required",
                 'price' => "numeric|between:0,99999.99",
                 "description" => "required",
+                "stock" => "required",
             ]);
-            
+
             $product=Product::findOrFail($id);
 
             $product->update([
                 'title'=>$request->title,
                 'price'=>$request->price,
+                'stock'=>$request->stock,
                 'description'=>$request->description
             ]);
-            
+
             if ($request->hasFile('image')){
                 foreach ($request->image as $key => $product_image) {
                    $product_image= $product_image->store('product_images', 'public');
@@ -124,7 +127,7 @@ class ProductController extends Controller
     }
 
     public function deletePImage($p_image_id){
-        
+
         try {
             $find_image=ProductImages::findOrFail($p_image_id);
             $folderPath = storage_path('app/public/'.$find_image->image);
