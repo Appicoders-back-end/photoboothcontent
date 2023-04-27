@@ -9,6 +9,11 @@ class Order extends Model
 {
     use HasFactory;
 
+    public const PENDING = 'pending';
+    public const PROCESSING = 'processing';
+    public const COMPLETED = 'completed';
+    public const CANCEL = 'cancel';
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -145,6 +145,7 @@ class ShopController extends Controller
             $discounted_amount = 0;
             $PAID = $total - $discounted_amount;
             $order->user_id = $user->id;
+            $order->order_no = rand(100000,999999);
             $order->promo_code_id = null;
             $order->total_amount = $total;
             $order->phone_number = $request->phone_number;
