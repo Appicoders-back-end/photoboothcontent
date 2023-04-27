@@ -40,6 +40,7 @@ Route::controller(ShopController::class)->group(function () {
     Route::get('remove-cart-item/{id}','deleteCartItem')->name('shop.remove.item.cart');
     Route::get('update-cart-item/{id}','updateCartItem')->name('shop.update.item.cart');
     Route::get('checkout','checkout')->name('shop.checkout');
+    Route::post('checkout-process','checkoutProcess')->name('shop.checkout.process');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

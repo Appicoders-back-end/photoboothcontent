@@ -96,6 +96,7 @@
                     <span>{{__('Change Password')}}</span>
                 </a>
             </li>
+
         </ul>
         <!-- sidebar menu end-->
     </div>
