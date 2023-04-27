@@ -11,10 +11,8 @@
             <div class="col-lg-12">
                 <section class="card">
                     <div class="card-header">General Settings</div>
-                    <br>
-                    @include('admin.layouts.messages')
-                    <br>
                     <div class="card-body">
+                        @include('admin.layouts.messages')
                         <form class="needs-validation" action="{{route('admin.storeSettings')}}" method="POST"
                               enctype="multipart/form-data">
                             @csrf
@@ -22,21 +20,30 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="contact_no">Contact</label>
                                     <input type="text" class="form-control" name="contact" id="contact_no"
-                                           placeholder="Enter contact" value="{{ $contact ?? '' }}" minlength="10" maxlength="10" required>
+                                           placeholder="Enter contact" value="{{ $contact ?? '' }}" minlength="10"
+                                           maxlength="10" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="email">Email</label>
                                     <input type="text" class="form-control" name="email" id="email"
                                            placeholder="Enter email" value="{{ $email??'' }}" required>
                                 </div>
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label for="address">Address</label>
                                     <input type="text" class="form-control" name="address" id="address"
                                            placeholder="Enter address" value="{{ $address??'' }}" required>
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="address">Delivery Charges</label>
+                                    <input type="number" class="form-control" name="delivery_charges"
+                                           id="delivery_charges"
+                                           placeholder="Enter delivery charges" value="{{ $delivery_charges??'' }}"
+                                           required step="any" min="0">
+                                </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="description">Footer Description</label>
-                                    <textarea id="description" class="form-control summernote" name="footer_description" rows="6">{{ $footer_description??'' }}</textarea>
+                                    <textarea id="description" class="form-control summernote" name="footer_description"
+                                              rows="6">{{ $footer_description??'' }}</textarea>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="logo">Logo</label>
