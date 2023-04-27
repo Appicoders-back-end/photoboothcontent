@@ -15,6 +15,9 @@
                     <li class="nav-item"><a class="nav-link {{ route('content-store') == url()->current() ?'active':'' }}" href="{{route('content-store')}}">Content Store</a></li>
                     <li class="nav-item"><a class="nav-link {{ route('memberships') == url()->current() ?'active':'' }}" href="{{ route('memberships') }}">Membership</a></li>
                     <li class="nav-item"><a class="nav-link {{ route('coupons') == url()->current() ?'active':'' }}" href="{{route('coupons')}}">Coupons</a></li>
+                    <button type="button" class="btn btn-dark" data-toggle="dropdown">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill bg-danger">{{ count((array) session('cart')) }}</span>
+                    </button>
 {{--                   <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li> --}}
                 </ul>
                 @guest

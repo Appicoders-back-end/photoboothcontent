@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css">
-
+    <link href="{{asset('frontend')}}/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <!-- Bootstrap core CSS -->
 
     @yield('style')
