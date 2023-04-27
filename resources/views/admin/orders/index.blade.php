@@ -14,35 +14,31 @@
                             <table class="display table table-bordered table-striped" id="dynamic-table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Video</th>
-                                        <th>Images</th>
-                                        <th>Documents</th>
+                                        <th>Order No</th>
+                                        <th>Customer Name</th>
+                                        <th>Amount</th>
                                         <th>Status</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($orders as $coupon)
+                                @foreach($orders as $order)
                                     <tr class="gradeX">
-                                        <td>{{ $coupon->name ?? '-' }}</td>
-                                        <td>{{ $coupon->price ?? '-' }}</td>
-                                        <td>{{ $coupon->number_of_video ?? 'N/A' }}</td>
-                                        <td>{{ $coupon->number_of_images ?? 'N/A' }}</td>
-                                        <td>{{ $coupon->number_of_documents ?? 'N/A' }}</td>
+                                        <td>{{ $order->order_no ?? '-' }}</td>
+                                        <td>{{ $order->user ? $order->user->name : '-' }}</td>
+                                        <td>{{ $order->paid_amount ?? 'N/A' }}</td>
                                         <td>
-                                            @if($coupon->status == "active")
-                                                <span class="text-success">{{ ucwords($coupon->status) }}</span>
+                                            @if($order->status == "active")
+                                                <span class="text-success">{{ ucwords($order->status) }}</span>
                                             @else
-                                                <span class="text-danger">{{ ucwords($coupon->status) }}</span>
+                                                <span class="text-danger">{{ ucwords($order->status) }}</span>
                                             @endif
                                         </td>
-                                        <td>{{ date('F d, Y', strtotime($coupon->created_at))??'-'}} </td>
+                                        <td>{{ date('F d, Y', strtotime($order->created_at))??'-'}} </td>
                                         <td>
-                                            <a href="{{ route('admin.coupons.edit',$coupon->id) }}"
-                                               class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
+                                            <a href="{{ route('admin.orders.show',$order->id) }}"
+                                               class="btn btn-success"><i class="fa fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
