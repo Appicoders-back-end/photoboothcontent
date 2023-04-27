@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\ProductImages;
+use App\Services\StripeService;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use function Symfony\Component\Mime\Header\all;
 
 class ShopController extends Controller
 {
@@ -100,6 +106,69 @@ class ShopController extends Controller
     }
 
     public function checkout(){
-        return view('shop.checkout');
+//        dd(auth()->user());
+        if (!auth()->user()->hasMembership()) {
+            return redirect()->route('memberships')->with('error', "You have to buy membership first");
+        }
+        $payment_methods = PaymentMethod::where('user_id', auth()->user()->id)->select('id', 'card_holder_name', 'card_brand', 'card_end_number')->get();
+        return view('shop.checkout',compact('payment_methods'));
+    }
+
+    public function checkoutProcess(Request $request , StripeService $stripeService){
+        try {
+//            dd($request->all());
+            $request->validate([
+                "phone_number" => 'required',
+                "address" => 'required',
+                "other_instruction" => 'required',
+                "payment_method" => 'required',
+            ]);
+
+            DB::beginTransaction();
+
+            $user = auth()->user();
+            $customerId = $user->stripe_customer_id;
+//            $coupon = Coupon::find($request->coupon_id);
+            $paymentMethod = PaymentMethod::find($request->payment_method);
+//            $price = $coupon->price;
+           /* $discount = null;
+            if ($request->promo_code_id) {
+                $promoCode = PromoCode::find($request->promo_code_id);
+                $discount = $this->getDiscountedPrice($promoCode, $price);
+                $price = $price - $discount;
+            }*/
+            $total = 0;
+            foreach ((array) session('cart') as  $id => $item){
+                $total += $item['price'] * $item['quantity'];
+            }
+            $order = new Order();
+            $discounted_amount = 0;
+            $PAID = $total - $discounted_amount;
+            $order->user_id = $user->id;
+            $order->promo_code_id = null;
+            $order->total_amount = $total;
+            $order->phone_number = $request->phone_number;
+            $order->other_instruction = $request->other_instruction;
+            $order->address = $request->address;
+            $order->discounted_amount = $discounted_amount;
+            $order->paid_amount = $PAID;
+
+            $order->save();
+            foreach ((array) session('cart') as  $id => $item){
+                $order_item = new OrderItem();
+                $order_item->order_id = $order->id;
+                $order_item->product_id = $id;
+                $order_item->price = $item['price'];
+                $order_item->quantity = $item['quantity'];
+                $order_item->save();
+            }
+            DB::commit();
+            $charge = $stripeService->createCharge($customerId, $paymentMethod->stripe_source_id, $PAID, "Order payment");
+            session()->forget('cart');
+            return redirect()->route('thankyou')->with('success', 'Order has been placed successfully');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 }
