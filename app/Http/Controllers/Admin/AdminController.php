@@ -20,6 +20,7 @@ class AdminController extends Controller
             'logo' => $logo,
             'contact' => get_option('contact'),
             'email' => get_option('email'),
+            'delivery_charges' => get_option('delivery_charges'),
             'address' => get_option('address'),
             'footer_description' => get_option('footer_description'),
         ];
@@ -38,6 +39,7 @@ class AdminController extends Controller
             update_option('email', $request->email);
             update_option('address', $request->address);
             update_option('footer_description', $request->footer_description);
+            update_option('delivery_charges', $request->delivery_charges);
 
             return redirect()->back()->with('success', __('Settings has been updated successfully'));
         } catch (\Exception $exception) {
