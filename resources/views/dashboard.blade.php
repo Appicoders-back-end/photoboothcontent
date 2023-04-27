@@ -14,7 +14,7 @@
                         <p class="card-text">
                             <strong>Membership:</strong> {{ $userSubcription->subscription->name??'-' }} </p>
                         <p class="card-text"><strong>Membership
-                                Due:</strong> {{ $user->userSubcription->count() > 0 ? $user->userSubcription()->first()->end_date : '-'}}
+                                Due:</strong> {{ $user->userSubcription->count() > 0 ? formattedDate($user->userSubcription()->first()->end_date) : '-'}}
                         </p>
                         <a href="{{ route('edit-profile') }}" class="btn btn-main">Edit Profile</a>
                     </div>

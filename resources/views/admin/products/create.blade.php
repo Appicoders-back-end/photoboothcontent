@@ -12,6 +12,20 @@
             padding: 0 0 0 0 !important;
             margin-bottom: 0 !important;
         }
+        .dropify-preview{
+            overflow-y: scroll !important;
+        }
+
+        /*.dropify-preview img{
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin: 0 20px;
+            margin-bottom: 45px;
+        }
+        .dropify-wrapper .dropify-preview{
+            overflow: auto;
+        }*/
     </style>
 @endsection
 @section('content')
@@ -46,10 +60,10 @@
                                 @endforeach
                             </div>
                         @endif
-                        <form class="needs-validation" action="{{route('admin.product.store')}}" method="POST" novalidate enctype="multipart/form-data">
+                        <form class="needs-validation" id="form" action="{{route('admin.product.store')}}" method="POST" novalidate enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="validationCustom01">Title</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="title" placeholder="Product Title" value="{{old('title')}}" required>
                                     <div class="valid-feedback">
@@ -63,7 +77,22 @@
                                           <div class="input-group-prepend">
                                             <span class="input-group-text" id="price">$</span>
                                           </div>
-                                          <input type="text" class="form-control" placeholder="Product Price" aria-label="price" aria-describedby="price" value="{{old('price')}}" name="price" required>
+                                          <input type="number" class="form-control" min="1" placeholder="Product Price" aria-label="price" aria-describedby="price" value="{{old('price')}}" name="price" id="price" required>
+                                        </div>
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom01">Stock</label>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+{{--                                            <div class="input-group-prepend">--}}
+{{--                                                <span class="input-group-text" id="price">$</span>--}}
+{{--                                            </div>--}}
+                                            <input type="number" class="form-control" placeholder="Stock" min="1" aria-label="stock" aria-describedby="stock" value="{{old('stock')}}" name="stock" required>
                                         </div>
                                     </div>
                                     <div class="valid-feedback">
@@ -86,10 +115,11 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">Image</label>
-                                    <input type="file" class="dropify"  name="image[]" multiple required />
+                                    <input type="file" class="dropify" id="gallery-photo-add" name="image[]" multiple required />
                                 </div>
+                                <div class="gallery"></div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Create Product</button>
+                            <button class="btn btn-sm btn-success" type="submit">Create Product</button>
                         </form>
                     </div>
                 </section>
@@ -128,6 +158,44 @@
                 el.removeClass('col-md-6 mb-3');
             });
         });
+
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreview = function(input, placeToInsertImagePreview) {
+
+                if (input.files) {
+                    var filesAmount = input.files.length;
+
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
+            };
+
+            $('#gallery-photo-add').on('change', function() {
+                // alert('work 1')
+                // $(".dropify-wrapper input").css("z-index","0");
+                imagesPreview(this, 'div.dropify-preview');
+                imagesPreview(this, 'div.dropify-preview').css("overflow-y","auto");
+                imagesPreview(this, 'div.dropify-preview .dropify-render').css("display","none");
+
+            });
+        });
+
+        $(document).on("click",".dropify-preview",function () {
+            // alert('work 2');
+            $(".dropify-wrapper input").css("z-index","5");
+            $( "#gallery-photo-add" ).trigger( "click" );
+        });
+
+
     </script>
 @endsection
 

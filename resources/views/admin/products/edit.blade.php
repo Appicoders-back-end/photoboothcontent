@@ -28,7 +28,7 @@
                             @csrf
                             @method('PUT')
                             <div class="form-row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="validationCustom01">Title</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="title" placeholder="Product Title" value="{{ $product->title }}" required>
                                     <div class="valid-feedback">
@@ -43,7 +43,22 @@
                                           <div class="input-group-prepend">
                                             <span class="input-group-text" id="price">$</span>
                                           </div>
-                                          <input type="text" class="form-control" placeholder="Product Price" aria-label="price" aria-describedby="price" value="{{ $product->price }}" name="price" required>
+                                          <input type="number" class="form-control" min="1" placeholder="Product Price" aria-label="price" aria-describedby="price" value="{{ $product->price }}" name="price" required>
+                                        </div>
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom01">Stock</label>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                           {{-- <div class="input-group-prepend">
+                                                <span class="input-group-text" id="stock">$</span>
+                                            </div>--}}
+                                            <input type="number" class="form-control" min="1" placeholder="Stock" aria-label="stock" aria-describedby="stock" value="{{ $product->stock }}" name="stock" required>
                                         </div>
                                     </div>
                                     <div class="valid-feedback">
@@ -81,7 +96,7 @@
                                 </div>
                                 <!--Summernote end-->
                             </div>
-                            <button class="btn btn-primary" type="submit">Update Product</button>
+                            <button class="btn btn-sm btn-success" type="submit">Update Product</button>
                         </form>
                     </div>
                 </section>
