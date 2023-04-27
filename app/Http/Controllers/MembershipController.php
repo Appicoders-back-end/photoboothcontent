@@ -94,6 +94,7 @@ class MembershipController extends Controller
             UserCoupon::create([
                 'user_id' => $user->id,
                 'subscription_id' => $subscription->id,
+                'coupon_id' => $coupon->id,
                 'code' => $generatedCode,
                 'total_videos' => $coupon->number_of_video,
                 'total_images' => $coupon->number_of_images,
