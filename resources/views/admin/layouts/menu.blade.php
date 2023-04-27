@@ -36,13 +36,6 @@
                     <span>{{__('Categories')}}</span>
                 </a>
             </li>
-            <li>
-                <a href="{{route('admin.product.index')}}"
-                   class="{{ route('admin.product.index') == url()->current() ? 'active' : '' }}">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span>{{__('Products')}}</span>
-                </a>
-            </li>
             <li class="sub-menu">
                 <a href="javascript:;">
                     <i class="fa fa-caret-square-o-up"></i>
@@ -54,9 +47,20 @@
                     <li class="{{ route('admin.content_videos.index') == url()->current() ? 'active' : '' }}"><a href="{{route('admin.content_videos.index')}}"     >Videos</a></li>
                 </ul>
             </li>
-
+            <li>
+                <a href="{{route('admin.product.index')}}"
+                   class="{{ route('admin.product.index') == url()->current() ? 'active' : '' }}">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>{{__('Products')}}</span>
+                </a>
             </li>
-
+            <li>
+                <a href="{{route('admin.product.index')}}"
+                   class="{{ route('admin.product.index') == url()->current() ? 'active' : '' }}">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>{{__('Orders')}}</span>
+                </a>
+            </li>
             <li>
                 <a href="{{route('admin.promo.index')}}"
                    class="{{ route('admin.promo.index') == url()->current() ?'active':'' }}">
