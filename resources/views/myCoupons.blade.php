@@ -11,6 +11,7 @@
                             <table class="table table-hover text-center">
                                 <thead>
                                 <tr>
+                                    <th>Coupon Name</th>
                                     <th>Coupon Code</th>
                                     <th>Total Limits</th>
                                     <th>Download Consumed</th>
@@ -20,6 +21,7 @@
                                 <tbody>
                                 @foreach($coupons as $coupon)
                                     <tr>
+                                        <td>{{$coupon->coupon ? $coupon->coupon->name : '-'}}</td>
                                         <td>{{$coupon->code}}</td>
                                         <td>
                                             <div class="row text-center">
