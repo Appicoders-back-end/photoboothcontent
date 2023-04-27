@@ -18,4 +18,10 @@ class OrderController extends Controller
 
         return view('admin.orders.index', $data);
     }
+
+    public function show($id)
+    {
+        $order = Order::with('items.product', 'user')->findOrFail($id);
+        return view('admin.orders.show', compact('order'));
+    }
 }

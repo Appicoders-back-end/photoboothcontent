@@ -61,6 +61,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('product-image/{p_image_id}/delete', [ProductController::class, 'deletePImage'])->name('admin.product.image.destroy');
     Route::resource('product', ProductController::class, ['as' => 'admin']);
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
+    Route::get('orders/{id}', [OrderController::class, 'show'])->name('admin.orders.show');
 
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
     Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
