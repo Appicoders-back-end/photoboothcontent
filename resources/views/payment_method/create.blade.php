@@ -26,7 +26,8 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="expiryDate" class="form-label">Expiry Date</label>
                                         <input type="date" class="form-control" id="expiryDate" name="exp_date"
-                                               value="{{ old('exp_date') }}" placeholder="MM/YY">
+                                               value="{{ old('exp_date') }}" min="{{date('Y-m-d')}}"
+                                               placeholder="MM/YY">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="cvv" class="form-label">CVV</label>

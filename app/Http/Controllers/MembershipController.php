@@ -29,9 +29,9 @@ class MembershipController extends Controller
         ]);
 
         $memberships = false;
-        if (isset(auth()->user()->id)){
-            $memberships = UserSubscription::where('user_id',auth()->user()->id)->where('is_expired',0)->count();
-            if ($memberships > 0){
+        if (isset(auth()->user()->id)) {
+            $memberships = UserSubscription::where('user_id', auth()->user()->id)->where('is_expired', 0)->count();
+            if ($memberships > 0) {
                 $memberships = true;
             }
         }
@@ -102,7 +102,7 @@ class MembershipController extends Controller
 
             Mail::to($user->email)->send(new SendCouponCode($user, $generatedCode, 'Membership Purchased'));
 
-            return redirect()->route('thankyou')->with('success', 'Membership has been purchased successfully');
+            return redirect()->route('thankyou')->with('success', 'Membership has been purchased successfully and coupon code has been sent to your email address.');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
