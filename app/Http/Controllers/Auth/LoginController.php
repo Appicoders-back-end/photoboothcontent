@@ -43,7 +43,15 @@ class LoginController extends Controller
     public function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            ['email' => $request->email, 'password' => $request->password, 'role' => User::ROLE_CUSTOMER, 'status' => User::ACTIVE]
+            ['email' => $request->email, 'password' => $request->password, 'role' => User::ROLE_CUSTOMER]
         );
+    }
+
+    public function authenticated(Request $request, $user)
+    {
+        if ($user->status !== User::ACTIVE) {
+            auth()->logout();
+            return redirect('login')->withErrors('Your Account is inactive, please contact to admin.');
+        }
     }
 }
