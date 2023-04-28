@@ -197,4 +197,13 @@ class StripeService
             "description" => $paymentMessage
         ]);
     }
+
+    public function createRefund($chargeId, $amount, $reason)
+    {
+        return $this->getStripe()->refunds->create([
+            'charge' => $chargeId,
+            'amount' => $amount * 100,
+            'reason' => $reason
+        ]);
+    }
 }
