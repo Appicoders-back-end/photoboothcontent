@@ -15,11 +15,12 @@
                     <li class="nav-item"><a class="nav-link {{ route('content-store') == url()->current() ?'active':'' }}" href="{{route('content-store')}}">Content Store</a></li>
                     <li class="nav-item"><a class="nav-link {{ route('memberships') == url()->current() ?'active':'' }}" href="{{ route('memberships') }}">Membership</a></li>
                     <li class="nav-item"><a class="nav-link {{ route('coupons') == url()->current() ?'active':'' }}" href="{{route('coupons')}}">Coupons</a></li>
-                    <button type="button" class="btn btn-dark" data-toggle="dropdown">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill bg-danger">{{ count((array) session('cart')) }}</span>
-                    </button>
-{{--                   <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li> --}}
+
+                   <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li>
                 </ul>
+                <a href="{{ route('shop.cart') }}" type="button" class="btn d-flex align-items-center" data-toggle="dropdown">
+                    <i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span class="ms-2 badge badge-pill bg-danger">{{ count((array) session('cart')) }}</span>
+                </a>
                 @guest
                     <a class="btn btn-main" href="{{route('login')}}">Sign In</a>
                 @else
@@ -35,7 +36,7 @@
                             <li><a class="dropdown-item" href="{{ route('edit-profile') }}">Edit Profile</a></li>
                             <li><a class="dropdown-item" href="{{route('myCoupons')}}">My Coupons</a></li>
                             <li><a class="dropdown-item" href="{{route('changePassword')}}">Change Password</a></li>
-                            <li><a class="dropdown-item" href="order-history.php">Order history</a></li>
+                            <li><a class="dropdown-item" href="{{ route('shop.order.history') }}">Order history</a></li>
                             <li><a class="dropdown-item" href="{{route('myDownloads')}}">Downloads</a></li>
                             <li><a href="javascript:;"
                                    class="dropdown-item"
