@@ -57,7 +57,8 @@
             <li>
                 <a href="{{route('admin.orders.index')}}"
                    class="{{ route('admin.orders.index') == url()->current() ? 'active' : '' }}">
-                    <i class="fa fa-shopping-cart"></i>
+{{--                    <i class="fa fa-shopping-cart"></i>--}}
+                    <i class="fa fa-tags"></i>
                     <span>{{__('Orders')}}</span>
                 </a>
             </li>

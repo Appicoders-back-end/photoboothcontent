@@ -62,6 +62,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('product', ProductController::class, ['as' => 'admin']);
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
     Route::get('orders/{id}', [OrderController::class, 'show'])->name('admin.orders.show');
+    Route::get('change-order-status/{id}', [OrderController::class, 'orderStatus'])->name('admin.orders.status');
 
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
     Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
