@@ -68,8 +68,8 @@
                         <div class="col-lg-4 invoice-block ">
                             <ul class="unstyled amounts">
                                 <li><strong>Sub - Total amount :</strong> $ {{ number_format($sub_total_amount) }}</li>
-                                <li><strong>Delivery Charges :</strong> -----</li>
-                                <li><strong>Discount :</strong> 10%</li>
+{{--                                <li><strong>Delivery Charges :</strong> </li>--}}
+{{--                                <li><strong>Discount :</strong> 10%</li>--}}
                                 @php $grand_total_amount = ($sub_total_amount - $delivery_charges) - $discount; @endphp
                                 <li><strong>Grand Total :</strong> $ {{ number_format($grand_total_amount,2) }}</li>
                             </ul>

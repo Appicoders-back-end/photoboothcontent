@@ -112,7 +112,11 @@ class ShopController extends Controller
         }*/
         $payment_methods = PaymentMethod::where('user_id', auth()->user()->id)->select('id', 'card_holder_name', 'card_brand', 'card_end_number')->get();
 //        dd($payment_methods->count() > 0);
-        if (!$payment_methods->count() > 0) {
+        if(!session()->get('cart')){
+            return redirect()->route('shop.cart')->with('error', "You have to add item cart  first");
+        }
+
+        if (!$payment_methods->count() > 0 ) {
             return redirect()->route('payment-methods.create')->with('error', "You have to add Payment Card first");
         }
         return view('shop.checkout',compact('payment_methods'));
@@ -177,5 +181,15 @@ class ShopController extends Controller
             DB::rollBack();
             return redirect()->back()->with('error', $exception->getMessage());
         }
+    }
+
+    public function orderHistory(){
+        $order_history = Order::all();
+        return view('shop.order-history',compact("order_history"));
+    }
+
+    public function orderDetail($id){
+        $order_detail = Order::find($id);
+        return view('shop.order-detail',compact("order_detail"));
     }
 }
