@@ -107,10 +107,14 @@ class ShopController extends Controller
 
     public function checkout(){
 //        dd(auth()->user());
-        if (!auth()->user()->hasMembership()) {
+       /* if (!auth()->user()->hasMembership()) {
             return redirect()->route('memberships')->with('error', "You have to buy membership first");
-        }
+        }*/
         $payment_methods = PaymentMethod::where('user_id', auth()->user()->id)->select('id', 'card_holder_name', 'card_brand', 'card_end_number')->get();
+//        dd($payment_methods->count() > 0);
+        if (!$payment_methods->count() > 0) {
+            return redirect()->route('payment-methods.create')->with('error', "You have to add Payment Card first");
+        }
         return view('shop.checkout',compact('payment_methods'));
     }
 
@@ -154,6 +158,9 @@ class ShopController extends Controller
             $order->discounted_amount = $discounted_amount;
             $order->paid_amount = $PAID;
 
+            $charge = $stripeService->createCharge($customerId, $paymentMethod->stripe_source_id, $PAID, "Order payment");
+            $order->charge_id = $charge->id;
+
             $order->save();
             foreach ((array) session('cart') as  $id => $item){
                 $order_item = new OrderItem();
@@ -164,7 +171,6 @@ class ShopController extends Controller
                 $order_item->save();
             }
             DB::commit();
-            $charge = $stripeService->createCharge($customerId, $paymentMethod->stripe_source_id, $PAID, "Order payment");
             session()->forget('cart');
             return redirect()->route('thankyou')->with('success', 'Order has been placed successfully');
         } catch (\Exception $exception) {
