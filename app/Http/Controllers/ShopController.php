@@ -15,22 +15,22 @@ use function Symfony\Component\Mime\Header\all;
 
 class ShopController extends Controller
 {
-    public function index(){
-
-        $products=Product::where("stock",'!=',0)->get();
-        return view('shop.index',compact("products"));
+    public function index()
+    {
+        $products = Product::where("stock", '!=', 0)->get();
+        return view('shop.index', compact("products"));
     }
 
-    public function detail(string $p_id){
+    public function detail(string $p_id)
+    {
+        $product = Product::findOrFail($p_id);
+        $related_products = Product::whereNot('id', $p_id)->where("stock", '!=', 0)->inRandomOrder()->limit(3)->get();
 
-        $product=Product::findOrFail($p_id);
-
-        $related_products=Product::whereNot('id',$p_id)->where("stock",'!=',0)->inRandomOrder()->limit(3)->get();
-
-        return view('shop.detail',compact('product','related_products'));
+        return view('shop.detail', compact('product', 'related_products'));
     }
 
-    public function addToCart($id){
+    public function addToCart($id)
+    {
         try {
 
             if (!auth()->check()) {
@@ -39,10 +39,10 @@ class ShopController extends Controller
 
             $product = Product::findOrFail($id);
             $cart = session()->get('cart', []);
-            if(isset($cart[$id])) {
+            if (isset($cart[$id])) {
                 $add_to_cart = $cart[$id]['quantity'] + 1;
                 $product_in_stock = $product->stock - $add_to_cart;
-                if ($product_in_stock  < 0){
+                if ($product_in_stock < 0) {
                     return redirect()->back()->with('error', 'Product Out of Stock');
                 }
                 $cart[$id]['quantity']++;
@@ -63,19 +63,21 @@ class ShopController extends Controller
         }
     }
 
-    public function cart(){
+    public function cart()
+    {
         return view('shop.cart');
     }
 
-    public function updateCartItem(Request $request){
+    public function updateCartItem(Request $request)
+    {
 
         try {
 
-            if($request->id && $request->quantity){
+            if ($request->id && $request->quantity) {
 
                 $product = Product::findOrFail($request->id);
                 $product_in_stock = $product->stock - $request->quantity;
-                if ($product_in_stock  < 0){
+                if ($product_in_stock < 0) {
                     return redirect()->back()->with('error', 'Product Out of Stock');
                 }
                 $cart = session()->get('cart');
@@ -92,9 +94,9 @@ class ShopController extends Controller
     public function deleteCartItem($id)
     {
         try {
-            if($id) {
+            if ($id) {
                 $cart = session()->get('cart');
-                if(isset($cart[$id])) {
+                if (isset($cart[$id])) {
                     unset($cart[$id]);
                     session()->put('cart', $cart);
                 }
@@ -105,24 +107,26 @@ class ShopController extends Controller
         }
     }
 
-    public function checkout(){
+    public function checkout()
+    {
 //        dd(auth()->user());
-       /* if (!auth()->user()->hasMembership()) {
-            return redirect()->route('memberships')->with('error', "You have to buy membership first");
-        }*/
+        /* if (!auth()->user()->hasMembership()) {
+             return redirect()->route('memberships')->with('error', "You have to buy membership first");
+         }*/
         $payment_methods = PaymentMethod::where('user_id', auth()->user()->id)->select('id', 'card_holder_name', 'card_brand', 'card_end_number')->get();
 //        dd($payment_methods->count() > 0);
-        if(!session()->get('cart')){
+        if (!session()->get('cart')) {
             return redirect()->route('shop.cart')->with('error', "You have to add item cart  first");
         }
 
-        if (!$payment_methods->count() > 0 ) {
+        if (!$payment_methods->count() > 0) {
             return redirect()->route('payment-methods.create')->with('error', "You have to add Payment Card first");
         }
-        return view('shop.checkout',compact('payment_methods'));
+        return view('shop.checkout', compact('payment_methods'));
     }
 
-    public function checkoutProcess(Request $request , StripeService $stripeService){
+    public function checkoutProcess(Request $request, StripeService $stripeService)
+    {
         try {
 //            dd($request->all());
             $request->validate([
@@ -139,21 +143,21 @@ class ShopController extends Controller
 //            $coupon = Coupon::find($request->coupon_id);
             $paymentMethod = PaymentMethod::find($request->payment_method);
 //            $price = $coupon->price;
-           /* $discount = null;
-            if ($request->promo_code_id) {
-                $promoCode = PromoCode::find($request->promo_code_id);
-                $discount = $this->getDiscountedPrice($promoCode, $price);
-                $price = $price - $discount;
-            }*/
+            /* $discount = null;
+             if ($request->promo_code_id) {
+                 $promoCode = PromoCode::find($request->promo_code_id);
+                 $discount = $this->getDiscountedPrice($promoCode, $price);
+                 $price = $price - $discount;
+             }*/
             $total = 0;
-            foreach ((array) session('cart') as  $id => $item){
+            foreach ((array)session('cart') as $id => $item) {
                 $total += $item['price'] * $item['quantity'];
             }
             $order = new Order();
             $discounted_amount = 0;
             $PAID = $total - $discounted_amount;
             $order->user_id = $user->id;
-            $order->order_no = rand(100000,999999);
+            $order->order_no = rand(100000, 999999);
             $order->promo_code_id = null;
             $order->total_amount = $total;
             $order->phone_number = $request->phone_number;
@@ -166,7 +170,7 @@ class ShopController extends Controller
             $order->charge_id = $charge->id;
 
             $order->save();
-            foreach ((array) session('cart') as  $id => $item){
+            foreach ((array)session('cart') as $id => $item) {
                 $order_item = new OrderItem();
                 $order_item->order_id = $order->id;
                 $order_item->product_id = $id;
@@ -183,13 +187,15 @@ class ShopController extends Controller
         }
     }
 
-    public function orderHistory(){
+    public function orderHistory()
+    {
         $order_history = Order::all();
-        return view('shop.order-history',compact("order_history"));
+        return view('shop.order-history', compact("order_history"));
     }
 
-    public function orderDetail($id){
+    public function orderDetail($id)
+    {
         $order_detail = Order::find($id);
-        return view('shop.order-detail',compact("order_detail"));
+        return view('shop.order-detail', compact("order_detail"));
     }
 }

@@ -10,13 +10,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link {{ url('/') == url()->current() ?'active':'' }}" href="{{url('/')}}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link {{ route('about-us') == url()->current() ?'active':'' }}" href="{{route('about-us')}}">About us</a></li>
-                    <li class="nav-item"><a class="nav-link {{ route('content-store') == url()->current() ?'active':'' }}" href="{{route('content-store')}}">Content Store</a></li>
-                    <li class="nav-item"><a class="nav-link {{ route('memberships') == url()->current() ?'active':'' }}" href="{{ route('memberships') }}">Membership</a></li>
-                    <li class="nav-item"><a class="nav-link {{ route('coupons') == url()->current() ?'active':'' }}" href="{{route('coupons')}}">Coupons</a></li>
-
-                   <li class="nav-item"><a class="nav-link" href="{{ route('shop.home') }}">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link {{ url('/') == url()->current() ? 'active':'' }}" href="{{url('/')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('about-us') == url()->current() ? 'active':'' }}" href="{{route('about-us')}}">About us</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('content-store') == url()->current() ? 'active':'' }}" href="{{route('content-store')}}">Content Store</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('memberships') == url()->current() ? 'active':'' }}" href="{{ route('memberships') }}">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('coupons') == url()->current() ? 'active':'' }}" href="{{route('coupons')}}">Coupons</a></li>
+                   <li class="nav-item"><a class="nav-link {{ route('shop.home') == url()->current() ? 'active':'' }}" href="{{ route('shop.home') }}">Shop</a></li>
                 </ul>
                 <a href="{{ route('shop.cart') }}" type="button" class="btn d-flex align-items-center" data-toggle="dropdown">
                     <i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span class="ms-2 badge badge-pill bg-danger">{{ count((array) session('cart')) }}</span>
