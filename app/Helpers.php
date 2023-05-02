@@ -170,3 +170,9 @@ if (!function_exists('getPlanExpiryDate')) {
     }
 }
 
+if (!function_exists('getDeliveryCharges')) {
+    function getDeliveryCharges()
+    {
+        return get_option('delivery_charges') ?? 0;
+    }
+}
