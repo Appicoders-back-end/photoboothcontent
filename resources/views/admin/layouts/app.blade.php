@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <link rel="shortcut icon" href="{{asset('admin_assets')}}/img/favicon.html">
     <title>Admin - Photo Booth Management</title>
+
     <!-- Bootstrap core CSS -->
     <link href="{{asset('admin_assets')}}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('admin_assets')}}/css/bootstrap-reset.css" rel="stylesheet">
