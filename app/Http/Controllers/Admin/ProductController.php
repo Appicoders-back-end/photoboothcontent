@@ -142,4 +142,8 @@ class ProductController extends Controller
             return redirect()->route('admin.product.index')->with('error', $exception->getMessage());
         }
     }
+
+    public function storeDrpzone(Request $request){
+        dd("work");
+    }
 }
