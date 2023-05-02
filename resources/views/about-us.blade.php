@@ -49,7 +49,7 @@
                     </div>
                     @if($content->service_description)
                         <div class="col-lg-6">
-                            <p>{{ $content->service_description }}</p>
+                            <p>{!! $content->service_description !!}</p>
                         </div>
                     @endif
                 </div>
