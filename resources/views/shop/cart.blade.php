@@ -70,7 +70,9 @@
                             <p id="total">${{ number_format($total,2) }}</p>
                         </div>
                     </div>
-                    <a href="{{ route('shop.checkout') }}"><button id="btn-checkout" class="btn btn-main w-100"><span>Checkout</span></button></a>
+
+                    <a id="btn-checkout" class="btn btn-main w-100 @if(!count((array) session('cart')) > 0) disabled @endif"  href="{{ route('shop.checkout') }}"><span>Checkout</span></a>
+{{--                    <a href="{{ route('shop.checkout') }}"><button id="btn-checkout" class="btn btn-main w-100 @if(session('cart') && count((array) session('cart')) > 0) @endif"><span>Checkout</span></button></a>--}}
                 </div>
             </div>
         </div>

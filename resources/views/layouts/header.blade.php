@@ -17,7 +17,7 @@
                     <li class="nav-item"><a class="nav-link {{ route('coupons') == url()->current() ? 'active':'' }}" href="{{route('coupons')}}">Coupons</a></li>
                    <li class="nav-item"><a class="nav-link {{ route('shop.home') == url()->current() ? 'active':'' }}" href="{{ route('shop.home') }}">Shop</a></li>
                 </ul>
-                @if(auth()->user() && session()->get('cart') !== null)
+                @if(auth()->user() && count((array) session('cart')) > 0)
                     <a href="{{ route('shop.cart') }}" type="button" class="btn d-flex align-items-center" data-toggle="dropdown">
                         <i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span class="ms-2 badge badge-pill bg-danger">{{ count((array) session('cart')) }}</span>
                     </a>
