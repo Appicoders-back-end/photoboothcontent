@@ -31,14 +31,18 @@
                                         <td>{{ $product->title }}</td>
                                         <td>{{ $product->stock??'' }}</td>
                                         <td>$ {{ number_format($product->price,2) }}</td>
-                                        <td><img class="img img-fluid" width="80" style="height: 30px !important;" src="{{ url('storage/'.$product->images[0]->image) }}" alt=""></td>
+                                        <td><img class="img img-fluid" style="height: 70px; object-fit: cover;"
+                                                 src="{{ url('storage/'.$product->images[0]->image) }}" alt=""></td>
                                         <td>{{ date('F d, Y', strtotime($product->created_at)) ?? '-' }} </td>
                                         <td>
-                                            <a href="{{ route('admin.product.edit',$product->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.product.destroy', ['product'=>$product->id]) }}" method="POST">
-                                               @csrf
+                                            <a href="{{ route('admin.product.edit',$product->id) }}"
+                                               class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
+                                            <form
+                                                action="{{ route('admin.product.destroy', ['product'=>$product->id]) }}"
+                                                method="POST">
+                                                @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger"> <i class="fa fa-trash-o"></i></button>
+                                                <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -53,35 +57,14 @@
         </div>
         <!-- page end-->
     </section>
-
-    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-        <div class="modal-dialog ">
-            {{-- modal-dialog-centered--}}
-            <div class="modal-content">
-                <div class="modal-header newfqheading">
-                    <h5 class="modal-title" id="exampleModalLabel">Category Description </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body newfqbody">
-                    <p id="read_more">
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('script')
     <script>
-        $(document).on("click",'#read',function () {
+        $(document).on("click", '#read', function () {
             var str = $(this).data('id').length;
-            if (str >= 20){
-                $("#read").css({"cursor":"pointer"});
+            if (str >= 20) {
+                $("#read").css({"cursor": "pointer"});
             }
             $("#read_more").text($(this).data('id'));
         });

@@ -19,23 +19,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @php $total = 0 @endphp
+                            @php $subTotal = 0 @endphp
                             @forelse((array) session('cart') as  $id => $item)
-                                @php $total += $item['price'] * $item['quantity'] @endphp
+                                @php $subTotal += $item['price'] * $item['quantity'] @endphp
                                 <tr>
-                                    <td> <img class="w-100" src="assets/img/camera3.jpg" alt="art image"></td>
+                                    <td><img class="w-100" src="assets/img/camera3.jpg" alt="art image"></td>
                                     <td>{{ $item['title'] }}</td>
                                     <td>${{ number_format($item['price'],2) }}</td>
                                     <td>${{ number_format($item['price'] * $item['quantity'],2) }}</td>
-{{--                                    <td>{{ $item['quantity'] }}</td>--}}
+                                    {{--                                    <td>{{ $item['quantity'] }}</td>--}}
                                     <td data-th="Quantity" style="width: 0px">
                                         <form action="{{ route('shop.update.item.cart',$id) }}" method="GET">
                                             <input type="hidden" name="id" value="{{ $id }}">
-                                        <input type="number" min="1" value="{{ $item['quantity'] }}" name="quantity" id="update-cart" class="form-control quantity" />
+                                            <input type="number" min="1" value="{{ $item['quantity'] }}" name="quantity"
+                                                   id="update-cart" class="form-control quantity"/>
                                         </form>
                                     </td>
                                     <td>
-                                        <a href="{{ route('shop.remove.item.cart',$id) }}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('shop.remove.item.cart',$id) }}" class="btn btn-danger"><i
+                                                class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @empty
@@ -50,29 +52,31 @@
                             <h6>Subtotal</h6>
                         </div>
                         <div class="col-sm-4 p-0">
-                            <p id="subtotal">${{ number_format($total,2) }}</p>
+                            <p id="subtotal">${{ number_format($subTotal,2) }}</p>
                         </div>
                     </div>
-                   {{-- <div class="row m-0">
+                    <div class="row m-0">
                         <div class="col-sm-8 p-0 ">
-                            <h6>Tax</h6>
+                            <h6>Delivery Charges</h6>
                         </div>
                         <div class="col-sm-4 p-0">
-                            <p id="tax">$3.00</p>
+                            <p id="tax">${{ getDeliveryCharges() }}</p>
                         </div>
-                    </div>--}}
+                    </div>
                     <hr>
                     <div class="row mx-0 mb-2">
                         <div class="col-sm-8 p-0 d-inline">
                             <h5>Total</h5>
                         </div>
                         <div class="col-sm-4 p-0">
-                            <p id="total">${{ number_format($total,2) }}</p>
+                            <p id="total">${{ number_format($subTotal + getDeliveryCharges(), 2) }}</p>
                         </div>
                     </div>
 
-                    <a id="btn-checkout" class="btn btn-main w-100 @if(!count((array) session('cart')) > 0) disabled @endif"  href="{{ route('shop.checkout') }}"><span>Checkout</span></a>
-{{--                    <a href="{{ route('shop.checkout') }}"><button id="btn-checkout" class="btn btn-main w-100 @if(session('cart') && count((array) session('cart')) > 0) @endif"><span>Checkout</span></button></a>--}}
+                    <a id="btn-checkout"
+                       class="btn btn-main w-100 @if(!count((array) session('cart')) > 0) disabled @endif"
+                       href="{{ route('shop.checkout') }}"><span>Checkout</span></a>
+                    {{--                    <a href="{{ route('shop.checkout') }}"><button id="btn-checkout" class="btn btn-main w-100 @if(session('cart') && count((array) session('cart')) > 0) @endif"><span>Checkout</span></button></a>--}}
                 </div>
             </div>
         </div>
