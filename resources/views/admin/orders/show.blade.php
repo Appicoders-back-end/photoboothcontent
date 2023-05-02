@@ -25,6 +25,7 @@
                             <ul class="unstyled">
                                 <li>User Name: <strong>{{ $order->user->name??'-' }}</strong></li>
                                 <li>User Email: {{ $order->user->email??'-' }}</li>
+                                <li>Contact Number: {{ $order->user->contact_no??'-' }}</li>
                             </ul>
                         </div>
                         <div class="col-lg-4 col-sm-4">
@@ -68,7 +69,7 @@
                         <div class="col-lg-4 invoice-block ">
                             <ul class="unstyled amounts">
                                 <li><strong>Sub - Total amount :</strong> $ {{ number_format($sub_total_amount) }}</li>
-{{--                                <li><strong>Delivery Charges :</strong> </li>--}}
+                                <li><strong>Delivery Charges :</strong> ${{ number_format($order->delivery_charges,2)??'-' }}</li>
 {{--                                <li><strong>Discount :</strong> 10%</li>--}}
                                 @php $grand_total_amount = ($sub_total_amount - $delivery_charges) - $discount; @endphp
                                 <li><strong>Grand Total :</strong> $ {{ number_format($grand_total_amount,2) }}</li>
