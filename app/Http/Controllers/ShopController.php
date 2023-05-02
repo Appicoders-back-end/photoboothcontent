@@ -178,6 +178,7 @@ class ShopController extends Controller
                 $order_item->quantity = $item['quantity'];
                 $order_item->save();
             }
+
             DB::commit();
             session()->forget('cart');
             return redirect()->route('thankyou')->with('success', 'Order has been placed successfully');
