@@ -464,7 +464,7 @@ footer img {
 .product-card .product-img {
     height: 200px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 20px;
     box-shadow: 10px 10px 0 #000;
 }

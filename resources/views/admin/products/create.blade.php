@@ -157,11 +157,7 @@
             },
 
             success: function (file, response) {
-                alert('working')
-                alert(file.upload.filename)
-                alert(response)
-                console.log(file)
-                console.log(response)
+                console.log(file, response);
                 $('#productForm').append('<input type="hidden" name="document[]" value="' + file.upload.filename + '">')
                 uploadedDocumentMap[file.upload.filename] = response.name
             },
