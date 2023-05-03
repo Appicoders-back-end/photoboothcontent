@@ -275,4 +275,41 @@ class PageController extends Controller
             return redirect()->back()->with('error', $exception->getMessage())->withInput();
         }
     }
+
+    public function shop()
+    {
+        $shopPage = Page::firstOrCreate([
+            'slug' => 'shop'
+        ], [
+            'slug' => 'shop',
+            'name' => 'Shop'
+        ]);
+
+        $data = [
+            'shop' => $shopPage,
+            'content' => json_decode($shopPage->content)
+        ];
+        return view('admin.pages.shop', $data);
+    }
+
+    public function storeShopPage(Request $request)
+    {
+        try {
+            $page = Page::find($request->id);
+            if ($request->shop_image) {
+                $shop_image = saveFile($request->shop_image, "shoppage");
+                $request->merge(['shopImg' => $shop_image]);
+            } else {
+                if ($page) {
+                    $request->merge(['shopImg' => $request->old_image]);
+                }
+            }
+            $page->content = json_encode($request->except('id', '_token', 'shop_image'));
+            $page->save();
+
+            return redirect()->route('admin.shop')->with('success', 'Shop page has been updated successfully');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage())->withInput();
+        }
+    }
 }

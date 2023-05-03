@@ -5,13 +5,20 @@
         <div class="container">
             <div class="row hero-content">
                 <div class="col-lg-6">
-                    <h2>Shop</h2>
-                    <p>This really shouldn’t be that difficult, knowledge is power; content is king and support is
-                        everything. We know what it takes to make your photo booth business a success.</p>
+                    <h2>{{ ($content) ? $content->heading ? $content->heading : '' : ''}}</h2>
+                    <p>{!! ($content) ? $content->description ? $content->description : '' : '' !!}</p>
+                    @if(isset($content->hero_button_text))
+                        <a class="btn btn-main"
+                           href="{{route('memberships')}}">{{ ($content->hero_button_text) ? $content->hero_button_text : 'Become a member'}}
+                            <span><img src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span>
+                        </a>
+                    @endif
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{asset('frontend/assets/img/about-section-image.png')}}" alt="Photo farme"
+                    @if(isset($content->shopImg))
+                        <img src="{{ url('/') . '/' . $content->shopImg }}" alt="Photo frame"
                          class="img-fluid">
+                    @endif
                 </div>
             </div>
         </div>
