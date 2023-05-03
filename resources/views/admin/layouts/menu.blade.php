@@ -27,6 +27,7 @@
                     <li><a href="{{route('admin.content')}}">Content Store</a></li>
                     <li><a href="{{route('admin.membership')}}">Membership</a></li>
                     <li><a href="{{route('admin.coupon')}}">Coupons</a></li>
+                    <li><a href="{{route('admin.shop')}}">Shop</a></li>
                 </ul>
             </li>
             <li>
