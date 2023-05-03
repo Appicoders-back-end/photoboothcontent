@@ -1,6 +1,20 @@
 @extends('layouts.app')
 @section('content')
     <div class="container dashboard-container">
+        <div class="my-5">
+            <form id="filter_order_status" class="d-flex justify-content-between align-items-center filter-order" action="{{ route('shop.order.history') }}">
+                <div>
+                    <select class="form-select" aria-label="Default select example" name="status" required>
+                        <option selected="" disabled>Filter the order status</option>
+                        <option value="pending" >Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="processing">Processing</option>
+                        <option value="cancel">Canceled</option>
+                    </select>
+                </div>
+                <button type="submit" id="filter_order" class="btn btn-main">Filter</button>
+            </form>
+        </div>
         <div class="row mt-5">
             <div class="col-lg-12 mb-4">
                 @include('layouts.messages')
@@ -67,7 +81,6 @@
                     }
                 })
             });
-
         });
     </script>
 @endsection

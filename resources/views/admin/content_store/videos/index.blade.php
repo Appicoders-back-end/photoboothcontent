@@ -65,8 +65,8 @@
                                                   method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger" role="button"
-                                                        id="delete_btn"><i class="fa fa-trash-o"></i></button>
+                                                <button type="submit" class="btn btn-danger delete-confirm" role="button"
+                                                        id="delete_btn"><i class="fa fa-trash-o "></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -101,6 +101,7 @@
     </div>
 @endsection
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).on('click', '#delete_btn', function (e) {
             e.preventDefault(false);
@@ -139,6 +140,30 @@
             $('video source').attr('src', videoSource)
             $('video')[0].load()
         });
+
+
+        $(document).ready(function () {
+            $('.delete-confirm').click(function (event) {
+                event.preventDefault();
+                var url = $(this).attr("href");
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You want to Delete it!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it !',
+                    cancelButtonText: " Cancel it !"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                })
+            });
+        });
+
 
     </script>
     {{--    here--}}

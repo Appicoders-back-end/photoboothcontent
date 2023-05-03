@@ -136,6 +136,7 @@
 <!--dynamic table initialization -->
 <script src="{{asset('admin_assets')}}/js/dynamic_table_init.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+
 @yield('script')
 </body>
 
