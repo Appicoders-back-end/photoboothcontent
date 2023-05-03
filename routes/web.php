@@ -43,6 +43,7 @@ Route::controller(ShopController::class)->group(function () {
     Route::get('update-cart-item/{id}','updateCartItem')->name('shop.update.item.cart');
     Route::get('checkout','checkout')->name('shop.checkout');
     Route::post('checkout-process','checkoutProcess')->name('shop.checkout.process');
+    Route::get('change-order-status/{id}', 'orderStatus')->name('shop.orders.status');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

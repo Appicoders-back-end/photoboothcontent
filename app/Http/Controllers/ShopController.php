@@ -195,4 +195,21 @@ class ShopController extends Controller
         $order_detail = Order::find($id);
         return view('shop.order-detail', compact("order_detail"));
     }
+
+    public function orderStatus($id , StripeService $stripeService){
+        try {
+            $order = Order::find($id);
+            DB::beginTransaction();
+            $stripeService->createRefund($order->charge_id,$order->paid_amount,'refund');
+            $order->status = Order::CANCEL;
+            $order->save();
+            DB::commit();
+
+            return redirect()->route('shop.order.history')->with('success', 'Order has been cancel successfully');
+
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
 }
