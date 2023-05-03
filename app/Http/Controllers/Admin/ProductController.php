@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function create()
     {
         $data = [
-            'related_products' => Product::select('id', 'name')->get()
+            'related_products' => Product::select('id', 'title')->get()
         ];
         return view('admin.products.create', $data);
     }
