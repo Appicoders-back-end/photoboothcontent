@@ -1,8 +1,7 @@
 @extends('admin.layouts.app')
 @section('style')
-{{--    <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">--}}
+    <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">
 
-    <link href="{{asset('admin_assets')}}/assets/dropzone/css/dropzone.css" rel="stylesheet"/>
 
     <!--  summernote -->
     <link href="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.css" rel="stylesheet">
@@ -117,15 +116,8 @@
                                 <!--Summernote end-->
 
                                 <div class="col-md-12 mb-3">
-                                   {{-- <label for="validationCustom02">Image</label>
-                                    <input type="file" class="dropify" id="gallery-photo-add" name="image[]" multiple required />--}}
-
-                                    <header class="card-header">
-                                        Dropzone File Upload
-                                    </header>
-                                    <div class="card-body">
-                                        <form action="http://thevectorlab.net/flatlab-4/assets/dropzone/upload.php" class="dropzone" id="my-awesome-dropzone"></form>
-                                    </div>
+                                   <label for="validationCustom02">Image</label>
+                                    <input type="file" class="dropify" id="gallery-photo-add" name="image[]" multiple required />
 
                                 </div>
                                 <div class="gallery"></div>
@@ -140,54 +132,14 @@
     </section>
 @endsection
 @section('script')
-{{--    <script src="{{asset('admin_assets')}}/js/dropify.js"></script>--}}
-    <script src="{{asset('admin_assets')}}/assets/dropzone/dropzone.js"></script>
+    <script src="{{asset('admin_assets')}}/js/dropify.js"></script>
     <!--summernote-->
     <script src="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.min.js"></script>
 
-    <script type="text/javascript">
-        var uploadedDocumentMap = {}
-        console.log(Dropzone.options.documentDropzone)
-        Dropzone.options.documentDropzone = {
-            url: "",
-            maxFilesize: 2, // MB
-            addRemoveLinks: true,
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            success: function (file, response) {
-                $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
-                uploadedDocumentMap[file.name] = response.name
-            },
-            removedfile: function (file) {
-                file.previewElement.remove()
-                var name = ''
-                if (typeof file.file_name !== 'undefined') {
-                    name = file.file_name
-                } else {
-                    name = uploadedDocumentMap[file.name]
-                }
-                $('form').find('input[name="document[]"][value="' + name + '"]').remove()
-            },
-            init: function () {
-                    @if(isset($project) && $project->document)
-                var files =
-                {!! json_encode($project->document) !!}
-                    for (var i in files) {
-                    var file = files[i]
-                    this.options.addedfile.call(this, file)
-                    file.previewElement.classList.add('dz-complete')
-                    $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
-                }
-                @endif
-            }
-        }
-    </script>
-
     <script>
-        /*$(document).ready(function () {
+        $(document).ready(function () {
             $('.dropify').dropify();
-        });*/
+        });
 
         $(document).ready(function () {
             $('.summernote').summernote({
@@ -210,7 +162,7 @@
             });
         });
 
-        $(function() {
+      /*  $(function() {
             // Multiple images preview in browser
             var imagesPreview = function(input, placeToInsertImagePreview) {
 
@@ -244,7 +196,7 @@
             // alert('work 2');
             $(".dropify-wrapper input").css("z-index","5");
             $( "#gallery-photo-add" ).trigger( "click" );
-        });
+        });*/
 
 
     </script>

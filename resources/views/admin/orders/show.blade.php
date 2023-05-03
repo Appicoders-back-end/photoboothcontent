@@ -33,6 +33,7 @@
                             <ul class="unstyled">
                                 <li>Order Number : <strong>{{ $order->order_no??'-' }}</strong></li>
                                 <li>Order Date : {{ formattedDate($order->created_at)??'-' }}</li>
+                                <li>Other Instruction : {{ $order->other_instruction??'-' }} </li>
 {{--                                <li>Due Date : 2013-03-20</li>--}}
                                 <li>Order Status : <label class="badge @if($order->status === "pending") badge-danger @elseif($order->status === "processing") badge-primary @elseif($order->status === "cancel") badge-warning  @elseif($order->status === "completed") badge-success @endif ">{{ strtoupper($order->status)??'-' }}</label></li>
                             </ul>
