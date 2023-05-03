@@ -10,7 +10,7 @@
                         <hr>
                         <p class="card-text"><strong>Name:</strong> {{ $user->name ?? '-' }}</p>
                         <p class="card-text"><strong>Email:</strong> {{ $user->email ?? '-' }}</p>
-                        <p class="card-text"><strong>Phone:</strong> {{ $user->contactNo() ?? '-'}}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ formattedNumber($user->contact_no)?? '-'}}</p>
                         <p class="card-text">
                             <strong>Membership:</strong> {{ $userSubcription->subscription->name??'-' }} </p>
                         <p class="card-text"><strong>Membership
