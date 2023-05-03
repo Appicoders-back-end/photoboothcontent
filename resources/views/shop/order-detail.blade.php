@@ -15,7 +15,7 @@
                     <p>Order Date: {{ formattedDate($order_detail->created_at)??'-' }}</p>
                     <p>Order Number: {{ $order_detail->order_no??'-' }}</p>
 {{--                    <p>Payment Method: Credit Card</p>--}}
-                    <p>Total Amount: {{ formattedDate($order_detail->total_amount)??'-' }}</p>
+                    <p>Total Amount: {{ number_format($order_detail->total_amount,2)??'-' }}</p>
                 </div>
             </div>
             <div class="row mt-5">
