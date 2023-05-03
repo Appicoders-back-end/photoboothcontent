@@ -106,7 +106,7 @@
 <script src="{{asset('admin_assets')}}/js/jquery.js"></script>
 <script src="{{asset('admin_assets')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="{{asset('admin_assets')}}/js/bootstrap.bundle.min.js"></script>
-<script src="assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>
+{{--<script src="assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>--}}
 <script class="include" type="text/javascript" src="{{asset('admin_assets')}}/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="{{asset('admin_assets')}}/js/jquery.scrollTo.min.js"></script>
 <script src="{{asset('admin_assets')}}/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -117,7 +117,7 @@
 
 <!-- js datetime picker -->
 <script src="{{asset('admin_assets')}}/assets\select2\js\select2.min.js"></script>
-<script src="{{asset('admin_assets')}}/js/pickers/init-datetime-picker.js"></script>
+{{--<script src="{{asset('admin_assets')}}/js/pickers/init-datetime-picker.js"></script>--}}
 <script type="text/javascript" src="{{asset('admin_assets')}}/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
