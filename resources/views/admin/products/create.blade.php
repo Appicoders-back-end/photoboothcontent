@@ -1,10 +1,9 @@
 @extends('admin.layouts.app')
 @section('style')
     {{--    <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">--}}
-
     {{--    <link href="{{asset('admin_assets')}}/assets/dropzone/css/dropzone.css" rel="stylesheet"/>--}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet"/>
-
+    {{--    <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">--}}
     <!--  summernote -->
     <link href="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.css" rel="stylesheet">
     <style>
@@ -42,19 +41,21 @@
                     <div class="card-header">Create Product</div>
                     <div class="card-body">
                         @include('admin.layouts.messages')
-                        <form class="needs-validation" id="form" action="{{route('admin.product.store')}}" method="POST"
-                              novalidate enctype="multipart/form-data">
+                        <form class="needs-validation" id="productForm" action="{{route('admin.product.store')}}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                         </form>
                         <div class="form-row">
+
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Title</label>
                                 <input type="text" class="form-control" id="validationCustom01" name="title"
-                                       placeholder="Product Title" value="{{old('title')}}" required>
+                                       placeholder="Product Title" value="{{old('title')}}" required form="productForm">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
+
                             <div class="col-md-6 mb-3">
                                 <label for="validationCustom01">Price</label>
                                 <div class="form-group">
@@ -65,7 +66,7 @@
                                         <input type="number" class="form-control" min="1"
                                                placeholder="Product Price" aria-label="price"
                                                aria-describedby="price" value="{{old('price')}}" name="price"
-                                               id="price" required>
+                                               id="price" required form="productForm">
                                     </div>
                                 </div>
                                 <div class="valid-feedback">
@@ -77,12 +78,9 @@
                                 <label for="validationCustom01">Stock</label>
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        {{--                                            <div class="input-group-prepend">--}}
-                                        {{--                                                <span class="input-group-text" id="price">$</span>--}}
-                                        {{--                                            </div>--}}
                                         <input type="number" class="form-control" placeholder="Stock" min="1"
                                                aria-label="stock" aria-describedby="stock" value="{{old('stock')}}"
-                                               name="stock" required>
+                                               name="stock" required form="productForm">
                                     </div>
                                 </div>
                                 <div class="valid-feedback">
@@ -98,7 +96,7 @@
                                     </header>
                                     <div class="card-body editor-desc">
                                             <textarea class="summernote" name="description"
-                                                      id="summernote_1">{{old('description')}}</textarea>
+                                                      id="summernote_1" form="productForm">{{old('description')}}</textarea>
                                     </div>
                                 </section>
                             </div>
@@ -114,13 +112,19 @@
                                 <div class="card-body">
                                     <form action="http://thevectorlab.net/flatlab-4/assets/dropzone/upload.php"
                                           class="dropzone" id="my-awesome-dropzone"></form>
+                                    <!--Summernote end-->
+
+                                    {{--                                <div class="col-md-12 mb-3">--}}
+                                    {{--                                   <label for="validationCustom02">Image</label>--}}
+                                    {{--                                    <input type="file" class="dropify" id="gallery-photo-add" name="image[]" multiple required />--}}
+
+                                    {{--                                </div>--}}
+
                                 </div>
-
                             </div>
-                            <div class="gallery"></div>
-                        </div>
-                        <button class="btn btn-sm btn-success" type="submit">Create Product</button>
+                            <button class="btn btn-sm btn-success" type="submit" form="productForm">Create Product</button>
 
+                        </div>
                     </div>
                 </section>
             </div>
@@ -178,7 +182,6 @@
             }
         }
     </script>
-
     <script>
         /*$(document).ready(function () {
             $('.dropify').dropify();
@@ -193,31 +196,31 @@
             });
         });
 
-        /*$(function() {
-            // Multiple images preview in browser
-            var imagesPreview = function(input, placeToInsertImagePreview) {
+        /*  $(function() {
+              // Multiple images preview in browser
+              var imagesPreview = function(input, placeToInsertImagePreview) {
 
-                if (input.files) {
-                    var filesAmount = input.files.length;
+                  if (input.files) {
+                      var filesAmount = input.files.length;
 
-                    for (i = 0; i < filesAmount; i++) {
-                        var reader = new FileReader();
+                      for (i = 0; i < filesAmount; i++) {
+                          var reader = new FileReader();
 
-                        reader.onload = function(event) {
-                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-                        }
+                          reader.onload = function(event) {
+                              $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                          }
 
-                        reader.readAsDataURL(input.files[i]);
-                    }
-                }
-            };
+                          reader.readAsDataURL(input.files[i]);
+                      }
+                  }
+              };
 
-            $('#gallery-photo-add').on('change', function() {
-                imagesPreview(this, 'div.dropify-preview');
-                imagesPreview(this, 'div.dropify-preview').css("overflow-y","auto");
-                imagesPreview(this, 'div.dropify-preview .dropify-render').css("display","none");
-            });
-        });*/
+              $('#gallery-photo-add').on('change', function() {
+                  imagesPreview(this, 'div.dropify-preview');
+                  imagesPreview(this, 'div.dropify-preview').css("overflow-y","auto");
+                  imagesPreview(this, 'div.dropify-preview .dropify-render').css("display","none");
+              });
+          });*/
 
         /*$(document).on("click",".dropify-preview",function () {
             // alert('work 2');
