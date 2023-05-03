@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('style')
+    <style>
+        .highlights {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="hero-section">
         <img src="{{asset('frontend/assets/img/hero-section-circle-pink.png')}}" alt="Pink circle" class="pink-circle">
