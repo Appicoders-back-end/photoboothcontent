@@ -16,10 +16,12 @@ class ProductController extends Controller
         $products = Product::get();
         return view('admin.products.index', compact('products'));
     }
+
     public function create()
     {
         return view('admin.products.create');
     }
+
     public function store(Request $request)
     {
         dd($request->all());
@@ -31,18 +33,18 @@ class ProductController extends Controller
                 "image" => "required|array",
             ]);
 
-            $product=Product::create([
-                'title'=>$request->title,
-                'price'=>$request->price,
-                'stock'=>$request->stock,
-                'description'=>$request->description
+            $product = Product::create([
+                'title' => $request->title,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'description' => $request->description
             ]);
             foreach ($request->image as $key => $product_image) {
-               $product_image= $product_image->store('product_images', 'public');
-               ProductImages::insert([
-                   "product_id"=>$product->id,
-                   'image' =>  $product_image
-               ]);
+                $product_image = $product_image->store('product_images', 'public');
+                ProductImages::insert([
+                    "product_id" => $product->id,
+                    'image' => $product_image
+                ]);
             }
             return redirect()->route('admin.product.index')->with('success', 'Product has been created successfully');
 
@@ -81,22 +83,22 @@ class ProductController extends Controller
                 "stock" => "required",
             ]);
 
-            $product=Product::findOrFail($id);
+            $product = Product::findOrFail($id);
 
             $product->update([
-                'title'=>$request->title,
-                'price'=>$request->price,
-                'stock'=>$request->stock,
-                'description'=>$request->description
+                'title' => $request->title,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'description' => $request->description
             ]);
 
-            if ($request->hasFile('image')){
+            if ($request->hasFile('image')) {
                 foreach ($request->image as $key => $product_image) {
-                   $product_image= $product_image->store('product_images', 'public');
-                   ProductImages::insert([
-                       "product_id"=>$id,
-                       'image' =>  $product_image
-                   ]);
+                    $product_image = $product_image->store('product_images', 'public');
+                    ProductImages::insert([
+                        "product_id" => $id,
+                        'image' => $product_image
+                    ]);
                 }
             }
             return redirect()->route('admin.product.index')->with('success', "Product Updated Successfully");
@@ -110,14 +112,14 @@ class ProductController extends Controller
     {
         try {
             $deleteProduct = Product::find($id);
-            $productImages=ProductImages::where('product_id',$id)->get();
+            $productImages = ProductImages::where('product_id', $id)->get();
             foreach ($productImages as $key => $pdImages) {
-                $folderPath = storage_path('app/public/'.$pdImages->image);
-                if(File::exists($folderPath)) {
+                $folderPath = storage_path('app/public/' . $pdImages->image);
+                if (File::exists($folderPath)) {
                     File::delete($folderPath);
                 }
             }
-            ProductImages::where('product_id',$id)->delete();
+            ProductImages::where('product_id', $id)->delete();
             $res = $deleteProduct->delete();
             if ($res) {
                 return back()->with('success', 'Product has been successfully deleted .');
@@ -127,15 +129,16 @@ class ProductController extends Controller
         }
     }
 
-    public function deletePImage($p_image_id){
+    public function deletePImage($p_image_id)
+    {
 
         try {
-            $find_image=ProductImages::findOrFail($p_image_id);
-            $folderPath = storage_path('app/public/'.$find_image->image);
-            if(File::exists($folderPath)) {
+            $find_image = ProductImages::findOrFail($p_image_id);
+            $folderPath = storage_path('app/public/' . $find_image->image);
+            if (File::exists($folderPath)) {
                 File::delete($folderPath);
             }
-            ProductImages::where('id',$p_image_id)->delete();
+            ProductImages::where('id', $p_image_id)->delete();
 
             return back()->with('success', 'Product Image has been successfully deleted .');
 
@@ -144,35 +147,17 @@ class ProductController extends Controller
         }
     }
 
-    public function storeDrpzone(Request $request){
-//        dd("work");
-//        dd($request->document);
-        foreach($request->input('document', []) as $file) {
-            //your file to be uploaded
-            return $file;
-        }
-    }
-
-    public function uploads(Request $request){
-//        dd($request->all());
-//    return "work";
-        $path = storage_path('app/public/product_images/');
-//        dd($path);
-        !(file_exists($path)) && mkdir($path, 0777, true);
-
+    public function uploads(Request $request)
+    {
+        $path = 'storage/uploads/product_images/';
         $file = $request->file('file');
         $name = uniqid() . '_' . trim($file->getClientOriginalName());
-        $file->move($path, $name);
+        $file->move(public_path() . '/' . $path, $name);
 
         return response()->json([
-            'name'          => $name,
+            'name' => $name,
             'original_name' => $file->getClientOriginalName(),
-            'path' => $path,
+            'path' => $path . '/' . $name,
         ]);
-
-       /* return Response::json(array(
-            'success' => true,
-            'data'   => $data
-        ));*/
     }
 }
