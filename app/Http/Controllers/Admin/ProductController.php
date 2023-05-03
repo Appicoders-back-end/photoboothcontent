@@ -22,6 +22,7 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+        dd($request->all());
         try {
             $request->validate([
                 "title" => "required",
@@ -144,6 +145,34 @@ class ProductController extends Controller
     }
 
     public function storeDrpzone(Request $request){
-        dd("work");
+//        dd("work");
+//        dd($request->document);
+        foreach($request->input('document', []) as $file) {
+            //your file to be uploaded
+            return $file;
+        }
+    }
+
+    public function uploads(Request $request){
+//        dd($request->all());
+//    return "work";
+        $path = storage_path('app/public/product_images/');
+//        dd($path);
+        !(file_exists($path)) && mkdir($path, 0777, true);
+
+        $file = $request->file('file');
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+            'path' => $path,
+        ]);
+
+       /* return Response::json(array(
+            'success' => true,
+            'data'   => $data
+        ));*/
     }
 }

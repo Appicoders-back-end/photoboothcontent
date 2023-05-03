@@ -41,7 +41,7 @@
                     <div class="card-header">Create Product</div>
                     <div class="card-body">
                         @include('admin.layouts.messages')
-                        <form class="needs-validation" id="productForm" action="{{route('admin.product.store')}}" method="POST"
+                        <form class="needs-validation productForm" id="productForm" action="{{route('admin.product.store')}}" method="POST"
                               enctype="multipart/form-data">
                             @csrf
                         </form>
@@ -110,8 +110,10 @@
                                     Dropzone File Upload
                                 </header>
                                 <div class="card-body">
-                                    <form action="http://thevectorlab.net/flatlab-4/assets/dropzone/upload.php"
-                                          class="dropzone" id="my-awesome-dropzone"></form>
+                                    <form method="POST" action="{{ route('dropzone.uploads') }}"
+                                          class="dropzone" id="my-awesome-dropzone">
+                                        @csrf
+                                    </form>
                                     <!--Summernote end-->
 
                                     {{--                                <div class="col-md-12 mb-3">--}}
@@ -142,18 +144,29 @@
 
     <script>
         var uploadedDocumentMap = {}
-        Dropzone.options.documentDropzone = {
+
+        Dropzone.options.documentDropzone = new Dropzone("#my-awesome-dropzone" , {
             url: "{{ route('dropzone.store') }}",
             maxFilesize: 2, // MB
             addRemoveLinks: true,
+            dictRemoveFile:"Remove file",
+            dictRemoveFileConfirmation:null,
+
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
+
             success: function (file, response) {
-                $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
-                uploadedDocumentMap[file.name] = response.name
+                alert('working')
+                alert(file.upload.filename)
+                alert(response)
+                console.log(file)
+                console.log(response)
+                $('#productForm').append('<input type="hidden" name="document[]" value="' + file.upload.filename + '">')
+                uploadedDocumentMap[file.upload.filename] = response.name
             },
             removedfile: function (file) {
+
                 file.previewElement.remove()
                 var name = ''
                 if (typeof file.file_name !== 'undefined') {
@@ -161,7 +174,9 @@
                 } else {
                     name = uploadedDocumentMap[file.name]
                 }
-                $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+                $('#productForm').find('input[name="document[]"][value="' + file.upload.filename + '"]').remove()
+                var _ref;
+                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
             init: function () {
                 @if(isset($project) && $project->document)
@@ -176,11 +191,11 @@
                     var file = files[i]
                     this.options.addedfile.call(this, file)
                     file.previewElement.classList.add('dz-complete')
-                    $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+                    $('#productForm').append('<input type="hidden" name="document[]" value="' + file.upload.filename + '">')
                 }
                 @endif
             }
-        }
+        });
     </script>
     <script>
         /*$(document).ready(function () {
