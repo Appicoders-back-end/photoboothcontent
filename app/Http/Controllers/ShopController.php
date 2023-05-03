@@ -213,7 +213,7 @@ class ShopController extends Controller
         try {
             $order = Order::find($id);
             DB::beginTransaction();
-            $stripeService->createRefund($order->charge_id,$order->paid_amount,'refund');
+            $stripeService->createRefund($order->charge_id,$order->paid_amount);
             $order->status = Order::CANCEL;
             $order->save();
             DB::commit();
