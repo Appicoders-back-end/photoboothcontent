@@ -198,12 +198,12 @@ class StripeService
         ]);
     }
 
-    public function createRefund($chargeId, $amount, $reason)
+    public function createRefund($chargeId, $amount)
     {
         return $this->getStripe()->refunds->create([
             'charge' => $chargeId,
             'amount' => $amount * 100,
-            'reason' => $reason
+            'reason' => "requested_by_customer"
         ]);
     }
 }
