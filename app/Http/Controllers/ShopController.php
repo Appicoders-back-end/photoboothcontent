@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Page;
 use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\ProductImages;
@@ -17,8 +18,20 @@ class ShopController extends Controller
 {
     public function index()
     {
+        $contentPage = Page::firstOrCreate([
+            'slug' => 'shop'
+        ], [
+            'slug' => 'shop',
+            'name' => 'Shop'
+        ]);
+
         $products = Product::where("stock", '!=', 0)->get();
-        return view('shop.index', compact("products"));
+        $data = [
+            'products' => $products,
+            'content' => json_decode($contentPage->content),
+        ];
+
+        return view('shop.index', $data);
     }
 
     public function detail(string $p_id)

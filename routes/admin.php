@@ -38,12 +38,14 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('content', [PageController::class, 'content'])->name('admin.content');
     Route::get('membership', [PageController::class, 'membership'])->name('admin.membership');
     Route::get('coupon', [PageController::class, 'coupon'])->name('admin.coupon');
+    Route::get('shop', [PageController::class, 'shop'])->name('admin.shop');
 
     Route::post('storeHomePage', [PageController::class, 'storeHomePage'])->name('admin.storeHomePage');
     Route::post('storeAboutPage', [PageController::class, 'storeAboutPage'])->name('admin.storeAboutPage');
     Route::post('storeContentPage', [PageController::class, 'storeContentPage'])->name('admin.storeContentPage');
     Route::post('storeMembershipPage', [PageController::class, 'storeMembershipPage'])->name('admin.storeMembershipPage');
     Route::post('storeCouponPage', [PageController::class, 'storeCouponPage'])->name('admin.storeCouponPage');
+    Route::post('storeShopPage', [PageController::class, 'storeShopPage'])->name('admin.storeShopPage');
 
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('change-user-status/{id}', [UserController::class, 'changeStatus'])->name('admin.users.changeStatus');
