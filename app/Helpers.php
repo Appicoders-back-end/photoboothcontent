@@ -176,3 +176,11 @@ if (!function_exists('getDeliveryCharges')) {
         return get_option('delivery_charges') ?? 0;
     }
 }
+
+if (!function_exists('formattedNumber')) {
+
+    function formattedNumber($number)
+    {
+        return $number != null ? "+1 (" . substr($number, 0, 3) . ") " . substr($number, 3, 3) . "-" . substr($number, 6) : '-';
+    }
+}

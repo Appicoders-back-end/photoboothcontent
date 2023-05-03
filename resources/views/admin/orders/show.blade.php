@@ -25,7 +25,7 @@
                             <ul class="unstyled">
                                 <li>User Name: <strong>{{ $order->user->name??'-' }}</strong></li>
                                 <li>User Email: {{ $order->user->email??'-' }}</li>
-                                <li>Contact Number: {{ $order->user->contact_no??'-' }}</li>
+                                <li>Contact Number: {{ formattedNumber($order->user->contact_no) ?? '-' }}</li>
                             </ul>
                         </div>
                         <div class="col-lg-4 col-sm-4">
