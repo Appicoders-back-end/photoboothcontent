@@ -3,7 +3,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <img src="{{get_logo()}}" alt="Photobooth content">
-                <p class="mt-3 w-75">{{ get_option('footer_description') }}</p>
+                <p class="mt-3 w-75">{!! get_option('footer_description') !!}</p>
             </div>
             <div class="col-lg-3">
                 <h5 class="mb-3 fw-bold">Useful links</h5>
@@ -12,7 +12,7 @@
                 <a class="my-2 d-block" href="{{route('content-store')}}">Content Store</a>
                 <a class="my-2 d-block" href="{{route('coupons')}}">Coupons</a>
                 <a class="my-2 d-block" href="{{ route('memberships') }}">Membership</a>
-{{--                <a class="my-2 d-block" href="shop.php">Shop</a>--}}
+                <a class="my-2 d-block" href="{{ route('shop.home') }}">Shop</a>
             </div>
             <div class="col-lg-4">
                 <h5 class="mb-3 fw-bold">Contact information</h5>

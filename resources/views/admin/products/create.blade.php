@@ -41,7 +41,8 @@
                     <div class="card-header">Create Product</div>
                     <div class="card-body">
                         @include('admin.layouts.messages')
-                        <form class="needs-validation productForm" id="productForm" action="{{route('admin.product.store')}}" method="POST"
+                        <form class="needs-validation productForm" id="productForm"
+                              action="{{route('admin.product.store')}}" method="POST"
                               enctype="multipart/form-data">
                             @csrf
                         </form>
@@ -96,7 +97,8 @@
                                     </header>
                                     <div class="card-body editor-desc">
                                             <textarea class="summernote" name="description"
-                                                      id="summernote_1" form="productForm">{{old('description')}}</textarea>
+                                                      id="summernote_1"
+                                                      form="productForm">{{old('description')}}</textarea>
                                     </div>
                                 </section>
                             </div>
@@ -107,10 +109,10 @@
                                  <input type="file" class="dropify" id="gallery-photo-add" name="image[]" multiple required />--}}
 
                                 <header class="card-header">
-                                    Dropzone File Upload
+                                    Images
                                 </header>
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('dropzone.uploads') }}"
+                                    <form method="POST"
                                           class="dropzone" id="my-awesome-dropzone">
                                         @csrf
                                     </form>
@@ -124,7 +126,8 @@
 
                                 </div>
                             </div>
-                            <button class="btn btn-sm btn-success" type="submit" form="productForm">Create Product</button>
+                            <button class="btn btn-sm btn-success" type="submit" form="productForm">Create Product
+                            </button>
 
                         </div>
                     </div>
@@ -144,13 +147,13 @@
 
     <script>
         var uploadedDocumentMap = {}
-
-        Dropzone.options.documentDropzone = new Dropzone("#my-awesome-dropzone" , {
+        Dropzone.autoDiscover = false;
+        Dropzone.options.documentDropzone = new Dropzone("#my-awesome-dropzone", {
             url: "{{ route('dropzone.store') }}",
-            maxFilesize: 2, // MB
+            maxFilesize: 10, // MB
             addRemoveLinks: true,
-            dictRemoveFile:"Remove file",
-            dictRemoveFileConfirmation:null,
+            dictRemoveFile: "Remove file",
+            dictRemoveFileConfirmation: null,
 
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -158,7 +161,7 @@
 
             success: function (file, response) {
                 console.log(file, response);
-                $('#productForm').append('<input type="hidden" name="document[]" value="' + file.upload.filename + '">')
+                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '">')
                 uploadedDocumentMap[file.upload.filename] = response.name
             },
             removedfile: function (file) {
@@ -170,7 +173,7 @@
                 } else {
                     name = uploadedDocumentMap[file.name]
                 }
-                $('#productForm').find('input[name="document[]"][value="' + file.upload.filename + '"]').remove()
+                $('#productForm').find('input[name="images[]"][value="' + file.upload.filename + '"]').remove()
                 var _ref;
                 return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
@@ -187,7 +190,7 @@
                     var file = files[i]
                     this.options.addedfile.call(this, file)
                     file.previewElement.classList.add('dz-complete')
-                    $('#productForm').append('<input type="hidden" name="document[]" value="' + file.upload.filename + '">')
+                    $('#productForm').append('<input type="hidden" name="images[]" value="' + file.upload.filename + '">')
                 }
                 @endif
             }

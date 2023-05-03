@@ -32,7 +32,7 @@
                                         <td>{{ $product->stock??'' }}</td>
                                         <td>$ {{ number_format($product->price,2) }}</td>
                                         <td><img class="img img-fluid" style="height: 70px; object-fit: cover;"
-                                                 src="{{ url('storage/'.$product->images[0]->image) }}" alt=""></td>
+                                                 src="{{ $product->getImages()[0] }}" alt=""></td>
                                         <td>{{ date('F d, Y', strtotime($product->created_at)) ?? '-' }} </td>
                                         <td>
                                             <a href="{{ route('admin.product.edit',$product->id) }}"

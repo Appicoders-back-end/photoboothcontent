@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class CategoryController extends Controller
 {
@@ -35,7 +36,7 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "name" => "required",
-            "type" => "required_if:parent_id,==,null",
+            "type" => new RequiredIf($request->input('parent_id') == null)
         ]);
 
         if ($validator->fails()) {
