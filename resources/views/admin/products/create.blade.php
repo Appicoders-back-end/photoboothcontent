@@ -107,25 +107,15 @@
                             <div class="col-md-12 mb-3">
                                 {{-- <label for="validationCustom02">Image</label>
                                  <input type="file" class="dropify" id="gallery-photo-add" name="image[]" multiple required />--}}
-
-                                <header class="card-header">
-                                    Images
-                                </header>
-                                <div class="card-body">
+                                <label for="validationCustom01">Images</label>
+                                <div class="form-group">
                                     <form method="POST"
                                           class="dropzone" id="my-awesome-dropzone">
                                         @csrf
                                     </form>
-                                    <!--Summernote end-->
-
-                                    {{--                                <div class="col-md-12 mb-3">--}}
-                                    {{--                                   <label for="validationCustom02">Image</label>--}}
-                                    {{--                                    <input type="file" class="dropify" id="gallery-photo-add" name="image[]" multiple required />--}}
-
-                                    {{--                                </div>--}}
-
                                 </div>
                             </div>
+
                             <button class="btn btn-sm btn-success" type="submit" form="productForm">Create Product
                             </button>
 
