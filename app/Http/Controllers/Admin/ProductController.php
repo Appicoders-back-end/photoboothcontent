@@ -19,7 +19,10 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');
+        $data = [
+            'related_products' => Product::select('id', 'name')->get()
+        ];
+        return view('admin.products.create', $data);
     }
 
     public function store(Request $request)

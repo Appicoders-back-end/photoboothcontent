@@ -11,6 +11,9 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const ACTIVE = 'active';
+    public const INACTIVE = 'inactive';
+
     protected $fillable = ['title', 'price', 'stock', 'description'];
 
     public function images()
