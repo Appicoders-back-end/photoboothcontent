@@ -197,9 +197,13 @@ class ShopController extends Controller
         }
     }
 
-    public function orderHistory()
+    public function orderHistory(Request $request)
     {
-        $order_history = Order::all();
+        $order_history = Order::where("user_id",auth()->user()->id)->orderby('id','desc')->get();
+        if (isset($request->status)){
+            $order_history = Order::where("user_id",auth()->user()->id)->orderby('id','desc')->where('status',$request->status)->get();
+        }
+
         return view('shop.order-history', compact("order_history"));
     }
 

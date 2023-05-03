@@ -67,13 +67,13 @@
                         </tbody>
                     </table>
                     <div class="row justify-content-end">
-                        <div class="col-lg-4 invoice-block ">
+                        <div class="col-lg-3 invoice-block ">
                             <ul class="unstyled amounts">
-                                <li><strong>Sub - Total amount :</strong> $ {{ number_format($sub_total_amount) }}</li>
-                                <li><strong>Delivery Charges :</strong> ${{ number_format($order->delivery_charges,2)??'-' }}</li>
+                                <li style="display: flex; justify-content: space-between;color: #000;text-align: left;"><span style="font-weight: bold;">Subtotal  :</span> <span style="display: block; text-align:right;">${{ number_format($sub_total_amount) }}</span></li>
+                                <li style="display: flex; justify-content: space-between;color: #000;text-align: left;"><span style="font-weight: bold;">Delivery Charges :</span> <span style="display: block; text-align:right;">${{ number_format($order->delivery_charges,2)??'-' }}</span></li>
 {{--                                <li><strong>Discount :</strong> 10%</li>--}}
                                 @php $grand_total_amount = ($sub_total_amount - $delivery_charges) - $discount; @endphp
-                                <li><strong>Grand Total :</strong> $ {{ number_format($grand_total_amount,2) }}</li>
+                                <li style="display: flex; justify-content: space-between;color: #000;text-align: left;"><span style="font-weight: bold;">Total :</span> <span style="display: block; text-align:right;">${{ number_format($order->paid_amount,2) }}</span></li>
                             </ul>
                         </div>
                     </div>
