@@ -24,13 +24,13 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+
         try {
             $request->validate([
                 "title" => "required",
                 'price' => "numeric|between:0,99999.99",
                 "description" => "required",
-                "image" => "required|array",
+//                "image" => "required|array",
             ]);
 
             $product = Product::create([
@@ -39,13 +39,17 @@ class ProductController extends Controller
                 'stock' => $request->stock,
                 'description' => $request->description
             ]);
-            foreach ($request->image as $key => $product_image) {
-                $product_image = $product_image->store('product_images', 'public');
-                ProductImages::insert([
-                    "product_id" => $product->id,
-                    'image' => $product_image
-                ]);
+
+            if (count($request->images) > 0) {
+                foreach ($request->images as $product_image) {
+                    //                $product_image = $product_image->store('product_images', 'public');
+                    ProductImages::insert([
+                        "product_id" => $product->id,
+                        'image' => $product_image
+                    ]);
+                }
             }
+
             return redirect()->route('admin.product.index')->with('success', 'Product has been created successfully');
 
         } catch (\Exception $exception) {
@@ -149,10 +153,10 @@ class ProductController extends Controller
 
     public function uploads(Request $request)
     {
-        $path = 'storage/uploads/product_images/';
+        $path = 'product_images';
         $file = $request->file('file');
         $name = uniqid() . '_' . trim($file->getClientOriginalName());
-        $file->move(public_path() . '/' . $path, $name);
+        $file->move(public_path() . '/storage/uploads/' . $path, $name);
 
         return response()->json([
             'name' => $name,
