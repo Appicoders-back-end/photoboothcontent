@@ -9,9 +9,9 @@
                     <div class="swiper productswiper">
                         <div class="swiper-wrapper">
                             @if($product->images)
-                                @foreach($product->images as $key => $image)
+                                @foreach($product->getImages() as $key => $image)
                                 <div class="swiper-slide">
-                                    <img src="{{ url('storage/'.$image->image) }}" alt="Image-{{ ++$key }}" class="img-fluid">
+                                    <img src="{{ $image }}" alt="Image-{{ ++$key }}" class="img-fluid">
                                 </div>
                                 @endforeach
                             @endif

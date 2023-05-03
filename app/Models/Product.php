@@ -13,8 +13,24 @@ class Product extends Model
 
     protected $fillable = ['title', 'price', 'stock', 'description'];
 
-    public function images(){
-        return $this->hasMany(ProductImages::class,"product_id","id");
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class, "product_id", "id");
     }
 
+    public function getImages()
+    {
+        if ($this->images->count() == null) {
+            return [
+                asset('/') . "admin_assets/img/promo-dummy.jpg"
+            ];
+        }
+
+        $images = [];
+        foreach ($this->images as $image) {
+            $images[] = url('/') . '/storage/uploads/' . $image->image;
+        }
+
+        return $images;
+    }
 }
