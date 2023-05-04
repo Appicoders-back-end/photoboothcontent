@@ -19,12 +19,12 @@ body {
 
 /* Hide scrollbar for all elements */
 ::-webkit-scrollbar {
-    display: none;
+    /*display: none;*/
 }
 
 /* Hide scrollbar for specific element */
 #element-id::-webkit-scrollbar {
-    display: none;
+    /*display: none;*/
 }
 
 header {
