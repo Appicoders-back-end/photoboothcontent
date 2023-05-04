@@ -40,7 +40,8 @@ class ProductController extends Controller
                 'title' => $request->title,
                 'price' => $request->price,
                 'stock' => $request->stock,
-                'description' => $request->description
+                'description' => $request->description,
+                'status' => $request->status,
             ]);
 
             if (count($request->images) > 0) {
@@ -74,7 +75,13 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        $images = $product->images;
+        $data = [
+            'product' => $product,
+            'images' => $images
+        ];
+
+        return view('admin.products.edit', $data);
     }
 
     /**
@@ -96,7 +103,8 @@ class ProductController extends Controller
                 'title' => $request->title,
                 'price' => $request->price,
                 'stock' => $request->stock,
-                'description' => $request->description
+                'description' => $request->description,
+                'status' => $request->status
             ]);
 
             /*if ($request->hasFile('image')) {

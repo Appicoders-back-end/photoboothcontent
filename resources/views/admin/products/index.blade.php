@@ -21,6 +21,7 @@
                                     <th>Stock</th>
                                     <th>Price</th>
                                     <th>Image</th>
+                                    <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -33,6 +34,7 @@
                                         <td>${{ number_format($product->price,2) }}</td>
                                         <td><img class="img img-fluid" style="height: 70px; object-fit: cover;"
                                                  src="{{ $product->getImages()[0] }}" alt=""></td>
+                                        <td>{{\Illuminate\Support\Str::ucfirst($product->status)}}</td>
                                         <td>{{ date('F d, Y', strtotime($product->created_at)) ?? '-' }} </td>
                                         <td>
                                             <a href="{{ route('admin.product.edit',$product->id) }}"
