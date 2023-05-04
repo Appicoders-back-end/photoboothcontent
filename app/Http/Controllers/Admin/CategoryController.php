@@ -138,6 +138,14 @@ class CategoryController extends Controller
 
     public function changeStatus(Request $request , $id){
         try {
+            if ($request->sub_category == "sub_category"){
+//                dd('woerk');
+                $category = Category::find($id);
+                $category->status = ($request->status == 'inactive')?Category::INACTIVE:Category::ACTIVE;
+                $category->save();
+                return redirect()->route('admin.categories.show',$category->parent_id)->with('success', 'Status has been updated successfully');
+//                dd($category);
+            }
             $category = Category::find($id);
 
             $category->status = ($request->status == 'inactive')?Category::INACTIVE:Category::ACTIVE;
