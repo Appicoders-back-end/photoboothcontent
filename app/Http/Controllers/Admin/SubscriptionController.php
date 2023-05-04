@@ -17,7 +17,7 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscription::get();
+        $subscriptions = Subscription::orderByDesc('id')->get();
         return view('admin.subscriptions.index', ['subscriptions' => $subscriptions]);
     }
 
