@@ -96,7 +96,7 @@ class HomeController extends Controller
         $data = [
             'content' => json_decode($homePage->content),
             'promoCodes' => PromoCode::active()->get(),
-            'coupons' => Coupon::active()->get(),
+            'coupons' => Coupon::active()->limit(3)->orderBydesc('id')->get(),
             'categories' => $categories
         ];
 

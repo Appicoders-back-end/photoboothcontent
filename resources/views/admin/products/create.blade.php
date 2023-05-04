@@ -81,26 +81,13 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <label for="status">Status</label>
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <select name="status" class="form-control" form="productForm">
                                             <option value="active">Active</option>
                                             <option value="inactive">InActive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="status">Related Products</label>
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <select name="related_products" class="form-control select2" multiple="multiple" form="productForm">
-                                            @foreach($related_products as $related_product)
-                                                <option value="{{$related_product->id}}">{{$related_product->title}}</option>
-                                            @endforeach()
                                         </select>
                                     </div>
                                 </div>
@@ -165,7 +152,8 @@
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function (file, response) {
-                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '">')
+                console.log(file, file.upload.uuid)
+                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '" data-uuid="'+file.upload.uuid+'">')
                 uploadedDocumentMap[file.upload.filename] = response.name
             },
             removedfile: function (file) {
@@ -177,9 +165,9 @@
                 } else {
                     name = uploadedDocumentMap[file.name]
                 }
-                $('#productForm').find('input[name="images[]"][value="' + file.upload.filename + '"]').remove()
-                var _ref;
-                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                $('#productForm').find('input[name="images[]"][data-uuid="' + file.upload.uuid + '"]').remove()
+                // var _ref;
+                // return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
             init: function () {
                 @if(isset($project) && $project->document)
