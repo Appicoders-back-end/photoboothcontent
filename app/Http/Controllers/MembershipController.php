@@ -108,4 +108,15 @@ class MembershipController extends Controller
             return redirect()->back()->with('error', $exception->getMessage());
         }
     }
+
+    public function cancelMembership($id){
+        try {
+            $cancel_membership = UserSubscription::find($id);
+            $cancel_membership->is_canceled = 1;
+            $cancel_membership->save();
+            return redirect()->route('dashboard')->with('success', __('Subscription has been canceled successfully'));
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
 }
