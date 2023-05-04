@@ -76,29 +76,8 @@
     </section>
 @endsection
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script>
-        $(document).on('click', '#delete_btn', function (e) {
-            e.preventDefault(false);
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $('#deleteform').submit();
-                    Swal.fire(
-                        'Deleted!',
-                        'Promo code has been deleted successfully.',
-                        'success'
-                    )
-                }
-            });
-        })
 
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -121,28 +100,29 @@
             modal.style.display = "none";
         }
 
+    </script>
+    <script>
         $(document).ready(function () {
-            $('.delete-confirm').click(function (event) {
+            $('.delete-confirm').click(function(event){
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
                 event.preventDefault();
-                var url = $(this).attr("href");
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'You want to Delete it!',
-                    icon: 'warning',
-                    showCancelButton: true,
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to Delete it!",
+                    icon: "warning",
+                    type: "warning",
+                    buttons: ["Cancel","Yes!"],
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it !',
-                    cancelButtonText: " Cancel it !"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = url;
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
                     }
-                })
+                });
             });
         });
-
     </script>
     {{--    here--}}
 @endsection
