@@ -71,7 +71,7 @@
                     text: "You want to cancel it!",
                     icon: "warning",
                     type: "warning",
-                    buttons: ["Cancel","Yes!"],
+                    buttons: ["No","Yes!"],
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, Cancel it!'
