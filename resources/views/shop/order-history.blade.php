@@ -58,28 +58,28 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
     <script type="text/javascript">
         $(function () {
 
             $('.delete-confirm').click(function (event) {
                 event.preventDefault();
                 var url = $(this).attr("href");
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'You want to cancel the order!',
-                    icon: 'warning',
-                    showCancelButton: true,
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to cancel it!",
+                    icon: "warning",
+                    type: "warning",
+                    buttons: ["Cancel","Yes!"],
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, Cancel it !',
-                    cancelButtonText: "Don't Cancel it !"
-                }).then((result) => {
-                    if (result.isConfirmed) {
+                    confirmButtonText: 'Yes, Cancel it!'
+                }).then((willDelete) => {
+                    if (willDelete) {
                         window.location.href = url;
                     }
-                })
+                });
             });
         });
     </script>

@@ -222,7 +222,7 @@ class ShopController extends Controller
             $order->save();
             DB::commit();
 
-            return redirect()->route('shop.order.history')->with('success', 'Order has been cancel successfully');
+            return redirect()->route('shop.order.history')->with('success', 'Order has been canceled successfully');
 
         } catch (\Exception $exception) {
             DB::rollBack();
