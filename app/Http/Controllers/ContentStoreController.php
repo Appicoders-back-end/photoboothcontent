@@ -32,7 +32,9 @@ class ContentStoreController extends Controller
 
         $data = [
             'content' => json_decode($contentPage->content),
-            'categories' => Category::with('subcategories')->whereNull('parent_id')->active()->orderBy('id')->get(),
+            'categories' => Category::with(['subcategories' => function($query){
+                $query->where('status', Category::ACTIVE);
+            } ])->whereNull('parent_id')->active()->orderBy('id')->get(),
             'content_store' => $baseContentQuery->orderByDesc('id')->get()
         ];
 
