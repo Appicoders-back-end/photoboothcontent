@@ -109,7 +109,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="contentVideo" class=" embed-responsive embed-responsive-16by9">
-                        <video id="video-10" controls style="width: 100%;" >
+                        <video id="video-10" controls style="width: 100%;" controlslist="nodownload" >
                             <source src="" />
                         </video>
                     </div>
@@ -127,13 +127,15 @@
             $(document).on("click",'#video_content',function () {
                 const videoSource = $(this).data('id');
                 const isAlreadyDownloaded = $(this).data('download');
-                if(isAlreadyDownloaded){
+               /* if(isAlreadyDownloaded){
                     // controlsList="nodownload"
                     $("#video-10").removeAttr("controlsList");
                 }else{
                     $('#video-10').attr('controlsList', 'nodownload');
                 }
                 // alert(isAlreadyDownloaded)
+                $('video source').attr('src', videoSource)
+                $('video')[0].load()*/
                 $('video source').attr('src', videoSource)
                 $('video')[0].load()
             });
