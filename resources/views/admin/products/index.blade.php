@@ -39,10 +39,10 @@
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
                                             <form
                                                 action="{{ route('admin.product.destroy', ['product'=>$product->id]) }}"
-                                                method="POST">
+                                                method="POST" id="deleteform">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger delete-confirms"><i class="fa fa-trash-o "></i></button>
+                                                <button class="btn btn-danger delete-confirm" id="delete_btn"><i class="fa fa-trash-o "></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -61,7 +61,36 @@
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
     <script>
+        $(document).ready(function () {
+            $(document).on('click', '#delete_btn', function (e) {
+                e.preventDefault(false);
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#deleteform').submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Promo code has been deleted successfully.',
+                            'success'
+                        )
+                    }
+                });
+            })
+        })
+
+
+
         $(document).on("click", '#read', function () {
             var str = $(this).data('id').length;
             if (str >= 20) {
@@ -69,29 +98,5 @@
             }
             $("#read_more").text($(this).data('id'));
         });
-
-        $(document).ready(function () {
-            $('.delete-confirms').click(function (event) {
-                event.preventDefault();
-                var url = $(this).attr("href");
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'You want to Delete it!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it !',
-                    cancelButtonText: " Cancel it !"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = url;
-                    }
-                })
-            });
-        });
-
-
     </script>
 @endsection
