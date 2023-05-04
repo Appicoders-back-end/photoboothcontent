@@ -13,7 +13,7 @@
                         <p class="card-text"><strong>Phone:</strong> {{ formattedNumber($user->contact_no)?? '-'}}</p>
                         <p class="card-text">
                             <strong>Membership:</strong> {{ $userSubcription->subscription->name??'-' }} @if(!$userSubcription->is_canceled) <a
-                                href="{{ route('cancel.membership',$userSubcription->id) }}"><span class="badge bg-danger">Cancel</span></a> @endif @if($userSubcription->is_canceled) <span class="badge bg-danger">Canceled</span>
+                                href="{{ route('cancel.membership',$userSubcription->id) }}"><span class="badge bg-danger">Cancel</span></a> @endif @if($userSubcription->is_canceled) <span class="badge bg-success">Canceled</span>
                             @endif</p>
                         <p class="card-text"><strong>Membership
                                 Due:</strong> {{ $user->userSubcription->count() > 0 ? formattedDate($user->userSubcription()->first()->end_date) : '-'}}
