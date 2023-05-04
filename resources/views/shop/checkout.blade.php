@@ -26,7 +26,7 @@
 {{--                        </div>--}}
 {{--                        <input required type="text" class="form-control rounded-0 my-3" name="name" value="{{ auth()->user()->name??'' }}" placeholder="Name">--}}
 {{--                        <input required type="email" class="form-control rounded-0 my-3" name="email" value="{{ auth()->user()->email??'' }}" placeholder="Email">--}}
-                        <input required type="text" class="form-control rounded-0 my-3" name="phone_number" value="{{ old('phone_number') }}"  placeholder="Phone Number">
+                        <input required type="text" class="form-control rounded-0 my-3" name="phone_number" min="10" value="{{ old('phone_number') }}"  placeholder="Phone Number">
                         <input required type="text" class="form-control rounded-0 my-3" name="address" placeholder="Address" value="{{ old('address') }}">
                         <textarea class="form-control rounded-0 my-3" rows="3" name="other_instruction" placeholder="Any instructions related to delivery?">{{ old('other_instruction') }}</textarea>
                         <button type="submit" class="btn btn-main w-100" type="submit">Checkout now</button>

@@ -10,7 +10,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>Image</th>
+{{--                                <th>Image</th>--}}
                                 <th>Title</th>
                                 <th>Price</th>
                                 <th>Subtotal</th>
@@ -23,7 +23,7 @@
                             @forelse((array) session('cart') as  $id => $item)
                                 @php $subTotal += $item['price'] * $item['quantity'] @endphp
                                 <tr>
-                                    <td><img class="w-100" src="assets/img/camera3.jpg" alt="art image"></td>
+{{--                                    <td><img class="w-100" src="" alt="art image"></td>--}}
                                     <td>{{ $item['title'] }}</td>
                                     <td>${{ number_format($item['price'],2) }}</td>
                                     <td>${{ number_format($item['price'] * $item['quantity'],2) }}</td>
