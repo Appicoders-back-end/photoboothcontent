@@ -504,6 +504,8 @@ a.disabled {
 
 .bannerswiper img {
     width: 100%;
+    height: 500px;
+    object-fit: cover;
 }
 
 .cart-icon{

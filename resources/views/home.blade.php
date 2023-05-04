@@ -90,7 +90,7 @@
                             <div class="row content-category-row">
                                 <div class="swiper mySwiper-content">
                                     <div class="swiper-wrapper">
-                                        @foreach($category->contents as $categoryContent)
+                                        @foreach($category->contents->toQuery()->limit(3)->get() as $categoryContent)
                                             <div class="swiper-slide">
                                                 <div class="content-category-card video"
                                                      @if($categoryContent->type == 'video') id="video_content"
