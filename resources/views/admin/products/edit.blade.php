@@ -71,8 +71,8 @@
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <select id="status" name="status" class="form-control" form="productForm">
-                                            <option value="active">Active</option>
-                                            <option value="inactive">InActive</option>
+                                            <option value="active" @if($product->status == "active") selected @endif>Active</option>
+                                            <option value="inactive" @if($product->status == "inactive") selected @endif>InActive</option>
                                         </select>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
     <script>
         var uploadedDocumentMap = {}
         Dropzone.autoDiscover = false;
-        /*Dropzone.options.documentDropzone = new Dropzone("#product_images", {
+        Dropzone.options.documentDropzone = new Dropzone("#dropzone", {
             url: "{{ route('dropzone.store') }}",
             maxFilesize: 10, // MB
             addRemoveLinks: true,
@@ -150,24 +150,23 @@
             },
             init: function () {
                 @if(isset($product) && $product->images->count() > 0)
-        var files = {!! json_encode($product->images) !!}
-
-        console.log(files);
-    for(var i in files)
-    {
-        var file = files[i]
-        console.log(file)
-        this.options.addedfile.call(this, file)
-        file.previewElement.classList.add('dz-complete')
-        $('#productForm').append('<input type="hidden" name="images[]" value="' + file.image + '">')
-    }
-@endif
-        }
-    });*/
+                        var files = {!! json_encode($product->images) !!};
+                        console.log(files);
+                    for(var i in files)
+                    {
+                        var file = files[i]
+                        console.log(file)
+                        this.options.addedfile.call(this, file)
+                        file.previewElement.classList.add('dz-complete')
+                        $('#productForm').append('<input type="hidden" name="images[]" value="' + file.image + '">')
+                    }
+                @endif
+            }
+        });
     </script>
 
     <script>
-        var uploadedDocumentMap = {}
+        /*var uploadedDocumentMap = {}
         Dropzone.autoDiscover = false;
         Dropzone.options.dropzone = new Dropzone("#dropzone", {
             maxFiles: 10,
@@ -189,7 +188,7 @@
 
                 // Get images
                 // var myDropzone = this;
-                /*$.ajax({
+                /!*$.ajax({
                     url: gallery,
                     type: 'GET',
                     dataType: 'json',
@@ -203,18 +202,18 @@
                             myDropzone.emit("complete", file);
                         });
                     }
-                });*/
+                });*!/
                 @if(isset($product) && $product->images->count() > 0)
                 var files = {!! json_encode($product->images) !!};
                 console.log(files);
-                /*for(var i in files)
+                /!*for(var i in files)
                 {
                     var file = files[i]
                     console.log(file)
                     this.options.addedfile.call(this, file)
                     file.previewElement.classList.add('dz-complete')
                     $('#productForm').append('<input type="hidden" name="images[]" value="' + file.image + '">')
-                }*/
+                }*!/
                 $.each(files, function (key, value) {
                     console.log(value);
                     myDropzone = this;
@@ -276,7 +275,7 @@
                 }
                 return _results;
             }
-        });
+        });*/
     </script>
 
     <script>
