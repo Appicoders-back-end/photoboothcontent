@@ -55,7 +55,7 @@ class CategoryController extends Controller
             $category->name = $request->name ?? null;
             $category->parent_id = $request->parent_id;
             $category->slug = Str::slug($request->name);
-            $category->type = $parentCat?->type;
+            $category->type = $request->type??$parentCat->type;
             $category->description = $request->description ?? null;
             $category->status = $request->status;
 //            $category->image = $imageName;

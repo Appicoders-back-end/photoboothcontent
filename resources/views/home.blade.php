@@ -208,7 +208,7 @@
         </div>
     </div>
 
-    <div id="exampleModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div id="exampleModal" class="modal fade" data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background: #00A8B3;color: #fff;">
@@ -244,6 +244,12 @@
                 $('video source').attr('src', videoSource)
                 $('video')[0].load()
             });
+
+            $(document).on("click",".btn-close",function () {
+                // alert('work')
+                $('video')[0].pause();
+            });
+
         })
 
     </script>

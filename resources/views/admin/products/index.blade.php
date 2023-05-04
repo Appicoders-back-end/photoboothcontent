@@ -37,12 +37,12 @@
                                         <td>
                                             <a href="{{ route('admin.product.edit',$product->id) }}"
                                                class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form
+                                            <form data-id="$product->id"
                                                 action="{{ route('admin.product.destroy', ['product'=>$product->id]) }}"
                                                 method="POST" id="deleteform">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger delete-confirm" id="delete_btn"><i class="fa fa-trash-o "></i></button>
+                                                <button class="btn btn-danger delete-confirm" ><i class="fa fa-trash-o "></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -66,7 +66,9 @@
 
     <script>
         $(document).ready(function () {
-            $(document).on('click', '#delete_btn', function (e) {
+            $(document).on('click', '#deleteform', function (e) {
+                // alert('2oe')
+                // alert($(this).attr('id'))
                 e.preventDefault(false);
                 Swal.fire({
                     title: 'Are you sure?',
@@ -81,7 +83,7 @@
                         $('#deleteform').submit();
                         Swal.fire(
                             'Deleted!',
-                            'Promo code has been deleted successfully.',
+                            'Product has been deleted successfully.',
                             'success'
                         )
                     }
