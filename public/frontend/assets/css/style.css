@@ -473,6 +473,12 @@ footer img {
     color: #FC90AC;
 }
 
+.productswiper .swiper-slide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .content-slider-pagination {
     position: sticky;
 }
