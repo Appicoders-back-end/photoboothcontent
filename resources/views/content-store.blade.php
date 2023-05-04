@@ -156,7 +156,7 @@
             }
             else
             {
-                $('#parent_'+parent_id).prop("checked", false);
+                // $('#parent_'+parent_id).prop("checked", false);
             }
         }
 

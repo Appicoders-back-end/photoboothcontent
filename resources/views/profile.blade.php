@@ -24,7 +24,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="contact_no" class="form-label">Contact Number</label>
-                                <input id="contact_no" type="text" class="form-control" placeholder="Phone Number"
+                                <input id="contact_no" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control" placeholder="Phone Number"
                                        name="contact_no" value="{{ old('contact_no', $user->contact_no) }}" minlength="10" maxlength="10">
                             </div>
                             <button type="submit" class="btn btn-main" type="submit">Update Profile</button>
