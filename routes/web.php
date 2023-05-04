@@ -22,6 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('memberships', [MembershipController::class, 'index'])->name('memberships');
+Route::get('memberships-cancel/{id}', [MembershipController::class, 'cancelMembership'])->name('cancel.membership');
 Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 
 Route::controller(ContentStoreController::class)->group(function () {
