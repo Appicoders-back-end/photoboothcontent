@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('subcategories')->whereNull('parent_id')->get();
+        $categories = Category::with('subcategories')->whereNull('parent_id')->orderByDesc('id')->get();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -73,7 +73,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $sub_categories = Category::where('parent_id', $id)->get();
+        $sub_categories = Category::where('parent_id', $id)->orderByDesc('id')->get();
         $categories = Category::find($id);
         return view('admin.categories.sub_categories', compact('sub_categories', 'categories'));
     }

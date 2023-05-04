@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('user')->get();
+        $orders = Order::with('user')->orderByDesc('id')->get();
 
         $data = [
             'orders' => $orders
