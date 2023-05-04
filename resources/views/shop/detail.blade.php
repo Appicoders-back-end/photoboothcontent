@@ -1,4 +1,9 @@
 @extends('layouts.app')
+<style>
+    .related .highlights {
+        display: none;
+    }
+</style>
 @section('content')
     <div class="hero-section">
         <img src="{{asset('frontend/assets/img/hero-section-circle-pink.png')}}" alt="Pink circle" class="pink-circle">
@@ -32,7 +37,7 @@
                 <div class="row">
                     @foreach($related_products as $key => $related_product)
                         <div class="col-lg-4 col-md-6">
-                            <div class="product-card">
+                            <div class="product-card related">
                                 <img src="{{ $related_product->getImages()[0] }}" alt="" class="product-img">
                                 <h4 class="product-name">{{ $related_product->title }}</h4>
                                 <p class="product-price">${{ $related_product->price }}</p>

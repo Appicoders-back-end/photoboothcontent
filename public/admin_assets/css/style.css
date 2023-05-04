@@ -5006,6 +5006,9 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     border-radius: 50%;
     -webkit-border-radius: 50%;
     transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .go-top:hover{
