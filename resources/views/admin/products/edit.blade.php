@@ -1,13 +1,15 @@
 @extends('admin.layouts.app')
 @section('style')
-    <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">
+    {{--    <link href="{{asset('admin_assets')}}/css/dropify.css" rel="stylesheet">--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet"/>
     <!--  summernote -->
     <link href="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.css" rel="stylesheet">
     <style>
-        .editor-title{
+        .editor-title {
             padding: 0 0 10px 0 !important;
         }
-        .editor-desc{
+
+        .editor-desc {
             padding: 0 0 0 0 !important;
             margin-bottom: 0 !important;
         }
@@ -24,45 +26,53 @@
 
                     <div class="card-body">
                         @include('admin.layouts.messages')
-                        <form class="needs-validation" action="{{route('admin.product.update',$product->id)}}" method="POST" novalidate enctype="multipart/form-data">
+                        <form class="needs-validation" id="productForm" action="{{route('admin.product.update',$product->id)}}"
+                              method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                        </form>
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="validationCustom01">Title</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="title" placeholder="Product Title" value="{{ $product->title }}" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
+                                    <label for="name">Title</label>
+                                    <input id="name" type="text" class="form-control" id="validationCustom01" name="title"
+                                           placeholder="Product Title" value="{{ $product->title }}" required form="productForm">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="price">Price</label>
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                            <input id="price" name="price" type="number" class="form-control" min="1"
+                                                   placeholder="Product Price" aria-label="price"
+                                                   aria-describedby="price" value="{{ $product->price }}" name="price"
+                                                   required form="productForm">
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom01">Price</label>
+                                    <label for="stock">Stock</label>
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text" id="price">$</span>
-                                          </div>
-                                          <input type="number" class="form-control" min="1" placeholder="Product Price" aria-label="price" aria-describedby="price" value="{{ $product->price }}" name="price" required>
+                                            <input id="stock" type="number" class="form-control" min="1" placeholder="Stock"
+                                                   aria-label="stock" aria-describedby="stock"
+                                                   value="{{ $product->stock }}" name="stock" required form="productForm">
                                         </div>
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Looks good!
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom01">Stock</label>
+                                <div class="col-md-12 mb-3">
+                                    <label for="status">Status</label>
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                           {{-- <div class="input-group-prepend">
-                                                <span class="input-group-text" id="stock">$</span>
-                                            </div>--}}
-                                            <input type="number" class="form-control" min="1" placeholder="Stock" aria-label="stock" aria-describedby="stock" value="{{ $product->stock }}" name="stock" required>
+                                            <select id="status" name="status" class="form-control" form="productForm">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">InActive</option>
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Looks good!
                                     </div>
                                 </div>
 
@@ -73,31 +83,24 @@
                                             Description
                                         </header>
                                         <div class="card-body editor-desc">
-                                            {{--                                                <div class="summernote"></div>--}}
-                                            <textarea class="summernote" name="description" id="summernote_1">{{ $product->description??'' }}</textarea>
+                                            <textarea class="summernote" name="description"
+                                                      id="summernote_1" form="productForm">{{ $product->description??'' }}</textarea>
                                         </div>
                                     </section>
                                 </div>
+
                                 <div class="col-md-12 mb-3">
-                                    <label for="validationCustom02">Image</label>
-                                    <input type="file" class="dropify"  name="image[]" multiple required />
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    @if($product->images)
-                                    <div class="split" style="display: grid;grid-template-columns: repeat(5,1fr);grid-column-gap: 5px;grid-row-gap: 5px;">
-                                        @foreach($product->images as $image)
-                                        <div class="col-md-6">
-                                            <img src="{{ url('storage/'.$image->image) }}" style="width:80px;height:80px;" class="me-4 border mb-2">
-                                            <a href="{{ route('admin.product.image.destroy',$image->id) }}" class="d-block text-center">Delete</a>
-                                        </div>
-                                        @endforeach
+                                    <label for="product_images">Images</label>
+                                    <div class="form-group">
+                                        <form method="POST"
+                                              class="dropzone" id="product_images">
+                                            @csrf
+                                        </form>
                                     </div>
-                                    @endif
                                 </div>
                                 <!--Summernote end-->
                             </div>
-                            <button class="btn btn-sm btn-success" type="submit">Update Product</button>
-                        </form>
+                            <button class="btn btn-sm btn-success" type="submit" form="productForm">Update Product</button>
                     </div>
                 </section>
             </div>
@@ -106,14 +109,65 @@
     </section>
 @endsection
 @section('script')
-    <script src="{{asset('admin_assets')}}/js/dropify.js"></script>
+    {{--    <script src="{{asset('admin_assets')}}/js/dropify.js"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+
     <!--summernote-->
     <script src="{{asset('admin_assets')}}/assets/summernote/summernote-bs4.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('.dropify').dropify();
+        var uploadedDocumentMap = {}
+        Dropzone.autoDiscover = false;
+        Dropzone.options.documentDropzone = new Dropzone("#product_images", {
+            url: "{{ route('dropzone.store') }}",
+            maxFilesize: 10, // MB
+            addRemoveLinks: true,
+            dictRemoveFile: "Remove file",
+            dictRemoveFileConfirmation: null,
+
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            success: function (file, response) {
+                console.log(file, file.upload.uuid)
+                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '" data-uuid="' + file.upload.uuid + '">')
+                uploadedDocumentMap[file.upload.filename] = response.name
+            },
+            removedfile: function (file) {
+                console.log(file);
+                file.previewElement.remove()
+                var name = ''
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedDocumentMap[file.name]
+                }
+                $('#productForm').find('input[name="images[]"][data-uuid="' + file.upload.uuid + '"]').remove()
+                // var _ref;
+                // return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+            },
+            init: function () {
+                @if(isset($product) && $product->images->count() > 0)
+                var files = {!! json_encode($product->images) !!}
+
+                    console.log(files);
+                for(var i in files)
+                {
+                    var file = files[i]
+                    console.log(file)
+                    this.options.addedfile.call(this, file)
+                    file.previewElement.classList.add('dz-complete')
+                    $('#productForm').append('<input type="hidden" name="images[]" value="' + file.image + '">')
+                }
+                @endif
+            }
         });
+    </script>
+
+    <script>
+        /*$(document).ready(function () {
+            $('.dropify').dropify();
+        });*/
 
         $(document).ready(function () {
             $('.summernote').summernote({
