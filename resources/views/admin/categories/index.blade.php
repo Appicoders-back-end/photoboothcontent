@@ -52,10 +52,10 @@
                                         <td>
                                             <a href="{{ route('admin.categories.show',$category->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                             <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></a>
-                                            <form action="{{ route('admin.categories.destroy', ['category'=>$category->id]) }}" method="POST">
+                                            <form action="{{ route('admin.categories.destroy', ['category'=>$category->id]) }}" method="POST" id="deleteform">
                                                @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger delete-confirm"> <i class="fa fa-trash-o "></i></button>
+                                                <button class="btn btn-danger delete-confirm" id="delete_btn"> <i class="fa fa-trash-o "></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -117,25 +117,27 @@
         });
 
         $(document).ready(function () {
-            $('.delete-confirm').click(function (event) {
-                event.preventDefault();
-                var url = $(this).attr("href");
-
+            $(document).on('click', '#delete_btn', function (e) {
+                e.preventDefault(false);
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: 'You want to Delete it!',
+                    text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it !',
-                    cancelButtonText: " Cancel it !"
+                    confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = url;
+                        $('#deleteform').submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Promo code has been deleted successfully.',
+                            'success'
+                        )
                     }
-                })
-            });
+                });
+            })
         });
 
 
