@@ -165,7 +165,8 @@
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function (file, response) {
-                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '">')
+                console.log(file, file.upload.uuid)
+                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '" data-uuid="'+file.upload.uuid+'">')
                 uploadedDocumentMap[file.upload.filename] = response.name
             },
             removedfile: function (file) {
@@ -177,9 +178,9 @@
                 } else {
                     name = uploadedDocumentMap[file.name]
                 }
-                $('#productForm').find('input[name="images[]"][value="' + file.upload.filename + '"]').remove()
-                var _ref;
-                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                $('#productForm').find('input[name="images[]"][data-uuid="' + file.upload.uuid + '"]').remove()
+                // var _ref;
+                // return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
             init: function () {
                 @if(isset($project) && $project->document)
