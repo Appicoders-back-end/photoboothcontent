@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::get();
+        $products = Product::orderByDesc('id')->get();
         return view('admin.products.index', compact('products'));
     }
 
@@ -166,5 +166,28 @@ class ProductController extends Controller
             'original_name' => $file->getClientOriginalName(),
             'path' => $path . '/' . $name,
         ]);
+    }
+
+    public function getImages($id)
+    {
+        $images = ProductImages::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            $tableImages[] = $image['filename'];
+        }
+        $storeFolder = public_path('uploads/gallery');
+        $file_path = public_path('uploads/gallery/');
+        $files = scandir($storeFolder);
+        foreach ($files as $file) {
+            if ($file != '.' && $file != '..' && in_array($file, $tableImages)) {
+                $obj['name'] = $file;
+                $file_path = public_path('uploads/gallery/') . $file;
+                $obj['size'] = filesize($file_path);
+                $obj['path'] = url('public/uploads/gallery/' . $file);
+                $data[] = $obj;
+            }
+
+        }
+        //dd($data);
+        return response()->json($data);
     }
 }
