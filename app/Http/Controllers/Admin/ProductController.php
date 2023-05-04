@@ -99,7 +99,7 @@ class ProductController extends Controller
                 'description' => $request->description
             ]);
 
-            if ($request->hasFile('image')) {
+            /*if ($request->hasFile('image')) {
                 foreach ($request->image as $key => $product_image) {
                     $product_image = $product_image->store('product_images', 'public');
                     ProductImages::insert([
@@ -107,7 +107,7 @@ class ProductController extends Controller
                         'image' => $product_image
                     ]);
                 }
-            }
+            }*/
             return redirect()->route('admin.product.index')->with('success', "Product Updated Successfully");
 
         } catch (\Exception $exception) {
