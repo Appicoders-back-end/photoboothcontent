@@ -14,7 +14,7 @@ class Product extends Model
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
 
-    protected $fillable = ['title', 'price', 'stock', 'description'];
+    protected $fillable = ['title', 'price', 'stock', 'description', 'status'];
 
     public function images()
     {

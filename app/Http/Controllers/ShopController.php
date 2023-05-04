@@ -25,7 +25,7 @@ class ShopController extends Controller
             'name' => 'Shop'
         ]);
 
-        $products = Product::where("stock", '!=', 0)->get();
+        $products = Product::where("stock", '!=', 0)->where('status', Product::ACTIVE)->get();
         $data = [
             'products' => $products,
             'content' => json_decode($contentPage->content),
