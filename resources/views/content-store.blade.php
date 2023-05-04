@@ -109,7 +109,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="contentVideo" class=" embed-responsive embed-responsive-16by9">
-                        <video id="video-10" controls style="width: 100%;" nodownload >
+                        <video id="video-10" controls style="width: 100%;" controlslist="nodownload" >
                             <source src="" />
                         </video>
                     </div>
