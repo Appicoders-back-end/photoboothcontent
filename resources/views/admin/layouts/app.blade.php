@@ -20,7 +20,7 @@
 
     <!-- datetime picker -->
     <link rel="stylesheet" type="text/css" href="{{asset('admin_assets')}}/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{asset('admin_assets')}}/assets\select2\css\select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('admin_assets')}}/assets/select2/css/select2.min.css" />
 
     <!--right slidebar-->
     <link href="{{asset('admin_assets')}}/css/slidebars.css" rel="stylesheet">
@@ -88,17 +88,20 @@
     <!--main content start-->
     <section id="main-content">
         @yield('content')
+        <a href="#" class="go-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
     </section>
     <!--main content end-->
 
     <!--footer start-->
-    <footer class="site-footer">
+    {{-- <footer class="site-footer">
         <div class="text-center">
             <a href="#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>
-    </footer>
+    </footer> --}}
     <!--footer end-->
 </section>
 
