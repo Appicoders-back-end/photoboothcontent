@@ -15,7 +15,7 @@
                     <p>Order Date: {{ formattedDate($order_detail->created_at)??'-' }}</p>
                     <p>Order Number: {{ $order_detail->order_no??'-' }}</p>
 {{--                    <p>Payment Method: Credit Card</p>--}}
-                    <p>Total Amount: {{ number_format($order_detail->total_amount,2)??'-' }}</p>
+                    <p>Total Amount: ${{ number_format($order_detail->total_amount,2)??'-' }}</p>
                 </div>
             </div>
             <div class="row mt-5">
@@ -39,9 +39,9 @@
                                     <td>{{ $i++??'' }}</td>
                                     <td>{{ $item->product->title??'-' }}</td>
                                     {{--                            <td class="hidden-phone">20 inch Philips LCD Black color monitor</td>--}}
-                                    <td class="">$ {{ number_format($item->price,2)??'-' }}</td>
+                                    <td class=""> ${{ number_format($item->price,2)??'-' }}</td>
                                     <td class="">{{ $item->quantity??'-' }}</td>
-                                    <td>$ {{ number_format($item->price * $item->quantity,2)??'-' }}</td>
+                                    <td> ${{ number_format($item->price * $item->quantity,2)??'-' }}</td>
                                 </tr>
                             @empty
                             @endforelse
@@ -59,9 +59,9 @@
                         </div>
                         <div class="card-body">
                             @php $grand_total_amount = ($sub_total_amount - $delivery_charges) - $discount; @endphp
-                            <p>Sub - Total amount : <span class="fw-bold">$ {{ number_format($sub_total_amount) }}</span></p>
+                            <p>Sub - Total amount : <span class="fw-bold"> ${{ number_format($sub_total_amount) }}</span></p>
                             <p>Delivery Charges : ${{ number_format($order_detail->delivery_charges,2)??'-' }}</p>
-                            <p>Grand Total : <span class="fw-bold">$ {{ number_format($grand_total_amount,2) }}</span></p>
+                            <p>Grand Total : <span class="fw-bold"> ${{ number_format($grand_total_amount,2) }}</span></p>
                         </div>
                     </div>
                 </div>
