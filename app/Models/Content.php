@@ -65,4 +65,13 @@ class Content extends Model
 
         return false;
     }
+
+    public function getWatermarkAttachment()
+    {
+        if ($this['watermark_attachment'] == null) {
+            return asset('/') . "admin_assets/img/promo-dummy.jpg";
+        }
+
+        return url('/') . '/' . $this['watermark_attachment'];
+    }
 }
