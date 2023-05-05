@@ -75,6 +75,26 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $images = $product->images;
+        /*foreach ($images as $image) {
+            $tableImages[] = $image->image;
+        }
+
+        $storeFolder = public_path('storage/uploads/product_images');
+        $file_path = public_path('storage/uploads/');
+        $files = scandir($storeFolder);
+        $imagess = [];
+//        dd($files);
+        foreach ($files as $file) {
+            if ($file != '.' && $file != '..' && in_array($file, $tableImages)) {
+                $obj['name'] = $file;
+                $file_path = public_path('storage/uploads/') . $file;
+                $obj['size'] = filesize($file_path);
+                $obj['path'] = url('public/storage/uploads/' . $file);
+                array_push($imagess, $obj);
+            }
+
+        }
+dd($imagess);*/
         $data = [
             'product' => $product,
             'images' => $images
