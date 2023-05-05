@@ -34,7 +34,23 @@
                                         <td>${{ number_format($product->price,2) }}</td>
                                         <td><img class="img img-fluid" style="height: 70px; object-fit: cover;"
                                                  src="{{ $product->getImages()[0] }}" alt=""></td>
-                                        <td>{{\Illuminate\Support\Str::ucfirst($product->status)}}</td>
+                                        <td>
+{{--                                            {{\Illuminate\Support\Str::ucfirst($product->status)}}--}}
+                                            <div class="col-md-3 mb-3">
+                                                <form action="{{ route('admin.product.changeStatus',$product->id) }}" method="GET">
+                                                    <select class="form-control mb-2" id="status" name="status">
+                                                        <option value="" disabled selected>Select Status</option>
+                                                        <option value="inactive"
+                                                                @if($product->status == "inactive") selected @endif>
+                                                            InActive
+                                                        </option>
+                                                        <option value="active"
+                                                                @if($product->status == "active") selected @endif>Active
+                                                        </option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                        </td>
                                         <td>{{ date('F d, Y', strtotime($product->created_at)) ?? '-' }} </td>
                                         <td>
                                             <a href="{{ route('admin.product.edit',$product->id) }}"
@@ -98,5 +114,13 @@
             }
             $("#read_more").text($(this).data('id'));
         });
+
+        $(document).ready(function () {
+            $(document).on('change', '#status', function () {
+                this.form.submit();
+            });
+        });
+
+
     </script>
 @endsection

@@ -58,10 +58,10 @@
                             Order Summary
                         </div>
                         <div class="card-body">
-                            @php $grand_total_amount = ($sub_total_amount - $delivery_charges) - $discount; @endphp
+                            @php $grand_total_amount = ($sub_total_amount + $delivery_charges) - $discount; @endphp
                             <p>Sub - Total amount : <span class="fw-bold"> ${{ number_format($sub_total_amount) }}</span></p>
                             <p>Delivery Charges : ${{ number_format($order_detail->delivery_charges,2)??'-' }}</p>
-                            <p>Grand Total : <span class="fw-bold"> ${{ number_format($grand_total_amount,2) }}</span></p>
+                            <p>Grand Total : <span class="fw-bold"> ${{ number_format($order_detail->paid_amount,2) }}</span></p>
                         </div>
                     </div>
                 </div>

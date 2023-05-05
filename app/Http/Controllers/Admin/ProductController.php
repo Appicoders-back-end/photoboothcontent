@@ -195,4 +195,17 @@ class ProductController extends Controller
         }
         return response()->json($data);
     }
+
+    public function changeStatus(Request $request , $id){
+        try {
+            $product = Product::find($id);
+
+            $product->status = ($request->status == 'inactive')?Product::INACTIVE:Product::ACTIVE;
+            $product->save();
+            return redirect()->route('admin.product.index')->with('success', 'Product Status has been updated successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
 }
