@@ -50,6 +50,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('change-user-status/{id}', [UserController::class, 'changeStatus'])->name('admin.users.changeStatus');
     Route::get('settings', [AdminController::class, 'settings'])->name('admin.settings');
+    Route::get('inquires', [UserController::class, 'inquires'])->name('admin.inquires');
+    Route::get('inquiry-delete/{id}', [UserController::class, 'inquiresDelete'])->name('admin.inquiry.delete');
     Route::post('storeSettings', [AdminController::class, 'storeSettings'])->name('admin.storeSettings');
 
     // promo codes start
