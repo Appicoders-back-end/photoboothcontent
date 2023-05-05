@@ -21,6 +21,8 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
+Route::get('contact-us', [HomeController::class, 'contactUs'])->name('contact-us');
+Route::post('contact-us', [HomeController::class, 'contactStore'])->name('contact.store');
 Route::get('memberships', [MembershipController::class, 'index'])->name('memberships');
 Route::get('memberships-cancel/{id}', [MembershipController::class, 'cancelMembership'])->name('cancel.membership');
 Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');

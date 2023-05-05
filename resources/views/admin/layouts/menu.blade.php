@@ -92,6 +92,13 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.inquires')}}"
+                   class="{{ route('admin.inquires') == url()->current() ?'active':'' }}">
+                    <i class="fa fa-gears"></i>
+                    <span>{{__('User Inquiry')}}</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.change_password')}}"
                    class="{{ route('admin.change_password') == url()->current() ?'active':'' }}">
                     <i class="fa fa-lock" aria-hidden="true"></i>

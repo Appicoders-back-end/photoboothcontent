@@ -15,7 +15,8 @@
                     <li class="nav-item"><a class="nav-link {{ route('content-store') == url()->current() ? 'active':'' }}" href="{{route('content-store')}}">Content Store</a></li>
                     <li class="nav-item"><a class="nav-link {{ route('memberships') == url()->current() ? 'active':'' }}" href="{{ route('memberships') }}">Membership</a></li>
                     <li class="nav-item"><a class="nav-link {{ route('coupons') == url()->current() ? 'active':'' }}" href="{{route('coupons')}}">Coupons</a></li>
-                   <li class="nav-item"><a class="nav-link {{ route('shop.home') == url()->current() ? 'active':'' }}" href="{{ route('shop.home') }}">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('shop.home') == url()->current() ? 'active':'' }}" href="{{ route('shop.home') }}">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link {{ route('contact-us') == url()->current() ? 'active':'' }}" href="{{route('contact-us')}}">Contact us</a></li>
                 </ul>
                 @if(auth()->user() && count((array) session('cart')) > 0)
                     <a href="{{ route('shop.cart') }}" type="button" class="btn d-flex align-items-center" data-toggle="dropdown">

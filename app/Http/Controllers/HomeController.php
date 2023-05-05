@@ -7,6 +7,7 @@ use App\Http\Requests\FrontEnd\UpdatePasswordRequest;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Coupon;
+use App\Models\Inquiry;
 use App\Models\Page;
 use App\Models\PaymentMethod;
 use App\Models\PromoCode;
@@ -117,6 +118,32 @@ class HomeController extends Controller
         ];
 
         return view('about-us', $data);
+    }
+
+    public function contactUs(){
+        return view('contact-us');
+    }
+
+    public function contactStore(Request $request){
+        try {
+            $request->validate([
+               "name" => "required",
+               "email" => "required",
+               "phone" => "required",
+               "message" => "required",
+            ]);
+
+            $inquiry = new Inquiry();
+            $inquiry->name = $request->name;
+            $inquiry->email = $request->email;
+            $inquiry->phone = $request->phone;
+            $inquiry->message = $request->message;
+            $inquiry->save();
+
+            return redirect()->route('contact-us')->with('success', __('Your Query has been submitted successfully!'));
+        } catch (\Exception $exception) {
+            return redirect()->route('contact-us')->with('error', $exception->getMessage());
+        }
     }
 
     public function thankyou()
