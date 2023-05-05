@@ -49,18 +49,6 @@
                                     </div>
                                 @endif
 
-                                <div class="col-md-12 mb-3">
-                                    <label for="validationCustom02">status</label>
-                                    <select class="form-control mb-2" name="status">
-                                        <option value="active" @if($category->status == "active") selected @endif>
-                                            Active
-                                        </option>
-                                        <option value="inactive" @if($category->status == "inactive") selected @endif>
-                                            InActive
-                                        </option>
-                                    </select>
-                                </div>
-
                                 <!--Summernote start-->
                                {{-- <div class="col-md-12 mb-3">
                                     <section class="card">

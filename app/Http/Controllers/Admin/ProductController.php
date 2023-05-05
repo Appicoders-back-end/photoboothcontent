@@ -41,14 +41,13 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'stock' => $request->stock,
                 'description' => $request->description,
-                'status' => $request->status,
             ]);
 
             if (count($request->images) > 0) {
                 foreach ($request->images as $product_image) {
                     //                $product_image = $product_image->store('product_images', 'public');
                     ProductImages::insert([
-                        "product_id" => $product->id,
+                        'product_id' => $product->id,
                         'image' => $product_image
                     ]);
                 }
@@ -103,8 +102,7 @@ class ProductController extends Controller
                 'title' => $request->title,
                 'price' => $request->price,
                 'stock' => $request->stock,
-                'description' => $request->description,
-                'status' => $request->status
+                'description' => $request->description
             ]);
 
             /*if ($request->hasFile('image')) {
