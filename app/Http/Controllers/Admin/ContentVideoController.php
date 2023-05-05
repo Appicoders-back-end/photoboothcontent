@@ -16,7 +16,7 @@ class ContentVideoController extends Controller
      */
     public function index()
     {
-        $videos = Content::with('category')->where('type', Content::VIDEO)->get();
+        $videos = Content::with('category')->where('type', Content::VIDEO)->orderByDesc('id')->get();
         $data = [
             'videos' => $videos
         ];

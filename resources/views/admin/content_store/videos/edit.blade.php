@@ -87,7 +87,19 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label>Video</label>
+                                    <label>Watermark Video</label>
+                                    @if($content->watermark_attachment)
+                                        <input type="file" class="dropify" name="watermark_attachment"
+                                               data-default-file="{{ $content->getWatermarkAttachment() }}" data-max-file-size="100M"
+                                               data-allowed-file-extensions="mp4 mpg flv avi" data-show-remove="false"/>
+                                    @else
+                                        <input type="file" class="dropify" name="watermark_attachment" data-max-file-size="100M"
+                                               data-allowed-file-extensions="mp4 mpg flv avi" data-show-remove="false"/>
+                                    @endif
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label>Downloadable Video</label>
                                     @if($content->image)
                                         <input type="file" class="dropify" name="attachment"
                                                data-default-file="{{ $content->getImage() }}" data-max-file-size="100M"
@@ -97,6 +109,7 @@
                                                data-allowed-file-extensions="mp4 mpg flv avi" data-show-remove="false"/>
                                     @endif
                                 </div>
+
                             </div>
                             <button class="btn btn-sm btn-success" type="submit">Update</button>
                         </form>

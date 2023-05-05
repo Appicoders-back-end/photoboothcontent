@@ -1,13 +1,15 @@
 @extends('admin.layouts.app')
 @section('style')
     <style>
-        .btn-design{
+        .btn-design {
             float: left;
             margin-right: 12px;
         }
-        .img-design{
+
+        .img-design {
             width: 100%;
-            height: 50px;
+            height: 100px;
+            object-fit: contain;
         }
     </style>
 @endsection

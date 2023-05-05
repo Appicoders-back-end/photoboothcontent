@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ContentStoreService
 {
+    /**
+     * @param array $request
+     * @return Content
+     * @throws \Exception
+     */
     public function store(array $request)
     {
         try {
@@ -20,6 +25,9 @@ class ContentStoreService
             $attachmentName = saveFile($request['attachment'], $this->getPath($request['type'])['path']);
             $content->thumbnail_image = $thumbnailImageName;
             $content->image = $attachmentName;
+            if (isset($request['watermark_attachment'])) {
+                $content->watermark_attachment = saveFile($request['watermark_attachment'], $this->getPath($request['type'])['path']);
+            }
             $content->extension = pathinfo($attachmentName, PATHINFO_EXTENSION);
             $content->size = $this->get_size($attachmentName);
             $content->save();
@@ -30,6 +38,11 @@ class ContentStoreService
         }
     }
 
+    /**
+     * @param array $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function update(array $request)
     {
         try {
@@ -53,6 +66,12 @@ class ContentStoreService
                 $content->size = $this->get_size($attachmentName);
             }
 
+            if (isset($request['watermark_attachment'])) {
+                deleteAttachment($content->image);
+                $watermarkAttachmentName = saveFile($request['watermark_attachment'], $this->getPath($content->type)['path']);
+                $content->watermark_attachment = $watermarkAttachmentName;
+            }
+
             $content->save();
 
             return $content;
@@ -61,6 +80,10 @@ class ContentStoreService
         }
     }
 
+    /**
+     * @param $type
+     * @return string[]
+     */
     private function getPath($type)
     {
         $thumbnailPath = "content_store";
@@ -88,6 +111,5 @@ class ContentStoreService
     public function get_size($file_path)
     {
         return 0; //todo will be fixed later
-//        return Storage::size($file_path);
     }
 }
