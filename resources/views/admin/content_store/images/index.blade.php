@@ -1,4 +1,13 @@
 @extends('admin.layouts.app')
+@section('style')
+    <style>
+        .img-design {
+            width: 100%;
+            height: 100px;
+            object-fit: contain;
+        }
+    </style>
+@endsection
 @section('content')
     <section class="wrapper">
         <!-- page start-->
@@ -31,13 +40,11 @@
                                     <tr class="gradeX">
                                         <td>{{ $image->name??'-' }}</td>
                                         <td>
-                                            <img class="img img-fluid"
-                                                 width="150"
+                                            <img class="img img-fluid img-design"
                                                  src="{{ $image->getThumbnailImage() }}"
                                                  alt="{{$image->name}}">
                                         </td>
-                                        <td><img class="img img-fluid"
-                                                 width="150"
+                                        <td><img class="img img-fluid img-design"
                                                  src="{{ $image->getImage() }}"
                                                  alt="{{$image->name}}">
                                         </td>

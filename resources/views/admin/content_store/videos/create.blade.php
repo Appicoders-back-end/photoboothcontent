@@ -72,7 +72,13 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label>Downloadable Image</label>
+                                    <label>Watermark Video</label>
+                                    <input type="file" name="watermark_attachment" class="dropify" data-max-file-size="100M"
+                                           data-allowed-file-extensions="mp4 mpg flv avi" data-show-remove="false">
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label>Downloadable Video</label>
                                     <input type="file" name="attachment" class="dropify" data-max-file-size="100M"
                                            data-allowed-file-extensions="mp4 mpg flv avi" data-show-remove="false">
                                 </div>
