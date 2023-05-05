@@ -81,18 +81,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 mb-3">
-                                <label for="status">Status</label>
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <select name="status" class="form-control" form="productForm">
-                                            <option value="active">Active</option>
-                                            <option value="inactive">InActive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!--Summernote start-->
                             <div class="col-md-12 mb-3">
                                 <section class="card">
