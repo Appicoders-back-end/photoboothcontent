@@ -126,12 +126,17 @@ class HomeController extends Controller
 
     public function contactStore(Request $request){
         try {
-            $request->validate([
-               "name" => "required",
-               "email" => "required",
-               "phone" => "required",
-               "message" => "required",
-            ]);
+
+             $validator = Validator::make($request->all(), [
+                 "name" => "required",
+                 "email" => "required",
+                 "phone" => "required",
+                 "message" => "required",
+             ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->messages())->withInput();
+        }
 
             $inquiry = new Inquiry();
             $inquiry->name = $request->name;

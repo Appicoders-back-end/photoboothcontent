@@ -40,7 +40,7 @@
                                                 <label class="badge @if($order->status === "completed") badge-success @endif ">{{ strtoupper($order->status)??'-' }}</label>
                                             @endif
                                             @if($order->status == "cancel")
-                                                    <label class="badge @if($order->status === "cancel") badge-warning @endif ">{{ strtoupper($order->status)??'-' }}</label>
+                                                    <label class="badge @if($order->status === "cancel") badge-warning @endif ">{{ strtoupper($order->status."ED")??'-' }}</label>
                                             @endif
                                             <div class="col-md-3 mb-3 @if($order->status == "completed" || $order->status == "cancel") d-none @endif">
                                                 <form action="{{ route('admin.orders.status',$order->id) }}"

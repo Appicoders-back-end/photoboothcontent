@@ -94,7 +94,7 @@
             <li>
                 <a href="{{route('admin.inquires')}}"
                    class="{{ route('admin.inquires') == url()->current() ?'active':'' }}">
-                    <i class="fa fa-gears"></i>
+                    <i class="fa fa-phone"></i>
                     <span>{{__('User Inquiry')}}</span>
                 </a>
             </li>
