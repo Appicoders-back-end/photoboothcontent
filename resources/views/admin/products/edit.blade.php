@@ -149,8 +149,8 @@
                 // return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
             init: function () {
-                @if(isset($product) && $product->images->count() > 0)
-                        var files = {!! json_encode($product->images) !!};
+                @if(isset($product) && count($product['images']) > 0)
+                        var files = {!! json_encode($product['images']) !!};
                         console.log(files);
                     for(var i in files)
                     {

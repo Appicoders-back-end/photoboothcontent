@@ -85,17 +85,17 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.settings')}}"
-                   class="{{ route('admin.settings') == url()->current() ?'active':'' }}">
-                    <i class="fa fa-gears"></i>
-                    <span>{{__('General Settings')}}</span>
-                </a>
-            </li>
-            <li>
                 <a href="{{route('admin.inquires')}}"
                    class="{{ route('admin.inquires') == url()->current() ?'active':'' }}">
                     <i class="fa fa-phone"></i>
                     <span>{{__('User Inquiry')}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.settings')}}"
+                   class="{{ route('admin.settings') == url()->current() ?'active':'' }}">
+                    <i class="fa fa-gears"></i>
+                    <span>{{__('General Settings')}}</span>
                 </a>
             </li>
             <li>
