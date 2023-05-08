@@ -59,7 +59,14 @@
                                         <td>{{ $inquiry->name??'-' }}</td>
                                         <td>{{ $inquiry->email??'-' }}</td>
                                         <td>{{ formattedNumber($inquiry->phone)??'-' }}</td>
-                                        <td>{{ $inquiry->message??'-' }}</td>
+{{--                                        <td>{{ $inquiry->message??'-' }}</td>--}}
+                                        <td>
+                                            <p data-id="{{ $inquiry->message }}" id="read" data-toggle="modal"
+                                               data-target="#inquiry_message">
+                                                {{ (strlen($inquiry->message) > 20)?substr($inquiry->message, 0, 20)." ... Read More
+                                                ":$inquiry->message??'-' }}
+                                            </p>
+                                        </td>
                                         <td>{{ date('F d, Y', strtotime($inquiry->created_at))??'-'}} </td>
                                         <td>
                                             <a href="mailto:{{$inquiry->email}}"><span class="badge badge-success">Reply</span></a>
@@ -78,6 +85,26 @@
         <!-- page end-->
     </section>
 
+    <div class="modal fade" id="inquiry_message" tabindex="-1" aria-labelledby="inquiry_message" aria-hidden="true">
+        <div class="modal-dialog ">
+            {{-- modal-dialog-centered--}}
+            <div class="modal-content">
+                <div class="modal-header newfqheading">
+                    <h5 class="modal-title" id="exampleModalLabel">Inquiry Message </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body newfqbody">
+                    <p id="read_more">
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 @section('script')
@@ -85,6 +112,14 @@
 
     <script type="text/javascript">
         $(function () {
+
+            $(document).on("click",'#read',function () {
+                var str = $(this).data('id').length;
+                if (str >= 20){
+                    $("#read").css({"cursor":"pointer"});
+                }
+                $("#read_more").text($(this).data('id'));
+            });
 
             $('.delete-confirm').click(function (event) {
                 event.preventDefault();
@@ -105,5 +140,7 @@
                 });
             });
         });
+
+
     </script>
 @endsection
