@@ -13,10 +13,11 @@
             margin-bottom: 0 !important;
         }
         .myloader {
+            z-index: 1;
             position: fixed;
             min-height: 100vh;
             top: 0;
-            background-image: url("https://media3.giphy.com/media/KG4PMQ0jyimywxNt8i/giphy.gif?cid=ecf05e47uqzqe9qit5cdf4u7y9fqsw10slzt251h73nx9qri&rid=giphy.gif&ct=g");
+            background-image: url("https://cdn.dribbble.com/users/255512/screenshots/2215917/animation.gif");
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -50,7 +51,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="categories">Category</label>
-                                    <select class="form-control mb-2" id="categories" name="category_id" required>
+                                    <select class="form-control mb-2" id="categories" name="category_id" id="categories" required>
                                         <option selected disabled>Select Category</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -65,7 +66,7 @@
                                             Description
                                         </header>
                                         <div class="card-body editor-desc">
-                                            <textarea class="form-control" name="description" id="summernote_1" rows="8"></textarea>
+                                            <textarea class="form-control"  name="description" id="summernote_1" rows="8"></textarea>
                                         </div>
                                     </section>
                                 </div>
@@ -73,7 +74,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom02">status</label>
-                                    <select class="form-control mb-2" name="status" required>
+                                    <select class="form-control mb-2" id="status" name="status" required>
                                         <option value="active" selected>Active</option>
                                         <option value="inactive">InActive</option>
                                     </select>
@@ -105,6 +106,8 @@
         </div>
         <div class="myloader container-fluid " style="display: none">
         </div>
+
+        </div>
         <!-- page end-->
     </section>
 @endsection
@@ -127,7 +130,14 @@
 
         $("#upload-video").on("click",function (e) {
             // e.preventDefault();
-            $(".myloader").css("display","block");
+            var name = $("#name").val();
+            var categories = $("#categories").val();
+            var summernote_1 = $("#summernote_1").val();
+            var status = $("#status").val();
+            if(name !== '' && categories !== '' && summernote_1 !== '' && status !== ''){
+                $(".myloader").css("display","block");
+            }
+
             // $("form").submit();
             // alert('work')
         })
