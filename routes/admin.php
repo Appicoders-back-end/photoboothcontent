@@ -62,15 +62,14 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('coupons', CouponController::class, ['as' => 'admin']);
     Route::resource('categories', CategoryController::class, ['as' => 'admin']);
     Route::get('change-categories-status/{id}', [CategoryController::class, 'changeStatus'])->name('admin.categories.changeStatus');
-    Route::get('product-image/{p_image_id}/delete', [ProductController::class, 'deletePImage'])->name('admin.product.image.destroy');
     Route::resource('product', ProductController::class, ['as' => 'admin']);
     Route::get('change-product-status/{id}', [ProductController::class, 'changeStatus'])->name('admin.product.changeStatus');
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
     Route::get('orders/{id}', [OrderController::class, 'show'])->name('admin.orders.show');
     Route::get('change-order-status/{id}', [OrderController::class, 'orderStatus'])->name('admin.orders.status');
     Route::post('/upload',[ProductController::class,'uploads'])->name('dropzone.store');
-//    Route::post('uploads', [ProductController::class,'uploads'])->name('dropzone.uploads');
-    Route::post('image/delete',[ProductController::class,'fileDestroy'])->name('dropzone.image.delete');
+//    Route::post('image/delete',[ProductController::class,'fileDestroy'])->name('dropzone.image.delete');
+    Route::post('product-image/delete', [ProductController::class, 'deleteImage'])->name('admin.product.image.destroy');
 
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
     Route::resource('content_images', ContentImageController::class, ['as' => 'admin'])->except(['show']);
