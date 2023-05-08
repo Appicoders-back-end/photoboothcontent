@@ -140,35 +140,49 @@
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function (file, response) {
-                console.log(file, file.upload.uuid)
-                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '" data-uuid="'+file.upload.uuid+'">')
+                $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '" data-uuid="' + file.upload.uuid + '">')
                 uploadedDocumentMap[file.upload.filename] = response.name
+                file.upload.path = response.path
             },
             removedfile: function (file) {
-
-                file.previewElement.remove()
+                console.log(file)
+                /*file.previewElement.remove()
                 var name = ''
                 if (typeof file.file_name !== 'undefined') {
                     name = file.file_name
                 } else {
                     name = uploadedDocumentMap[file.name]
                 }
-                $('#productForm').find('input[name="images[]"][data-uuid="' + file.upload.uuid + '"]').remove()
+                $('#productForm').find('input[name="images[]"][data-uuid="' + file.upload.uuid + '"]').remove();*/
+
                 // var _ref;
                 // return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+
+                var name = '';
+                if (file.upload) {
+                    name = file.upload.path;
+                } else {
+                    name = file.image;
+                }
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    type: 'POST',
+                    url: "{{ route('admin.product.image.destroy') }}",
+                    data: {name: name},
+                    success: function (data) {
+                        alert(data.message);
+                        file.previewElement.remove();
+                        $('#productForm').find('input[name="images[]"][data-uuid="' + file.upload.uuid + '"]').remove();
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
             },
             init: function () {
-                @if(isset($project) && $project->document)
-                var files = {!! json_encode($project->document) !!}
-
-                    for(var i in files)
-                    {
-                        var file = files[i]
-                        this.options.addedfile.call(this, file)
-                        file.previewElement.classList.add('dz-complete')
-                        $('#productForm').append('<input type="hidden" name="images[]" value="' + file.upload.filename + '">')
-                    }
-                @endif
             }
         });
     </script>
