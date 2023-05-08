@@ -104,7 +104,12 @@
                 </section>
             </div>
         </div>
-        <div class="myloader container-fluid " style="display: none">
+{{--        <div class="myloader container-fluid " style="display: none">--}}
+{{--        </div>--}}
+        <div class="text-center loader" style="background: #3c3c3c54; left: 0; position: absolute; top: 0; width: 100%;height: 100%; display: none">
+            <div class="spinner-border" role="status" style="position: absolute; top: 45%; width: 7rem; height: 7rem;">
+{{--                <span class="visually-hidden">Loading...</span>--}}
+            </div>
         </div>
 
         </div>
@@ -135,7 +140,7 @@
             var summernote_1 = $("#summernote_1").val();
             var status = $("#status").val();
             if(name !== '' && categories !== '' && summernote_1 !== '' && status !== ''){
-                $(".myloader").css("display","block");
+                $(".loader").css("display","block");
             }
 
             // $("form").submit();
