@@ -54,3 +54,22 @@
         <img src="{{asset('frontend/assets/img/hero-section-circle-blue.png')}}" alt="Blue circle" class="blue-circle">
     </div>
 @endsection
+@section('script')
+    <script>
+        const productDescriptions = document.querySelectorAll(".related .details-description");
+        productDescriptions.forEach((productDesc) => {
+            const text = productDesc.textContent;
+            if (text.length > 50) {
+                productDesc.textContent = text.slice(0, 50) + "...";
+            }
+        });
+
+        const productNames = document.querySelectorAll(".related .product-name");
+        productNames.forEach((productName) => {
+            const text = productName.textContent;
+            if (text.length > 25) {
+                productName.textContent = text.slice(0, 25) + "...";
+            }
+        });
+    </script>
+@endsection
