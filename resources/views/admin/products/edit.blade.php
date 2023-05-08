@@ -71,8 +71,12 @@
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <select id="status" name="status" class="form-control" form="productForm">
-                                            <option value="active" @if($product->status == "active") selected @endif>Active</option>
-                                            <option value="inactive" @if($product->status == "inactive") selected @endif>InActive</option>
+                                            <option value="active" @if($product->status == "active") selected @endif>
+                                                Active
+                                            </option>
+                                            <option value="inactive"
+                                                    @if($product->status == "inactive") selected @endif>InActive
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -131,35 +135,57 @@
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function (file, response) {
-                console.log(file, file.upload.uuid)
+                console.log(response)
                 $('#productForm').append('<input type="hidden" name="images[]" value="' + response.path + '" data-uuid="' + file.upload.uuid + '">')
                 uploadedDocumentMap[file.upload.filename] = response.name
+                file.upload.path = response.path
             },
             removedfile: function (file) {
-                console.log(file);
-                file.previewElement.remove()
-                var name = ''
-                if (typeof file.file_name !== 'undefined') {
-                    name = file.file_name
-                } else {
-                    name = uploadedDocumentMap[file.name]
+
+                if (this.options.dictRemoveFile) {
+                    return Dropzone.confirm("Are you sure to " + this.options.dictRemoveFile, function () {
+                        var name = '';
+                        if (file.upload) {
+                            name = file.upload.path;
+                        } else {
+                            name = file.image;
+                        }
+                        console.log(name)
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                            },
+                            type: 'POST',
+                            url: "{{ route('admin.product.image.destroy') }}",
+                            data: {name: name},
+                            success: function (data) {
+                                alert(data.message);
+                                file.previewElement.remove();
+                                $('#productForm').find('input[name="images[]"][value="' + file.image + '"]').remove();
+                            },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                        });
+                        // var fileRef;
+                        // return (fileRef = file.previewElement) != null ?
+                        //     fileRef.parentNode.removeChild(file.previewElement) : void 0;
+                    });
                 }
-                $('#productForm').find('input[name="images[]"][data-uuid="' + file.upload.uuid + '"]').remove()
-                // var _ref;
-                // return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
             init: function () {
-                @if(isset($product) && count($product['images']) > 0)
-                        var files = {!! json_encode($product['images']) !!};
-                        console.log(files);
-                    for(var i in files)
-                    {
-                        var file = files[i]
-                        console.log(file)
-                        this.options.addedfile.call(this, file)
-                        file.previewElement.classList.add('dz-complete')
-                        $('#productForm').append('<input type="hidden" name="images[]" value="' + file.image + '">')
-                    }
+                @if(isset($images) && count($images) > 0)
+                var files = {!! json_encode($images) !!};
+                console.log(files);
+                for (var i in files) {
+
+                    var file = files[i];
+                    this.options.addedfile.call(this, file);
+                    this.options.thumbnail.call(this, file, file.path);
+                    this.emit("complete", file);
+
+                    $('#productForm').append('<input type="hidden" name="images[]" value="' + file.image + '">')
+                }
                 @endif
             }
         });
@@ -204,7 +230,7 @@
                     }
                 });*!/
                 @if(isset($product) && $product->images->count() > 0)
-                var files = {!! json_encode($product->images) !!};
+        var files = {!! json_encode($product->images) !!};
                 console.log(files);
                 /!*for(var i in files)
                 {
@@ -223,59 +249,59 @@
                     myDropzone.emit("complete", file);
                 });
                 @endif
-            },
-            removedfile: function (file) {
-                if (this.options.dictRemoveFile) {
-                    return Dropzone.confirm("Are You Sure to " + this.options.dictRemoveFile, function () {
-                        if (file.previewElement.id != "") {
-                            var name = file.previewElement.id;
-                        } else {
-                            var name = file.name;
+        },
+        removedfile: function (file) {
+            if (this.options.dictRemoveFile) {
+                return Dropzone.confirm("Are You Sure to " + this.options.dictRemoveFile, function () {
+                    if (file.previewElement.id != "") {
+                        var name = file.previewElement.id;
+                    } else {
+                        var name = file.name;
+                    }
+                    //console.log(name);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'POST',
+                        url: delete_url,
+                        data: {filename: name},
+                        success: function (data) {
+                            alert(data.success + " File has been successfully removed!");
+                        },
+                        error: function (e) {
+                            console.log(e);
                         }
-                        //console.log(name);
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: 'POST',
-                            url: delete_url,
-                            data: {filename: name},
-                            success: function (data) {
-                                alert(data.success + " File has been successfully removed!");
-                            },
-                            error: function (e) {
-                                console.log(e);
-                            }
-                        });
-                        var fileRef;
-                        return (fileRef = file.previewElement) != null ?
-                            fileRef.parentNode.removeChild(file.previewElement) : void 0;
                     });
-                }
-            },
-            success: function (file, response) {
-                file.previewElement.id = response.success;
-                //console.log(file);
-                // set new images names in dropzone’s preview box.
-                var olddatadzname = file.previewElement.querySelector("[data-dz-name]");
-                file.previewElement.querySelector("img").alt = response.success;
-                olddatadzname.innerHTML = response.success;
-            },
-            error: function (file, response) {
-                if ($.type(response) === "string")
-                    var message = response; //dropzone sends it's own error messages in string
-                else
-                    var message = response.message;
-                file.previewElement.classList.add("dz-error");
-                _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
-                _results = [];
-                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-                    node = _ref[_i];
-                    _results.push(node.textContent = message);
-                }
-                return _results;
+                    var fileRef;
+                    return (fileRef = file.previewElement) != null ?
+                        fileRef.parentNode.removeChild(file.previewElement) : void 0;
+                });
             }
-        });*/
+        },
+        success: function (file, response) {
+            file.previewElement.id = response.success;
+            //console.log(file);
+            // set new images names in dropzone’s preview box.
+            var olddatadzname = file.previewElement.querySelector("[data-dz-name]");
+            file.previewElement.querySelector("img").alt = response.success;
+            olddatadzname.innerHTML = response.success;
+        },
+        error: function (file, response) {
+            if ($.type(response) === "string")
+                var message = response; //dropzone sends it's own error messages in string
+            else
+                var message = response.message;
+            file.previewElement.classList.add("dz-error");
+            _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                node = _ref[_i];
+                _results.push(node.textContent = message);
+            }
+            return _results;
+        }
+    });*/
     </script>
 
     <script>

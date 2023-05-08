@@ -43,9 +43,8 @@ class ProductController extends Controller
                 'description' => $request->description,
             ]);
 
-            if (count($request->images) > 0) {
+            if (isset($request->images) && count($request->images) > 0) {
                 foreach ($request->images as $product_image) {
-                    //                $product_image = $product_image->store('product_images', 'public');
                     ProductImages::insert([
                         'product_id' => $product->id,
                         'image' => $product_image
@@ -75,29 +74,19 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $images = $product->images;
-        /*foreach ($images as $image) {
-            $tableImages[] = $image->image;
-        }
-
-        $storeFolder = public_path('storage/uploads/product_images');
-        $file_path = public_path('storage/uploads/');
-        $files = scandir($storeFolder);
         $imagess = [];
-//        dd($files);
-        foreach ($files as $file) {
-            if ($file != '.' && $file != '..' && in_array($file, $tableImages)) {
-                $obj['name'] = $file;
-                $file_path = public_path('storage/uploads/') . $file;
-                $obj['size'] = filesize($file_path);
-                $obj['path'] = url('public/storage/uploads/' . $file);
-                array_push($imagess, $obj);
-            }
-
+        foreach ($images as $image) {
+            $obj['image'] = $image->image;
+            $obj['name'] = str_replace('product_images/', ' ', $image->image);
+            $file_path = public_path('storage/uploads/') . $image->image;
+            $obj['size'] = filesize($file_path);
+            $obj['path'] = url('storage/uploads/' . $image->image);
+            array_push($imagess, $obj);
         }
-dd($imagess);*/
+
         $data = [
             'product' => $product,
-            'images' => $images
+            'images' => $imagess
         ];
 
         return view('admin.products.edit', $data);
@@ -125,15 +114,16 @@ dd($imagess);*/
                 'description' => $request->description
             ]);
 
-            /*if ($request->hasFile('image')) {
-                foreach ($request->image as $key => $product_image) {
-                    $product_image = $product_image->store('product_images', 'public');
+            ProductImages::where('product_id', $id)->delete();
+            if (isset($request->images) && count($request->images) > 0) {
+                foreach ($request->images as $product_image) {
                     ProductImages::insert([
-                        "product_id" => $id,
+                        'product_id' => $product->id,
                         'image' => $product_image
                     ]);
                 }
-            }*/
+            }
+
             return redirect()->route('admin.product.index')->with('success', "Product Updated Successfully");
 
         } catch (\Exception $exception) {
@@ -162,21 +152,29 @@ dd($imagess);*/
         }
     }
 
-    public function deletePImage($p_image_id)
+    public function deleteImage(Request $request)
     {
-
         try {
-            $find_image = ProductImages::findOrFail($p_image_id);
-            $folderPath = storage_path('app/public/' . $find_image->image);
+            $find_image = ProductImages::where('image', $request->name)->first();
+            $folderPath = storage_path('app/public/uploads/' . $request->name);
+
             if (File::exists($folderPath)) {
                 File::delete($folderPath);
             }
-            ProductImages::where('id', $p_image_id)->delete();
 
-            return back()->with('success', 'Product Image has been successfully deleted .');
+            if ($find_image) {
+                $find_image->delete();
+            }
 
+            return response()->json([
+                'status' => true,
+                'message' => 'Image has been deleted successfully'
+            ], 200);
         } catch (\Exception $exception) {
-            return redirect()->route('admin.product.index')->with('error', $exception->getMessage());
+            return response()->json([
+                'status' => false,
+                'message' => $exception->getMessage()
+            ], 500);
         }
     }
 
@@ -216,11 +214,12 @@ dd($imagess);*/
         return response()->json($data);
     }
 
-    public function changeStatus(Request $request , $id){
+    public function changeStatus(Request $request, $id)
+    {
         try {
             $product = Product::find($id);
 
-            $product->status = ($request->status == 'inactive')?Product::INACTIVE:Product::ACTIVE;
+            $product->status = ($request->status == 'inactive') ? Product::INACTIVE : Product::ACTIVE;
             $product->save();
             return redirect()->route('admin.product.index')->with('success', 'Product Status has been updated successfully');
 
