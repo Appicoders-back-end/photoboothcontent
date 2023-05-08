@@ -12,6 +12,20 @@
             padding: 0 0 0 0 !important;
             margin-bottom: 0 !important;
         }
+        .myloader {
+            position: fixed;
+            min-height: 100vh;
+            top: 0;
+            background-image: url("https://media3.giphy.com/media/KG4PMQ0jyimywxNt8i/giphy.gif?cid=ecf05e47uqzqe9qit5cdf4u7y9fqsw10slzt251h73nx9qri&rid=giphy.gif&ct=g");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pageContents {
+            position: fixed;
+            min-height: 100vh;
+            top: 0;
+        }
     </style>
 @endsection
 @section('content')
@@ -83,11 +97,13 @@
                                            data-allowed-file-extensions="mp4 mpg flv avi" data-show-remove="false">
                                 </div>
                             </div>
-                            <button class="btn btn-sm btn-success" type="submit">Save</button>
+                            <button class="btn btn-sm btn-success" id="upload-video" type="submit">Save</button>
                         </form>
                     </div>
                 </section>
             </div>
+        </div>
+        <div class="myloader container-fluid " style="display: none">
         </div>
         <!-- page end-->
     </section>
@@ -108,6 +124,13 @@
                 focus: true                 // set focus to editable area after initializing summernote
             });
         });
+
+        $("#upload-video").on("click",function (e) {
+            // e.preventDefault();
+            $(".myloader").css("display","block");
+            // $("form").submit();
+            // alert('work')
+        })
     </script>
 @endsection
 
