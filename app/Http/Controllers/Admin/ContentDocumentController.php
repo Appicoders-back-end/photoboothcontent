@@ -17,7 +17,7 @@ class ContentDocumentController extends Controller
      */
     public function index()
     {
-        $images = Content::with('category')->where('type', Content::DOCUMENT)->get();
+        $images = Content::with('category')->where('type', Content::DOCUMENT)->orderByDesc('id')->get();
         $data = [
             'images' => $images
         ];

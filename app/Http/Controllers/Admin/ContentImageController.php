@@ -16,7 +16,7 @@ class ContentImageController extends Controller
      */
     public function index()
     {
-        $images = Content::with('category')->where('type', Content::IMAGE)->get();
+        $images = Content::with('category')->where('type', Content::IMAGE)->orderByDesc('id')->get();
         $data = [
             'images' => $images
         ];
