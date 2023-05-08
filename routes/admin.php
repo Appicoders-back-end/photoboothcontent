@@ -68,7 +68,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('orders/{id}', [OrderController::class, 'show'])->name('admin.orders.show');
     Route::get('change-order-status/{id}', [OrderController::class, 'orderStatus'])->name('admin.orders.status');
     Route::post('/upload',[ProductController::class,'uploads'])->name('dropzone.store');
-//    Route::post('image/delete',[ProductController::class,'fileDestroy'])->name('dropzone.image.delete');
     Route::post('product-image/delete', [ProductController::class, 'deleteImage'])->name('admin.product.image.destroy');
 
     Route::resource('subscriptions', SubscriptionController::class, ['as' => 'admin'])->except(['show', 'destroy']);
