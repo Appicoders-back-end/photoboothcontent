@@ -13,6 +13,7 @@
                 <a class="my-2 d-block" href="{{route('coupons')}}">Coupons</a>
                 <a class="my-2 d-block" href="{{ route('memberships') }}">Membership</a>
                 <a class="my-2 d-block" href="{{ route('shop.home') }}">Shop</a>
+                <a class="my-2 d-block" href="{{ route('contact-us') }}">Contact us</a>
             </div>
             <div class="col-lg-4">
                 <h5 class="mb-3 fw-bold">Contact information</h5>
