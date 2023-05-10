@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Jobs\UploadVideoJob;
 use App\Models\Content;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Facades\Storage;
 
 class ContentStoreService
@@ -21,13 +23,27 @@ class ContentStoreService
             $content->category_id = $request['category_id'];
             $content->status = $request['status'];
             $content->type = $request['type'];
+
+//            dd($request['thumbnail_image']);
             $thumbnailImageName = saveFile($request['thumbnail_image'], $this->getPath($request['type'])['thumbnail_path']);
+           $content->thumbnail_image = $thumbnailImageName;
             $attachmentName = saveFile($request['attachment'], $this->getPath($request['type'])['path']);
             $content->thumbnail_image = $thumbnailImageName;
             $content->image = $attachmentName;
             if (isset($request['watermark_attachment'])) {
                 $content->watermark_attachment = saveFile($request['watermark_attachment'], $this->getPath($request['type'])['path']);
             }
+          /*  $upload_video_content = [
+               "thumbnail_image"  =>  $request['thumbnail_image'],
+               "thumbnail_path"   =>  $this->getPath($request['type'])['thumbnail_path'],
+               "attachment_name"  =>  $request['attachment'],
+               "attachment_path"  =>  $this->getPath($request['type'])['path'],
+               "watermark_attachment" => $request['watermark_attachment'],
+               "watermark_attachment_path" => $this->getPath($request['type'])['path'],
+            ];*/
+//            dispatch(new UploadVideoJob($upload_video_content));
+//            dispatch(new App\Jobs\UploadVideoJob($details));
+
             $content->extension = pathinfo($attachmentName, PATHINFO_EXTENSION);
             $content->size = $this->get_size($attachmentName);
             $content->save();
@@ -110,6 +126,6 @@ class ContentStoreService
 
     public function get_size($file_path)
     {
-        return 0; //todo will be fixed later
+        return 0; // todo will be fixed later
     }
 }

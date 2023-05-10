@@ -79,7 +79,7 @@ class MembershipController extends Controller
             $paymentMethod = PaymentMethod::find($request->payment_method);
             $coupon = $subscription->coupon;
 
-//            $buySubscription = $stripeService->buySubscription($customerId, $subscription, $paymentMethod);
+//          $buySubscription = $stripeService->buySubscription($customerId, $subscription, $paymentMethod);
 
             UserSubscription::create([
                 'user_id' => $user->id,

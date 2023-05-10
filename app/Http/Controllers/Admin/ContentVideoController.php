@@ -42,7 +42,6 @@ class ContentVideoController extends Controller
     public function store(CreateContentStoreVideoRequest $request, ContentStoreService $contentStoreService)
     {
         $contentStoreService->store($request->all());
-
         return redirect()->route('admin.content_videos.index')->with('success', 'Video has been created successfully');
     }
 
