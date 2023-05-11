@@ -139,7 +139,7 @@ class ContentStoreController extends Controller
     public function testEmail(Request $request)
     {
         try {
-            Mail::to('hirfan875@gmail.com')->send(new TestEmail());
+            Mail::to('irfan.haider@appicoders.com')->send(new TestEmail());
 
             return response()->json([
                 'success' => true,
