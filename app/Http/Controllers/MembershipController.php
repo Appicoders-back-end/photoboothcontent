@@ -49,9 +49,9 @@ class MembershipController extends Controller
     {
         $paymentMethods = PaymentMethod::where('user_id', auth()->user()->id)->select('id', 'card_holder_name', 'card_brand', 'card_end_number')->get();
 
-        /*if ($paymentMethods->count() == 0) {
+        if ($paymentMethods->count() == 0) {
             return redirect()->route('payment-methods.create')->with('success', "You have to add payment method first.");
-        }*/
+        }
 
         $data = [
             'subscription' => $subscription,
@@ -65,7 +65,7 @@ class MembershipController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'subscription_id' => 'required',
-//            'payment_method' => 'required',
+            'payment_method' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -79,14 +79,14 @@ class MembershipController extends Controller
             $paymentMethod = PaymentMethod::find($request->payment_method);
             $coupon = $subscription->coupon;
 
-//            $buySubscription = $stripeService->buySubscription($customerId, $subscription, $paymentMethod);
+            $buySubscription = $stripeService->buySubscription($customerId, $subscription, $paymentMethod);
 
             UserSubscription::create([
                 'user_id' => $user->id,
                 'subscription_id' => $subscription->id,
                 'price' => $subscription->price,
-//                'payment_method_id' => $paymentMethod->id,
-//                'stripe_charge_id' => $buySubscription->id,
+                'payment_method_id' => $paymentMethod->id,
+                'stripe_charge_id' => $buySubscription->id,
                 'end_date' => getPlanExpiryDate($subscription),
             ]);
 
@@ -109,7 +109,8 @@ class MembershipController extends Controller
         }
     }
 
-    public function cancelMembership($id){
+    public function cancelMembership($id)
+    {
         try {
             $cancel_membership = UserSubscription::find($id);
             $cancel_membership->is_canceled = 1;

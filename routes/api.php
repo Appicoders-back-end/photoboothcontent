@@ -21,7 +21,7 @@ use App\Http\Controllers\CouponController;
 
 Route::controller(\App\Http\Controllers\ContentStoreController::class)->group(function () {
     Route::post('download-content', 'download')->name('download-content');
-
+    Route::get('test-email', 'testEmail');
 });
 
 Route::post('applyCouponPromo', [CouponController::class, 'applyPromo'])->name('applyCouponPromo');
