@@ -114,7 +114,7 @@ class ProductController extends Controller
                 'description' => $request->description
             ]);
 
-            ProductImages::where('product_id', $id)->delete();
+            ProductImages::where('product_id', $id)->forceDelete();
             if (isset($request->images) && count($request->images) > 0) {
                 foreach ($request->images as $product_image) {
                     ProductImages::insert([
@@ -163,7 +163,7 @@ class ProductController extends Controller
             }
 
             if ($find_image) {
-                $find_image->delete();
+                $find_image->forceDelete();
             }
 
             return response()->json([
