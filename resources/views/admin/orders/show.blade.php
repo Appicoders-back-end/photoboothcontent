@@ -73,7 +73,7 @@
                                 <li style="display: flex; justify-content: space-between;color: #000;text-align: left;"><span style="font-weight: bold;">Delivery Charges :</span> <span style="display: block; text-align:right;">${{ number_format($order->delivery_charges,2)??'-' }}</span></li>
 {{--                                <li><strong>Discount :</strong> 10%</li>--}}
                                 @php $grand_total_amount = ($sub_total_amount - $delivery_charges) - $discount; @endphp
-                                <li style="display: flex; justify-content: space-between;color: #000;text-align: left;"><span style="font-weight: bold;">Total :</span> <span style="display: block; text-align:right;">${{ number_format($order->paid_amount,2) }}</span></li>
+                                <li style="display: flex; justify-content: space-between;color: #000;text-align: left;"><span style="font-weight: bold;">Grand Total :</span> <span style="display: block; text-align:right;">${{ number_format($order->paid_amount,2) }}</span></li>
                             </ul>
                         </div>
                     </div>
