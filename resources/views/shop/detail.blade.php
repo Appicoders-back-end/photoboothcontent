@@ -41,7 +41,7 @@
                                 <img src="{{ $related_product->getImages()[0] }}" alt="" class="product-img">
                                 <h4 class="product-name">{{ $related_product->title }}</h4>
                                 <p class="product-price">${{ $related_product->price }}</p>
-                                <p class="product-desc">{!! $related_product->description !!}</p>
+{{--                                <p class="product-desc">{!! $related_product->description !!}</p>--}}
                                 <a href="{{ route('shop.product.detail',$related_product->id) }}" class="btn btn-main">See Details
                                     <span><img src="{{asset('frontend/assets/img/arrow-black.png')}}" alt=""></span>
                                 </a>
