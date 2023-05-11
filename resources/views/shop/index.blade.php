@@ -36,7 +36,7 @@
             @forelse($products as $key => $product)
                 <div class="col-lg-4 col-md-6">
                     <div class="product-card">
-                        <img src="{{ $product->getImages()[0] }}" alt="" class="product-img">
+                        <a href="{{ route('shop.product.detail',$product->id) }}"><img src="{{ $product->getImages()[0] }}" alt="" class="product-img"></a>
                         <h4 class="product-name">{{ $product->title }}</h4>
                         <p class="product-price">${{ number_format($product->price,2) }}</p>
 {{--                        <p class="product-desc">{!! $product->description !!}</p>--}}
