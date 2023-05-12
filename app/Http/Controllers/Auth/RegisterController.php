@@ -7,10 +7,14 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Services\StripeService;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\RequiredIf;
 use Illuminate\Validation\ValidationException;
 use mysql_xdevapi\Exception;
+use Illuminate\Http\Request;
+use function Ramsey\Uuid\Generator\timestamp;
 
 class RegisterController extends Controller
 {
@@ -93,5 +97,39 @@ class RegisterController extends Controller
                 'error' => $exception->getMessage()
             ]);
         }
+    }
+
+    public function ajaxRegister(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'first_name' => ['required', 'string', 'max:150'],
+            'last_name' => ['required', 'string', 'max:150'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'contact_number' => ['required', 'numeric', 'digits:10'],
+//            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages());
+        }
+        $stripeService = new StripeService();
+        $user = User::create([
+            'name' => sprintf("%s %s", $request->first_name , $request->last_name),
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'contact_no' => $request->contact_number,
+            'role' => User::ROLE_CUSTOMER,
+            'password' => Hash::make($request->password),
+            'status' => User::ACTIVE,
+            'email_verified_at' => Carbon::now(),
+        ]);
+
+        $user->update([
+            'stripe_customer_id' => $stripeService->createCustomer($user)->id
+        ]);
+
+        return response()->json(['status'=>true,'message'=>"User Successfully Register",'data' => $user]);
+
     }
 }
