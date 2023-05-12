@@ -1,13 +1,6 @@
 @extends('layouts.app')
 @section('style')
     <style>
-        .modal-bg{
-            background: rgb(252,144,172);
-            background: -moz-linear-gradient(180deg, rgba(252,144,172,1) 0%, rgba(101,131,254,1) 100%);
-            background: -webkit-linear-gradient(180deg, rgba(252,144,172,1) 0%, rgba(101,131,254,1) 100%);
-            background: linear-gradient(180deg, rgba(252,144,172,1) 0%, rgba(101,131,254,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC90AC",endColorstr="#6583FE",GradientType=1);
-        }
         .error {
             color: #ff0000;
             font-weight: normal;

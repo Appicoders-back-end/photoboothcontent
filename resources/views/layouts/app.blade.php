@@ -13,7 +13,15 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css">
     <link href="{{asset('frontend')}}/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <!-- Bootstrap core CSS -->
-
+    <style>
+        .modal-bg {
+            background: rgb(252, 144, 172);
+            background: -moz-linear-gradient(180deg, rgba(252, 144, 172, 1) 0%, rgba(101, 131, 254, 1) 100%);
+            background: -webkit-linear-gradient(180deg, rgba(252, 144, 172, 1) 0%, rgba(101, 131, 254, 1) 100%);
+            background: linear-gradient(180deg, rgba(252, 144, 172, 1) 0%, rgba(101, 131, 254, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC90AC", endColorstr="#6583FE", GradientType=1);
+        }
+    </style>
     @yield('style')
 </head>
 <body>
