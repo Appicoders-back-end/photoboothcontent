@@ -126,7 +126,7 @@
                                         <span class="password text text-danger"></span>
                                         <input type="password" id="password_confirmation"
                                                class="form-control rounded-0 my-3" name="password_confirmation"
-                                               placeholder="Confirm Password">
+                                               placeholder="Confirm password">
 
                                         <button class="btn btn-main w-100" type="submit" id="modalRegisterFormSubmit">
                                             Sign up
