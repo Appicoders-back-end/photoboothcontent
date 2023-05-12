@@ -107,17 +107,17 @@
                                     <form action="#" id="modalRegisterForm" class="mt-4" method="POST">
                                         @csrf
                                         <input type="text" class="form-control rounded-0 my-3" id="first_name"
-                                               name="first_name" placeholder="first name">
+                                               name="first_name" placeholder="First name">
                                         <span class="first_name text text-danger"></span>
                                         <input type="text" class="form-control rounded-0 my-3" id="last_name"
-                                               name="last_name" placeholder="last name">
+                                               name="last_name" placeholder="Last name">
                                         <span class="last_name text text-danger"></span>
                                         <input type="email" class="form-control rounded-0 my-3" id="email" name="email"
-                                               placeholder="email">
+                                               placeholder="Email">
                                         <span class="email text text-danger"></span>
                                         <input type="text" class="form-control rounded-0 my-3" id="contact_number"
                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                               name="contact_number" placeholder="contact number" minlength="10"
+                                               name="contact_number" placeholder="Contact number" minlength="10"
                                                maxlength="10">
                                         <span class="contact_number text text-danger"></span>
 
