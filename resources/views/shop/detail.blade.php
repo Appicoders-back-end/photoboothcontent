@@ -71,5 +71,6 @@
                 productName.textContent = text.slice(0, 25) + "...";
             }
         });
+
     </script>
 @endsection
