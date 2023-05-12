@@ -14,6 +14,9 @@
             margin-bottom: 0 !important;
         }
 
+        .dropzone .dz-preview .dz-image img{
+            width: 100%;
+        }
     </style>
 @endsection
 @section('content')
