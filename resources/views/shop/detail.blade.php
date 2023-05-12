@@ -38,7 +38,7 @@
                     @foreach($related_products as $key => $related_product)
                         <div class="col-lg-4 col-md-6">
                             <div class="product-card related">
-                                <img src="{{ $related_product->getImages()[0] }}" alt="" class="product-img">
+                                <a href="{{ route('shop.product.detail',$product->id) }}"><img src="{{ $related_product->getImages()[0] }}" alt="" class="product-img"></a>
                                 <h4 class="product-name">{{ $related_product->title }}</h4>
                                 <p class="product-price">${{ $related_product->price }}</p>
 {{--                                <p class="product-desc">{!! $related_product->description !!}</p>--}}
