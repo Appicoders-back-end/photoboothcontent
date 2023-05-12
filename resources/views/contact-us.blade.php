@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('style')
     <style>
-        .form-control{
+        .contact-form .form-control{
             color: #000;
             border: 3px solid #000;
             box-shadow: 8px 5px 0px #000;
@@ -13,7 +13,7 @@
         <img src="{{ asset('frontend') }}/assets/img/hero-section-circle-pink.png" alt="Pink circle" class="pink-circle">
         <div class="container">
             <div class="row hero-content">
-                <form action="{{ route('contact.store') }}" method="POST" class="w-75 d-block mx-auto">
+                <form action="{{ route('contact.store') }}" method="POST" class="w-75 d-block mx-auto contact-form">
                     @csrf
                     @include('layouts.messages')
                     <h3 class="fw-bold">Contact Form</h3>
