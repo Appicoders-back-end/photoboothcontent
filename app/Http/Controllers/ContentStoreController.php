@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestEmail;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\UserCoupon;
 use App\Models\UserDownload;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use Illuminate\Support\Facades\Mail;
 
 class ContentStoreController extends Controller
 {
@@ -32,9 +34,9 @@ class ContentStoreController extends Controller
 
         $data = [
             'content' => json_decode($contentPage->content),
-            'categories' => Category::with(['subcategories' => function($query){
+            'categories' => Category::with(['subcategories' => function ($query) {
                 $query->where('status', Category::ACTIVE);
-            } ])->whereNull('parent_id')->active()->orderBy('id')->get(),
+            }])->whereNull('parent_id')->active()->orderBy('id')->get(),
             'content_store' => $baseContentQuery->orderByDesc('id')->get()
         ];
 
@@ -126,6 +128,23 @@ class ContentStoreController extends Controller
                 'message' => sprintf("Your %s has been downloaded successfully, and you can see this %s in my downloads section.", $contentType, $contentType)
             ]);
 
+        } catch (\Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage()
+            ]);
+        }
+    }
+
+    public function testEmail(Request $request)
+    {
+        try {
+            Mail::to('irfan.haider@appicoders.com')->send(new TestEmail());
+
+            return response()->json([
+                'success' => true,
+                'message' => "Email has been sent"
+            ]);
         } catch (\Exception $exception) {
             return response()->json([
                 'success' => false,

@@ -229,7 +229,7 @@
     </div>
 
     <div id="contentVideoModal" class="modal fade" data-bs-backdrop="false" tabindex="-1"
-         aria-labelledby="contentVideoModalLabel" aria-hidden="true">
+         aria-labelledby="contentVideoModalLabel" aria-hidden="true" style="background-color: #0000008a">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background: #00A8B3;color: #fff;">
