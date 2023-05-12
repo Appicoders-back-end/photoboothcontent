@@ -99,22 +99,23 @@ class RegisterController extends Controller
         }
     }
 
-    public function ajaxRegister(Request $request){
-
+    public function ajaxRegister(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'string', 'max:150'],
             'last_name' => ['required', 'string', 'max:150'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact_number' => ['required', 'numeric', 'digits:10'],
-//            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->messages());
         }
+
         $stripeService = new StripeService();
         $user = User::create([
-            'name' => sprintf("%s %s", $request->first_name , $request->last_name),
+            'name' => sprintf("%s %s", $request->first_name, $request->last_name),
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -129,7 +130,6 @@ class RegisterController extends Controller
             'stripe_customer_id' => $stripeService->createCustomer($user)->id
         ]);
 
-        return response()->json(['status'=>true,'message'=>"User Successfully Register",'data' => $user]);
-
+        return response()->json(['status' => true, 'message' => "Your account has been created successfully", 'data' => $user]);
     }
 }
