@@ -32,7 +32,7 @@
                                         <td>{{ $product->title }}</td>
                                         <td>{{ $product->stock??'' }}</td>
                                         <td>${{ number_format($product->price,2) }}</td>
-                                        <td><img class="img img-fluid" style="height: 70px; object-fit: cover;"
+                                        <td><img class="img img-fluid" style="height: 45px; object-fit: cover;"
                                                  src="{{ $product->getImages()[0] }}" alt=""></td>
                                         <td>
 {{--                                            {{\Illuminate\Support\Str::ucfirst($product->status)}}--}}
