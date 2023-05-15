@@ -100,7 +100,7 @@
                                     <!-- <h3 class="fs-3 fw-bold text-white">Register now</h3> -->
                                 </div>
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 bg-white">
                                 <div class="d-flex justify-content-end p-2">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>

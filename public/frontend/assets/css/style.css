@@ -474,7 +474,7 @@ footer img {
     color: #FC90AC;
 }
 
-.productswiper .swiper-slide{
+.productswiper .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -509,7 +509,7 @@ a.disabled {
     object-fit: cover;
 }
 
-.cart-icon{
+.cart-icon {
     font-size: 30px;
 }
 
@@ -570,9 +570,12 @@ a.disabled {
         margin-bottom: 20px;
     }
 
-    .navbar-collapse.show {
+    /*.navbar-collapse.show {
         background-color: #fff;
         padding: 20px;
+    }*/
+    nav {
+        background: #fff;
     }
 
     .content-category-card {
@@ -587,5 +590,6 @@ a.disabled {
 
     .signup-form, .signup-form.checkout-form {
         width: 90%;
+        padding: 0px;
     }
 }
