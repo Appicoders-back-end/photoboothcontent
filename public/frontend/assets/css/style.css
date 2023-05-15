@@ -513,6 +513,15 @@ a.disabled {
     font-size: 30px;
 }
 
+.table-responsive table th {
+    white-space: nowrap;
+}
+
+.table-responsive table p {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     header nav .nav-link {
         color: #000;
