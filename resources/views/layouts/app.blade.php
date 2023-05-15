@@ -101,6 +101,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
+                                <div class="d-flex justify-content-end p-2">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
                                 <div class="signup-form" style="width: auto;">
                                     <h4 class=" success_message text text-success"></h4>
                                     <h2>Register Now</h2>
