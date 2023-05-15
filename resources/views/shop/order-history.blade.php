@@ -38,12 +38,12 @@
                                 @forelse($order_history as $order)
                                     <tr>
                                         <td><a href="{{ route('shop.order-detail',$order->id) }}">#{{ $order->order_no??'-' }}</a></td>
-                                        <td>{{ formattedDate($order->created_at)??'-' }}</td>
+                                        <td style="white-space: nowrap">{{ formattedDate($order->created_at)??'-' }}</td>
                                         <td>${{ number_format($order->total_amount)??'-' }}</td>
                                         <td>${{ number_format($order->paid_amount)??'-' }}</td>
                                         <td><label class="badge @if($order->status === "pending") bg-danger @elseif($order->status === "processing") bg-primary @elseif($order->status === "cancel") bg-warning  @elseif($order->status === "completed") bg-success @endif "> @if($order->status === "cancel") {{ strtoupper($order->status."ED")??'-' }} @else {{ strtoupper($order->status)??'-' }} @endif</label></td>
                                         <td>
-                                            <a href="{{ route('shop.orders.status',$order->id) }}" class="btn btn-danger btn-sm delete-confirm @if($order->status !== "pending") disabled @endif">Cancel Order</a>
+                                            <a href="{{ route('shop.orders.status',$order->id) }}" class="btn btn-danger btn-sm delete-confirm @if($order->status !== "pending") disabled @endif" style="white-space: nowrap">Cancel Order</a>
                                         </td>
                                     </tr>
                                 @empty
