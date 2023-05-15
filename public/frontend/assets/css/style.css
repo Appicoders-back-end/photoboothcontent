@@ -522,6 +522,10 @@ a.disabled {
     overflow: hidden;
 }
 
+.borderless td, .borderless th {
+    border: none;
+}
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     header nav .nav-link {
         color: #000;
