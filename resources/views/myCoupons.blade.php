@@ -34,7 +34,7 @@
                                                     <p>{{$coupon->total_images}}</p>
                                                 </div>
                                                 <div class="col-4">
-                                                    <p>Document</p>
+                                                    <p>Doc</p>
                                                     <p>{{$coupon->total_documents}}</p>
                                                 </div>
                                             </div>
@@ -50,7 +50,7 @@
                                                     <p>{{$coupon->downloaded_videos}}</p>
                                                 </div>
                                                 <div class="col-4">
-                                                    <p>Document</p>
+                                                    <p>Doc</p>
                                                     <p>{{$coupon->downloaded_documents}}</p>
                                                 </div>
                                             </div>
