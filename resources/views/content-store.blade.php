@@ -33,51 +33,59 @@
             <div class="col-lg-3 pt-5">
                 <form action="{{route('content-store')}}" id="filter-form" method="GET">
                 </form>
-                <div class="mb-4">
-                    <input name="keyword" type="text" class="form-control" placeholder="Search"
-                           value="{{request()->get('keyword')}}" form="filter-form">
-                </div>
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h6 class="title">Categories </h6>
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
-                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                @foreach($categories as $category)
-                                    <label class="form-check parent-category">
-                                        <input class="form-check-input" type="checkbox" name="categories[]"
-                                               value="{{$category->id}}" id="parent_{{ $category->id }}"
-                                               form="filter-form"
-                                        @if(request()->get('categories') != null)
-                                            {{ in_array($category->id, request()->get('categories')) ? 'checked' : null }}
-                                            @endif
-                                               onchange="parentChanged({{ $category->id }})">
-                                        <span class="form-check-label">{{$category->name}}</span>
-                                    </label>
-                                    @if($category->has('subcategories'))
-                                        @foreach($category->subcategories as $subcategory)
-                                            <label class="form-check child-category">
-                                                <input class="form-check-input child_{{ $category->id }}" type="checkbox" name="categories[]"
-                                                       value="{{$subcategory->id}}"
-                                                       form="filter-form"
-                                                @if(request()->get('categories') != null)
-                                                    {{ in_array($subcategory->id, request()->get('categories')) ? 'checked' : null }}
-                                                    @endif  onchange="childChanged({{ $category->id }})"
-                                                >
-                                                <span class="form-check-label">{{$subcategory->name}}</span>
-                                            </label>
-                                        @endforeach
-                                    @endif
-                                @endforeach
+
+               <div class="container">
+                        <div class="mb-4">
+                            <input name="keyword" type="text" class="form-control" placeholder="Search"
+                               value="{{request()->get('keyword')}}" form="filter-form">
+                        </div>
+              </div>
+
+
+               <div class="container ">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h6 class="title">Categories </h6>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    @foreach($categories as $category)
+                                        <label class="form-check parent-category">
+                                            <input class="form-check-input" type="checkbox" name="categories[]"
+                                                   value="{{$category->id}}" id="parent_{{ $category->id }}"
+                                                   form="filter-form"
+                                                   @if(request()->get('categories') != null)
+                                                   {{ in_array($category->id, request()->get('categories')) ? 'checked' : null }}
+                                                   @endif
+                                                   onchange="parentChanged({{ $category->id }})">
+                                            <span class="form-check-label">{{$category->name}}</span>
+                                        </label>
+                                        @if($category->has('subcategories'))
+                                            @foreach($category->subcategories as $subcategory)
+                                                <label class="form-check child-category">
+                                                    <input class="form-check-input child_{{ $category->id }}" type="checkbox" name="categories[]"
+                                                           value="{{$subcategory->id}}"
+                                                           form="filter-form"
+                                                           @if(request()->get('categories') != null)
+                                                           {{ in_array($subcategory->id, request()->get('categories')) ? 'checked' : null }}
+                                                           @endif  onchange="childChanged({{ $category->id }})"
+                                                    >
+                                                    <span class="form-check-label">{{$subcategory->name}}</span>
+                                                </label>
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        </div>
+               </div>
+
                 <div class="mb-4 mt-2 d-flex justify-content-around">
                     <button type="submit" class="btn btn-main" form="filter-form">Filter</button>
                     <a href="{{route('content-store')}}" class="btn btn-main" form="filter-form">Clear</a>
