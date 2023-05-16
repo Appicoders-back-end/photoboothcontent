@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <main id="cart" class="mx-auto" style="max-width:960px; margin-top: 100px; padding: 100px 0;">
-        <h2>Buy Membership</h2>
 
         <div class="container-fluid">
+            <h2>Buy Membership</h2>
             <div class="row align-items-start">
                 @include('layouts.messages')
                 <div class="col-12 col-sm-8 items">

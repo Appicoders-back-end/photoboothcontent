@@ -20,16 +20,17 @@
                         <img src="{{ url('/') . '/' . $content->couponImg }}" alt="Video frame" class="img-fluid">
                     @endif
                 </div>
-                <div class="row coupons-row">
-                    @if($coupons->count() > 0)
-                        @foreach($coupons as $coupon)
-                            @include('partials.coupon', $coupon)
-                        @endforeach
-                    @endif
-                </div>
+
                 {{--<div class="my-5 d-flex justify-content-center">
                     <a href="#" class="btn btn-main">Load More</a>
                 </div> --}}
+            </div>
+            <div class="row coupons-row">
+                @if($coupons->count() > 0)
+                    @foreach($coupons as $coupon)
+                        @include('partials.coupon', $coupon)
+                    @endforeach
+                @endif
             </div>
         </div>
         <img src="{{asset('frontend')}}/assets/img/hero-section-circle-blue.png" alt="Blue circle" class="blue-circle">
