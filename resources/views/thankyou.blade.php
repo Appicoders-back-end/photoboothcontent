@@ -7,7 +7,7 @@
                 <div class="col-lg-12 d-flex flex-column align-items-center text-center">
                     <h2><?= htmlentities(Session::get('success'))?></h2>
                     <div class="d-flex w-50 justify-content-around">
-                        <a class="btn btn-main" href="{{url('/')}}">Back to home <span><img
+                        <a class="btn btn-main bkt-home-btn" href="{{url('/')}}">Back to home <span><img
                                     src="{{asset('frontend')}}/assets/img/arrow-black.png" alt="arrow"></span></a>
                     </div>
                 </div>

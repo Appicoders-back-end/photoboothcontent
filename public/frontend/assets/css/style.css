@@ -605,4 +605,32 @@ a.disabled {
         width: 90%;
         padding: 0px;
     }
+
+    footer .w-75{
+        width: 100% !important;
+    }
+    .productswiper .swiper-slide img{
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .row.hero-content h2,
+    .about-section h2 {
+        font-size: 25px;
+        line-height: unset;
+        margin: 20px 0;
+    }
+    .about-section h3, .content-section h3, .coupons-section h3{
+        font-size: 22px;
+    }
+    .cart-btn{
+        margin-bottom: 20px;
+        padding: 0;
+    }
+    .bkt-home-btn{
+        font-size: 12px;
+    }
 }
