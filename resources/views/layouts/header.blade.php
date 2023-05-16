@@ -19,7 +19,7 @@
                     <li class="nav-item"><a class="nav-link {{ route('contact-us') == url()->current() ? 'active':'' }}" href="{{route('contact-us')}}">Contact us</a></li>
                 </ul>
                 @if(auth()->user() && count((array) session('cart')) > 0)
-                    <a href="{{ route('shop.cart') }}" type="button" class="btn d-flex align-items-center" data-toggle="dropdown">
+                    <a href="{{ route('shop.cart') }}" type="button" class="btn d-flex align-items-center cart-btn" data-toggle="dropdown">
                         <i class="fa fa-shopping-cart cart-icon" aria-hidden="true"></i> <span class="ms-2 badge badge-pill bg-danger">{{ count((array) session('cart')) }}</span>
                     </a>
                 @endif

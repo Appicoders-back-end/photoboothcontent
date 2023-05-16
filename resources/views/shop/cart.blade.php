@@ -2,8 +2,8 @@
 @section('content')
     <main id="cart" class="mx-auto" style="max-width:960px; margin-top: 100px; padding: 100px 0;">
         @include('layouts.messages')
-        <h1>Your Cart</h1>
         <div class="container-fluid">
+            <h1>Your Cart</h1>
             <div class="row align-items-start">
                 <div class="col-12 col-sm-8 items">
                     <div class="table-responsive">
